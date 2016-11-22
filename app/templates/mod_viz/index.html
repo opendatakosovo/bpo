@@ -4,172 +4,395 @@
 <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/mapdata/countries/bd/bd-all.js"></script>
 <script>
-            $(function () {
+    $(function () {
 
-                // Prepare demo data
-                var data = [{ 'hc-key': 'bd-da', 'name':'Dhaka', value: 0 },
-                    { 'hc-key': 'bd-kh', 'name':'Dhaka', value: 1 },
-                    { 'hc-key': 'bd-ba', 'name':'Dhaka',  value: 2 },
-                    { 'hc-key': 'bd-cg', 'name':'Dhaka',  value: 3 },
-                    { 'hc-key': 'bd-sy', 'name':'Dhaka',  value: 4 },
-                    { 'hc-key': 'bd-rj', 'name':'Dhaka',  value: 5 },
-                    { 'hc-key': 'bd-rp', 'name':'Dhaka',  value: 6 }];
+        // Prepare demo data
+        var data = [{'hc-key': 'bd-da', 'name': 'Dhaka', value: 0},
+            {'hc-key': 'bd-kh', 'name': 'Dhaka', value: 1},
+            {'hc-key': 'bd-ba', 'name': 'Dhaka', value: 2},
+            {'hc-key': 'bd-cg', 'name': 'Dhaka', value: 3},
+            {'hc-key': 'bd-sy', 'name': 'Dhaka', value: 4},
+            {'hc-key': 'bd-rj', 'name': 'Dhaka', value: 5},
+            {'hc-key': 'bd-rp', 'name': 'Dhaka', value: 6}];
 
-                    
-                // Initiate the chart
-                $('#map').highcharts('Map', {
-                    mapNavigation: {
-                        enabled: true,
-                        buttonOptions: {
-                            verticalAlign: 'bottom'
-                        }
-                    },
 
-                    colorAxis: {
-                        min: 0
-                    },
-                    chart: {
-			            plotBorderWidth: 1,
-			            ignoreHiddenSeries: false
-			        },
-			        xAxis: {
-			            minPadding: -0.01
-			        },
-			        yAxis: {
-			            minPadding: -0.01,
-			            maxPadding: 0.01
-			        },
+        // Initiate the chart
+        $('#map').highcharts('Map', {
+            mapNavigation: {
+                enabled: true,
+                buttonOptions: {
+                    verticalAlign: 'bottom'
+                }
+            },
 
-                    series : [{
-                        data : data,
-                        mapData: Highcharts.maps['countries/bd/bd-all'],
-                        joinBy: 'hc-key',
-                        name: 'Areas',
+            colorAxis: {
+                min: 0
+            },
+            chart: {
+                plotBorderWidth: 1,
+                ignoreHiddenSeries: false
+            },
+            xAxis: {
+                minPadding: -0.01
+            },
+            yAxis: {
+                minPadding: -0.01,
+                maxPadding: 0.01
+            },
 
-                        states: {
-                            hover: {
-                                color: '#a4edba'
-                            }
-                        },
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.name}'
-                        }
-                    }],
-                    plotOptions: {
-			            series: {
-			                tooltip: {
-			                    headerFormat: '',
-			                    pointFormat: '{point.name}'
-			                }
-			            }
-			        },
-                    legend: {
-			            align: 'left',
-			            backgroundColor: 'white',
-			            floating: true,
-			            layout: 'vertical',
-			            verticalAlign: 'bottom',
-			            x: 50,
-			            y: -50
-			        },
-                });
-            });
-            $( function() {
-			    $( "#accordion" ).accordion({
-			       collapsible: true, active: false
-			    });
-			  } );
-            $( function() {
-			    $( "#national-accordion" ).accordion({
-			       collapsible: true, active: false
-			    });
-			  } );
+            series: [{
+                data: data,
+                mapData: Highcharts.maps['countries/bd/bd-all'],
+                joinBy: 'hc-key',
+                name: 'Areas',
+
+                states: {
+                    hover: {
+                        color: '#a4edba'
+                    }
+                },
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }],
+            plotOptions: {
+                series: {
+                    tooltip: {
+                        headerFormat: '',
+                        pointFormat: '{point.name}'
+                    }
+                }
+            },
+        });
+    });
+
+    $(function () {
+        $("#national-accordion").accordion({
+            collapsible: true, active: false
+        });
+    });
+    $(function () {
+        Highcharts.chart('third-section-first-chart', {
+            chart: {
+                type: 'column',
+                width: 500,
+                height: 200
+            },
+            title: {
+                text: 'Title'
+            },
+            subtitle: {
+                text: 'Source: IDAMS'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                position: 'right',
+                title: {
+                    text: 'Text (mm)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Tokyo',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
+
+            }]
+        });
+    });
+    $(function () {
+        Highcharts.chart('third-section-second-chart', {
+            chart: {
+                type: 'column',
+                width: 500,
+                height: 200
+
+            },
+            title: {
+                text: 'Title'
+            },
+            subtitle: {
+                text: 'Source: IDAMS'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                position: 'right',
+                title: {
+                    text: 'Rainfall (mm)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Tokyo',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
+
+            }]
+        });
+    });
+    $(function () {
+        Highcharts.chart('third-section-third-chart', {
+            chart: {
+                type: 'column',
+                width: 500,
+                height: 200
+
+            },
+            title: {
+                text: 'Monthly Average Rainfall'
+            },
+            subtitle: {
+                text: 'Source: WorldClimate.com'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                position: 'right',
+                title: {
+                    text: 'Rainfall (mm)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Tokyo',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
+
+            }]
+        });
+    });
 </script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <div class="row">
-	<div id="map" class="col-md-6">
-	MAP
-	</div>
-	<div class="col-md-6">
-		<div class="col-md-12">
-			<h3>Violent Crimes in Barisal Division</h3>
-		</div>
-		
-		<div class="col-md-12">
-			<h3>National Ranked: 3d</h3>
-			<div id="national-accordion">
-			  <h3 class="division-overview-tab">Section 1 <span class="caret"></span></h3>
-			  <div>
-			    <p>
-			    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-			    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-			    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-			    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-			    </p>
-			  </div>
-			  
-			</div>
-		</div>
-		<div class="col-md-12">
-			<h3>Division Overview:</h3>
-			<div id="accordion">
-			  <h3 class="division-overview-tab">Section 1 <span class="caret"></span></h3>
-			  <div>
-			    <p>
-			    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-			    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-			    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-			    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-			    </p>
-			  </div>
-			  <h3 class="division-overview-tab">Section 2 <span class="caret"></span></h3>
-			  <div>
-			    <p>
-			    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-			    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-			    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-			    suscipit faucibus urna.
-			    </p>
-			  </div>
-			  <h3 class="division-overview-tab">Section 3 <span class="caret"></span></h3>
-			  <div>
-			    <p>
-			    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
-			    Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
-			    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
-			    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-			    </p>
-			    <ul>
-			      <li>List item one</li>
-			      <li>List item two</li>
-			      <li>List item three</li>
-			    </ul>
-			  </div>
-			</div>
-		</div>
-		<div class="col-md-12">
-			<div class="col-md-6">
-				<h3>Top 3 Reported Perpetrators</h3>
-			</div>
-			<div class="col-md-6">
-				<h3>Top 3 Reported Casualties</h3>
-			</div>
-			<div class="col-md-6">
-				<h3>Top 3 Reported Type Destruction</h3>
-			</div>
-		</div>
-		<div class="col-md-12">
-			<h3>Census Information for Barisal Division</h3>
-		</div>
-	</div>
-	
+    <div id="map" class="col-md-6">
+        MAP
+    </div>
+    <div class="col-md-6">
+        <div class="col-md-12">
+            <h3>Violent Crimes in Barisal Division</h3>
+        </div>
+
+        <div class="col-md-12">
+            <h3>National Ranked: 3d</h3>
+            <div id="national-accordion">
+                <div>
+                    <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png')}}"/>
+                    Manpura upazila has the highest fatality rate.
+                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png')}}"/>
+                    <span class="caret"></span>
+                </div>
+                <div>
+                    <div>
+                        <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png')}}"/>
+                        Manpura upazila has the highest fatality rate.
+                        <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png')}}"/>
+                        <span class="caret"></span>
+                    </div>
+                    <div>
+                        <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png')}}"/>
+                        Manpura upazila has the highest fatality rate.
+                        <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png')}}"/>
+                        <span class="caret"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <span class="section-title">Division Overview:</span>
+            <div id="accordion">
+                <div class="division-overview-tab">
+                    <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png')}}"/>
+                    Manpura upazila has the highest fatality rate.
+                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png')}}"/>
+                    <span class="caret"></span>
+                </div>
+                <div>
+                    <p>
+                    <div class="third-section-chart" id="third-section-first-chart">
+                    </div>
+                    </p>
+                </div>
+                <div class="division-overview-tab">
+                    <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png')}}"/>
+                    Burhanuddin upazila has the highest injury count.
+                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png')}}"/>
+                    <span class="caret"></span>
+                </div>
+                <div>
+                    <div class="third-section-chart" id="third-section-second-chart">
+                    </div>
+                </div>
+                <div class="division-overview-tab">
+                    <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png')}}"/>
+                    Manpura upazila has the highest property damage count.
+                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png')}}"/>
+                    <span class="caret"></span>
+                </div>
+                <div>
+                    <div class="third-section-chart" id="third-section-third-chart">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $("#accordion").accordion({
+                collapsible: true, active: false,
+                autoHeight: true
+            });
+        </script>
+        <div class="col-md-12">
+            <div class="col-md-6 top-3">
+                <span class="section-title">Top 3 Reported Perpetrators</span>
+                <ol>
+                    <li>Allahr Dol</li>
+                    <li>Gono Mukti Front</li>
+                    <li>Other Militant Group</li>
+                </ol>
+            </div>
+            <div class="col-md-6 top-3">
+                <span class="section-title">Top 3 Reported Casualties</span>
+                <ol>
+                    <li>Women</li>
+                    <li>General Public</li>
+                    <li>Hindu Minority</li>
+                </ol>
+            </div>
+            <div class="col-md-6 top-3">
+                <span class="section-title">Top 3 Property Type Destruction</span>
+                <ol>
+                    <li>Cars</li>
+                    <li>Public property</li>
+                    <li>Shops</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 census-information">
+                <span class="section-title">Census Information for Barisal Division<span class="caret"></span></span>
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 </div>
 <div class="row">
-		<div class="col-md-12">
-			<h3>Human and Economic Impact</h3>
-			<h4>State of Violence in Barisal Division</h4>
-		</div>
-		
-	</div>
+    <div class="col-md-12">
+        <h3>Human and Economic Impact</h3>
+        <h4>State of Violence in Barisal Division</h4>
+    </div>
+
+</div>
 {% endblock %}

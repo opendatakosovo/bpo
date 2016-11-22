@@ -1,7 +1,37 @@
-.division-overview-tab {
+div.division-overview-tab {
     border: 1px solid gray;
-    margin-top: -9px;
+    padding: 5px;
 }
+
+div#national-accordion {
+    border: 1px solid gray;
+    padding: 5px;
+}
+dl{
+    margin-bottom:0px !important;
+}
+.dl-horizontal dt{
+    width:100px;
+    text-align: left !important;
+}
+.dl-horizontal dd{
+    text-align: left !important;
+    margin-left:0px !important;
+}
+
+.top-3 {
+    border: 1px solid gray;
+    margin-top: 10px;
+}
+
+.census-information {
+    border: 1px solid gray;
+    padding: 5px;
+    width: 92%;
+    margin-left: 30px;
+    margin-top: 9px;
+}
+
 .caret {
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
@@ -9,4 +39,29 @@
     float: right;
     margin-top: 9px;
     margin-right: 5px;
+}
+
+#3d-map {
+
+}
+
+/*div#ui-id-1 {*/
+/*height: 300px !important;*/
+/*}*/
+div#ui-id-2 {
+    height: 200px !important;
+}
+
+div#ui-id-4 {
+    height: 200px !important;
+}
+
+.viz-icon {
+    width: 15px;
+    height: 20px;
+}
+
+.viz-icon-array {
+    width: 15px;
+    height: 15px;
 }
