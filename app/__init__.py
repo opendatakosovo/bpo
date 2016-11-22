@@ -85,3 +85,15 @@ def init_modules(app):
     # Import blueprint modules
     from app.mod_main.views import mod_main
     app.register_blueprint(mod_main)
+
+    # Register visualizer blueprint
+    from app.mod_viz.views import mod_viz
+    app.register_blueprint(mod_viz)
+
+    # Register importer blueprint
+    from app.mod_importer.views import mod_importer
+    app.register_blueprint(mod_importer)
+
+    # Register importer blueprint
+    from app.mod_api.views import mod_api
+    app.register_blueprint(mod_api)

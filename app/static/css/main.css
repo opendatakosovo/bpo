@@ -1,0 +1,12 @@
+.division-overview-tab {
+    border: 1px solid gray;
+    margin-top: -9px;
+}
+.caret {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #000000;
+    float: right;
+    margin-top: 9px;
+    margin-right: 5px;
+}

@@ -1,0 +1,175 @@
+{% extends 'layout.html'%}
+{% block body %}
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/mapdata/countries/bd/bd-all.js"></script>
+<script>
+            $(function () {
+
+                // Prepare demo data
+                var data = [{ 'hc-key': 'bd-da', 'name':'Dhaka', value: 0 },
+                    { 'hc-key': 'bd-kh', 'name':'Dhaka', value: 1 },
+                    { 'hc-key': 'bd-ba', 'name':'Dhaka',  value: 2 },
+                    { 'hc-key': 'bd-cg', 'name':'Dhaka',  value: 3 },
+                    { 'hc-key': 'bd-sy', 'name':'Dhaka',  value: 4 },
+                    { 'hc-key': 'bd-rj', 'name':'Dhaka',  value: 5 },
+                    { 'hc-key': 'bd-rp', 'name':'Dhaka',  value: 6 }];
+
+                    
+                // Initiate the chart
+                $('#map').highcharts('Map', {
+                    mapNavigation: {
+                        enabled: true,
+                        buttonOptions: {
+                            verticalAlign: 'bottom'
+                        }
+                    },
+
+                    colorAxis: {
+                        min: 0
+                    },
+                    chart: {
+			            plotBorderWidth: 1,
+			            ignoreHiddenSeries: false
+			        },
+			        xAxis: {
+			            minPadding: -0.01
+			        },
+			        yAxis: {
+			            minPadding: -0.01,
+			            maxPadding: 0.01
+			        },
+
+                    series : [{
+                        data : data,
+                        mapData: Highcharts.maps['countries/bd/bd-all'],
+                        joinBy: 'hc-key',
+                        name: 'Areas',
+
+                        states: {
+                            hover: {
+                                color: '#a4edba'
+                            }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}'
+                        }
+                    }],
+                    plotOptions: {
+			            series: {
+			                tooltip: {
+			                    headerFormat: '',
+			                    pointFormat: '{point.name}'
+			                }
+			            }
+			        },
+                    legend: {
+			            align: 'left',
+			            backgroundColor: 'white',
+			            floating: true,
+			            layout: 'vertical',
+			            verticalAlign: 'bottom',
+			            x: 50,
+			            y: -50
+			        },
+                });
+            });
+            $( function() {
+			    $( "#accordion" ).accordion({
+			       collapsible: true, active: false
+			    });
+			  } );
+            $( function() {
+			    $( "#national-accordion" ).accordion({
+			       collapsible: true, active: false
+			    });
+			  } );
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<div class="row">
+	<div id="map" class="col-md-6">
+	MAP
+	</div>
+	<div class="col-md-6">
+		<div class="col-md-12">
+			<h3>Violent Crimes in Barisal Division</h3>
+		</div>
+		
+		<div class="col-md-12">
+			<h3>National Ranked: 3d</h3>
+			<div id="national-accordion">
+			  <h3 class="division-overview-tab">Section 1 <span class="caret"></span></h3>
+			  <div>
+			    <p>
+			    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+			    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+			    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+			    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+			    </p>
+			  </div>
+			  
+			</div>
+		</div>
+		<div class="col-md-12">
+			<h3>Division Overview:</h3>
+			<div id="accordion">
+			  <h3 class="division-overview-tab">Section 1 <span class="caret"></span></h3>
+			  <div>
+			    <p>
+			    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+			    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+			    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+			    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+			    </p>
+			  </div>
+			  <h3 class="division-overview-tab">Section 2 <span class="caret"></span></h3>
+			  <div>
+			    <p>
+			    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+			    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+			    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+			    suscipit faucibus urna.
+			    </p>
+			  </div>
+			  <h3 class="division-overview-tab">Section 3 <span class="caret"></span></h3>
+			  <div>
+			    <p>
+			    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+			    Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+			    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+			    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+			    </p>
+			    <ul>
+			      <li>List item one</li>
+			      <li>List item two</li>
+			      <li>List item three</li>
+			    </ul>
+			  </div>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="col-md-6">
+				<h3>Top 3 Reported Perpetrators</h3>
+			</div>
+			<div class="col-md-6">
+				<h3>Top 3 Reported Casualties</h3>
+			</div>
+			<div class="col-md-6">
+				<h3>Top 3 Reported Type Destruction</h3>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<h3>Census Information for Barisal Division</h3>
+		</div>
+	</div>
+	
+</div>
+<div class="row">
+		<div class="col-md-12">
+			<h3>Human and Economic Impact</h3>
+			<h4>State of Violence in Barisal Division</h4>
+		</div>
+		
+	</div>
+{% endblock %}
