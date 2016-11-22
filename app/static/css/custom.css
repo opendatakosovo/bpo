@@ -1,17 +1,17 @@
 header .intro-text .intro-lead-in {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Playfair Display";
     font-style: normal;
-    font-size: 72px;
+    font-size: 64px;
     line-height: 82px;
     margin-bottom: 55px;
 }
 
 header .intro-text .intro-heading {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Lato;
     /*text-transform: uppercase;*/
     font-style: normal;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 24px;
     line-height: 75px;
     margin-bottom: 60px;
     text-transform: capitalize;
@@ -55,16 +55,15 @@ header .intro-text .intro-heading {
 }
 
 .btn-xl {
-    color: #FFA500;
+    color: #FFAA12;
     background-color: #1b6d85;
-    /*border-color: #FFA500;*/
-    border: 2px solid #FFA500;
+    border: 2px solid #FFAA12;
     border-style: solid;
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Lato;
     text-transform: uppercase;
     font-weight: 700;
     border-radius: 3px;
-    font-size: 18px;
+    font-size: 20px;
     padding: 20px 40px;
     float: right;
 }
