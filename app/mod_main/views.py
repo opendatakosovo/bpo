@@ -4,6 +4,7 @@ from bson.json_util import dumps
 mod_main = Blueprint('main', __name__)
 
 
+
 @mod_main.route('/', methods=['GET'])
 def index():
     ''' Renders the App index page.
@@ -11,3 +12,13 @@ def index():
     '''
 
     return render_template('mod_main/index.html')
+
+
+
+@mod_main.route('/about', methods=['GET'])
+def about():
+    ''' Renders the App index page.
+    :return:
+    '''
+
+    return render_template('mod_main/about.html')

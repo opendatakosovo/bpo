@@ -1,0 +1,211 @@
+header .intro-text .intro-lead-in {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-size: 72px;
+    line-height: 82px;
+    margin-bottom: 55px;
+}
+
+header .intro-text .intro-heading {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*text-transform: uppercase;*/
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 75px;
+    margin-bottom: 60px;
+    text-transform: capitalize;
+}
+
+.navbar-custom .nav li a {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0px;
+    color: white;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+    margin-left: 25%;
+    font-size: 50px;
+    text-transform: capitalize;
+}
+
+.section-heading1 {
+    margin-bottom: 30px;
+    margin-left: 15%;
+    width: 60%;
+    color: white;
+    font-size: 50px;
+}
+
+.section-heading2 {
+    margin-bottom: 30px;
+    margin-left: 30%;
+    width: 60%;
+    color: black;
+    font-size: 50px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+
+.btn-xl {
+    color: #FFA500;
+    background-color: #1b6d85;
+    /*border-color: #FFA500;*/
+    border: 2px solid #FFA500;
+    border-style: solid;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 3px;
+    font-size: 18px;
+    padding: 20px 40px;
+    float: right;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 4px solid #FF8C00;
+    margin: 1em 0;
+    padding: 0;
+    margin-left: 28%;
+}
+
+header {
+    /*background-image: url('../img/header-bg.jpg');*/
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    background-size: cover;
+    -o-background-size: cover;
+    text-align: center;
+    color: white;
+    background-color: #1b6d85;
+}
+
+.bg-light-gray {
+    background-color: #e6e6fa;
+}
+
+.bg-light-blue {
+    background-color: #1b6d85;
+}
+
+.lead1 {
+    font-size: 22px;
+    color: white;
+    text-align: justify;
+}
+
+.lead2 {
+    font-size: 22px;
+    color: black;
+    text-align: justify;
+}
+
+.test {
+    height: 100px;
+    width: 0px;
+    /*position:relative;*/
+    border: 3px solid gray;
+    margin-left: 0px;
+    float: left;
+}
+
+.paragraph2 {
+
+    padding-left: 20px;
+}
+
+footer .footer-above {
+    padding-top: 50px;
+    /*background-color: #2C3E50;*/
+}
+
+footer .footer-col {
+    margin-bottom: 30px;
+}
+
+footer .footer-below {
+    padding: 25px 0;
+    /*background-color: #233140;*/
+}
+
+footer {
+    color: white;
+}
+
+footer {
+    color: white;
+    background-color: #1b6d85;
+}
+
+.social-google {
+    background-color: white;
+    border-color: white;
+}
+
+.social-google:hover {
+    background-color: #be5238;
+    border-color: #347b95;
+}
+
+.social-twitter {
+    background-color: white;
+    border-color: white;
+}
+
+.social-twitter:hover {
+    background-color: #3997ba;
+    border-color: #347b95;
+}
+
+.social-facebook {
+    background-color: white;
+    border-color: white;
+}
+
+.social-facebook:hover {
+    background-color: #47618d;
+    border-color: #347b95;
+}
+
+.social-pinterest {
+    background-color: white;
+    border-color: white;
+}
+
+.social-pinterest:hover {
+    background-color: #466b99;
+    border-color: #347b95;
+}
+
+.fa-facebook-f:before, .fa-facebook:before {
+    content: "\f09a";
+    color: #1b6d85;
+}
+
+.fa-twitter:before {
+    content: "\f099";
+    color: #1b6d85;
+}
+
+.fa-pinterest:before {
+    content: "\f0e1";
+    color: #1b6d85;
+}
+
+.fa-google-plus:before {
+    content: "\f0d5";
+    color: #1b6d85;
+}
