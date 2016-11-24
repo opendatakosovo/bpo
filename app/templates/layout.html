@@ -28,8 +28,9 @@
           type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/agency.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/agency.min.css') }}" type="text/css">
+{#    <link rel="stylesheet" href="{{ url_for('static', filename='css/agency.min.css') }}" type="text/css">#}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" type="text/css">
 
 
 
@@ -68,9 +69,25 @@
 <header>
     <div class="container">
         <div class="intro-text">
-            <div class="intro-lead-in">Bangladesh Peace Oservatory</div>
-            <hr style="width:40%">
-            <div class="intro-heading">Advancing understanding of peace and tolerance through data insights</div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                    <div class="intro-lead-in">Bangladesh Peace Oservatory</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <hr style="width:40%">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                    <div class="col-md-12 intro-heading text-center">Advancing understanding of peace and tolerance through data insights</div>
+                </div>
+            </div>
+
         </div>
     </div>
 </header>
