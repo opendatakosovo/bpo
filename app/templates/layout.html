@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <title>BPO</title>
 
     <!--Fonts -->
@@ -20,18 +21,15 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
 
-
-
     <!--CSS-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}"
           type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/agency.css') }}" type="text/css">
-{#    <link rel="stylesheet" href="{{ url_for('static', filename='css/agency.min.css') }}" type="text/css">#}
+{#        <link rel="stylesheet" href="{{ url_for('static', filename='css/agency.min.css') }}" type="text/css">#}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" type="text/css">
-
 
 
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -45,12 +43,12 @@
 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-            </button>
-        </div>
+{#        <div class="navbar-header page-scroll">#}
+{#            <button type="button" class="navbar-toggle" data-toggle="collapse"#}
+{#                    data-target="#bs-example-navbar-collapse-1">#}
+{#                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>#}
+{#            </button>#}
+{#        </div>#}
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -60,8 +58,6 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-
-
 
 
 <!-- Header -->
@@ -84,7 +80,9 @@
 
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                    <div class="col-md-12 intro-heading text-center">Advancing understanding of peace and tolerance through data insights</div>
+                    <div class="col-md-12 intro-heading text-center">Advancing understanding of peace and tolerance
+                        through data insights
+                    </div>
                 </div>
             </div>
 
@@ -107,32 +105,49 @@
     <div class="footer-above">
         <div class="container">
             <div class="row">
-                <div class="footer-col col-md-4">
-                    <h4>Disclaimer</h4>
-                    <p>Duis mollis, est non commodo lucts, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                        DOnec ullamcorper nulla non metus auctr fringilla.</p>
-                </div>
-                <div class="footer-col col-md-4">
-                    <h3>A project by University of Dhaka</h3><br>
-                    <img src="static/assets/logoo.png" alt="" height="102" width="82">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="footer-col col-md-4">
+                        <h4 class="intro-footer-one text-capitalize">Disclaimer:</h4>
+                        <p class="footer1">Duis mollis, est non commodo lucts, nisi erat porttitor ligula, eget lacinia
+                            odio sem nec elit.
+                            Donec ullamcorper nulla non metus auctr fringilla.</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3 class=" intro-footer-one text-capitalize text-center">A project by University of Dhaka</h3>
+                        <br>
+                        <img src="static/assets/logoo.png" alt="" height="102" width="82"
+                             class="img-responsive center-block">
 
-                    <p class="large text-muted" style="color: white;">Hosted by the Centre for Genocide Studies</p>
+                        <p class="large text-muted text-center" style="color: white;">Hosted by the Centre for Genocide
+                            Studies</p>
 
-                    <p class="large text-muted" style="color: white;">Supported by UNDP</p>
+                        <p class="large text-muted text-center" style="color: white;">Supported by UNDP</p>
 
-                </div>
-                <div class="footer-col col-md-4">
-                    <h4>Find us on Social Networks:</h4>
-                    <p>
-                        <a class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i
-                                class="fa fa-twitter"></i></a>
-                        <a class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i
-                                class="fa fa-facebook"></i></a>
-                        <a class="btn btn-primary social-login-btn social-pinterest" href="/auth/pinterest"><i
-                                class="fa fa-pinterest"></i></a>
-                        <a class="btn btn-primary social-login-btn social-google" href="/auth/google"><i
-                                class="fa fa-google-plus"></i></a>
-                    </p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <div class="row">
+                            <h4 class="intro-footer-one text-capitalize text-center">Find us on Social Networks:</h4>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-3 col-sm-2 col-md-offset-2 col-xs-offset-2 ">
+                                <a class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i
+                                        class="fa fa-twitter"></i></a>
+                            </div>
+                            <div class="col-md-2 col-xs-3 ">
+                                <a class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i
+                                        class="fa fa-facebook"></i></a>
+                            </div>
+                            <div class="col-md-2 col-xs-3 ">
+                                <a class="btn btn-primary social-login-btn social-pinterest" href="/auth/pinterest"><i
+                                        class="fa fa-pinterest"></i></a>
+                            </div>
+                            <div class="col-md-2 col-xs-3 ">
+                                <a class="btn btn-primary social-login-btn social-google" href="/auth/google"><i
+                                        class="fa fa-google-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,7 +155,7 @@
     <div class="footer-below">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                     Copyright 2016. Universiy of Dhaka
                 </div>
             </div>
@@ -149,8 +164,6 @@
 </footer>
 
 </div>
-
-
 
 
 <!-- jQuery -->
@@ -168,9 +181,6 @@
 
 <!-- Theme JavaScript -->
 <script src="static/js/agency.min.js"></script>
-
-
-
 
 
 </body>

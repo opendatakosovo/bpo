@@ -140,6 +140,24 @@ header {
     padding-left: 20px;
 }
 
+.intro-footer-one{
+    font-family: "Noto Serif";
+    font-size: 18px;
+    margin-top: 6px;
+
+}
+
+.footer1{
+    font-family: Lato;
+    font-size: 16px;
+    text-align: justify;
+}
+
+/*.intro-footer-two{*/
+    /*font-family: Lato;*/
+    /*font-size: 24px;*/
+/*}*/
+
 footer .footer-above {
     padding-top: 50px;
     /*background-color: #2C3E50;*/
