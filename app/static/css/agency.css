@@ -99,16 +99,29 @@ fieldset[disabled] .btn-primary.active {
   color: #fed136;
   background-color: white;
 }
+/*.btn-xl {*/
+  /*color: white;*/
+  /*background-color: #fed136;*/
+  /*border-color: #fed136;*/
+  /*font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  /*text-transform: uppercase;*/
+  /*font-weight: 700;*/
+  /*border-radius: 3px;*/
+  /*font-size: 18px;*/
+  /*padding: 20px 40px;*/
+/*}*/
 .btn-xl {
-  color: white;
-  background-color: #fed136;
-  border-color: #fed136;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
-  border-radius: 3px;
-  font-size: 18px;
-  padding: 20px 40px;
+    color: #FFAA12;
+    background-color: #1b6d85;
+    border: 2px solid #FFAA12;
+    border-style: solid;
+    font-family: Lato;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 3px;
+    font-size: 20px;
+    padding: 20px 40px;
+    float: right;
 }
 .btn-xl:hover,
 .btn-xl:focus,
@@ -197,6 +210,8 @@ fieldset[disabled] .btn-xl.active {
   color: white;
   background-color: #fec503;
 }
+
+
 @media (min-width: 768px) {
   .navbar-custom {
     background-color: transparent;
@@ -216,6 +231,8 @@ fieldset[disabled] .btn-xl.active {
     border-radius: 3px;
   }
 }
+
+
 @media (min-width: 768px) {
   .navbar-custom.affix {
     background-color: #1b6d85;
@@ -242,41 +259,27 @@ header .intro-text {
   padding-top: 100px;
   padding-bottom: 50px;
 }
-/*header .intro-text .intro-lead-in {*/
-  /*font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-  /*font-style: normal;*/
-  /*font-size: 22px;*/
-  /*line-height: 22px;*/
-  /*margin-bottom: 25px;*/
-/*}*/
-header .intro-text .intro-heading {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 50px;
-  line-height: 50px;
-  margin-bottom: 25px;
-}
-@media (min-width: 768px) {
   header .intro-text {
     padding-top: 300px;
     padding-bottom: 200px;
   }
-  /*header .intro-text .intro-lead-in {*/
-    /*font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-    /*font-style: normal;*/
-    /*font-size: 40px;*/
-    /*line-height: 40px;*/
-    /*margin-bottom: 25px;*/
-  /*}*/
-  header .intro-text .intro-heading {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 75px;
-    line-height: 75px;
-    margin-bottom: 50px;
+  header .intro-text .intro-lead-in {
+        font-family: "Playfair Display";
+    font-style: normal;
+    font-size: 54px;
+    line-height: 42px;
+    margin-bottom: 55px;
   }
+  header .intro-text .intro-heading {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 4px;
+    line-height: 40px;
+    margin-bottom: 60px;
+    width: 545px;
+    margin-left: 275px;
+}
 }
 section {
   padding: 100px 0;
@@ -294,6 +297,7 @@ section h3.section-subheading {
   font-weight: 400;
   margin-bottom: 75px;
 }
+
 @media (min-width: 768px) {
   section {
     padding: 150px 0;
@@ -363,6 +367,8 @@ section h3.section-subheading {
 #portfolio * {
   z-index: 2;
 }
+
+
 @media (min-width: 767px) {
   #portfolio .portfolio-item {
     margin: 0 0 30px;
@@ -464,6 +470,8 @@ section h3.section-subheading {
 .timeline .timeline-body > ul {
   margin-bottom: 0;
 }
+
+
 @media (min-width: 768px) {
   .timeline:before {
     left: 50%;
@@ -516,6 +524,8 @@ section h3.section-subheading {
     padding: 0 20px 20px;
   }
 }
+
+
 @media (min-width: 1200px) {
   .timeline > li {
     min-height: 170px;

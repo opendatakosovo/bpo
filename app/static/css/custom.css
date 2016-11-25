@@ -1,20 +1,20 @@
 header .intro-text .intro-lead-in {
     font-family: "Playfair Display";
     font-style: normal;
-    font-size: 64px;
-    line-height: 82px;
+    font-size: 63px;
+    line-height: 62px;
     margin-bottom: 55px;
 }
 
 header .intro-text .intro-heading {
     font-family: Lato;
-    /*text-transform: uppercase;*/
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
-    line-height: 75px;
+    line-height: 40px;
     margin-bottom: 60px;
-    text-transform: capitalize;
+    width: 545px;
+    /*margin-left: 275px;*/
 }
 
 .navbar-custom .nav li a {
@@ -27,9 +27,11 @@ header .intro-text .intro-heading {
 
 .section-heading {
     margin-bottom: 30px;
-    margin-left: 25%;
+    margin-left: 50%;
     font-size: 50px;
     text-transform: capitalize;
+    margin-top: 70px;
+    margin-bottom: 50px;
 }
 
 .section-heading1 {
@@ -54,6 +56,12 @@ header .intro-text .intro-heading {
     border-top: 3px solid #e7e7e7;
 }
 
+.logo1 {
+    width: 180px;
+    height: 150px;
+    margin-top: 20px;
+}
+
 .btn-xl {
     color: #FFAA12;
     background-color: #1b6d85;
@@ -70,12 +78,12 @@ header .intro-text .intro-heading {
 
 hr {
     display: block;
-    height: 1px;
+    height: 10px;
     border: 0;
     border-top: 4px solid #FF8C00;
     margin: 1em 0;
     padding: 0;
-    margin-left: 28%;
+    margin-left: 28% !important;
 }
 
 header {
@@ -93,7 +101,7 @@ header {
 }
 
 .bg-light-gray {
-    background-color: #e6e6fa;
+    background-color: white;
 }
 
 .bg-light-blue {
@@ -107,6 +115,12 @@ header {
 }
 
 .lead2 {
+    font-size: 22px;
+    color: black;
+    text-align: justify;
+}
+
+.lead3 {
     font-size: 22px;
     color: black;
     text-align: justify;

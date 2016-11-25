@@ -1,0 +1,501 @@
+/*Responsive*/
+/* Large Devices, Wide Screens */
+@media (max-width: 1200px) {
+
+    .intro-lead-in {
+        font-family: "Playfair Display";
+        font-style: normal;
+        font-size: 18px;
+        /*line-height: 42px;*/
+        /*margin-bottom: 55px;*/
+    }
+
+    div.col-md-12.intro-heading {
+        font-size: 20px;
+        margin-left: 170px;
+    }
+
+    .section-heading {
+        margin-left: 50%
+    }
+
+    .logo1 {
+        width: 180px;
+        height: 150px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 22px;
+        color: black;
+        text-align: justify;
+    }
+
+    .lead3 {
+
+    }
+
+}
+
+@media (max-width: 991px) {
+
+    .intro-lead-in {
+        font-family: "Playfair Display";
+        font-style: normal;
+        font-size: 18px;
+        /*line-height: 42px;*/
+        /*margin-bottom: 55px;*/
+    }
+
+    div.col-md-12.intro-heading {
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+        margin-left: 25%;
+    }
+
+    .logo1 {
+        width: 160px;
+        height: 130px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 20px;
+        color: black;
+        text-align: justify;
+        margin-top: -140px;
+        margin-left: 176px;
+    }
+
+    .lead3 {
+
+    }
+
+}
+
+/*Medium Devices, Desktops */
+@media (max-width: 800px) {
+
+    .intro-lead-in {
+        font-family: "Playfair Display";
+        font-style: normal;
+        font-size: 18px;
+        line-height: 42px;
+        margin-bottom: 55px;
+    }
+
+    div.col-md-12.intro-heading {
+        font-size: 20px;
+        margin-left: 80px;
+    }
+
+    .section-heading {
+
+    }
+
+    .logo1 {
+        width: 180px;
+        height: 150px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 22px;
+        color: black;
+        text-align: justify;
+    }
+
+    .lead3 {
+
+    }
+}
+
+/* Small Devices, Tablets (iPad)*/
+@media (max-width: 768px) {
+
+    .btn-xl {
+        color: #FFAA12;
+        background-color: #1b6d85;
+        border: 2px solid #FFAA12;
+        border-style: solid;
+        font-family: Lato;
+        text-transform: uppercase;
+        font-weight: 700;
+        border-radius: 3px;
+        font-size: 20px;
+        padding: 20px 40px;
+        float: right;
+    }
+
+    div.col-md-12.intro-heading {
+        font-size: 20px;
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .section-heading {
+
+    }
+
+    .logo1 {
+        width: 150px;
+        height: 120px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 18px;
+        color: black;
+        text-align: justify;
+        margin-left: 26%;
+        margin-top: -130px;
+    }
+
+    .lead3 {
+
+    }
+
+
+}
+
+@media (max-width: 767px) {
+
+    .intro-lead-in {
+        font-family: "Playfair Display";
+        font-style: normal;
+        font-size: 18px;
+        /*line-height: 42px;*/
+        /*margin-bottom: 55px;*/
+    }
+
+    div.col-md-12.intro-heading {
+        font-size: 20px;
+        margin-left: 0px;
+
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+        margin-left: 90px;
+    }
+
+    .logo1 {
+        width: 120px;
+        height: 90px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 18px;
+        color: black;
+        text-align: justify;
+        margin-left: 28%;
+        margin-top: -100px;
+    }
+
+    .lead3 {
+        font-size: 18px;
+    }
+
+}
+
+@media (max-width: 568px) {
+
+    .intro-lead-in {
+        font-family: "Playfair Display";
+        font-style: normal;
+        font-size: 18px;
+        /*line-height: 42px;*/
+        /*margin-bottom: 55px;*/
+    }
+
+    div.col-md-12.intro-heading {
+        font-size: 20px;
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+        margin-left: 70px;
+    }
+
+    .logo1 {
+        width: 150px;
+        height: 120px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 20px;
+        color: black;
+        text-align: justify;
+        margin-left: 35%;
+        margin-top: -135px;
+    }
+
+    .lead3 {
+        font-size: 20px;
+    }
+
+}
+
+@media (max-width: 492px) {
+
+    .intro-lead-in {
+        font-family: "Playfair Display";
+        font-style: normal;
+        font-size: 18px;
+        /*line-height: 42px;*/
+        /*margin-bottom: 55px;*/
+    }
+
+    div.col-md-12.intro-heading {
+        font-size: 20px;
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+        /* margin-left: 25%; */
+        /* font-size: 50px; */
+        /* text-transform: capitalize; */
+        /* margin-top: 70px; */
+        /* margin-bottom: 50px; */
+        margin-left: 50px;
+    }
+
+    .logo1 {
+        width: 120px;
+        height: 90px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 18px;
+        color: black;
+        text-align: justify;
+        margin-left: 35%;
+        margin-top: -100px;
+    }
+
+    .lead3 {
+        font-size: 18px;
+    }
+
+}
+
+/* Extra Small Devices, Phones */
+@media (max-width: 480px) {
+
+    .intro-lead-in {
+        font-family: "Playfair Display";
+        font-style: normal;
+        font-size: 18px;
+        /*line-height: 42px;*/
+        /*margin-bottom: 55px;*/
+    }
+
+    div.col-md-12.intro-heading {
+        font-size: 20px;
+        margin-left: -20px;
+        width: 120%;
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+        margin-left: 25%;
+        font-size: 50px;
+        text-transform: capitalize;
+        margin-top: 70px;
+        margin-bottom: 50px;
+    }
+
+    .logo1 {
+        width: 180px;
+        height: 150px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 22px;
+        color: black;
+        text-align: justify;
+    }
+
+    .lead3 {
+
+    }
+
+}
+
+@media (max-width: 435px) {
+
+    .intro-lead-in {
+        font-family: "Playfair Display";
+        font-style: normal;
+        font-size: 18px;
+        /*line-height: 42px;*/
+        /*margin-bottom: 55px;*/
+    }
+
+    div.col-md-12.intro-heading {
+
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+        margin-left: 25%;
+        font-size: 50px;
+        text-transform: capitalize;
+        margin-top: 70px;
+        margin-bottom: 50px;
+    }
+
+    .logo1 {
+        width: 180px;
+        height: 150px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 22px;
+        color: black;
+        text-align: justify;
+    }
+
+    .lead3 {
+
+    }
+
+}
+
+@media (max-width: 415px) {
+
+    .intro-lead-in {
+        font-family: "Playfair Display";
+        font-style: normal;
+        font-size: 18px;
+        /*line-height: 42px;*/
+        /*margin-bottom: 55px;*/
+    }
+
+    div.col-md-12.intro-heading {
+         width: 85%;
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+        margin-left: 25%;
+        font-size: 50px;
+        text-transform: capitalize;
+        margin-top: 70px;
+        margin-bottom: 50px;
+    }
+
+    .logo1 {
+        width: 180px;
+        height: 150px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 22px;
+        color: black;
+        text-align: justify;
+    }
+
+    .lead3 {
+
+    }
+
+}
+
+@media only screen and (max-width: 360px) {
+
+    .intro-lead-in {
+        font-family: "Playfair Display";
+        font-style: normal;
+        font-size: 18px;
+        /*line-height: 42px;*/
+        /*margin-bottom: 55px;*/
+    }
+
+    div.col-md-12.intro-heading {
+
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+        margin-left: 0px;
+        font-size: 40px;
+        WIDTH: 120%;
+        text-transform: capitalize;
+    }
+
+    .logo1 {
+        width: 80px;
+        height: 70px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 18px;
+        color: black;
+        text-align: justify;
+        margin-left: 40%;
+        /* margin-bottom: 5px; */
+        margin-top: -80px;
+        width: 75%;
+    }
+
+    .lead3 {
+        font-size: 18px;
+        width: 115%;
+    }
+
+}
+
+/* Custom, iPhone Retina */
+@media (max-width: 320px) {
+
+    .intro-lead-in {
+        font-family: "Playfair Display";
+        font-style: normal;
+        font-size: 18px;
+        /*line-height: 42px;*/
+        /*margin-bottom: 55px;*/
+    }
+
+    div.col-md-12.intro-heading {
+        font-size: 20px;
+        margin-left: -20px;
+        width: 120%;
+    }
+
+    .section-heading {
+
+    }
+
+    .logo1 {
+        width: 180px;
+        height: 150px;
+        margin-top: 20px;
+    }
+
+    .lead2 {
+        font-size: 22px;
+        color: black;
+        text-align: justify;
+    }
+
+    .lead3 {
+
+    }
+
+}

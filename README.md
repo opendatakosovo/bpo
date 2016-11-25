@@ -1,2 +1,2 @@
-# bvo
-Bangladesh Violence Observatory
+# BPO
+Bangladesh Peace Observatory
