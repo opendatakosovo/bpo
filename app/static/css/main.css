@@ -7,16 +7,36 @@ div#national-accordion {
     border: 1px solid gray;
     padding: 5px;
 }
-dl{
-    margin-bottom:0px !important;
+
+dl {
+    margin-bottom: 0px !important;
 }
-.dl-horizontal dt{
-    width:100px;
+
+.dl-horizontal dt {
+    width: 100px;
     text-align: left !important;
 }
-.dl-horizontal dd{
+
+.dl-horizontal dd {
     text-align: left !important;
-    margin-left:0px !important;
+    margin-left: 0px !important;
+}
+
+#viz-container {
+    background-color: rgba(128, 128, 128, 0.18);
+    border: 1px solid gray;
+    height: 500px;
+    overflow: auto;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+}
+
+#line-chart {
+    border: 1px solid gray;
+    height:300px;
+    width:100%;
 }
 
 .top-3 {

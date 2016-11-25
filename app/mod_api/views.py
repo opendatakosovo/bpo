@@ -10,3 +10,8 @@ def index():
     '''
 
     return render_template('mod_importer/index.html')
+
+@mod_api.route('/bd/dhaka', methods=['GET'])
+def get_map(district):
+
+    return
