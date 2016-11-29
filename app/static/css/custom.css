@@ -44,10 +44,30 @@ header .intro-text .intro-heading {
 
 .section-heading2 {
     margin-bottom: 30px;
-    margin-left: 30%;
-    width: 60%;
+    /*margin-left: 30%;*/
+    /*width: 60%;*/
     color: black;
     font-size: 50px;
+}
+
+.logos{
+    width: 170px;
+    height: 150px;
+}
+
+.logos1{
+    width: 400px;
+    height: 100px;
+}
+
+.logos2{
+    width:200px;
+    height:150px;
+}
+
+.logos3{
+    width:150px;
+    height:150px;
 }
 
 .section-heading-spacer {

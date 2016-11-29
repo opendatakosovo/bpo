@@ -45,6 +45,30 @@
         margin-right: 3px;
     }
 
+    .col-sm-3.col-xs-6 {
+        margin-bottom: 20px;
+    }
+
+    .logos {
+            height: 150px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+
+    }
+
+    .logos3 {
+
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
+
+    }
+
 }
 
 @media (max-width: 991px) {
@@ -95,6 +119,30 @@
         margin-right: -110px;
     }
 
+    .col-sm-3.col-xs-6 {
+
+    }
+
+    .logos {
+        height: 100px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+
+    }
+
+    .logos3 {
+
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
+
+    }
+
 }
 
 /*Medium Devices, Desktops */
@@ -140,6 +188,31 @@
     .col-md-2.col-xs-3 {
 
     }
+
+    .col-sm-3.col-xs-6 {
+
+    }
+
+    .logos {
+        height: 100px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+
+    }
+
+    .logos3 {
+
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
+
+    }
+
 }
 
 /* Small Devices, Tablets (iPad)*/
@@ -197,6 +270,37 @@
         margin-right: -110px;
     }
 
+    .col-sm-3.col-xs-6 {
+        width: 178px;
+        margin-bottom: 20px;
+    }
+
+    .img-responsive.col-sm-3.col-xs-3 {
+        width: 20px;
+        height: 20px;
+    }
+
+    .logos {
+        height: 140px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+
+    }
+
+    .logos3 {
+
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
+         width: 350px;
+
+    }
+
 }
 
 @media (max-width: 767px) {
@@ -248,6 +352,31 @@
         margin-right: -75px;
     }
 
+    .img-responsive.col-sm-3.col-xs-3 {
+        width: 20px;
+        height: 20px;
+    }
+
+    .logos {
+        height: 100px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+
+    }
+
+    .logos3 {
+
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
+            width: 50%;
+    }
+
 }
 
 @media (max-width: 568px) {
@@ -297,6 +426,34 @@
 
     .col-md-2.col-xs-3 {
         margin-right: -65px;
+    }
+
+    .col-sm-3.col-xs-6 {
+        width: 130px;
+        margin-bottom: 20px;
+    }
+
+    .logos {
+        height: 100px;
+        width: 100px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+        height: 90px;
+    }
+
+    .logos3 {
+        height: 100px;
+        width: 90px;
+
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
+
     }
 
 }
@@ -355,6 +512,30 @@
         margin-right: -45px;
     }
 
+    .col-sm-3.col-xs-6 {
+        width: 108px;
+    }
+
+    .logos {
+        height: 80px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+        height: 100px;
+    }
+
+    .logos3 {
+        height: 90px;
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
+
+    }
+
 }
 
 /* Extra Small Devices, Phones */
@@ -407,6 +588,30 @@
 
     }
 
+    .col-sm-3.col-xs-6 {
+
+    }
+
+    .logos {
+        height: 100px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+
+    }
+
+    .logos3 {
+
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
+
+    }
+
 }
 
 @media (max-width: 435px) {
@@ -453,6 +658,31 @@
     }
 
     .col-md-2.col-xs-3 {
+
+    }
+
+    .col-sm-3.col-xs-6 {
+        width: 137px;
+        margin-bottom: 20px;
+    }
+
+    .logos {
+        height: 100px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+
+    }
+
+    .logos3 {
+
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
 
     }
 
@@ -503,6 +733,31 @@
     }
 
     .col-md-2.col-xs-3 {
+
+    }
+
+    .img-responsive.col-sm-3.col-xs-6 {
+        width: 125px;
+        margin-bottom: 20px;
+    }
+
+    .logos {
+        height: 100px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+
+    }
+
+    .logos3 {
+
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
 
     }
 
@@ -561,6 +816,30 @@
         margin-right: -3px;
     }
 
+    .img-responsive.col-sm-3.col-xs-6 {
+        width: 50px;
+    }
+
+    .logos {
+        height: 100px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+
+    }
+
+    .logos3 {
+        height: 100px;
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
+        width: 280px;
+    }
+
 }
 
 /* Custom, iPhone Retina */
@@ -605,6 +884,30 @@
     }
 
     .col-md-2.col-xs-3 {
+
+    }
+
+    .col-sm-3.col-xs-6 {
+
+    }
+
+    .logos {
+        height: 100px;
+    }
+
+    .logos1 {
+
+    }
+
+    .logos2 {
+
+    }
+
+    .logos3 {
+
+    }
+
+    .col-md-6.col-xs-12.col-sm-6 {
 
     }
 
