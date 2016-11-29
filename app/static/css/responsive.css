@@ -50,7 +50,7 @@
     }
 
     .logos {
-            height: 150px;
+        height: 150px;
     }
 
     .logos1 {
@@ -66,6 +66,28 @@
     }
 
     .col-md-6.col-xs-12.col-sm-6 {
+
+    }
+
+    .lead1 {
+        width: 145%;
+    }
+
+    .section-heading1 {
+        width: 90%;
+        margin-left: 45px;
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+        /*margin-top: -29%;*/
+        /*margin-left: 77%;*/
+    }
+
+    .test {
 
     }
 
@@ -143,6 +165,28 @@
 
     }
 
+    .lead1 {
+        width: 130%;
+    }
+
+    .section-heading1 {
+        width: 635px;
+        margin-left: 35px;
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+        /*margin-top: -330px;*/
+        /*margin-left: 500px;*/
+    }
+
+    .test {
+
+    }
+
 }
 
 /*Medium Devices, Desktops */
@@ -210,6 +254,26 @@
     }
 
     .col-md-6.col-xs-12.col-sm-6 {
+
+    }
+
+    .lead1 {
+
+    }
+
+    .section-heading1 {
+
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+
+    }
+
+    .test {
 
     }
 
@@ -297,7 +361,31 @@
     }
 
     .col-md-6.col-xs-12.col-sm-6 {
-         width: 350px;
+        width: 350px;
+
+    }
+
+    .lead1 {
+        width: 70%;
+    }
+
+    .section-heading1 {
+
+    }
+
+    .col-sm-3.col-xs-6{
+        margin-bottom: 20px;
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+
+    }
+
+    .test {
 
     }
 
@@ -374,7 +462,28 @@
     }
 
     .col-md-6.col-xs-12.col-sm-6 {
-            width: 50%;
+        width: 50%;
+    }
+
+    .lead1 {
+
+    }
+
+    .section-heading1 {
+        width: 550px;
+        margin-left: 5px;
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+
+    }
+
+    .test {
+
     }
 
 }
@@ -453,6 +562,26 @@
     }
 
     .col-md-6.col-xs-12.col-sm-6 {
+
+    }
+
+    .lead1 {
+
+    }
+
+    .section-heading1 {
+
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+
+    }
+
+    .test {
 
     }
 
@@ -536,6 +665,29 @@
 
     }
 
+    .lead1 {
+
+    }
+
+    .section-heading1 {
+        width: 440px;
+        margin-bottom: 30px;
+        margin-left: 0px;
+        font-size: 40px;
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+
+    }
+
+    .test {
+
+    }
+
 }
 
 /* Extra Small Devices, Phones */
@@ -612,6 +764,26 @@
 
     }
 
+    .lead1 {
+
+    }
+
+    .section-heading1 {
+
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+
+    }
+
+    .test {
+
+    }
+
 }
 
 @media (max-width: 435px) {
@@ -683,6 +855,26 @@
     }
 
     .col-md-6.col-xs-12.col-sm-6 {
+
+    }
+
+    .lead1 {
+
+    }
+
+    .section-heading1 {
+
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+
+    }
+
+    .test {
 
     }
 
@@ -761,6 +953,26 @@
 
     }
 
+    .lead1 {
+
+    }
+
+    .section-heading1 {
+
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+
+    }
+
+    .test {
+
+    }
+
 }
 
 @media only screen and (max-width: 360px) {
@@ -804,7 +1016,7 @@
 
     .lead3 {
         font-size: 18px;
-        width: 115%;
+        width: 112%;
     }
 
     .col-md-2.col-xs-3.col-sm-2.col-md-offset-2.col-xs-offset-2 {
@@ -838,6 +1050,29 @@
 
     .col-md-6.col-xs-12.col-sm-6 {
         width: 280px;
+    }
+
+    .lead1 {
+
+    }
+
+    .section-heading1 {
+        width: 280px;
+        margin-bottom: 30px;
+        margin-left: 0px;
+        font-size: 40px;
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+
+    }
+
+    .test {
+
     }
 
 }
@@ -908,6 +1143,26 @@
     }
 
     .col-md-6.col-xs-12.col-sm-6 {
+
+    }
+
+    .lead1 {
+
+    }
+
+    .section-heading1 {
+
+    }
+
+    .paragraph2 {
+
+    }
+
+    .col-md-6.col-lg-2.col-sm-6 {
+
+    }
+
+    .test {
 
     }
 
