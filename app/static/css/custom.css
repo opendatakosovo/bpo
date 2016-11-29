@@ -25,6 +25,11 @@ header .intro-text .intro-heading {
     color: white;
 }
 
+.navbar-custom {
+  background-color: #1b6d85;
+  border-color: transparent;
+}
+
 .section-heading {
     margin-bottom: 30px;
     margin-left: 50%;
