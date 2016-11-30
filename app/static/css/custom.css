@@ -202,6 +202,13 @@ header {
     font-family: Lato;
 }
 
+.lead4 {
+    font-size: 22px;
+    color: white;
+    text-align: justify;
+    font-family: Lato;
+}
+
 .test {
     height: 85px;
     width: 0px;
@@ -211,6 +218,7 @@ header {
     float: left;
 }
 
+<<<<<<< HEAD
 .intro-header{
     font-family: Lato;
     font-size: 22px;
@@ -226,6 +234,16 @@ header {
     margin-bottom: 60px;
     width: 545px;
     /* margin-left: 275px; */
+=======
+.test1 {
+    height: 85px;
+    width: 0px;
+    /*position:relative;*/
+    border: 5px solid #ADD8E6;
+    margin-left: 0px;
+    float: left;
+    margin-right: 15px;
+>>>>>>> d1d39f9eb9e14a6f0399f66e6697ddc0971890ee
 }
 
 .paragraph2 {
