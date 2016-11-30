@@ -157,6 +157,13 @@ header {
     font-family: Lato;
 }
 
+.lead4 {
+    font-size: 22px;
+    color: white;
+    text-align: justify;
+    font-family: Lato;
+}
+
 .test {
     height: 85px;
     width: 0px;
@@ -164,6 +171,16 @@ header {
     border: 5px solid #ADD8E6;
     margin-left: 0px;
     float: left;
+}
+
+.test1 {
+    height: 85px;
+    width: 0px;
+    /*position:relative;*/
+    border: 5px solid #ADD8E6;
+    margin-left: 0px;
+    float: left;
+    margin-right: 15px;
 }
 
 .paragraph2 {
