@@ -91,6 +91,10 @@
 
     }
 
+    .navbar-default .navbar-brand{
+
+    }
+
 }
 
 @media (max-width: 991px) {
@@ -187,6 +191,10 @@
 
     }
 
+    .navbar-default .navbar-brand{
+
+    }
+
 }
 
 /*Medium Devices, Desktops */
@@ -274,6 +282,10 @@
     }
 
     .test {
+
+    }
+
+    .navbar-default .navbar-brand{
 
     }
 
@@ -389,6 +401,10 @@
 
     }
 
+    .navbar-default .navbar-brand{
+
+    }
+
 }
 
 @media (max-width: 767px) {
@@ -483,6 +499,10 @@
     }
 
     .test {
+
+    }
+
+    .navbar-default .navbar-brand{
 
     }
 
@@ -582,6 +602,10 @@
     }
 
     .test {
+
+    }
+
+    .navbar-default .navbar-brand{
 
     }
 
@@ -688,6 +712,10 @@
 
     }
 
+    .navbar-default .navbar-brand{
+            margin-left: 318px;
+    }
+
 }
 
 /* Extra Small Devices, Phones */
@@ -781,6 +809,10 @@
     }
 
     .test {
+
+    }
+
+    .navbar-default .navbar-brand{
 
     }
 
@@ -878,6 +910,10 @@
 
     }
 
+    .navbar-default .navbar-brand{
+
+    }
+
 }
 
 @media (max-width: 415px) {
@@ -970,6 +1006,10 @@
     }
 
     .test {
+
+    }
+
+    .navbar-default .navbar-brand{
 
     }
 
@@ -1075,6 +1115,10 @@
 
     }
 
+    .navbar-default .navbar-brand{
+            margin-left: 195px;
+    }
+
 }
 
 /* Custom, iPhone Retina */
@@ -1163,6 +1207,10 @@
     }
 
     .test {
+
+    }
+
+    .navbar-default .navbar-brand{
 
     }
 
