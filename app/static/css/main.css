@@ -86,6 +86,14 @@ div#ui-id-4 {
     height: 15px;
 }
 
+div#filtering {
+    padding-left: 30px;
+    background-color: #1B6D85;
+}
 
+.filter-label {
+    font-size: 12px;
+    color: #fff;
+}
 
 
