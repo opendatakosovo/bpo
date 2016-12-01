@@ -8,8 +8,8 @@
     <script src="https://code.highcharts.com/mapdata/countries/bd/bd-all.js"></script>
     <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
-    <script src="/static/js/geo-files/divisions.js"></script>
-    <script src="/static/js/geo-files/upazillas.js"></script>
+    <script src="../static/js/geo-files/divisions.js"></script>
+    <script src="../static/js/geo-files/upazillas.js"></script>
     <script>
         $(function () {
             $(".container").hide();
@@ -67,7 +67,7 @@
                                 var drillMyData = Highcharts.geojson(data);
                                 var district_data = [];
                                 // Set a non-random bogus value
-                                
+
                                 $.each(drillMyData, function (i) {
                                     if (drilldown_level == 1) {
                                         if (this.properties.Division == name) {
