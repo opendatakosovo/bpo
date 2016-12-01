@@ -56,19 +56,22 @@ h6 {
   background-color: #222222;
 }
 .btn-primary {
-  color: white;
-  background-color: #fed136;
-  border-color: #fed136;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
+              color: #1b6d85;
+    background-color: white;
+    border-color: white;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 46px;
+    height: 41px;
+    font-size: 19px;
 }
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-  color: white;
+  color: #1b6d85;
   background-color: #fec503;
   border-color: #f6bf01;
 }
@@ -280,7 +283,7 @@ header .intro-text {
     width: 545px;
     margin-left: 275px;
 }
-}
+
 section {
   padding: 100px 0;
 }
@@ -288,7 +291,7 @@ section h2.section-heading {
   font-size: 40px;
   margin-top: 0;
   margin-bottom: 15px;
-
+}
 section h3.section-subheading {
   font-size: 16px;
   font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -564,12 +567,12 @@ section h3.section-subheading {
 aside.clients img {
   margin: 50px auto;
 }
-section#contact {
-  background-color: #222222;
-  background-image: url('../img/map-image.png');
-  background-position: center;
-  background-repeat: no-repeat;
-}
+/*section#contact {*/
+  /*background-color: #222222;*/
+  /*background-image: url('../img/map-image.png');*/
+  /*background-position: center;*/
+  /*background-repeat: no-repeat;*/
+/*}*/
 section#contact .section-heading {
   color: white;
 }

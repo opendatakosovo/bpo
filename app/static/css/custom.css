@@ -17,8 +17,8 @@ header .intro-text .intro-heading {
     /*margin-left: 275px;*/
 }
 
-.intro-header-in{
-        font-family: "Playfair Display";
+.intro-header-in {
+    font-family: "Playfair Display";
     font-style: normal;
     font-size: 63px;
     line-height: 62px;
@@ -50,8 +50,8 @@ header .intro-text .intro-heading {
 }
 
 .navbar-custom {
-  background-color: #1b6d85;
-  border-color: transparent;
+    background-color: #1b6d85;
+    border-color: transparent;
 }
 
 .section-heading {
@@ -75,32 +75,33 @@ header .intro-text .intro-heading {
 }
 
 .section-heading2 {
-    margin-bottom: 30px;
-    /*margin-left: 30%;*/
-    /*width: 60%;*/
+    margin-bottom: 111px;
+    /* margin-left: 30%; */
+    /* width: 60%; */
     color: black;
     font-size: 48px;
     font-family: "Playfair Display";
 }
 
-.logos{
-    width: 170px;
-    height: 150px;
+.logos {
+    width: 140px;
+    height: 140px;
 }
 
-.logos1{
-    width: 400px;
-    height: 100px;
+.logos1 {
+        width: 396px;
+    height: 96px;
 }
 
-.logos2{
-    width:200px;
-    height:150px;
+.logos2 {
+        width: 200px;
+    height: 119px;
+    margin-top: 33px;
 }
 
-.logos3{
-    width:150px;
-    height:150px;
+.logos3 {
+    width: 116px;
+    height: 138px;
 }
 
 .section-heading-spacer {
@@ -113,7 +114,9 @@ header .intro-text .intro-heading {
     width: 180px;
     height: 150px;
     margin-top: 20px;
+
 }
+
 
 .btn-xl {
     color: #FFAA12;
@@ -130,7 +133,7 @@ header .intro-text .intro-heading {
 }
 
 .btn-xl1 {
-        color: white;
+    color: white;
     background-color: #FFAA12;
     border: 2px solid #FFAA12;
     border-style: solid;
@@ -143,7 +146,7 @@ header .intro-text .intro-heading {
     float: right;
 }
 
-.btn-xl1:hover{
+.btn-xl1:hover {
     color: white;
     background-color: #FFAA12;
     border-color: #FFAA12;
@@ -218,14 +221,30 @@ header {
     float: left;
 }
 
-<<<<<<< HEAD
-.intro-header{
+.intro-header {
     font-family: Lato;
     font-size: 22px;
-    margin-top: 67px;
+    margin-top: 40px;
+    color: white;
 }
 
-.intro-heading1{
+.intro-header1 {
+    font-family: Lato;
+    font-size: 20px;
+    /*margin-top: 67px;*/margin-bottom: 50px;
+
+    color: white;
+}
+
+.intro-header2 {
+    font-family: Lato;
+    font-size: 18px;
+    /*margin-top: 67px;*/
+    /*margin-bottom: 50px;*/
+    color: white;
+}
+
+.intro-heading1 {
     font-family: Lato;
     font-style: normal;
     font-weight: 700;
@@ -233,8 +252,8 @@ header {
     line-height: 40px;
     margin-bottom: 60px;
     width: 545px;
-    /* margin-left: 275px; */
-=======
+}
+
 .test1 {
     height: 85px;
     width: 0px;
@@ -243,7 +262,7 @@ header {
     margin-left: 0px;
     float: left;
     margin-right: 15px;
->>>>>>> d1d39f9eb9e14a6f0399f66e6697ddc0971890ee
+
 }
 
 .paragraph2 {
@@ -252,22 +271,22 @@ header {
     font-family: Lato;
 }
 
-.intro-footer-one{
+.intro-footer-one {
     font-family: "Noto Serif";
     font-size: 18px;
     margin-top: 6px;
 
 }
 
-.footer1{
+.footer1 {
     font-family: Lato;
     font-size: 16px;
     text-align: justify;
 }
 
 /*.intro-footer-two{*/
-    /*font-family: Lato;*/
-    /*font-size: 24px;*/
+/*font-family: Lato;*/
+/*font-size: 24px;*/
 /*}*/
 
 footer .footer-above {
@@ -283,13 +302,14 @@ footer .footer-below {
     padding: 25px 0;
     /*background-color: #233140;*/
 }
-.navbar-default{
-        background-color: #1b6d85;
-    border-color: #1b6d85;
-    height: 81px;
+
+.navbar-default {
+background-color: #1b6d85;
+border-color: #1b6d85;
+height: 81px;
 }
 
-.navbar-default .navbar-brand{
+.navbar-default .navbar-brand {
     color: #FFAA12;
 }
 
@@ -298,6 +318,9 @@ footer {
     background-color: #1b6d85;
 
 }
+
+
+
 
 .social-google {
     background-color: white;
