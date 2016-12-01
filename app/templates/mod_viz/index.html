@@ -79,9 +79,9 @@
                                             district_data.push(this);
                                         }
                                     } else if (drilldown_level == 2) {
-                                        if (this.properties.NAME_2 == name) {
-                                            this['hc-key'] = "bd-" + this.properties['NAME_3'].substr(0, 2).toLowerCase();
-                                            this.name = this.properties['NAME_3'];
+                                        if (this.properties.District == name) {
+                                            this['hc-key'] = "bd-" + this.properties['Upazila'].substr(0, 2).toLowerCase();
+                                            this.name = this.properties['Upazila'];
                                             this.value = i;
                                             this.level = 3;
                                             district_data.push(this);
@@ -117,7 +117,7 @@
                 },
 
                 subtitle: {
-                    text: 'USA',
+                    text: 'Bangladesh',
                     floating: true,
                     align: 'right',
                     y: 50,
@@ -127,15 +127,54 @@
                 },
 
                 legend: small ? {} : {
+                    title: {
+                        text: "No of Incidents"
+                    },
+                    itemStyle: {
+                        fontSize: '10px'
+                    },
                     layout: 'vertical',
+                    borderColor: "gray",
+                    borderWidth: 1,
                     align: 'right',
-                    verticalAlign: 'middle'
+                    verticalAlign: 'middle',
+                    labelFormatter: function () {
+                        if (this.from === undefined) {
+                            return 'Below ' + this.to;
+                        }
+
+                        if (this.to === undefined) {
+                            return 'Above ' + this.from;
+                        }
+
+                        return this.from + ' to ' + this.to;
+                    }
                 },
 
                 colorAxis: {
-                    min: 0,
-                    minColor: '#E6E7E8',
-                    maxColor: '#005645'
+                    dataClasses: [{
+                        to: 100,
+                        color: "#a3dbb9"
+                    }, {
+                        from: 101,
+                        to: 500,
+                        color: "#fbfa20"
+                    }, {
+                        from: 501,
+                        to: 1000,
+                        color: "#f8c733"
+                    }, {
+                        from: 1001,
+                        to: 1500,
+                        color: "#feb126"
+                    }, {
+                        from: 1501,
+                        to: 2000,
+                        color: "#f7802d"
+                    }, {
+                        from: 2001,
+                        color: "#fe363c"
+                    }]
                 },
 
                 mapNavigation: {
