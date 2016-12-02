@@ -648,7 +648,8 @@ def parse():
                             new_json[json_structure[key]] = "No"
                     elif key == "VACTA1":
                         new_json[json_structure[key]] = violence_actor_1[re.sub("\D", "", elem[key])]
-
+                    elif key == "VNUM":
+                        new_json[json_structure[key]] = int(elem[key])
                     elif key == "VPOL":
                         new_json[json_structure[key]] = violence_police_role[str(elem[key])]
                     elif key == "DPROP1":
