@@ -1,23 +1,47 @@
 {% extends 'layout.html' %}
 {% block body %}
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4-src.js"></script>
-    <script src="http://code.highcharts.com/stock/highstock.js"></script>
-    <script src="//code.highcharts.com/maps/modules/map.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/mapdata/countries/bd/bd-all.js"></script>
-    <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
-    <script>
-        $(function () {
+    <style>
+        .container {
+            display: none;
+        }
 
+        #mainNav {
+            display: none;
+        }
+    </style>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="../static/js/highcharts/highstock.min.js"></script>
+    <script src="../static/js/highcharts/map-module.min.js"></script>
+    <script src="../static/js/highcharts/exporting-module.min.js"></script>
+    <script src="../static/js/highcharts/bd-all.min.js"></script>
+    <script src="../static/js/highcharts/stock-exporting-module.min.js"></script>
+    <script src="../static/js/highcharts/map-drilldown-module.min.js"></script>
+    <script src="../static/js/geo-files/divisions.js"></script>
+    <script src="../static/js/geo-files/upazillas.js"></script>
+    <script>
+        window.json_divisions = {
+            "Dhaka": [
+
+            ]
+        }
+        window.json_data = buildDataSeries("/api/bd/victims");
+
+        function buildDataSeries(url) {
+            var json_data = {};
+            $.get("/api/bd/victims", function (data) {
+                for (var item in data) {
+                    json_data[data[item]['district']] = data[item]["victims"]
+                }
+            });
+            return json_data;
+        }
+        $(function () {
             /*
              TODO:
              - Check data labels after drilling. Label rank? New positions?
              - Not US Mainland text
              - Separators
              */
-
             var mapData = Highcharts.maps['countries/bd/bd-all'],
                 myData = Highcharts.geojson(Highcharts.maps['countries/bd/bd-all']),
                 tempSeries,
@@ -27,9 +51,9 @@
             // Set drilldown pointers
             $.each(myData, function (i) {
                 this['hc-key'] = this.properties['hc-key'];
-                this['postal-code'] = this.properties['postal-code'];
-                this.drilldown = this.properties['hc-key'];
+                this.drilldown = this.properties['name'];
                 this.value = i;
+                this.level = 1;
             });
 
             // Instanciate the map
@@ -37,58 +61,68 @@
                 chart: {
                     events: {
                         drilldown: function (e) {
-
-                            if (!e.seriesOptions) {
-                                var chart = this,
-                                    mapKey = 'countries/bd/' + e.point.drilldown + '-all',
-                                    // Handle error, the timeout is cleared on success
-                                    fail = setTimeout(function () {
-                                        if (!Highcharts.maps[mapKey]) {
-                                            chart.showLoading('<i class="icon-frown"></i> Failed loading ' + e.point.name);
-
-                                            fail = setTimeout(function () {
-                                                chart.hideLoading();
-                                            }, 1000);
-                                        }
-                                    }, 3000);
-
-                                var name = e.point.name;
-                                // Show the spinner
-                                chart.showLoading('<i class="icon-spinner icon-spin icon-3x"></i>'); // Font Awesome spinner
-                                var url = "http://geonode.wfp.org/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Abgd_bnd_adm2&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature&CQL_FILTER=(Division=%27" + name + "%27%29";
-                                // Load the drilldown map
-                                $.get(url, function (data) {
-                                    var drillMapData = Highcharts.geojson(data);
-                                    var drillMyData = Highcharts.geojson(data);
-
-                                    // Set a non-random bogus value
-                                    $.each(drillMyData, function (i) {
-                                        this['name'] = this.properties['District'];
-                                        this['hc-key'] = this.properties['District'].toLowerCase();
-                                        this.value = i;
-                                    });
-                                    console.log(drillMyData);
-                                    chart.addSeriesAsDrilldown(e.point, {
-                                        name: e.point.name,
-                                        data: drillMyData,
-                                        mapData: drillMapData,
-                                        joinBy: 'name',
-                                        dataLabels: {
-                                            enabled: true,
-                                            format: '{point.name}'
-                                        }
-                                    });
-                                    // Hide loading and add series
-                                    chart.hideLoading();
-                                    clearTimeout(fail);
-                                });
+                            var map_key;
+                            var drilldown_level = e.point.level;
+                            if (drilldown_level == 1) {
+                                map_key = 'countries/bd/bd-districts-all';
+                            } else if (drilldown_level == 2) {
+                                map_key = 'countries/bd/bd-upazillas-all';
                             }
+                            var chart = this;
+                            var name = e.point.name;
+                            // Show the spinner
+                            {#                                    chart.showLoading('<i class="icon-spinner icon-spin icon-4x"></i>');#}
+                            // Font Awesome spinner
+
+                            // Load the drilldown map
+
+                            var data = Highcharts.maps[map_key];
+                            var drillMyData = Highcharts.geojson(data);
+                            var district_data = [];
+                            // Set a non-random bogus value
+
+                            $.each(drillMyData, function (i) {
+                                if (drilldown_level == 1) {
+                                    if (this.properties.Division == name) {
+                                        this['hc-key'] = "bd-" + this.properties['District'].substr(0, 2).toLowerCase();
+                                        this.name = this.properties['District'];
+                                        if (window.json_data[this.name] != undefined) {
+                                            this.value = window.json_data[this.name];
+                                        } else {
+                                            this.value = null;
+                                        }
+                                        this.drilldown = this.properties['District'];
+                                        this.level = 2;
+                                        district_data.push(this);
+                                    }
+                                } else if (drilldown_level == 2) {
+                                    if (this.properties.District == name) {
+                                        this['hc-key'] = "bd-" + this.properties['Upazila'].substr(0, 2).toLowerCase();
+                                        this.name = this.properties['Upazila'];
+                                        this.value = i;
+                                        this.level = 3;
+                                        district_data.push(this);
+                                    }
+                                }
+                            });
+
+                            chart.addSeriesAsDrilldown(e.point, {
+                                name: e.point.name,
+                                data: district_data.slice(0, drillMyData.length),
+                                joinBy: 'name',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.name}'
+                                }
+                            });
+                            // Hide loading and add series
+                            chart.hideLoading();
 
 
                             this.setTitle(null, {text: e.point.name});
                         },
                         drillup: function () {
-                            this.setTitle(null, {text: 'USA'});
+                            this.setTitle(null, {text: 'Bangladesh'});
                         }
                     }
                 },
@@ -98,7 +132,7 @@
                 },
 
                 subtitle: {
-                    text: 'USA',
+                    text: 'Bangladesh',
                     floating: true,
                     align: 'right',
                     y: 50,
@@ -108,18 +142,59 @@
                 },
 
                 legend: small ? {} : {
+                    title: {
+                        text: "No of Incidents"
+                    },
+                    itemStyle: {
+                        fontSize: '10px'
+                    },
                     layout: 'vertical',
+                    borderColor: "gray",
+                    borderWidth: 1,
                     align: 'right',
-                    verticalAlign: 'middle'
+                    verticalAlign: 'top',
+                    y: 70,
+                    labelFormatter: function () {
+                        if (this.from === undefined) {
+                            return 'Below ' + this.to;
+                        }
+
+                        if (this.to === undefined) {
+                            return 'Above ' + this.from;
+                        }
+
+                        return this.from + ' to ' + this.to;
+                    }
                 },
 
                 colorAxis: {
-                    min: 0,
-                    minColor: '#E6E7E8',
-                    maxColor: '#005645'
+                    dataClasses: [{
+                        to: 100,
+                        color: "#a3dbb9"
+                    }, {
+                        from: 101,
+                        to: 500,
+                        color: "#fbfa20"
+                    }, {
+                        from: 501,
+                        to: 1000,
+                        color: "#f8c733"
+                    }, {
+                        from: 1001,
+                        to: 1500,
+                        color: "#feb126"
+                    }, {
+                        from: 1501,
+                        to: 2000,
+                        color: "#f7802d"
+                    }, {
+                        from: 2001,
+                        color: "#fe363c"
+                    }]
                 },
 
                 mapNavigation: {
+                    enableMouseWheelZoom: false,
                     enabled: true,
                     buttonOptions: {
                         verticalAlign: 'bottom'
@@ -130,7 +205,7 @@
                     map: {
                         states: {
                             hover: {
-                                color: '#EEDD66'
+                                color: '#a1a1a1'
                             }
                         }
                     }
@@ -139,11 +214,11 @@
                 series: [{
                     data: myData,
                     mapData: mapData,
-                    joinBy: 'hc-key',
-                    name: 'USA',
+                    joinBy: 'name',
+                    name: 'Bangladesh',
                     dataLabels: {
                         enabled: true,
-                        format: '{point.options.postal-code}'
+                        format: '{point.name}'
                     }
                 }],
 
@@ -158,7 +233,7 @@
                         relativeTo: 'spacingBox',
                         position: {
                             x: 0,
-                            y: 60
+                            y: 30
                         }
                     }
                 }
