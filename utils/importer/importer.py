@@ -625,20 +625,25 @@ def parse():
                         new_json[json_structure[key]] = violence_source[elem[key]]
                     elif key == 'VTYP1':
                         if elem[key] == "311":
-                            #TODO: Figure out what 311 code means.
-                            pass
+                            new_json[json_structure[key]] = violence_type_1["310"]
                         else:
                             new_json[json_structure[key]] = violence_type_1[elem[key]]
                     elif key == "VTRIG1" or key == "VTRIG2":
-                        if elem[key] == "240" or elem[key] == "111" or elem[key] == "199" or elem[key] == None or elem[key] == "":
-                            # TODO: Figure out what these codes mean.
-                            pass
+                        if elem[key] == '240':
+                            new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str("230"))]
+                        elif elem[key] == "111":
+                            new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str("110"))]
+                        elif elem[key] == "199":
+                            new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str("190"))]
+                        elif elem[key] == None or elem[key] == "":
+                            new_json[json_structure[key]] = None
                         else:
                             new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str(elem[key]))]
                     elif key == "LDIS":
-                        if re.sub("\D", "", elem[key]) == "417" or re.sub("\D", "", elem[key]) == '30':
-                            # TODO: Figure out what these codes mean.
-                            pass
+                        if re.sub("\D", "", elem[key]) == "417":
+                            new_json[json_structure[key]] = event_location_district["317"]
+                        elif re.sub("\D", "", elem[key]) == '30':
+                            new_json[json_structure[key]] = event_location_district["301"]
                         else:
                             new_json[json_structure[key]] = event_location_district[re.sub("\D", "", elem[key])]
                     elif key == "VTRIGC":
@@ -661,7 +666,6 @@ def parse():
                         if elem[key] == None:
                             new_json[json_structure[key]] = None
                         elif elem[key] == '8401':
-                            # TODO: Figure out what these codes mean.
                             new_json[json_structure[key]] = destruction_of_property['840']
                         else:
                             new_json[json_structure[key]] = destruction_of_property[str(elem[key])]
@@ -669,10 +673,16 @@ def parse():
                         if elem[key] == None:
                             new_json[json_structure[key]] = None
                         elif elem[key] == '8401' or elem[key] == '1':
-                            # TODO: Figure out what these codes mean.
                             new_json[json_structure[key]] = destruction_of_property['100']
                         else:
                             new_json[json_structure[key]] = destruction_of_property[elem[key]]
+                    elif key == "VTAR1" or key == "VTAR2" or key == "VTAR3":
+                        if elem[key] == '' or elem[key] == None:
+                            new_json[json_structure[key]] = None
+                        elif elem[key] == '210*':
+                            new_json[json_structure[key]] = violence_actor_1['210']
+                        else:
+                            new_json[json_structure[key]] = violence_actor_1[elem[key]]
                     else:
                         new_json[json_structure[key]] = elem[key]
             collection.insert(new_json)
