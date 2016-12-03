@@ -24,7 +24,6 @@
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/agency.min.css') }}" type="text/css">
 		#}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" type="text/css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
@@ -38,7 +37,7 @@
 {#                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">#}
 {#                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>#}
                 <ul class="nav navbar-nav navbar-right">
-                    <a href="{{ url_for('main.index') }}" class=" btn btn-xl">Enter the Observatory</a>
+                    <a href="{{ url_for('viz.index') }}" class=" btn btn-xl">Enter the Observatory</a>
 {#                </button>#}
                 </ul>
             </div>
@@ -152,6 +151,6 @@
 <!-- Contact Form JavaScript -->
 <script src="static/js/jqBootstrapValidation.js"></script>
 <!-- Theme JavaScript -->
-<script src="static/js/agency.min.js"></script>
+{#<script src="static/js/agency.min.js"></script>#}
 </body>
 </html>

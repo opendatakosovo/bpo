@@ -258,9 +258,9 @@ header {
   color: white;
   background-color: #1b6d85;
 }
-header .intro-text {
-  padding-top: 100px;
-  padding-bottom: 50px;
+header .intro-text-about {
+  /*padding-top: 100px;*/
+  /*padding-bottom: 50px;*/
 }
   header .intro-text {
     padding-top: 300px;

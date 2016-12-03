@@ -1,4 +1,4 @@
-header .intro-text .intro-lead-in {
+header .intro-text-about .intro-lead-in {
     font-family: "Playfair Display";
     font-style: normal;
     font-size: 63px;
@@ -6,11 +6,11 @@ header .intro-text .intro-lead-in {
     margin-bottom: 55px;
 }
 
-header .intro-text .intro-lead-in1 {
+header .intro-text-about .intro-lead-in1 {
     font-family: "Playfair Display";
     font-style: normal;
     font-size: 22px;
-    line-height: 62px;
+    /*line-height: 62px;*/
     margin-bottom: 55px;
 }
 
@@ -25,20 +25,20 @@ header .intro-text .intro-heading {
 }
 
 
-.header1 {
-    /* background-image: url('../img/header-bg.jpg'); */
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: center center;
-    /* -webkit-background-size: cover; */
-    /* -moz-background-size: cover; */
-    background-size: cover;
-    -o-background-size: cover;
-    text-align: center;
-    color: white;
-    background-color: #1b6d85;
-    height: 30px;
-}
+/*.header1 {*/
+    /*!* background-image: url('../img/header-bg.jpg'); *!*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: scroll;*/
+    /*background-position: center center;*/
+    /*!* -webkit-background-size: cover; *!*/
+    /*!* -moz-background-size: cover; *!*/
+    /*background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*text-align: center;*/
+    /*color: white;*/
+    /*background-color: #1b6d85;*/
+    /*height: 30px;*/
+/*}*/
 
 .navbar-custom .nav li a {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -228,7 +228,8 @@ header {
 .intro-header1 {
     font-family: Lato;
     font-size: 20px;
-    /*margin-top: 67px;*/margin-bottom: 50px;
+    /*margin-top: 67px;*/
+    /*margin-bottom: 50px;*/
 
     color: white;
 }
