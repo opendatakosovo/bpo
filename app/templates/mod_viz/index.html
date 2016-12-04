@@ -238,6 +238,17 @@
                     }
                 }
             });
+            $('#barisal-division-select').change(function(){
+                var selected_name = $(this).val();
+                var the_map = $('#map').highcharts();
+                var map_data = the_map.series[0].data;
+                $.each(map_data, function(index){
+                    if(map_data[index]['name'] == selected_name){
+                        map_data[index].doDrilldown();
+                    }
+                });
+            });
+
         });
 
         $(function () {
@@ -417,10 +428,12 @@
                 <div class="col-md-6 col-xs-6">
                     <label class="filter-label" for="barisal-division-select">Barisal Division</label>
                     <select class="form-control" id="barisal-division-select">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Sylhet">Sylhet</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Barisal">Barisal</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Rajshahi">Rajshahi</option>
                     </select>
                 </div>
                 <div class="col-md-2 col-xs-6">
