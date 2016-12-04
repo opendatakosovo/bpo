@@ -683,6 +683,18 @@ def parse():
                             new_json[json_structure[key]] = violence_actor_1['210']
                         else:
                             new_json[json_structure[key]] = violence_actor_1[elem[key]]
+                    elif key == 'WOUACA':
+                        if elem[key] == '':
+                            new_json[json_structure[key]] = 0
+                        elif elem[key] == 'imprecise':
+                            new_json[json_structure[key]] = 0
+                        else:
+                            new_json[json_structure[key]] = float(elem[key])
+                    elif key == 'VNUM':
+                        if elem[key] == '':
+                            new_json[json_structure[key]] = 0
+                        else:
+                            new_json[json_structure[key]] = int(elem[key])
                     else:
                         new_json[json_structure[key]] = elem[key]
             collection.insert(new_json)
