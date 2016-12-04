@@ -273,6 +273,14 @@ header .intro-text-about {
     line-height: 42px;
     margin-bottom: 55px;
   }
+
+  header .intro-text .intro-lead-in1 {
+        font-family: "Playfair Display";
+    font-style: normal;
+    font-size: 22px;
+    /*line-height: 62px;*/
+    margin-bottom: 55px;
+  }
   header .intro-text .intro-heading {
     font-family: Lato;
     font-style: normal;
