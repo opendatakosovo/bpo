@@ -258,9 +258,9 @@ header {
   color: white;
   background-color: #1b6d85;
 }
-header .intro-text {
-  padding-top: 100px;
-  padding-bottom: 50px;
+header .intro-text-about {
+  /*padding-top: 100px;*/
+  /*padding-bottom: 50px;*/
 }
   header .intro-text {
     padding-top: 300px;
@@ -271,6 +271,14 @@ header .intro-text {
     font-style: normal;
     font-size: 54px;
     line-height: 42px;
+    margin-bottom: 55px;
+  }
+
+  header .intro-text .intro-lead-in1 {
+        font-family: "Playfair Display";
+    font-style: normal;
+    font-size: 22px;
+    /*line-height: 62px;*/
     margin-bottom: 55px;
   }
   header .intro-text .intro-heading {
