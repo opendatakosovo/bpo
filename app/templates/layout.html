@@ -31,7 +31,7 @@
     <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:600,400' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
@@ -40,27 +40,32 @@
     <!--CSS-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
-    <script src="static/js/agency.min.js"></script>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" type="text/css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/agency.min.js')}}"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
 
 </head>
 
-
+{% block header %}
 <body id="page-top" class="index">
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll nav navbar-nav navbar-right">
-                <ul class="nav navbar-nav navbar-right">
-                    <a href="{{ url_for('viz.index') }}" class=" btn btn-xl">Enter the Observatory</a>
-                </ul>
-            </div>
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+                <a href="{{ url_for('viz.index') }}" class=" btn btn-xl">Enter the Observatory</a>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 <!-- Header -->
 <header>
     <div class="container">
@@ -85,8 +90,10 @@
         </div>
     </div>
 </header>
+{% endblock %}
 {% block body %}
 {% endblock %}
+{% block footer %}
 <!-- Footer -->
 <footer class="bg-light-blue">
     <div class="footer-above">
@@ -95,7 +102,8 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="footer-col col-md-4">
                         <h4 class="intro-footer-one text-capitalize">Disclaimer:</h4>
-                        <p class="footer1 col-md-12">Duis mollis, est non commodo lucts, nisi erat porttitor ligula, eget lacinia
+                        <p class="footer1 col-md-12">Duis mollis, est non commodo lucts, nisi erat porttitor ligula,
+                            eget lacinia
                             odio sem nec elit.
                             Donec ullamcorper nulla non metus auctr fringilla.
                         </p>
@@ -103,7 +111,7 @@
                     <div class="footer-col col-md-4">
                         <h3 class=" intro-footer-one text-capitalize text-center">A project by University of Dhaka</h3>
                         <br>
-                        <img src="static/assets/logoo.png" alt="" height="102" width="82"
+                        <img src="{{ url_for('static', filename='assets/logoo.png')}}" alt="" height="102" width="82"
                              class="img-responsive center-block">
                         <p class="large text-muted text-center" style="color: white;">Hosted by the Centre for Genocide
                             Studies
@@ -147,6 +155,7 @@
         </div>
     </div>
 </footer>
+{% endblock %}
 </div>
 </body>
 </html>

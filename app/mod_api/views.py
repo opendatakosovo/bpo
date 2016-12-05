@@ -58,3 +58,14 @@ def get_map(district=None):
         response=json_util.dumps(result['result']),
         mimetype='application/json')
     return resp
+
+@mod_api.route('/<string:dataset>/get/violence-types', methods=['GET', 'POST'])
+def get_violence_types(dataset):
+    violence_types = mongo.db.mgr.distinct('ViolenceType1')
+    violence_types1 = mongo.db.mgr.distinct('ViolenceType2')
+    violence_types2 = mongo.db.mgr.distinct('ViolenceType3')
+    violence_types_array = set(map(str, violence_types) + map(str, violence_types1) + map(str, violence_types2))
+    resp = Response(
+        response= json_util.dumps(violence_types_array),
+        mimetype='application/json')
+    return resp

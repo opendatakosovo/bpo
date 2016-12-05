@@ -35,7 +35,20 @@
             });
             return json_data;
         }
-        $(function () {
+        $(document).ready(function(){
+
+            var violence_options = $("#violence-type-select");
+            $.get( '{{ url_for("api.get_violence_types", dataset="mgr")}}', function(data){
+                $.each(data, function (item) {
+                    violence_options.append($("<option />").val(data[item]).text(data[item]));
+                });
+            });
+            // Add daterange jquery functionality
+            $('input[name="daterange"]').daterangepicker({
+
+            });
+
+
             /*
              TODO:
              - Check data labels after drilling. Label rank? New positions?
@@ -249,14 +262,9 @@
                 });
             });
 
-        });
-
-        $(function () {
             $("#national-accordion").accordion({
                 collapsible: true, active: false
             });
-        });
-        $(function () {
             Highcharts.chart('third-section-first-chart', {
                 chart: {
                     type: 'column',
@@ -309,8 +317,6 @@
 
                 }]
             });
-        });
-        $(function () {
             Highcharts.chart('third-section-second-chart', {
                 chart: {
                     type: 'column',
@@ -364,8 +370,6 @@
 
                 }]
             });
-        });
-        $(function () {
             Highcharts.chart('third-section-third-chart', {
                 chart: {
                     type: 'column',
@@ -419,6 +423,71 @@
 
                 }]
             });
+
+              var seriesOptions = [],
+                seriesCounter = 0,
+                names = ['MSFT', 'AAPL', 'GOOG'];
+
+            /**
+             * Create the chart when all data is loaded
+             * @returns {undefined}
+             */
+            function createChart() {
+
+                Highcharts.stockChart('line-chart-container', {
+
+                    rangeSelector: {
+                        selected: 4
+                    },
+
+                    yAxis: {
+                        labels: {
+                            formatter: function () {
+                                return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                            }
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 2,
+                            color: 'silver'
+                        }]
+                    },
+
+                    plotOptions: {
+                        series: {
+                            compare: 'percent',
+                            showInNavigator: true
+                        }
+                    },
+
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+                        valueDecimals: 2,
+                        split: true
+                    },
+
+                    series: seriesOptions
+                });
+            }
+
+            $.each(names, function (i, name) {
+
+                $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?', function (data) {
+
+                    seriesOptions[i] = {
+                        name: name,
+                        data: data
+                    };
+
+                    // As we're loading the data asynchronously, we don't know what order it will arrive. So
+                    // we keep a counter and create the chart when all the data is loaded.
+                    seriesCounter += 1;
+
+                    if (seriesCounter === names.length) {
+                        createChart();
+                    }
+                });
+            });
         });
     </script>
     <div class="row">
@@ -439,27 +508,21 @@
                 <div class="col-md-2 col-xs-6">
                     <label class="filter-label" for="data-source-select">Data Source</label>
                     <select class="form-control" id="data-source-select">
-                        <option value="idams">IDAMS</option>
                         <option value="mgr">MGR</option>
+                        <option value="idams" disabled>IDAMS</option>
+
                     </select>
                 </div>
                 <div class="col-md-2 col-xs-6">
                     <label class="filter-label" for="violence-type-select">Violence Type</label>
                     <select class="form-control" id="violence-type-select">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
+
                     </select>
                 </div>
                 <div class="col-md-2 col-xs-6">
-                    <label class="filter-label" for="date-range-select">Time Period</label>
-                    <select class="form-control" id="date-range-select">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                    </select>
+                    <label class="filter-label" for="daterange">Time Period</label>
+                    <input type="text" class="form-control" name="daterange" value="01/01/2015 - 01/31/2015" />
+
                 </div>
             </div>
             <br/>
@@ -617,74 +680,6 @@
 
     </div>
 
-    <script>
-        $(function () {
-            var seriesOptions = [],
-                seriesCounter = 0,
-                names = ['MSFT', 'AAPL', 'GOOG'];
-
-            /**
-             * Create the chart when all data is loaded
-             * @returns {undefined}
-             */
-            function createChart() {
-
-                Highcharts.stockChart('line-chart-container', {
-
-                    rangeSelector: {
-                        selected: 4
-                    },
-
-                    yAxis: {
-                        labels: {
-                            formatter: function () {
-                                return (this.value > 0 ? ' + ' : '') + this.value + '%';
-                            }
-                        },
-                        plotLines: [{
-                            value: 0,
-                            width: 2,
-                            color: 'silver'
-                        }]
-                    },
-
-                    plotOptions: {
-                        series: {
-                            compare: 'percent',
-                            showInNavigator: true
-                        }
-                    },
-
-                    tooltip: {
-                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
-                        valueDecimals: 2,
-                        split: true
-                    },
-
-                    series: seriesOptions
-                });
-            }
-
-            $.each(names, function (i, name) {
-
-                $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?', function (data) {
-
-                    seriesOptions[i] = {
-                        name: name,
-                        data: data
-                    };
-
-                    // As we're loading the data asynchronously, we don't know what order it will arrive. So
-                    // we keep a counter and create the chart when all the data is loaded.
-                    seriesCounter += 1;
-
-                    if (seriesCounter === names.length) {
-                        createChart();
-                    }
-                });
-            });
-        });
-    </script>
     <div class="row">
         <div id="line-chart" class="col-md-12">
             <h3>Human and Economic Impact</h3>

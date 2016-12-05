@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BPO</title>
+{% extends 'layout.html' %}
 
-    <!--CSS-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" type="text/css">
-    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="static/js/agency.min.js"></script>
-
-
-</head>
-
+{% block header %}
 <body id="page-top" class="index" style="background-color:#1b6d85;">
 
 <!-- Navigation -->
@@ -53,38 +39,37 @@
         </div>
     </div>
 </header>
+{% endblock %}
+{% block body %}
+{% endblock %}
+    {% block footer %}
+        <footer>
+            <div class="container">
+                <div class="row">
 
-
-<footer>
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <p class="intro-header col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3">A project by University of
-                    Dhaka
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 intro-header1 ">Hosted by the Centre for
-                Genocide Studies
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <div class="col-md-9  col-md-offset-1 text-center">
-                    <p class="intro-header">In Partnership With</p>
-                    <p class="intro-header2">The Bangladesh Police | National Defense College | Micro-governance
-                        Research Initiative
-                        | Stop Violence Coalition | The Daily Star | The Metropolitan Chamber of Commerce and
-                        Industry |
-                        Society for Environment and Human Development | Action Aid Bangladesh
-                    </p>
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <p class="intro-header col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3">A project by University of
+                            Dhaka
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 intro-header1 ">Hosted by the Centre for
+                        Genocide Studies
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <div class="col-md-9  col-md-offset-1 text-center">
+                            <p class="intro-header">In Partnership With</p>
+                            <p class="intro-header2">The Bangladesh Police | National Defense College | Micro-governance
+                                Research Initiative
+                                | Stop Violence Coalition | The Daily Star | The Metropolitan Chamber of Commerce and
+                                Industry |
+                                Society for Environment and Human Development | Action Aid Bangladesh
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</footer>
-
-
-</body>
-</html>
+        </footer>
+    {% endblock %}
