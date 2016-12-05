@@ -628,6 +628,20 @@ def parse():
                             new_json[json_structure[key]] = violence_type_1["310"]
                         else:
                             new_json[json_structure[key]] = violence_type_1[elem[key]]
+                    elif key == 'VTYP2':
+                        if elem[key] == "311":
+                            new_json[json_structure[key]] = violence_type_1["310"]
+                        elif elem[key] == '321' or elem[key] == '140' or elem[key] == '':
+                            #ToDo: Figure out what this number means
+                            new_json[json_structure[key]] = None
+                        else:
+                            new_json[json_structure[key]] = violence_type_1[elem[key]]
+                    elif key == 'VTYP3':
+                        if elem[key] == '' or elem[key] == None:
+                            #ToDo: Figure out what this number means
+                            new_json[json_structure[key]] = None
+                        else:
+                            new_json[json_structure[key]] = violence_type_1[elem[key]]
                     elif key == "VTRIG1" or key == "VTRIG2":
                         if elem[key] == '240':
                             new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str("230"))]

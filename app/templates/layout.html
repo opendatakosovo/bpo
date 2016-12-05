@@ -22,21 +22,24 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
 </head>
 
 
 <body id="page-top" class="index">
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll nav navbar-nav navbar-right">
-                <ul class="nav navbar-nav navbar-right">
-                    <a href="{{ url_for('viz.index') }}" class=" btn btn-xl">Enter the Observatory</a>
-                </ul>
-            </div>
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+                <a href="{{ url_for('viz.index') }}" class=" btn btn-xl">Enter the Observatory</a>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 <!-- Header -->
 <header>
     <div class="container">
@@ -71,7 +74,8 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="footer-col col-md-4">
                         <h4 class="intro-footer-one text-capitalize">Disclaimer:</h4>
-                        <p class="footer1 col-md-12">Duis mollis, est non commodo lucts, nisi erat porttitor ligula, eget lacinia
+                        <p class="footer1 col-md-12">Duis mollis, est non commodo lucts, nisi erat porttitor ligula,
+                            eget lacinia
                             odio sem nec elit.
                             Donec ullamcorper nulla non metus auctr fringilla.
                         </p>
