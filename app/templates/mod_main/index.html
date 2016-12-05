@@ -1,60 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BPO</title>
+{% extends 'layout.html' %}
 
-    <!-- Facebook meta -->
-    <meta property="og:title" content="BPO"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="{{ config.get('SHARE_URL') }}"/>
-    <meta property="og:image"
-          content="{{ config.get('HOST') }}/static/assets/photo meta.png"/>
-    <meta property="og:image:width" content="1200"/>
-    <meta property="og:image:height" content="630"/>
-    <meta property="og:description"
-          content="HELLO"/>
-
-
-    <!-- Facebook meta -->
-    <meta property="og:title" content="BPO"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="{{ config.get('SHARE_URL') }}"/>
-    <meta property="og:image"
-          content="{{ config.get('HOST') }}/static/assets/photo meta.png"/>
-    <meta property="og:image:width" content="1200"/>
-    <meta property="og:image:height" content="630"/>
-    <meta property="og:description"
-          content="HELLO"/>
-
-
-    <!--Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:600,400' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
-          type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-    <!--CSS-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/agency.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" type="text/css">
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-</head>
+{% block header %}
 <body id="page-top" class="index" style="background-color:#1b6d85;">
+
 <!-- Navigation -->
 <nav class="navbar navbar-default">
     <a class="navbar-brand" href="{{ url_for('main.about') }}">About</a>
 </nav>
+
+
 <!-- Header -->
-<header >
+<header>
     <div class="container">
         <div class="intro-text-about">
             <div class="row">
@@ -83,35 +39,37 @@
         </div>
     </div>
 </header>
-<footer>
-    <div class="container">
-        <div class="row">
+{% endblock %}
+{% block body %}
+{% endblock %}
+    {% block footer %}
+        <footer>
+            <div class="container">
+                <div class="row">
 
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <p class="intro-header col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3">A project by University of
-                    Dhaka
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 intro-header1 ">Hosted by the Centre for
-                Genocide Studies
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <div class="col-md-9  col-md-offset-1 text-center">
-                    <p class="intro-header">In Partnership With</p>
-                    <p class="intro-header2">The Bangladesh Police | National Defense College | Micro-governance
-                        Research Initiative
-                        | Stop Violence Coalition | The Daily Star | The Metropolitan Chamber of Commerce and
-                        Industry |
-                        Society for Environment and Human Development | Action Aid Bangladesh
-                    </p>
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <p class="intro-header col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3">A project by University of
+                            Dhaka
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 intro-header1 ">Hosted by the Centre for
+                        Genocide Studies
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <div class="col-md-9  col-md-offset-1 text-center">
+                            <p class="intro-header">In Partnership With</p>
+                            <p class="intro-header2">The Bangladesh Police | National Defense College | Micro-governance
+                                Research Initiative
+                                | Stop Violence Coalition | The Daily Star | The Metropolitan Chamber of Commerce and
+                                Industry |
+                                Society for Environment and Human Development | Action Aid Bangladesh
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</footer>
-<script src="static/js/agency.min.js"></script>
-</body>
-</html>
+        </footer>
+    {% endblock %}

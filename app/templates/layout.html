@@ -4,11 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BPO</title>
+    <!-- Facebook meta -->
+    <meta property="og:title" content="BPO"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ config.get('SHARE_URL') }}"/>
+    <meta property="og:image"
+          content="{{ config.get('HOST') }}/static/assets/photo meta.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:description"
+          content="HELLO"/>
+
+
+    <!-- Facebook meta -->
+    <meta property="og:title" content="BPO"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ config.get('SHARE_URL') }}"/>
+    <meta property="og:image"
+          content="{{ config.get('HOST') }}/static/assets/photo meta.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:description"
+          content="HELLO"/>
+
     <!--Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:600,400' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
@@ -17,17 +40,20 @@
     <!--CSS-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/agency.css') }}" type="text/css">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" type="text/css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/agency.min.js')}}"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
+
 </head>
 
-
+{% block header %}
 <body id="page-top" class="index">
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -64,8 +90,10 @@
         </div>
     </div>
 </header>
+{% endblock %}
 {% block body %}
 {% endblock %}
+{% block footer %}
 <!-- Footer -->
 <footer class="bg-light-blue">
     <div class="footer-above">
@@ -83,7 +111,7 @@
                     <div class="footer-col col-md-4">
                         <h3 class=" intro-footer-one text-capitalize text-center">A project by University of Dhaka</h3>
                         <br>
-                        <img src="static/assets/logoo.png" alt="" height="102" width="82"
+                        <img src="{{ url_for('static', filename='assets/logoo.png')}}" alt="" height="102" width="82"
                              class="img-responsive center-block">
                         <p class="large text-muted text-center" style="color: white;">Hosted by the Centre for Genocide
                             Studies
@@ -127,6 +155,7 @@
         </div>
     </div>
 </footer>
+{% endblock %}
 </div>
 </body>
 </html>
