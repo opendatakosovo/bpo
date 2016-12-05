@@ -17,8 +17,7 @@ def index():
 
 
 @mod_api.route('/bd/victims', methods=['GET'])
-@mod_api.route('/bd/victims/<string:district>', methods=['GET'])
-def get_map(district=None):
+def get_victims():
     match = {
         "$match": {
             "EventLocationDistrict": {

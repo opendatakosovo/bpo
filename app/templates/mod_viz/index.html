@@ -24,11 +24,11 @@
 
             ]
         }
-        window.json_data = buildDataSeries("/api/bd/victims");
+        window.json_data = buildDataSeries("{{ url_for('api.get_victims')}}");
 
         function buildDataSeries(url) {
             var json_data = {};
-            $.get("/api/bd/victims", function (data) {
+            $.get("{{ url_for('api.get_victims')}}", function (data) {
                 for (var item in data) {
                     json_data[data[item]['district']] = data[item]["victims"]
                 }
