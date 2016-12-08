@@ -224,23 +224,251 @@
 
     $(document).ready(function () {
         jQuery.ajaxSetup({async: false});
-        var map_data = buildDataSeries();
-        // Get rank of the city
+        buildViolenceTypeDropDown();
+        buildDateRangeInput();
+        buildMap();
+        createChart();
+        Highcharts.chart('third-section-first-chart', {
+            chart: {
+                type: 'column',
+                width: 500,
+                height: 200
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                position: 'right',
+                title: {
+                    text: 'Number'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="padding:0"><b>{point.y}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: "Deaths",
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-        var violence_options = $("#violence-type-select");
-        $.get('{{ url_for("api.get_violence_types", dataset="mgr")}}', function (data) {
-            $.each(data, function (item) {
-                violence_options.append($("<option />").val(data[item]).text(data[item]));
-            });
+            }]
         });
+        Highcharts.chart('third-section-second-chart', {
+            chart: {
+                type: 'column',
+                width: 500,
+                height: 200
+
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                position: 'right',
+                title: {
+                    text: 'Number'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="padding:0"><b>{point.y}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Injuries',
+                data: [0,0,0,0,0,0,0,0,0,0,0,0]
+
+            }]
+        });
+        Highcharts.chart('third-section-third-chart', {
+            chart: {
+                type: 'column',
+                width: 500,
+                height: 200
+
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                position: 'right',
+                title: {
+                    text: 'Number'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="padding:0"><b>{point.y}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Property damage',
+                data: [0,0,0,0,0,0,0,0,0,0,0,0]
+
+            }]
+        });
+
+        $('#division-select').change(function () {
+            locationChanged($(this).val(), true);
+        });
+
+        $("#national-accordion").accordion({
+            collapsible: true, active: false
+        });
+
+        buildNationalData();
+    });
+    function buildNationalData(){
+        // Get request for the ranking data
+        $.get('{{ url_for("api.get_rank", type="division")}}', function (data) {
+            rank_data = data;
+        });
+
+        $('.location-name').html("Bangladesh");
+        $('.national-ranked').parent().css("display","none");
+
+        // Set the highest rates
+        $('.rate-1').html(getTopN(rank_data, 'death', 1)[0].name);
+        $('.rate-2').html(getTopN(rank_data, 'injury', 1)[0].name);
+        $('.rate-3').html(getTopN(rank_data, 'property', 1)[0].name);
+    }
+    function createChart() {
+
+        var seriesOptions = [],
+                seriesCounter = 0,
+                names = ['MSFT', 'AAPL', 'GOOG'];
+
+        /**
+         * Create the chart when all data is loaded
+         * @returns {undefined}
+         */
+
+        Highcharts.stockChart('line-chart-container', {
+
+            rangeSelector: {
+                selected: 4
+            },
+
+            yAxis: {
+                labels: {
+                    formatter: function () {
+                        return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                    }
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 2,
+                    color: 'silver'
+                }]
+            },
+
+            plotOptions: {
+                series: {
+                    compare: 'percent',
+                    showInNavigator: true
+                }
+            },
+
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+                valueDecimals: 2,
+                split: true
+            },
+
+            series: seriesOptions
+        });
+    }
+    function buildDateRangeInput() {
         // Add daterange jquery functionality
         $('input[name="daterange"]').daterangepicker({
             "dateLimit": {
                 "months": 3
             },
         });
+    }
 
 
+    function buildMap() {
+        var map_data = buildDataSeries();
         /*
          TODO:
          - Check data labels after drilling. Label rank? New positions?
@@ -424,17 +652,14 @@
                     point: {
                         events: {
                             click: function (i) {
-                                console.log();
-                                if(i.target.className.baseVal.split(' ')[1] != undefined){
+                                if (i.target.className.baseVal.split(' ')[1] != undefined) {
                                     var clicked_point = capitalize(i.target.className.baseVal.split(' ')[1].split('-')[2]);
                                     $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
-                                    console.log("Clicked on area: " + clicked_point);
-                                    locationChanged(clicked_point);
-                                }else{
+                                    locationChanged(clicked_point, false);
+                                } else {
                                     var clicked_point = $(i.target)[0].textContent;
                                     $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
-                                    console.log("Clicked on text-area: " + clicked_point);
-                                    locationChanged(clicked_point);
+                                    locationChanged(clicked_point, false);
                                 }
 
                             }
@@ -472,273 +697,109 @@
             }
         });
 
-        Highcharts.chart('third-section-first-chart', {
-            chart: {
-                type: 'column',
-                width: 500,
-                height: 200
-            },
-            title: {
-                text: 'Title'
-            },
-            subtitle: {
-                text: 'Source: IDAMS'
-            },
-            xAxis: {
-                categories: [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug'
-                ],
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                position: 'right',
-                title: {
-                    text: 'Text (mm)'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Tokyo',
-                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
+    }
+    function locationChanged(name, from_selection) {
+        //Instantiate rank_data array
+        var rank_data = [];
 
-            }]
-        });
-        Highcharts.chart('third-section-second-chart', {
-            chart: {
-                type: 'column',
-                width: 500,
-                height: 200
-
-            },
-            title: {
-                text: 'Title'
-            },
-            subtitle: {
-                text: 'Source: IDAMS'
-            },
-            xAxis: {
-                categories: [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug'
-                ],
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                position: 'right',
-                title: {
-                    text: 'Rainfall (mm)'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Tokyo',
-                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
-
-            }]
-        });
-        Highcharts.chart('third-section-third-chart', {
-            chart: {
-                type: 'column',
-                width: 500,
-                height: 200
-
-            },
-            title: {
-                text: 'Monthly Average Rainfall'
-            },
-            subtitle: {
-                text: 'Source: WorldClimate.com'
-            },
-            xAxis: {
-                categories: [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug'
-                ],
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                position: 'right',
-                title: {
-                    text: 'Rainfall (mm)'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Tokyo',
-                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
-
-            }]
+        // Get request for the ranking data
+        $.get('{{ url_for("api.get_rank", type="division")}}', function (data) {
+            rank_data = data;
         });
 
-        var seriesOptions = [],
-                seriesCounter = 0,
-                names = ['MSFT', 'AAPL', 'GOOG'];
+        // Get the selected locaion name
+        var selected_name = name;
 
-        /**
-         * Create the chart when all data is loaded
-         * @returns {undefined}
-         */
-        function createChart() {
+        // Get the map instance
+        var the_map = $('#map').highcharts();
 
-            Highcharts.stockChart('line-chart-container', {
+        // Get the drilldown level number
+        var level_number = $(the_map)[0].series[0].options._levelNumber;
 
-                rangeSelector: {
-                    selected: 4
-                },
-
-                yAxis: {
-                    labels: {
-                        formatter: function () {
-                            return (this.value > 0 ? ' + ' : '') + this.value + '%';
-                        }
-                    },
-                    plotLines: [{
-                        value: 0,
-                        width: 2,
-                        color: 'silver'
-                    }]
-                },
-
-                plotOptions: {
-                    series: {
-                        compare: 'percent',
-                        showInNavigator: true
-                    }
-                },
-
-                tooltip: {
-                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
-                    valueDecimals: 2,
-                    split: true
-                },
-
-                series: seriesOptions
-            });
-        }
-
-        $.each(names, function (i, name) {
-
-            $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?', function (data) {
-
-                seriesOptions[i] = {
-                    name: name,
-                    data: data
-                };
-
-                // As we're loading the data asynchronously, we don't know what order it will arrive. So
-                // we keep a counter and create the chart when all the data is loaded.
-                seriesCounter += 1;
-
-                if (seriesCounter === names.length) {
-                    createChart();
-                }
-            });
-        });
-        $('#division-select').change(function() {
-            locationChanged($(this).val());
-        });
-
-        $("#national-accordion").accordion({
-            collapsible: true, active: false
-        });
-
-
-        $('tspan.highcharts-text-outline').bind('click', function (i) {
-            console.log("Clicked on text: "+ $(this)[0].textContent);
-            $('#division-select [value="' + $(this)[0].textContent + '"]').attr('selected', true);
-            locationChanged($(this)[0].textContent);
-        });
-    });
-    function locationChanged(name){
-            var rank_data = [];
-            $.get('{{ url_for("api.get_rank", type="division")}}', function (data) {
-                rank_data = data;
-
-            });
-            $('.highcharts-drillup-button').click();
-            $('.highcharts-drillup-button').click();
-            var selected_name = name;
-            var the_map = $('#map').highcharts();
-            var map_data_ = the_map.series[0].data;
+        // If we change the name in the location input
+        if(from_selection == true){
+            if(level_number==2){
+                $('.highcharts-drillup-button').click();
+            }
+              var map_data_ = $(the_map)[0].series[0].data;
             $.each(map_data_, function (index) {
                 if (map_data_[index]['name'] == selected_name) {
                     map_data_[index].doDrilldown();
                 }
             });
+        }
 
-            $.each(rank_data, function (item) {
-                if (rank_data[item]['division'] == selected_name) {
-                    $('.national-ranked').html(rank_data[item]['rank']);
-                    $('.location-name').html(rank_data[item]['district']);
-                    // Set the highest rates
-                    $('.rate-1').html(rank_data[item]['division']);
-                    $('.rate-2').html(rank_data[item]['division']);
-                    $('.rate-3').html(rank_data[item]['division']);
-                }
+        // Fill values of the right visualizer
+        $.each(rank_data, function (item) {
+            if (rank_data[item]['name'] == selected_name) {
+                $('.national-ranked').html(rank_data[item]['rank']);
+
+                // Set the highest rates
+                $('.rate-1').html(rank_data[item]['name']);
+                $('.rate-2').html(rank_data[item]['name']);
+                $('.rate-3').html(rank_data[item]['name']);
+            }
+        });
+
+        $('.location-name').html(name);
+
+
+        // Change third-section-first-chart values
+        var third_section_first_chart = $('#third-section-first-chart').highcharts();
+        var third_section_first_chart_data = [];
+        var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=00)}}".replace('name',name).replace(0,level_number-1);
+         $.get(url_for_chart_get_results, function (data) {
+             $.each(data.incidents, function (item) {
+                third_section_first_chart_data[item] = data.incidents[item].death;
             });
+        });
+        third_section_first_chart.series[0].setData(third_section_first_chart_data);
 
+        // Change third-section-second-chart values
+        var third_section_second_chart = $('#third-section-second-chart').highcharts();
+        var third_section_second_chart_data = [];
+        $.get(url_for_chart_get_results, function (data) {
+             $.each(data.incidents, function (item) {
+                third_section_second_chart_data[item] = data.incidents[item].injuries;
+            });
+        });
+        third_section_second_chart.series[0].setData(third_section_second_chart_data);
+
+        // Change third-section-third-chart values
+        var third_section_third_chart = $('#third-section-third-chart').highcharts();
+        var third_section_third_chart_data = [];
+        $.get(url_for_chart_get_results, function (data) {
+             $.each(data.incidents, function (item) {
+                third_section_third_chart_data[item] = data.incidents[item].property;
+            });
+        });
+        third_section_third_chart.series[0].setData(third_section_third_chart_data);
     }
+    function getTopN(arr, prop, n) {
+        // clone before sorting, to preserve the original array
+        var clone = arr.slice(0);
+
+        // sort descending
+        clone.sort(function(x, y) {
+            if (x[prop] == y[prop]) return 0;
+            else if (parseInt(x[prop]) < parseInt(y[prop])) return 1;
+            else return -1;
+        });
+
+        return clone.slice(0, n || 1);
+    }
+    function buildViolenceTypeDropDown() {
+        // Get violence dropdown options instance
+        var violence_options = $("#violence-type-select");
+
+        // Get request to get the violence types
+        $.get('{{ url_for("api.get_violence_types", dataset="mgr")}}', function (data) {
+            $.each(data, function (item) {
+                violence_options.append($("<option />").val(data[item]).text(data[item]));
+            });
+        });
+    }
+
     function capitalize(s) {
         return s[0].toUpperCase() + s.slice(1);
     }

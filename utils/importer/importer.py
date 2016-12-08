@@ -2,7 +2,7 @@
 import csv
 import os
 import re
-
+from datetime import datetime
 from pymongo import MongoClient
 import json
 
@@ -27,7 +27,6 @@ def parse():
         "LUPC": "upazilla",
         "LDIS": "district",
         "LUNW": "village",
-        "VYEAR": "violence_year",
         "WNONP": "woundednon_participant",
         "VREF": "violence_reference",
         "VCONT": "violent_event_continuation",
@@ -37,6 +36,7 @@ def parse():
         "VTAGC": "violent_event_tag_continuation",
         "VDAY": "violence_day",
         "VMONT": "violence_month",
+        "VYEAR": "violence_year",
         "VNONP": "violence_non_participants",
         "VTRIGC": "conflicting_trigger_of_violence",
         "AAVER": "arrested_averaged",
@@ -76,8 +76,7 @@ def parse():
         "VACTA3": "violence_actor_3",
         "CASACA": "total_number_of_casualties_reported_actor_a",
         "CASACB": "total_number_of_casualties_reported_actor_b",
-        "ARRACA": "total_number_of_arrested_reported_actor_a",
-
+        "ARRACA": "total_number_of_arrested_reported_actor_a"
     }
     violence_source = {
         "1": "Daily Star",
@@ -1185,10 +1184,23 @@ def parse():
 
         for elem in json_obj:
             new_json = {}
+            v_day = None
+            v_month = None
+            v_year = None
             for key in elem:
                 if key in json_structure:
                     if key == 'VSOUR':
                         new_json[json_structure[key]] = violence_source[elem[key]]
+                    elif key == 'NDPRO1' or key == 'NDPRO2' or key == 'NDPRO3':
+                        if elem[key] == '' or elem[key] == 'Imprecise' or elem[key] == 'imprecise':
+                            new_json[json_structure[key]] = 0
+                        else:
+                            new_json[json_structure[key]] = int(elem[key])
+                    elif key == 'CASACA' or key == 'CASACB':
+                        if elem[key] == '' or elem[key] == 'Imprecise' or elem[key] == 'imprecise' or elem[key] == None:
+                            new_json[json_structure[key]] = 0
+                        else:
+                            new_json[json_structure[key]] = float(elem[key])
                     elif key == 'VTYP1':
                         if elem[key] == "311":
                             new_json[json_structure[key]] = violence_type_1["310"]
@@ -1291,8 +1303,26 @@ def parse():
                             new_json[json_structure[key]] = upazilla['508002']
                         else:
                             new_json[json_structure[key]] = upazilla[elem[key]]
+                    elif key =='VDAY':
+                        if key == None:
+                            v_day = 1
+                            new_json[json_structure[key]] = elem[key]
+                        else:
+                            v_day = elem['VDAY']
+                            new_json[json_structure[key]] = elem[key]
+                    elif key == 'VMONT':
+                        if key == None or key == '':
+                            v_month = 1
+                            new_json[json_structure[key]] = elem[key]
+                        else:
+                            v_month = elem['VMONT']
+                            new_json[json_structure[key]] = elem[key]
+                    elif key =='VYEAR':
+                        v_year = elem['VYEAR']
+                        new_json[json_structure[key]] = elem[key]
                     else:
                         new_json[json_structure[key]] = elem[key]
+
                     if key == "LDIS":
                         division_number = elem["LDIS"]
 
@@ -1316,6 +1346,9 @@ def parse():
                             new_json['division'] = 'Sylhet'
                         elif division_number == 800:
                             new_json['division'] = 'Multiple'
+            if v_day and v_month and v_year:
+                datetime_object = datetime.strptime(str(v_day)+' '+str(v_month)+' '+str(v_year), '%d %m %Y')
+                new_json['incident_date'] = datetime_object
             collection.insert(new_json)
 
     print "Importing finished"

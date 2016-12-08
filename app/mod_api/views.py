@@ -65,6 +65,91 @@ def get_results(name, level):
         mimetype='application/json')
     return resp
 
+
+@mod_api.route('/incidents/monthly/<string:name>/<int:level>')
+def monthly_incidents(name, level):
+    level_json = {
+        0: "division",
+        1: "district",
+        2: "upazilla"
+    }
+    json_result = {}
+
+    injury_result = mongo.db.mgr.aggregate(
+        [
+            {
+                "$match": {
+                    level_json[level]: {
+                        "$nin": [
+                            ""
+                        ],
+                        "$in": [
+                            name
+                        ]
+                    },
+                    'violence_month': {
+                        "$nin": [
+                            ""
+                        ]
+                    }
+                }
+            },
+            {
+                '$group': {
+                    '_id': {
+                        'month':{
+                                '$substr': ['$incident_date', 5, 2]
+                        }
+                    },
+                    'total_injury_a': {
+                        '$sum': '$total_number_of_wounded_reported_actor_a'
+                    },
+                    'total_injury_b':{
+                        '$sum':'$total_number_of_wounded_reported_actor_b'
+                    },
+                    'total_injury_b': {
+                        '$sum': '$total_number_of_wounded_reported_actor_b'
+                    },
+                    'total_property_a': {
+                        '$sum': '$number_of_property_destroyed_1'
+                    },
+                    'total_property_b': {
+                        '$sum': '$number_of_property_destroyed_3'
+                    },
+                    'total_property_c': {
+                        '$sum': '$number_of_property_destroyed_1_1'
+                    },
+                    'total_death_a':{
+                        '$sum': '$total_number_of_casualties_reported_actor_a'
+                    },
+                    'total_death_b': {
+                        '$sum': '$total_number_of_casualties_reported_actor_b'
+                    }
+                }
+            },
+            {
+                "$sort": {
+                    "_id.month": 1
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    'month': "$_id.month",
+                    'injuries': {'$add': ['$total_injury_b', '$total_injury_b']},
+                    'property': {'$add': ['$total_property_a', '$total_property_b', '$total_property_c']},
+                    'death': {'$add':['$total_death_a','$total_death_a']}
+
+                }
+            }
+        ]
+    )
+    json_result['incidents'] = injury_result['result']
+    resp = Response(
+        response=json_util.dumps(json_result),
+        mimetype='application/json')
+    return resp
+
 @mod_api.route('/bd/victims/<string:type>', methods=['GET'])
 @mod_api.route('/bd/victims/<string:type>/<string:name>', methods=['GET'])
 def get_victims(type, name=None):
@@ -155,6 +240,30 @@ def get_rank(type):
             },
             "victims": {
                 "$sum": 1
+            },
+            'total_injury_a': {
+                '$sum': '$total_number_of_wounded_reported_actor_a'
+            },
+            'total_injury_b': {
+                '$sum': '$total_number_of_wounded_reported_actor_b'
+            },
+            'total_injury_b': {
+                '$sum': '$total_number_of_wounded_reported_actor_b'
+            },
+            'total_property_a': {
+                '$sum': '$number_of_property_destroyed_1'
+            },
+            'total_property_b': {
+                '$sum': '$number_of_property_destroyed_3'
+            },
+            'total_property_c': {
+                '$sum': '$number_of_property_destroyed_1_1'
+            },
+            'total_death_a': {
+                '$sum': '$total_number_of_casualties_reported_actor_a'
+            },
+            'total_death_b': {
+                '$sum': '$total_number_of_casualties_reported_actor_b'
             }
         }
     }
@@ -168,8 +277,11 @@ def get_rank(type):
     project = {
         "$project": {
             "_id": 0,
-            type: "$_id."+type,
-            "victims": "$victims"
+            'name': "$_id."+type,
+            "victims": "$victims",
+            'injuries': {'$add': ['$total_injury_b', '$total_injury_b']},
+            'property': {'$add': ['$total_property_a', '$total_property_b', '$total_property_c']},
+            'death': {'$add': ['$total_death_a', '$total_death_a']}
         }
     }
     aggregation = [match, group, sort, project]
