@@ -1,693 +1,772 @@
 {% extends 'layout.html' %}
 {% block body %}
-    <style>
-        .container {
-            display: none;
-        }
+<style>
+    .container {
+        display: none;
+    }
 
-        #mainNav {
-            display: none;
-        }
-    </style>
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <script src="../static/js/highcharts/highstock.min.js"></script>
-    <script src="../static/js/highcharts/map-module.min.js"></script>
-    <script src="../static/js/highcharts/exporting-module.min.js"></script>
-    <script src="../static/js/highcharts/bd-all.min.js"></script>
-    <script src="../static/js/highcharts/stock-exporting-module.min.js"></script>
-    <script src="../static/js/highcharts/map-drilldown-module.min.js"></script>
-    <script src="../static/js/geo-files/divisions.js"></script>
-    <script src="../static/js/geo-files/upazillas.js"></script>
-    <script>
-        window.json_divisions = {
-            "Dhaka": [
+    #mainNav {
+        display: none;
+    }
+</style>
+<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<script src="../static/js/highcharts/highstock.min.js"></script>
+<script src="../static/js/highcharts/map-module.min.js"></script>
+<script src="../static/js/highcharts/exporting-module.min.js"></script>
+<script src="../static/js/highcharts/bd-all.min.js"></script>
+<script src="../static/js/highcharts/stock-exporting-module.min.js"></script>
+<script src="../static/js/highcharts/map-drilldown-module.min.js"></script>
+<script src="../static/js/geo-files/divisions.js"></script>
+<script src="../static/js/geo-files/upazillas.js"></script>
 
-            ]
-        }
-        window.json_data = buildDataSeries("{{ url_for('api.get_victims')}}");
+<div class="row">
+    <div class="col-md-12" id="filtering">
+        <br/>
+        <div class="row">
+            <div class="col-md-6 col-xs-6">
+                <label class="filter-label" for="division-select">Barisal Division</label>
+                <select class="form-control" id="division-select">
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Sylhet">Sylhet</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Barisal">Barisal</option>
+                    <option value="Khulna">Khulna</option>
+                    <option value="Rajshahi">Rajshahi</option>
+                </select>
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <label class="filter-label" for="data-source-select">Data Source</label>
+                <select class="form-control" id="data-source-select">
+                    <option value="mgr">MGR</option>
+                    <option value="idams" disabled>IDAMS</option>
 
-        function buildDataSeries(url) {
-            var json_data = {};
-            $.get("{{ url_for('api.get_victims')}}", function (data) {
-                for (var item in data) {
-                    json_data[data[item]['district']] = data[item]["victims"]
-                }
+                </select>
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <label class="filter-label" for="violence-type-select">Violence Type</label>
+                <select class="form-control" id="violence-type-select">
+
+                </select>
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <label class="filter-label" for="daterange">Time Period</label>
+                <input type="text" class="form-control" name="daterange" value="01/01/2015 - 01/31/2015"/>
+
+            </div>
+        </div>
+        <br/>
+    </div>
+    <div id="map" class="col-md-6">
+        MAP
+    </div>
+    <div id="viz-container" class="col-md-6">
+        <div class="col-md-12">
+            <h3>Violent Crimes in <span class="location-name"></span></h3>
+        </div>
+
+        <div class="col-md-12">
+            <h3>National Ranked: <span class="national-ranked"></span>d</h3>
+            <div id="national-accordion">
+                <div>
+                    <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                    <span class="rate-1"></span> has the highest fatality rate.
+                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <span class="caret"></span>
+                </div>
+                <div>
+                    <div>
+                        <img class="viz-icon"
+                             src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                        <span class="rate-2"></span> upazila has the highest fatality rate.
+                        <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                        <span class="caret"></span>
+                    </div>
+                    <div>
+                        <img class="viz-icon"
+                             src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                        <span class="rate-3"></span> upazila has the highest fatality rate.
+                        <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                        <span class="caret"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <span class="section-title">Division Overview:</span>
+            <div id="accordion">
+                <div class="division-overview-tab">
+                    <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                    Manpura upazila has the highest fatality rate.
+                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <span class="caret"></span>
+                </div>
+                <div>
+                    <p>
+                    <div class="third-section-chart" id="third-section-first-chart">
+                    </div>
+                    </p>
+                </div>
+                <div class="division-overview-tab">
+                    <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                    Burhanuddin upazila has the highest injury count.
+                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <span class="caret"></span>
+                </div>
+                <div>
+                    <div class="third-section-chart" id="third-section-second-chart">
+                    </div>
+                </div>
+                <div class="division-overview-tab">
+                    <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                    Manpura upazila has the highest property damage count.
+                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <span class="caret"></span>
+                </div>
+                <div>
+                    <div class="third-section-chart" id="third-section-third-chart">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $("#accordion").accordion({
+                collapsible: true, active: false,
+                autoHeight: true
             });
-            return json_data;
-        }
-        $(document).ready(function(){
+        </script>
+        <div class="col-md-12">
+            <div class="col-md-6 top-3">
+                <span class="section-title">Top 3 Reported Perpetrators</span>
+                <ol>
+                    <li>Allahr Dol</li>
+                    <li>Gono Mukti Front</li>
+                    <li>Other Militant Group</li>
+                </ol>
+            </div>
+            <div class="col-md-6 top-3">
+                <span class="section-title">Top 3 Reported Casualties</span>
+                <ol>
+                    <li>Women</li>
+                    <li>General Public</li>
+                    <li>Hindu Minority</li>
+                </ol>
+            </div>
+            <div class="col-md-6 top-3">
+                <span class="section-title">Top 3 Property Type Destruction</span>
+                <ol>
+                    <li>Cars</li>
+                    <li>Public property</li>
+                    <li>Shops</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 census-information">
+                    <span class="section-title">Census Information for Barisal Division<span
+                            class="caret"></span></span>
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>Population</dt>
+                        <dd>149,112,243</dd>
+                    </dl>
+                </div>
 
-            var violence_options = $("#violence-type-select");
-            $.get( '{{ url_for("api.get_violence_types", dataset="mgr")}}', function(data){
-                $.each(data, function (item) {
-                    violence_options.append($("<option />").val(data[item]).text(data[item]));
-                });
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div id="line-chart" class="col-md-12">
+        <h3>Human and Economic Impact</h3>
+        <h4>State of Violence in Barisal Division</h4>
+        <div style="width:100%; height:200px;" id="line-chart-container">
+
+        </div>
+    </div>
+
+</div>
+<script>
+
+
+    $(document).ready(function () {
+        jQuery.ajaxSetup({async: false});
+        var map_data = buildDataSeries();
+        // Get rank of the city
+
+        var violence_options = $("#violence-type-select");
+        $.get('{{ url_for("api.get_violence_types", dataset="mgr")}}', function (data) {
+            $.each(data, function (item) {
+                violence_options.append($("<option />").val(data[item]).text(data[item]));
             });
-            // Add daterange jquery functionality
-            $('input[name="daterange"]').daterangepicker({
+        });
+        // Add daterange jquery functionality
+        $('input[name="daterange"]').daterangepicker({
+            "dateLimit": {
+                "months": 3
+            },
+        });
 
-            });
 
-
-            /*
-             TODO:
-             - Check data labels after drilling. Label rank? New positions?
-             - Not US Mainland text
-             - Separators
-             */
-            var mapData = Highcharts.maps['countries/bd/bd-all'],
+        /*
+         TODO:
+         - Check data labels after drilling. Label rank? New positions?
+         - Not US Mainland text
+         - Separators
+         */
+        var mapData = Highcharts.maps['countries/bd/bd-all'],
                 myData = Highcharts.geojson(Highcharts.maps['countries/bd/bd-all']),
                 tempSeries,
                 // Some responsiveness
                 small = $('#map').width() < 400;
 
-            // Set drilldown pointers
-            $.each(myData, function (i) {
-                this['hc-key'] = this.properties['hc-key'];
-                this.drilldown = this.properties['name'];
-                this.value = i;
-                this.level = 1;
-            });
+        // Set drilldown pointers
+        $.each(myData, function (i) {
+            this['hc-key'] = this.properties['hc-key'];
+            this.drilldown = this.properties['name'];
+            if (map_data['division'][this.name] != undefined) {
+                this.value = map_data['division'][this.name];
+            } else {
+                this.value = null;
+            }
+            this.level = 1;
+        });
 
-            // Instanciate the map
-            $('#map').highcharts('Map', {
-                chart: {
-                    events: {
-                        drilldown: function (e) {
-                            var map_key;
-                            var drilldown_level = e.point.level;
+        // Instanciate the map
+        $('#map').highcharts('Map', {
+            chart: {
+                events: {
+                    drilldown: function (e) {
+                        var map_key;
+                        var drilldown_level = e.point.level;
+                        if (drilldown_level == 1) {
+                            map_key = 'countries/bd/bd-districts-all';
+                        } else if (drilldown_level == 2) {
+                            map_key = 'countries/bd/bd-upazillas-all';
+                        }
+                        var chart = this;
+                        var name = e.point.name;
+                        // Font Awesome spinner
+
+                        // Load the drilldown map
+
+                        var data = Highcharts.maps[map_key];
+                        var drillMyData = Highcharts.geojson(data);
+                        var drilldown_data = [];
+                        // Set a non-random bogus value
+
+                        $.each(drillMyData, function (i) {
                             if (drilldown_level == 1) {
-                                map_key = 'countries/bd/bd-districts-all';
+                                if (this.properties['Division'] == name) {
+                                    this['hc-key'] = "bd-" + this.properties['District'].substr(0, 2).toLowerCase();
+                                    this.name = this.properties['District'];
+                                    if (map_data['district'][this.name] != undefined) {
+                                        this.value = map_data['district'][this.name];
+                                    } else {
+                                        this.value = null;
+                                    }
+                                    this.drilldown = this.properties.District;
+                                    this.level = 2;
+                                    drilldown_data.push(this);
+                                }
                             } else if (drilldown_level == 2) {
-                                map_key = 'countries/bd/bd-upazillas-all';
+                                if (this.properties.District == name) {
+                                    this['hc-key'] = "bd-" + this.properties['Upazila'].substr(0, 2).toLowerCase();
+                                    this.name = this.properties['Upazila'];
+                                    if (map_data['upazilla'][this.name] != undefined) {
+                                        this.value = map_data['upazilla'][this.name];
+                                    } else {
+                                        this.value = null;
+                                    }
+                                    this.level = 3;
+                                    drilldown_data.push(this);
+                                }
                             }
-                            var chart = this;
-                            var name = e.point.name;
-                            // Show the spinner
-                            {#                                    chart.showLoading('<i class="icon-spinner icon-spin icon-4x"></i>');#}
-                            // Font Awesome spinner
+                        });
 
-                            // Load the drilldown map
-
-                            var data = Highcharts.maps[map_key];
-                            var drillMyData = Highcharts.geojson(data);
-                            var district_data = [];
-                            // Set a non-random bogus value
-
-                            $.each(drillMyData, function (i) {
-                                if (drilldown_level == 1) {
-                                    if (this.properties.Division == name) {
-                                        this['hc-key'] = "bd-" + this.properties['District'].substr(0, 2).toLowerCase();
-                                        this.name = this.properties['District'];
-                                        if (window.json_data[this.name] != undefined) {
-                                            this.value = window.json_data[this.name];
-                                        } else {
-                                            this.value = null;
-                                        }
-                                        this.drilldown = this.properties['District'];
-                                        this.level = 2;
-                                        district_data.push(this);
-                                    }
-                                } else if (drilldown_level == 2) {
-                                    if (this.properties.District == name) {
-                                        this['hc-key'] = "bd-" + this.properties['Upazila'].substr(0, 2).toLowerCase();
-                                        this.name = this.properties['Upazila'];
-                                        this.value = i;
-                                        this.level = 3;
-                                        district_data.push(this);
-                                    }
-                                }
-                            });
-
-                            chart.addSeriesAsDrilldown(e.point, {
-                                name: e.point.name,
-                                data: district_data.slice(0, drillMyData.length),
-                                joinBy: 'name',
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.name}'
-                                }
-                            });
-                            // Hide loading and add series
-                            chart.hideLoading();
+                        chart.addSeriesAsDrilldown(e.point, {
+                            name: e.point.name,
+                            data: drilldown_data.slice(0, drillMyData.length),
+                            joinBy: 'hc-key',
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}'
+                            }
+                        });
+                        // Hide loading and add series
+                        chart.hideLoading();
 
 
-                            this.setTitle(null, {text: e.point.name});
-                        },
-                        drillup: function () {
-                            this.setTitle(null, {text: 'Bangladesh'});
-                        }
+                        this.setTitle(null, {text: e.point.name});
+                    },
+                    drillup: function () {
+                        this.setTitle(null, {text: 'Bangladesh'});
                     }
-                },
+                }
+            },
 
+            title: {
+                text: 'Highcharts Map Drilldown'
+            },
+
+            subtitle: {
+                text: 'Bangladesh',
+                floating: true,
+                align: 'right',
+                y: 50,
+                style: {
+                    fontSize: '16px'
+                }
+            },
+
+            legend: small ? {} : {
                 title: {
-                    text: 'Highcharts Map Drilldown'
+                    text: "No of Incidents"
                 },
-
-                subtitle: {
-                    text: 'Bangladesh',
-                    floating: true,
-                    align: 'right',
-                    y: 50,
-                    style: {
-                        fontSize: '16px'
+                itemStyle: {
+                    fontSize: '10px'
+                },
+                layout: 'vertical',
+                borderColor: "gray",
+                borderWidth: 1,
+                align: 'right',
+                verticalAlign: 'top',
+                y: 70,
+                labelFormatter: function () {
+                    if (this.from === undefined) {
+                        return 'Below ' + this.to;
                     }
-                },
 
-                legend: small ? {} : {
-                    title: {
-                        text: "No of Incidents"
-                    },
-                    itemStyle: {
-                        fontSize: '10px'
-                    },
-                    layout: 'vertical',
-                    borderColor: "gray",
-                    borderWidth: 1,
-                    align: 'right',
-                    verticalAlign: 'top',
-                    y: 70,
-                    labelFormatter: function () {
-                        if (this.from === undefined) {
-                            return 'Below ' + this.to;
+                    if (this.to === undefined) {
+                        return 'Above ' + this.from;
+                    }
+
+                    return this.from + ' to ' + this.to;
+                }
+            },
+
+            colorAxis: {
+                dataClasses: [{
+                    to: 100,
+                    color: "#a3dbb9"
+                }, {
+                    from: 101,
+                    to: 500,
+                    color: "#fbfa20"
+                }, {
+                    from: 501,
+                    to: 1000,
+                    color: "#f8c733"
+                }, {
+                    from: 1001,
+                    to: 1500,
+                    color: "#feb126"
+                }, {
+                    from: 1501,
+                    to: 2000,
+                    color: "#f7802d"
+                }, {
+                    from: 2001,
+                    color: "#fe363c"
+                }]
+            },
+
+            mapNavigation: {
+                enableMouseWheelZoom: false,
+                enabled: true,
+                buttonOptions: {
+                    verticalAlign: 'bottom'
+                }
+            },
+
+            plotOptions: {
+                map: {
+                    states: {
+                        hover: {
+                            color: '#a1a1a1'
                         }
-
-                        if (this.to === undefined) {
-                            return 'Above ' + this.from;
-                        }
-
-                        return this.from + ' to ' + this.to;
                     }
                 },
+                series: {
+                    point: {
+                        events: {
+                            click: function (i) {
+                                console.log();
+                                if(i.target.className.baseVal.split(' ')[1] != undefined){
+                                    var clicked_point = capitalize(i.target.className.baseVal.split(' ')[1].split('-')[2]);
+                                    $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
+                                    console.log("Clicked on area: " + clicked_point);
+                                    locationChanged(clicked_point);
+                                }else{
+                                    var clicked_point = $(i.target)[0].textContent;
+                                    $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
+                                    console.log("Clicked on text-area: " + clicked_point);
+                                    locationChanged(clicked_point);
+                                }
 
-                colorAxis: {
-                    dataClasses: [{
-                        to: 100,
-                        color: "#a3dbb9"
-                    }, {
-                        from: 101,
-                        to: 500,
-                        color: "#fbfa20"
-                    }, {
-                        from: 501,
-                        to: 1000,
-                        color: "#f8c733"
-                    }, {
-                        from: 1001,
-                        to: 1500,
-                        color: "#feb126"
-                    }, {
-                        from: 1501,
-                        to: 2000,
-                        color: "#f7802d"
-                    }, {
-                        from: 2001,
-                        color: "#fe363c"
-                    }]
-                },
-
-                mapNavigation: {
-                    enableMouseWheelZoom: false,
-                    enabled: true,
-                    buttonOptions: {
-                        verticalAlign: 'bottom'
-                    }
-                },
-
-                plotOptions: {
-                    map: {
-                        states: {
-                            hover: {
-                                color: '#a1a1a1'
                             }
-                        }
-                    }
-                },
-
-                series: [{
-                    data: myData,
-                    mapData: mapData,
-                    joinBy: 'name',
-                    name: 'Bangladesh',
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.name}'
-                    }
-                }],
-
-                drilldown: {
-                    //series: drilldownSeries,
-                    activeDataLabelStyle: {
-                        color: '#FFFFFF',
-                        textDecoration: 'none',
-                        textShadow: '0 0 3px #000000'
-                    },
-                    drillUpButton: {
-                        relativeTo: 'spacingBox',
-                        position: {
-                            x: 0,
-                            y: 30
                         }
                     }
                 }
-            });
-            $('#barisal-division-select').change(function(){
-                var selected_name = $(this).val();
-                var the_map = $('#map').highcharts();
-                var map_data = the_map.series[0].data;
-                $.each(map_data, function(index){
-                    if(map_data[index]['name'] == selected_name){
-                        map_data[index].doDrilldown();
-                    }
-                });
-            });
+            },
 
-            $("#national-accordion").accordion({
-                collapsible: true, active: false
-            });
-            Highcharts.chart('third-section-first-chart', {
-                chart: {
-                    type: 'column',
-                    width: 500,
-                    height: 200
+            series: [{
+                data: myData,
+                mapData: mapData,
+                joinBy: 'name',
+                name: 'Bangladesh',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
                 },
+
+            }],
+
+            drilldown: {
+                //series: drilldownSeries,
+                activeDataLabelStyle: {
+                    color: '#FFFFFF',
+                    textDecoration: 'none',
+                    textShadow: '0 0 3px #000000'
+                },
+                drillUpButton: {
+                    relativeTo: 'spacingBox',
+                    position: {
+                        x: 0,
+                        y: 30
+                    }
+                }
+            }
+        });
+
+        Highcharts.chart('third-section-first-chart', {
+            chart: {
+                type: 'column',
+                width: 500,
+                height: 200
+            },
+            title: {
+                text: 'Title'
+            },
+            subtitle: {
+                text: 'Source: IDAMS'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                position: 'right',
                 title: {
-                    text: 'Title'
-                },
-                subtitle: {
-                    text: 'Source: IDAMS'
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
-                    position: 'right',
-                    title: {
-                        text: 'Text (mm)'
-                    }
-                },
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 0
-                    }
-                },
-                series: [{
-                    name: 'Tokyo',
-                    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
+                    text: 'Text (mm)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Tokyo',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
 
-                }]
-            });
-            Highcharts.chart('third-section-second-chart', {
-                chart: {
-                    type: 'column',
-                    width: 500,
-                    height: 200
+            }]
+        });
+        Highcharts.chart('third-section-second-chart', {
+            chart: {
+                type: 'column',
+                width: 500,
+                height: 200
 
-                },
+            },
+            title: {
+                text: 'Title'
+            },
+            subtitle: {
+                text: 'Source: IDAMS'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                position: 'right',
                 title: {
-                    text: 'Title'
-                },
-                subtitle: {
-                    text: 'Source: IDAMS'
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
-                    position: 'right',
-                    title: {
-                        text: 'Rainfall (mm)'
-                    }
-                },
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 0
-                    }
-                },
-                series: [{
-                    name: 'Tokyo',
-                    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
+                    text: 'Rainfall (mm)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Tokyo',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
 
-                }]
-            });
-            Highcharts.chart('third-section-third-chart', {
-                chart: {
-                    type: 'column',
-                    width: 500,
-                    height: 200
+            }]
+        });
+        Highcharts.chart('third-section-third-chart', {
+            chart: {
+                type: 'column',
+                width: 500,
+                height: 200
 
-                },
+            },
+            title: {
+                text: 'Monthly Average Rainfall'
+            },
+            subtitle: {
+                text: 'Source: WorldClimate.com'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                position: 'right',
                 title: {
-                    text: 'Monthly Average Rainfall'
-                },
-                subtitle: {
-                    text: 'Source: WorldClimate.com'
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
-                    position: 'right',
-                    title: {
-                        text: 'Rainfall (mm)'
-                    }
-                },
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 0
-                    }
-                },
-                series: [{
-                    name: 'Tokyo',
-                    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
+                    text: 'Rainfall (mm)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Tokyo',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
 
-                }]
-            });
+            }]
+        });
 
-              var seriesOptions = [],
+        var seriesOptions = [],
                 seriesCounter = 0,
                 names = ['MSFT', 'AAPL', 'GOOG'];
 
-            /**
-             * Create the chart when all data is loaded
-             * @returns {undefined}
-             */
-            function createChart() {
+        /**
+         * Create the chart when all data is loaded
+         * @returns {undefined}
+         */
+        function createChart() {
 
-                Highcharts.stockChart('line-chart-container', {
+            Highcharts.stockChart('line-chart-container', {
 
-                    rangeSelector: {
-                        selected: 4
-                    },
+                rangeSelector: {
+                    selected: 4
+                },
 
-                    yAxis: {
-                        labels: {
-                            formatter: function () {
-                                return (this.value > 0 ? ' + ' : '') + this.value + '%';
-                            }
-                        },
-                        plotLines: [{
-                            value: 0,
-                            width: 2,
-                            color: 'silver'
-                        }]
-                    },
-
-                    plotOptions: {
-                        series: {
-                            compare: 'percent',
-                            showInNavigator: true
+                yAxis: {
+                    labels: {
+                        formatter: function () {
+                            return (this.value > 0 ? ' + ' : '') + this.value + '%';
                         }
                     },
+                    plotLines: [{
+                        value: 0,
+                        width: 2,
+                        color: 'silver'
+                    }]
+                },
 
-                    tooltip: {
-                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
-                        valueDecimals: 2,
-                        split: true
-                    },
-
-                    series: seriesOptions
-                });
-            }
-
-            $.each(names, function (i, name) {
-
-                $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?', function (data) {
-
-                    seriesOptions[i] = {
-                        name: name,
-                        data: data
-                    };
-
-                    // As we're loading the data asynchronously, we don't know what order it will arrive. So
-                    // we keep a counter and create the chart when all the data is loaded.
-                    seriesCounter += 1;
-
-                    if (seriesCounter === names.length) {
-                        createChart();
+                plotOptions: {
+                    series: {
+                        compare: 'percent',
+                        showInNavigator: true
                     }
-                });
+                },
+
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+                    valueDecimals: 2,
+                    split: true
+                },
+
+                series: seriesOptions
+            });
+        }
+
+        $.each(names, function (i, name) {
+
+            $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?', function (data) {
+
+                seriesOptions[i] = {
+                    name: name,
+                    data: data
+                };
+
+                // As we're loading the data asynchronously, we don't know what order it will arrive. So
+                // we keep a counter and create the chart when all the data is loaded.
+                seriesCounter += 1;
+
+                if (seriesCounter === names.length) {
+                    createChart();
+                }
             });
         });
-    </script>
-    <div class="row">
-        <div class="col-md-12" id="filtering">
-            <br/>
-            <div class="row">
-                <div class="col-md-6 col-xs-6">
-                    <label class="filter-label" for="barisal-division-select">Barisal Division</label>
-                    <select class="form-control" id="barisal-division-select">
-                        <option value="Dhaka">Dhaka</option>
-                        <option value="Sylhet">Sylhet</option>
-                        <option value="Chittagong">Chittagong</option>
-                        <option value="Barisal">Barisal</option>
-                        <option value="Khulna">Khulna</option>
-                        <option value="Rajshahi">Rajshahi</option>
-                    </select>
-                </div>
-                <div class="col-md-2 col-xs-6">
-                    <label class="filter-label" for="data-source-select">Data Source</label>
-                    <select class="form-control" id="data-source-select">
-                        <option value="mgr">MGR</option>
-                        <option value="idams" disabled>IDAMS</option>
+        $('#division-select').change(function() {
+            locationChanged($(this).val());
+        });
 
-                    </select>
-                </div>
-                <div class="col-md-2 col-xs-6">
-                    <label class="filter-label" for="violence-type-select">Violence Type</label>
-                    <select class="form-control" id="violence-type-select">
+        $("#national-accordion").accordion({
+            collapsible: true, active: false
+        });
 
-                    </select>
-                </div>
-                <div class="col-md-2 col-xs-6">
-                    <label class="filter-label" for="daterange">Time Period</label>
-                    <input type="text" class="form-control" name="daterange" value="01/01/2015 - 01/31/2015" />
 
-                </div>
-            </div>
-            <br/>
-        </div>
-        <div id="map" class="col-md-6">
-            MAP
-        </div>
-        <div id="viz-container" class="col-md-6">
-            <div class="col-md-12">
-                <h3>Violent Crimes in Barisal Division</h3>
-            </div>
+        $('tspan.highcharts-text-outline').bind('click', function (i) {
+            console.log("Clicked on text: "+ $(this)[0].textContent);
+            $('#division-select [value="' + $(this)[0].textContent + '"]').attr('selected', true);
+            locationChanged($(this)[0].textContent);
+        });
+    });
+    function locationChanged(name){
+            var rank_data = [];
+            $.get('{{ url_for("api.get_rank", type="division")}}', function (data) {
+                rank_data = data;
 
-            <div class="col-md-12">
-                <h3>National Ranked: 3d</h3>
-                <div id="national-accordion">
-                    <div>
-                        <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                        Manpura upazila has the highest fatality rate.
-                        <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                        <span class="caret"></span>
-                    </div>
-                    <div>
-                        <div>
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                            Manpura upazila has the highest fatality rate.
-                            <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                            <span class="caret"></span>
-                        </div>
-                        <div>
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                            Manpura upazila has the highest fatality rate.
-                            <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                            <span class="caret"></span>
-                        </div>
-                    </div>
+            });
+            $('.highcharts-drillup-button').click();
+            $('.highcharts-drillup-button').click();
+            var selected_name = name;
+            var the_map = $('#map').highcharts();
+            var map_data_ = the_map.series[0].data;
+            $.each(map_data_, function (index) {
+                if (map_data_[index]['name'] == selected_name) {
+                    map_data_[index].doDrilldown();
+                }
+            });
 
-                </div>
-            </div>
-            <div class="col-md-12">
-                <span class="section-title">Division Overview:</span>
-                <div id="accordion">
-                    <div class="division-overview-tab">
-                        <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                        Manpura upazila has the highest fatality rate.
-                        <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                        <span class="caret"></span>
-                    </div>
-                    <div>
-                        <p>
-                        <div class="third-section-chart" id="third-section-first-chart">
-                        </div>
-                        </p>
-                    </div>
-                    <div class="division-overview-tab">
-                        <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
-                        Burhanuddin upazila has the highest injury count.
-                        <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                        <span class="caret"></span>
-                    </div>
-                    <div>
-                        <div class="third-section-chart" id="third-section-second-chart">
-                        </div>
-                    </div>
-                    <div class="division-overview-tab">
-                        <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
-                        Manpura upazila has the highest property damage count.
-                        <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                        <span class="caret"></span>
-                    </div>
-                    <div>
-                        <div class="third-section-chart" id="third-section-third-chart">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script>
-                $("#accordion").accordion({
-                    collapsible: true, active: false,
-                    autoHeight: true
-                });
-            </script>
-            <div class="col-md-12">
-                <div class="col-md-6 top-3">
-                    <span class="section-title">Top 3 Reported Perpetrators</span>
-                    <ol>
-                        <li>Allahr Dol</li>
-                        <li>Gono Mukti Front</li>
-                        <li>Other Militant Group</li>
-                    </ol>
-                </div>
-                <div class="col-md-6 top-3">
-                    <span class="section-title">Top 3 Reported Casualties</span>
-                    <ol>
-                        <li>Women</li>
-                        <li>General Public</li>
-                        <li>Hindu Minority</li>
-                    </ol>
-                </div>
-                <div class="col-md-6 top-3">
-                    <span class="section-title">Top 3 Property Type Destruction</span>
-                    <ol>
-                        <li>Cars</li>
-                        <li>Public property</li>
-                        <li>Shops</li>
-                    </ol>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 census-information">
-                    <span class="section-title">Census Information for Barisal Division<span
-                            class="caret"></span></span>
-                    <div class="col-md-6">
-                        <dl class="dl-horizontal">
-                            <dt>Population</dt>
-                            <dd>149,112,243</dd>
-                        </dl>
-                        <dl class="dl-horizontal">
-                            <dt>Population</dt>
-                            <dd>149,112,243</dd>
-                        </dl>
-                        <dl class="dl-horizontal">
-                            <dt>Population</dt>
-                            <dd>149,112,243</dd>
-                        </dl>
-                        <dl class="dl-horizontal">
-                            <dt>Population</dt>
-                            <dd>149,112,243</dd>
-                        </dl>
-                    </div>
-                    <div class="col-md-6">
-                        <dl class="dl-horizontal">
-                            <dt>Population</dt>
-                            <dd>149,112,243</dd>
-                        </dl>
-                        <dl class="dl-horizontal">
-                            <dt>Population</dt>
-                            <dd>149,112,243</dd>
-                        </dl>
-                        <dl class="dl-horizontal">
-                            <dt>Population</dt>
-                            <dd>149,112,243</dd>
-                        </dl>
-                        <dl class="dl-horizontal">
-                            <dt>Population</dt>
-                            <dd>149,112,243</dd>
-                        </dl>
-                    </div>
+            $.each(rank_data, function (item) {
+                if (rank_data[item]['division'] == selected_name) {
+                    $('.national-ranked').html(rank_data[item]['rank']);
+                    $('.location-name').html(rank_data[item]['district']);
+                    // Set the highest rates
+                    $('.rate-1').html(rank_data[item]['division']);
+                    $('.rate-2').html(rank_data[item]['division']);
+                    $('.rate-3').html(rank_data[item]['division']);
+                }
+            });
 
-                </div>
-            </div>
+    }
+    function capitalize(s) {
+        return s[0].toUpperCase() + s.slice(1);
+    }
+    function buildDataSeries(url) {
+        var json_data = {};
+        var divisions = {};
+        var districts = {};
+        var upazillas = {};
 
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div id="line-chart" class="col-md-12">
-            <h3>Human and Economic Impact</h3>
-            <h4>State of Violence in Barisal Division</h4>
-            <div style="width:100%; height:200px;" id="line-chart-container">
-
-            </div>
-        </div>
-
-    </div>
+        $.get("{{ url_for('api.get_victims', type='division')}}", function (data) {
+            for (var item in data) {
+                divisions[data[item]['division'].toString()] = data[item]["incidents"]
+            }
+        });
+        $.get("{{ url_for('api.get_victims', type='district')}}", function (data) {
+            for (var item in data) {
+                districts[data[item]['district'].toString()] = data[item]["incidents"]
+            }
+        });
+        $.get("{{ url_for('api.get_victims', type='upazilla')}}", function (data) {
+            for (var item in data) {
+                upazillas[data[item]['upazilla']] = data[item]["incidents"]
+            }
+        });
+        json_data['division'] = divisions;
+        json_data['district'] = districts;
+        json_data['upazilla'] = upazillas;
+        return json_data;
+    }
+</script>
 {% endblock %}
