@@ -65,32 +65,32 @@
         </div>
 
         <!--<div class="col-md-12">-->
-            <!--<h3>National Ranked: <span class="national-ranked"></span>d</h3>-->
-            <!--<div id="national-accordion">-->
-                <!--<div>-->
-                    <!--<img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
-                    <!--<span class="rate-1"></span> has the highest fatality rate.-->
-                    <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
-                    <!--<span class="caret"></span>-->
-                <!--</div>-->
-                <!--<div>-->
-                    <!--<div>-->
-                        <!--<img class="viz-icon"-->
-                             <!--src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
-                        <!--<span class="rate-2"></span> has the highest fatality rate.-->
-                        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
-                        <!--<span class="caret"></span>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<img class="viz-icon"-->
-                             <!--src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
-                        <!--<span class="rate-3"></span> has the highest fatality rate.-->
-                        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
-                        <!--<span class="caret"></span>-->
-                    <!--</div>-->
-                <!--</div>-->
+        <!--<h3>National Ranked: <span class="national-ranked"></span>d</h3>-->
+        <!--<div id="national-accordion">-->
+        <!--<div>-->
+        <!--<img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
+        <!--<span class="rate-1"></span> has the highest fatality rate.-->
+        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
+        <!--<span class="caret"></span>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<div>-->
+        <!--<img class="viz-icon"-->
+        <!--src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
+        <!--<span class="rate-2"></span> has the highest fatality rate.-->
+        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
+        <!--<span class="caret"></span>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<img class="viz-icon"-->
+        <!--src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
+        <!--<span class="rate-3"></span> has the highest fatality rate.-->
+        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
+        <!--<span class="caret"></span>-->
+        <!--</div>-->
+        <!--</div>-->
 
-            <!--</div>-->
+        <!--</div>-->
         <!--</div>-->
         <div class="col-md-12">
             <span class="section-title">National Overview:</span>
@@ -98,7 +98,7 @@
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
                     <span class="rate-1"></span> has the highest fatality rate.
-                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -110,7 +110,7 @@
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
                     <span class="rate-2"></span> has the highest injury count.
-                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -120,7 +120,7 @@
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
                     <span class="rate-3"></span> has the highest property damage count.
-                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -135,9 +135,9 @@
                 autoHeight: true
             });
         </script>
-        <div class="col-md-12">
+        <div id="top" class="col-md-12">
             <div class="col-md-6 top-3">
-                <span class="section-title">Top 3 Reported Perpetrators</span>
+                <span class="section-title-top-perpetrators">Top 3 Reported Perpetrators</span>
                 <ol>
                     <li>Allahr Dol</li>
                     <li>Gono Mukti Front</li>
@@ -145,7 +145,7 @@
                 </ol>
             </div>
             <div class="col-md-6 top-3">
-                <span class="section-title">Top 3 Reported Casualties</span>
+                <span class="section-title-top-casualties">Top 3 Reported Casualties</span>
                 <ol>
                     <li>Women</li>
                     <li>General Public</li>
@@ -153,7 +153,7 @@
                 </ol>
             </div>
             <div class="col-md-6 top-3">
-                <span class="section-title">Top 3 Property Type Destruction</span>
+                <span class="section-title-top-property">Top 3 Property Type Destruction</span>
                 <ol>
                     <li>Cars</li>
                     <li>Public property</li>
@@ -162,47 +162,47 @@
             </div>
         </div>
         <!--<div class="row">-->
-            <!--<div class="col-md-12 census-information">-->
-                    <!--<span class="section-title">Census Information for Barisal Division<span-->
-                            <!--class="caret"></span></span>-->
-                <!--<div class="col-md-6">-->
-                    <!--<dl class="dl-horizontal">-->
-                        <!--<dt>Population</dt>-->
-                        <!--<dd>149,112,243</dd>-->
-                    <!--</dl>-->
-                    <!--<dl class="dl-horizontal">-->
-                        <!--<dt>Population</dt>-->
-                        <!--<dd>149,112,243</dd>-->
-                    <!--</dl>-->
-                    <!--<dl class="dl-horizontal">-->
-                        <!--<dt>Population</dt>-->
-                        <!--<dd>149,112,243</dd>-->
-                    <!--</dl>-->
-                    <!--<dl class="dl-horizontal">-->
-                        <!--<dt>Population</dt>-->
-                        <!--<dd>149,112,243</dd>-->
-                    <!--</dl>-->
-                <!--</div>-->
-                <!--<div class="col-md-6">-->
-                    <!--<dl class="dl-horizontal">-->
-                        <!--<dt>Population</dt>-->
-                        <!--<dd>149,112,243</dd>-->
-                    <!--</dl>-->
-                    <!--<dl class="dl-horizontal">-->
-                        <!--<dt>Population</dt>-->
-                        <!--<dd>149,112,243</dd>-->
-                    <!--</dl>-->
-                    <!--<dl class="dl-horizontal">-->
-                        <!--<dt>Population</dt>-->
-                        <!--<dd>149,112,243</dd>-->
-                    <!--</dl>-->
-                    <!--<dl class="dl-horizontal">-->
-                        <!--<dt>Population</dt>-->
-                        <!--<dd>149,112,243</dd>-->
-                    <!--</dl>-->
-                <!--</div>-->
+        <!--<div class="col-md-12 census-information">-->
+        <!--<span class="section-title">Census Information for Barisal Division<span-->
+        <!--class="caret"></span></span>-->
+        <!--<div class="col-md-6">-->
+        <!--<dl class="dl-horizontal">-->
+        <!--<dt>Population</dt>-->
+        <!--<dd>149,112,243</dd>-->
+        <!--</dl>-->
+        <!--<dl class="dl-horizontal">-->
+        <!--<dt>Population</dt>-->
+        <!--<dd>149,112,243</dd>-->
+        <!--</dl>-->
+        <!--<dl class="dl-horizontal">-->
+        <!--<dt>Population</dt>-->
+        <!--<dd>149,112,243</dd>-->
+        <!--</dl>-->
+        <!--<dl class="dl-horizontal">-->
+        <!--<dt>Population</dt>-->
+        <!--<dd>149,112,243</dd>-->
+        <!--</dl>-->
+        <!--</div>-->
+        <!--<div class="col-md-6">-->
+        <!--<dl class="dl-horizontal">-->
+        <!--<dt>Population</dt>-->
+        <!--<dd>149,112,243</dd>-->
+        <!--</dl>-->
+        <!--<dl class="dl-horizontal">-->
+        <!--<dt>Population</dt>-->
+        <!--<dd>149,112,243</dd>-->
+        <!--</dl>-->
+        <!--<dl class="dl-horizontal">-->
+        <!--<dt>Population</dt>-->
+        <!--<dd>149,112,243</dd>-->
+        <!--</dl>-->
+        <!--<dl class="dl-horizontal">-->
+        <!--<dt>Population</dt>-->
+        <!--<dd>149,112,243</dd>-->
+        <!--</dl>-->
+        <!--</div>-->
 
-            <!--</div>-->
+        <!--</div>-->
         <!--</div>-->
 
     </div>
@@ -333,7 +333,7 @@
             },
             series: [{
                 name: 'Injuries',
-                data: [0,0,0,0,0,0,0,0,0,0,0,0]
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
             }]
         });
@@ -387,7 +387,7 @@
             },
             series: [{
                 name: 'Property damage',
-                data: [0,0,0,0,0,0,0,0,0,0,0,0]
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
             }]
         });
@@ -401,19 +401,31 @@
         });
 
         buildNationalData();
-        $("#violence-type-select").change(function(){
+        $("#violence-type-select").change(function () {
             updateViz(undefined, false);
         })
+
+        $('input[name=daterange]').change(function () {
+            updateViz(undefined, false);
+        });
     });
-    function buildNationalData(){
+    function buildNationalData() {
         var rank_data;
+
+        var the_map = $('#map').highcharts();
+        level_number = 0;
+        // Get the drilldown level number
+        if ($(the_map)[0].drilldownLevels != undefined) {
+            var level_number = $(the_map)[0].drilldownLevels.length;
+        }
+
         // Get request for the ranking data
         $.get('{{ url_for("api.get_rank", type="division")}}', function (data) {
             rank_data = data;
         });
 
 //        $('.location-name').html("Bangladesh");
-        $('.national-ranked').parent().css("display","none");
+        $('.national-ranked').parent().css("display", "none");
 
         // Set the highest rates
         var top_death_location = getTopN(rank_data, 'death', 1)[0].name;
@@ -422,6 +434,39 @@
         $('.rate-1').html(top_death_location);
         $('.rate-2').html(top_injury_location);
         $('.rate-3').html(top_property_damage_location);
+
+         // Change third-section-first-chart values
+        var third_section_first_chart = $('#third-section-first-chart').highcharts();
+        var third_section_first_chart_data = [];
+        var url_for_chart_get_results_death = "{{ url_for('api.monthly_incidents', name='name', level=00)}}".replace('name', top_death_location).replace(0, level_number);
+        $.get(url_for_chart_get_results_death, function (data) {
+            $.each(data.incidents, function (item) {
+                third_section_first_chart_data[item] = data.incidents[item].death;
+            });
+        });
+        third_section_first_chart.series[0].setData(third_section_first_chart_data);
+
+        // Change third-section-second-chart values
+        var third_section_second_chart = $('#third-section-second-chart').highcharts();
+        var third_section_second_chart_data = [];
+        var url_for_chart_get_results_injury = "{{ url_for('api.monthly_incidents', name='name', level=00)}}".replace('name', top_injury_location).replace(0, level_number);
+        $.get(url_for_chart_get_results_injury, function (data) {
+            $.each(data.incidents, function (item) {
+                third_section_second_chart_data[item] = data.incidents[item].injuries;
+            });
+        });
+        third_section_second_chart.series[0].setData(third_section_second_chart_data);
+
+        // Change third-section-third-chart values
+        var url_for_chart_get_results_property = "{{ url_for('api.monthly_incidents', name='name', level=00)}}".replace('name', top_property_damage_location).replace(0, level_number);
+        var third_section_third_chart = $('#third-section-third-chart').highcharts();
+        var third_section_third_chart_data = [];
+        $.get(url_for_chart_get_results_property, function (data) {
+            $.each(data.incidents, function (item) {
+                third_section_third_chart_data[item] = data.incidents[item].property;
+            });
+        });
+        third_section_third_chart.series[0].setData(third_section_third_chart_data);
     }
     function createChart() {
 
@@ -716,18 +761,20 @@
 
         // Get the map instance
         var the_map = $('#map').highcharts();
-
+        level_number = 0;
         // Get the drilldown level number
-        var level_number = $(the_map)[0].drilldownLevels.length;
+        if ($(the_map)[0].drilldownLevels != undefined) {
+            var level_number = $(the_map)[0].drilldownLevels.length;
+        }
 
         //Instantiate rank_data array
         var rank_data = [];
 
-        if(name == undefined){
+        if (name == undefined) {
             name = the_map.series[0].name;
         }
         var rank_api_url = '{{ url_for("api.get_results", name="name", level=0, violence_type="violence-type")}}';
-        rank_api_url = rank_api_url.replace('name', name).replace(0, level_number-1).replace('violence-type', violence_type);
+        rank_api_url = rank_api_url.replace('name', name).replace(0, level_number - 1).replace('violence-type', violence_type);
 
         // Get request for the ranking data
         $.get(rank_api_url, function (data) {
@@ -738,11 +785,11 @@
         var selected_name = name;
 
         // If we change the name in the location input
-        if(from_selection == true){
-            if(level_number==2){
+        if (from_selection == true) {
+            if (level_number == 2) {
                 $('.highcharts-drillup-button').click();
             }
-              var map_data_ = $(the_map)[0].series[0].data;
+            var map_data_ = $(the_map)[0].series[0].data;
             $.each(map_data_, function (index) {
                 if (map_data_[index]['name'] == selected_name) {
                     map_data_[index].doDrilldown();
@@ -755,7 +802,7 @@
                 $('.national-ranked').html(rank_data[item]['rank']);
             }
         });
-       // Set the highest rates
+        // Set the highest rates
         var top_death_location = getTopN(rank_data, 'death', 1)[0].name;
         var top_injury_location = getTopN(rank_data, 'injury', 1)[0].name;
         var top_property_damage_location = getTopN(rank_data, 'property', 1)[0].name;
@@ -769,9 +816,9 @@
         // Change third-section-first-chart values
         var third_section_first_chart = $('#third-section-first-chart').highcharts();
         var third_section_first_chart_data = [];
-        var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=00, violence_type='violence-type')}}".replace('name',name).replace(0,level_number).replace('violence-type', violence_type);
-         $.get(url_for_chart_get_results, function (data) {
-             $.each(data.incidents, function (item) {
+        var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=00, violence_type='violence-type')}}".replace('name', name).replace(0, level_number).replace('violence-type', violence_type);
+        $.get(url_for_chart_get_results, function (data) {
+            $.each(data.incidents, function (item) {
                 third_section_first_chart_data[item] = data.incidents[item].death;
             });
         });
@@ -781,7 +828,7 @@
         var third_section_second_chart = $('#third-section-second-chart').highcharts();
         var third_section_second_chart_data = [];
         $.get(url_for_chart_get_results, function (data) {
-             $.each(data.incidents, function (item) {
+            $.each(data.incidents, function (item) {
                 third_section_second_chart_data[item] = data.incidents[item].injuries;
             });
         });
@@ -791,7 +838,7 @@
         var third_section_third_chart = $('#third-section-third-chart').highcharts();
         var third_section_third_chart_data = [];
         $.get(url_for_chart_get_results, function (data) {
-             $.each(data.incidents, function (item) {
+            $.each(data.incidents, function (item) {
                 third_section_third_chart_data[item] = data.incidents[item].property;
             });
         });
@@ -799,14 +846,14 @@
 
 
         // Change the presentation text based on the level
-        if(level_number == 0){
+        if (level_number == 0) {
             $('.section-title').text('National Overview');
         }
-        else if(level_number == 1){
+        else if (level_number == 1) {
             $('.section-title').text('Division Overview');
 
         }
-        else{
+        else {
             $('.section-title').text('District Overview');
         }
 
@@ -817,7 +864,7 @@
         var clone = arr.slice(0);
 
         // sort descending
-        clone.sort(function(x, y) {
+        clone.sort(function (x, y) {
             if (x[prop] == y[prop]) return 0;
             else if (parseInt(x[prop]) < parseInt(y[prop])) return 1;
             else return -1;

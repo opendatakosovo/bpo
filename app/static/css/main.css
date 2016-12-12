@@ -108,3 +108,9 @@ span.section-title {
     color: #03506b;
     font-size: 22px;
 }
+#line-chart{
+    display:none;
+}
+#top{
+    display:none;
+}

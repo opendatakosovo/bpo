@@ -15,10 +15,12 @@ def index():
 
     return render_template('mod_importer/index.html')
 
+@mod_api.route('/bd/victims/<string:name>/<int:level>', methods=['GET'])
 @mod_api.route('/bd/victims/<string:name>/<int:level>/<string:violence_type>', methods=['GET'])
-def get_results(name, level, violence_type):
+def get_results(name, level, violence_type=None):
     match_field = ""
     group_by_location = ""
+    match = None
     if level == 0:
         match_field = "division"
         group_by_location = "district"
@@ -28,23 +30,38 @@ def get_results(name, level, violence_type):
     elif level == 2:
         match_field = "upazilla"
         group_by_location = "upazilla"
-    match = {
-        "$match": {
-            match_field: {
-                "$nin": [
-                    ""
-                ],
-                "$in": [
-                    name
-                ]
-            },
-            "violence_type_1": {
-                "$in": [
-                    violence_type
-                ]
+
+    if violence_type == None:
+        match = {
+            "$match": {
+                match_field: {
+                    "$nin": [
+                        ""
+                    ],
+                    "$in": [
+                        name
+                    ]
+                }
             }
         }
-    }
+    else:
+        match = {
+            "$match": {
+                match_field: {
+                    "$nin": [
+                        ""
+                    ],
+                    "$in": [
+                        name
+                    ]
+                },
+                "violence_type_1": {
+                    "$in": [
+                        violence_type
+                    ]
+                }
+            }
+        }
     group = {
         "$group": {
             "_id": {
@@ -102,40 +119,61 @@ def get_results(name, level, violence_type):
         mimetype='application/json')
     return resp
 
-
+@mod_api.route('/incidents/monthly/<string:name>/<int:level>')
 @mod_api.route('/incidents/monthly/<string:name>/<int:level>/<string:violence_type>')
-def monthly_incidents(name, level, violence_type):
+def monthly_incidents(name, level, violence_type=None):
     level_json = {
         0: "division",
         1: "district",
         2: "upazilla"
     }
+    match = None
     json_result = {}
-
-    data = mongo.db.mgr.aggregate(
-        [
-            {
-                "$match": {
-                    level_json[level]: {
-                        "$nin": [
-                            ""
-                        ],
-                        "$in": [
-                            name
-                        ]
-                    },
-                    'violence_month': {
-                        "$nin": [
-                            ""
-                        ]
-                    },
-                    'violence_type_1': {
-                        "$in": [
-                            violence_type
-                        ]
+    if violence_type == None:
+        match =  {
+                    "$match": {
+                        level_json[level]: {
+                            "$nin": [
+                                ""
+                            ],
+                            "$in": [
+                                name
+                            ]
+                        },
+                        'violence_month': {
+                            "$nin": [
+                                ""
+                            ]
+                        }
                     }
                 }
-            },
+    else:
+        match = {
+            "$match": {
+                level_json[level]: {
+                    "$nin": [
+                        ""
+                    ],
+                    "$in": [
+                        name
+                    ]
+                },
+                'violence_month': {
+                    "$nin": [
+                        ""
+                    ]
+                },
+                'violence_type_1': {
+                    "$in": [
+                        violence_type
+                    ]
+                }
+            }
+        }
+
+    data = mongo.db.mgr.aggregate(
+        [ match
+           ,
             {
                 '$group': {
                     '_id': {
