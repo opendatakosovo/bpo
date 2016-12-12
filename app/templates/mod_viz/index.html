@@ -61,43 +61,43 @@
     </div>
     <div id="viz-container" class="col-md-6">
         <div class="col-md-12">
-            <h3>Violent Crimes in <span class="location-name"></span></h3>
+            <span class="location-main-text">Violent Crimes in <span class="location-name">the Country</span></span>
         </div>
 
-        <div class="col-md-12">
-            <h3>National Ranked: <span class="national-ranked"></span>d</h3>
-            <div id="national-accordion">
-                <div>
-                    <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                    <span class="rate-1"></span> has the highest fatality rate.
-                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                    <span class="caret"></span>
-                </div>
-                <div>
-                    <div>
-                        <img class="viz-icon"
-                             src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                        <span class="rate-2"></span> upazila has the highest fatality rate.
-                        <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                        <span class="caret"></span>
-                    </div>
-                    <div>
-                        <img class="viz-icon"
-                             src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                        <span class="rate-3"></span> upazila has the highest fatality rate.
-                        <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                        <span class="caret"></span>
-                    </div>
-                </div>
+        <!--<div class="col-md-12">-->
+            <!--<h3>National Ranked: <span class="national-ranked"></span>d</h3>-->
+            <!--<div id="national-accordion">-->
+                <!--<div>-->
+                    <!--<img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
+                    <!--<span class="rate-1"></span> has the highest fatality rate.-->
+                    <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
+                    <!--<span class="caret"></span>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<div>-->
+                        <!--<img class="viz-icon"-->
+                             <!--src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
+                        <!--<span class="rate-2"></span> has the highest fatality rate.-->
+                        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
+                        <!--<span class="caret"></span>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<img class="viz-icon"-->
+                             <!--src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
+                        <!--<span class="rate-3"></span> has the highest fatality rate.-->
+                        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
+                        <!--<span class="caret"></span>-->
+                    <!--</div>-->
+                <!--</div>-->
 
-            </div>
-        </div>
+            <!--</div>-->
+        <!--</div>-->
         <div class="col-md-12">
-            <span class="section-title">Division Overview:</span>
+            <span class="section-title">National Overview:</span>
             <div id="accordion">
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                    Manpura upazila has the highest fatality rate.
+                    <span class="rate-1"></span> has the highest fatality rate.
                     <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
                 </div>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
-                    Burhanuddin upazila has the highest injury count.
+                    <span class="rate-2"></span> has the highest injury count.
                     <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
                 </div>
@@ -119,7 +119,7 @@
                 </div>
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
-                    Manpura upazila has the highest property damage count.
+                    <span class="rate-3"></span> has the highest property damage count.
                     <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
                 </div>
@@ -161,49 +161,49 @@
                 </ol>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 census-information">
-                    <span class="section-title">Census Information for Barisal Division<span
-                            class="caret"></span></span>
-                <div class="col-md-6">
-                    <dl class="dl-horizontal">
-                        <dt>Population</dt>
-                        <dd>149,112,243</dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                        <dt>Population</dt>
-                        <dd>149,112,243</dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                        <dt>Population</dt>
-                        <dd>149,112,243</dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                        <dt>Population</dt>
-                        <dd>149,112,243</dd>
-                    </dl>
-                </div>
-                <div class="col-md-6">
-                    <dl class="dl-horizontal">
-                        <dt>Population</dt>
-                        <dd>149,112,243</dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                        <dt>Population</dt>
-                        <dd>149,112,243</dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                        <dt>Population</dt>
-                        <dd>149,112,243</dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                        <dt>Population</dt>
-                        <dd>149,112,243</dd>
-                    </dl>
-                </div>
+        <!--<div class="row">-->
+            <!--<div class="col-md-12 census-information">-->
+                    <!--<span class="section-title">Census Information for Barisal Division<span-->
+                            <!--class="caret"></span></span>-->
+                <!--<div class="col-md-6">-->
+                    <!--<dl class="dl-horizontal">-->
+                        <!--<dt>Population</dt>-->
+                        <!--<dd>149,112,243</dd>-->
+                    <!--</dl>-->
+                    <!--<dl class="dl-horizontal">-->
+                        <!--<dt>Population</dt>-->
+                        <!--<dd>149,112,243</dd>-->
+                    <!--</dl>-->
+                    <!--<dl class="dl-horizontal">-->
+                        <!--<dt>Population</dt>-->
+                        <!--<dd>149,112,243</dd>-->
+                    <!--</dl>-->
+                    <!--<dl class="dl-horizontal">-->
+                        <!--<dt>Population</dt>-->
+                        <!--<dd>149,112,243</dd>-->
+                    <!--</dl>-->
+                <!--</div>-->
+                <!--<div class="col-md-6">-->
+                    <!--<dl class="dl-horizontal">-->
+                        <!--<dt>Population</dt>-->
+                        <!--<dd>149,112,243</dd>-->
+                    <!--</dl>-->
+                    <!--<dl class="dl-horizontal">-->
+                        <!--<dt>Population</dt>-->
+                        <!--<dd>149,112,243</dd>-->
+                    <!--</dl>-->
+                    <!--<dl class="dl-horizontal">-->
+                        <!--<dt>Population</dt>-->
+                        <!--<dd>149,112,243</dd>-->
+                    <!--</dl>-->
+                    <!--<dl class="dl-horizontal">-->
+                        <!--<dt>Population</dt>-->
+                        <!--<dd>149,112,243</dd>-->
+                    <!--</dl>-->
+                <!--</div>-->
 
-            </div>
-        </div>
+            <!--</div>-->
+        <!--</div>-->
 
     </div>
 
@@ -230,9 +230,11 @@
         createChart();
         Highcharts.chart('third-section-first-chart', {
             chart: {
+                renderTo: 'chart',
                 type: 'column',
-                width: 500,
-                height: 200
+                margin: 60,
+                height: 200,
+                defaultSeriesType: 'areaspline'
             },
             title: {
                 text: ''
@@ -282,9 +284,11 @@
         });
         Highcharts.chart('third-section-second-chart', {
             chart: {
+                renderTo: 'chart',
                 type: 'column',
-                width: 500,
-                height: 200
+                margin: 60,
+                height: 200,
+                defaultSeriesType: 'areaspline'
 
             },
             title: {
@@ -335,10 +339,11 @@
         });
         Highcharts.chart('third-section-third-chart', {
             chart: {
+                renderTo: 'chart',
                 type: 'column',
-                width: 500,
-                height: 200
-
+                margin: 60,
+                height: 200,
+                defaultSeriesType: 'areaspline'
             },
             title: {
                 text: ''
@@ -388,7 +393,7 @@
         });
 
         $('#division-select').change(function () {
-            locationChanged($(this).val(), true);
+            updateViz($(this).val(), true);
         });
 
         $("#national-accordion").accordion({
@@ -396,20 +401,27 @@
         });
 
         buildNationalData();
+        $("#violence-type-select").change(function(){
+            updateViz(undefined, false);
+        })
     });
     function buildNationalData(){
+        var rank_data;
         // Get request for the ranking data
         $.get('{{ url_for("api.get_rank", type="division")}}', function (data) {
             rank_data = data;
         });
 
-        $('.location-name').html("Bangladesh");
+//        $('.location-name').html("Bangladesh");
         $('.national-ranked').parent().css("display","none");
 
         // Set the highest rates
-        $('.rate-1').html(getTopN(rank_data, 'death', 1)[0].name);
-        $('.rate-2').html(getTopN(rank_data, 'injury', 1)[0].name);
-        $('.rate-3').html(getTopN(rank_data, 'property', 1)[0].name);
+        var top_death_location = getTopN(rank_data, 'death', 1)[0].name;
+        var top_injury_location = getTopN(rank_data, 'injury', 1)[0].name;
+        var top_property_damage_location = getTopN(rank_data, 'property', 1)[0].name;
+        $('.rate-1').html(top_death_location);
+        $('.rate-2').html(top_injury_location);
+        $('.rate-3').html(top_property_damage_location);
     }
     function createChart() {
 
@@ -560,9 +572,9 @@
 
                         this.setTitle(null, {text: e.point.name});
                     },
-                    drillup: function () {
-                        this.setTitle(null, {text: 'Bangladesh'});
-                    }
+//                    drillup: function () {
+//                        this.setTitle(null, {text: 'Bangladesh'});
+//                    }
                 }
             },
 
@@ -571,7 +583,7 @@
             },
 
             subtitle: {
-                text: 'Bangladesh',
+                text: '',
                 floating: true,
                 align: 'right',
                 y: 50,
@@ -655,11 +667,11 @@
                                 if (i.target.className.baseVal.split(' ')[1] != undefined) {
                                     var clicked_point = capitalize(i.target.className.baseVal.split(' ')[1].split('-')[2]);
                                     $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
-                                    locationChanged(clicked_point, false);
+                                    updateViz(clicked_point, false);
                                 } else {
                                     var clicked_point = $(i.target)[0].textContent;
                                     $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
-                                    locationChanged(clicked_point, false);
+                                    updateViz(clicked_point, false);
                                 }
 
                             }
@@ -698,23 +710,32 @@
         });
 
     }
-    function locationChanged(name, from_selection) {
-        //Instantiate rank_data array
-        var rank_data = [];
+    function updateViz(name, from_selection) {
 
-        // Get request for the ranking data
-        $.get('{{ url_for("api.get_rank", type="division")}}', function (data) {
-            rank_data = data;
-        });
-
-        // Get the selected locaion name
-        var selected_name = name;
+        var violence_type = $("#violence-type-select").val();
 
         // Get the map instance
         var the_map = $('#map').highcharts();
 
         // Get the drilldown level number
-        var level_number = $(the_map)[0].series[0].options._levelNumber;
+        var level_number = $(the_map)[0].drilldownLevels.length;
+
+        //Instantiate rank_data array
+        var rank_data = [];
+
+        if(name == undefined){
+            name = the_map.series[0].name;
+        }
+        var rank_api_url = '{{ url_for("api.get_results", name="name", level=0, violence_type="violence-type")}}';
+        rank_api_url = rank_api_url.replace('name', name).replace(0, level_number-1).replace('violence-type', violence_type);
+
+        // Get request for the ranking data
+        $.get(rank_api_url, function (data) {
+            rank_data = data;
+        });
+
+        // Get the selected locaion name
+        var selected_name = name;
 
         // If we change the name in the location input
         if(from_selection == true){
@@ -728,18 +749,19 @@
                 }
             });
         }
-
         // Fill values of the right visualizer
         $.each(rank_data, function (item) {
             if (rank_data[item]['name'] == selected_name) {
                 $('.national-ranked').html(rank_data[item]['rank']);
-
-                // Set the highest rates
-                $('.rate-1').html(rank_data[item]['name']);
-                $('.rate-2').html(rank_data[item]['name']);
-                $('.rate-3').html(rank_data[item]['name']);
             }
         });
+       // Set the highest rates
+        var top_death_location = getTopN(rank_data, 'death', 1)[0].name;
+        var top_injury_location = getTopN(rank_data, 'injury', 1)[0].name;
+        var top_property_damage_location = getTopN(rank_data, 'property', 1)[0].name;
+        $('.rate-1').html(top_death_location);
+        $('.rate-2').html(top_injury_location);
+        $('.rate-3').html(top_property_damage_location);
 
         $('.location-name').html(name);
 
@@ -747,7 +769,7 @@
         // Change third-section-first-chart values
         var third_section_first_chart = $('#third-section-first-chart').highcharts();
         var third_section_first_chart_data = [];
-        var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=00)}}".replace('name',name).replace(0,level_number-1);
+        var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=00, violence_type='violence-type')}}".replace('name',name).replace(0,level_number).replace('violence-type', violence_type);
          $.get(url_for_chart_get_results, function (data) {
              $.each(data.incidents, function (item) {
                 third_section_first_chart_data[item] = data.incidents[item].death;
@@ -774,6 +796,21 @@
             });
         });
         third_section_third_chart.series[0].setData(third_section_third_chart_data);
+
+
+        // Change the presentation text based on the level
+        if(level_number == 0){
+            $('.section-title').text('National Overview');
+        }
+        else if(level_number == 1){
+            $('.section-title').text('Division Overview');
+
+        }
+        else{
+            $('.section-title').text('District Overview');
+        }
+
+
     }
     function getTopN(arr, prop, n) {
         // clone before sorting, to preserve the original array

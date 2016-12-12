@@ -604,14 +604,14 @@ def parse():
     upazilla = {
         "100": "BARISAL DIVISION",
         "101": "BARGUNA DISTRICT",
-        "101001": "Barguna Sadar",
+        "101001": "Barguna",
         "101002": "Amtali",
         "101003": "Bamna",
         "101004": "Betagi",
         "101005": "Patharghata",
         "101006": "Taltoli",
         "102": "BARISAL DISTRICT",
-        "102001": "Barisal City/ Sadar",
+        "102001": "Barisal",
         "102002": "Agailjhara",
         "102003": "Babuganj",
         "102004": "Bakerganj",
@@ -622,7 +622,7 @@ def parse():
         "102009": "Muladi",
         "102010": "Wazirpur",
         "103": "BHOLA DISTRICT",
-        "103001": "Bhola Sadar",
+        "103001": "Bhola",
         "103002": "Burhanuddin",
         "103003": "Char Fasson",
         "103004": "Daulatkhan",
@@ -630,12 +630,12 @@ def parse():
         "103006": "Manpura",
         "103007": "Tazumuddin",
         "104": "JHALOKATI DISTRICT",
-        "104001": "Jhalokati Sadar",
+        "104001": "Jhalokati",
         "104002": "Kathalia",
         "104003": "Nalchity",
         "104004": "Rajapur",
         "105": "PATUAKHALI DISTRICT",
-        "105001": "Patuakhali Sadar",
+        "105001": "Patuakhali",
         "105002": "Dashmina",
         "105003": "Galachipa",
         "105004": "Kalapara",
@@ -644,7 +644,7 @@ def parse():
         "105007": "Rangabali",
         "105008": "Dumki",
         "106": " PIROJPUR DISTRICT",
-        "106001": "Pirojpur Sadar",
+        "106001": "Pirojpur",
         "106002": "Kawkhali",
         "106003": "Mathbaria",
         "106004": "Nazirpur",
@@ -653,7 +653,7 @@ def parse():
         "106007": "Zianagor",
         "200": "CHITTAGONG DIVISION",
         "201": "BANDARBAN DISTRICT",
-        "201001": "Bandarban Sadar",
+        "201001": "Bandarban",
         "201002": "Ali Kadam",
         "201003": "Lama",
         "201004": "Naikhongchhari",
@@ -661,9 +661,9 @@ def parse():
         "201006": "Ruma",
         "201007": "Thanchi",
         "202": "BRAHMANBARIA DISTRICT",
-        "202001": "Brahmanbaria Sadar",
+        "202001": "Brahmanbaria",
         "202002": "Bancharampur",
-        "202003": " Akhaura",
+        "202003": "Akhaura",
         "202004": "Kasba",
         "202005": "Nabinagar",
         "202006": "Nasirnagar",
@@ -671,7 +671,7 @@ def parse():
         "202008": "Ashuganj",
         "202009": "Bijoynagar",
         "203": "CHANDPUR DISTRICT",
-        "203001": "Chandpur Sadar",
+        "203001": "Chandpur",
         "203002": "Faridganj",
         "203003": "Haimchar",
         "203004": "Haziganj",
@@ -680,7 +680,7 @@ def parse():
         "203006": "Matlab Uttar",
         "203007": "Shahrasti",
         "204": "CHITTAGONG DISTRICT",
-        "204001": "Chittagong City",
+        "204001": "Chittagong",
         "204002": "Anwara",
         "204003": "Banshkhali",
         "204004": "Boalkhali",
@@ -697,8 +697,8 @@ def parse():
         "204014": "Satkania",
         "204015": "Sitakunda",
         "205": "COMILLA DISTRICT",
-        "205001": "Comilla Adarsha Sadar",
-        "205002": "Comilla Sadar Dakshin",
+        "205001": "Comilla",
+        "205002": "South Comilla",
         "205003": "Barura",
         "205004": "Brahmanpara",
         "205005": "Burichang",
@@ -711,10 +711,10 @@ def parse():
         "205012": "Muradnagar",
         "205013": "Nangalkot",
         "205014": "Meghna",
-        "205015": " Titas",
+        "205015": "Titash",
         "205016": "Monohargonj",
         "206": "COX'S BAZAR DISTRICT",
-        "206001": "Cox's Bazar Sadar",
+        "206001": "Cox's Bazar",
         "206002": "Chakaria",
         "206003": "Kutubdia",
         "206004": "Maheshkhali",
@@ -723,7 +723,7 @@ def parse():
         "206007": "Ukhia",
         "206008": "Pekua",
         "207": "FENI DISTRICT",
-        "207001": "Feni Sadar",
+        "207001": "Feni",
         "207002": "Chhagalnaiya",
         "207003": "Daganbhuiyan",
         "207004": "Parshuram",
@@ -732,20 +732,20 @@ def parse():
         "208": "KHAGRACHHARI DISTRICT",
         "208001": "Khagrachhari Sadr",
         "208002": "Dighinala",
-        "208003": " Lakshmichhari",
+        "208003": "Lakshmichhari",
         "208004": "Mahalchhari",
-        "208005": " Manikchhari",
+        "208005": "Manikchhari",
         "208006": "Matiranga",
         "208007": "Panchhari",
         "208008": "Ramgarh",
         "209": "LAKSHMIPUR DISTRICT",
-        "209001": "Lakshmipur Sadar",
+        "209001": "Lakshmipur",
         "209002": "Raipur",
         "209003": "Ramganj",
         "209004": "Ramgati",
         "209005": "Kamalnagar",
         "210": "NOAKHALI DISTRICT",
-        "210001": "Noakhali Sadar",
+        "210001": "Noakhali",
         "210002": "Begumganj",
         "210003": "Chatkhil",
         "210004": "Companiganj",
@@ -755,8 +755,8 @@ def parse():
         "210008": "Subarnachar",
         "210009": "Kabirhat",
         "211": "RANGAMATI DISTRICT",
-        "211001": "Rangamati Sadar",
-        "211002": " Bagaichhari",
+        "211001": "Rangamati",
+        "211002": "Bagaichhari",
         "211003": "Barkal",
         "211004": "Kawkhali (Betbunia)",
         "211005": "Belaichhari",
@@ -774,7 +774,7 @@ def parse():
         "301005": "Nawabganj",
         "301006": "Savar",
         "302": "FARIDPUR DISTRICT",
-        "302001": "Faridpur Sadar",
+        "302001": "Faridpur",
         "302002": "Alfadanga",
         "302003": "Bhanga",
         "302004": "Boalmari",
@@ -782,7 +782,7 @@ def parse():
         "302006": "Madhukhali",
         "302007": "Nagarkanda",
         "302008": "Sadarpur",
-        "302009": " Saltha",
+        "302009": "Saltha",
         "303": "GAZIPUR DISTRICT",
         "303001": "Gazipur City/Sadar",
         "303002": "Kaliakair",
@@ -790,13 +790,13 @@ def parse():
         "303004": "Kapasia",
         "303005": "Sreepur",
         "304": "GOPALGANJ DISTRICT",
-        "304001": "Gopalganj Sadar",
+        "304001": "Gopalganj",
         "304002": "Kashiani",
         "304003": "Kotalipara",
         "304004": "Muksudpur",
         "304005": "Tungipara",
         "305": "JAMALPUR DISTRICT",
-        "305001": "Jamalpur Sadar",
+        "305001": "Jamalpur",
         "305002": "Baksiganj",
         "305003": "Dewanganj",
         "305004": "Islampur",
@@ -804,7 +804,7 @@ def parse():
         "305006": "Melandaha",
         "305007": "Sarishabari",
         "306": "KISHOREGANJ DISTRICT",
-        "306001": "Kishoreganj Sadar",
+        "306001": "Kishoreganj",
         "306002": "Austagram",
         "306003": "Bajitpur",
         "306004": "Bhairab",
@@ -818,12 +818,12 @@ def parse():
         "306012": "Pakundia",
         "306013": "Tarail",
         "307": "MADARIPUR DISTRICT",
-        "307001": "Madaripur Sadar",
+        "307001": "Madaripur",
         "307002": "Rajoir",
         "307003": "Kalkini",
         "307004": "Shibchar",
         "308": "MANIKGANJ DISTRICT",
-        "308001": "Manikgonj Sadar",
+        "308001": "Manikgonj",
         "308002": "Daulatpur",
         "308003": "Ghior",
         "308004": "Harirampur",
@@ -831,14 +831,14 @@ def parse():
         "308006": "Shivalaya",
         "308007": "Singair",
         "309": "MUNSHIGANJ DISTRICT",
-        "309001": "Munshiganj Sadar",
+        "309001": "Munshiganj",
         "309002": "Gazaria",
         "309003": "Lohajang",
         "309004": "Sirajdikhan",
         "309005": "Sreenagar",
         "309006": "Tongibari",
         "310": "MYMENSINGH DISTRICT",
-        "310001": "Mymensingh Sadar",
+        "310001": "Mymensingh",
         "310002": "Bhaluka",
         "310003": "Dhobaura",
         "310004": "Fulbaria",
@@ -858,14 +858,14 @@ def parse():
         "311004": "Rupganj",
         "311005": "Sonargaon",
         "312": "NARSINGDI DISTRICT",
-        "312001": "Narsingdi Sadar",
+        "312001": "Narsingdi",
         "312002": "Belabo",
         "312003": "Monohardi",
         "312004": "Palash",
-        "312005": " Raipura",
+        "312005": "Raipura",
         "312006": "Shibpur",
         "313": "NETROKONA DISTRICT",
-        "313001": "Netrokona Sadar",
+        "313001": "Netrokona",
         "313002": "Atpara",
         "313003": "Barhatta",
         "313004": "Durgapur",
@@ -876,32 +876,32 @@ def parse():
         "313009": "Mohanganj",
         "313010": "Purbadhala",
         "314": "RAJBARI DISTRICT",
-        "314001": "Rajbari Sadar",
+        "314001": "Rajbari",
         "314002": "Baliakandi",
         "314003": "Goalandaghat",
         "314004": "Pangsha",
         "314005": "Kalukhali",
         "315": "SHARIATPUR DISTRICT",
-        "315001": "Shariatpur Sadar",
+        "315001": "Shariatpur",
         "315002": "Bhedarganj",
-        "315003": " Damudya",
+        "315003": "Damudya",
         "315004": "Gosairhat",
         "315005": "Naria",
         "315006": "Zajira",
         "315007": "Shakhipur",
         "316": "SHERPUR DISTRICT",
-        "316001": "Sherpur Sadar",
+        "316001": "Sherpur",
         "316002": "Jhenaigati",
         "316003": "Nakla",
         "316004": "Nalitabari",
         "316005": "Sreebardi",
         "317": "TANGAIL DISTRICT",
-        "317001": "Tangail Sadar",
+        "317001": "Tangail",
         "317002": "Gopalpur",
         "317003": "Basail",
         "317004": "Bhuapur",
         "317005": "Delduar",
-        "317006": " Ghatail",
+        "317006": "Ghatail",
         "317007": "Kalihati",
         "317008": "Madhupur",
         "317009": "Mirzapur",
@@ -910,8 +910,8 @@ def parse():
         "317012": "Dhanbari",
         "400": "KHULNA DIVISION",
         "401": "BAGERHAT DISTRICT",
-        "401001": " Bagerhat Sadar",
-        "401002": " Chitalmari",
+        "401001": "Bagerhat",
+        "401002": "Chitalmari",
         "401003": "Fakirhat",
         "401004": "Kachua",
         "401005": "Mollahat",
@@ -920,75 +920,74 @@ def parse():
         "401008": "Rampal",
         "401009": "Sarankhola",
         "402": "CHUADANGA DISTRICT",
-        "402001": "Chuadanga Sadar",
+        "402001": "Chuadanga",
         "402002": "Alamdanga",
         "402003": "Damurhuda",
         "402004": "Jibannagar",
         "403": "JESSORE DISTRICT",
-        "403001": "Jessore Sadar",
+        "403001": "Jessore",
         "403002": "Abhaynagar",
         "403003": "Bagherpara",
         "403004": "Chaugachha",
         "403005": "Jhikargachha",
         "403006": "Keshabpur",
-        "403007": " Manirampur",
+        "403007": "Manirampur",
         "403008": "Sharsha",
         "404": "JHENAIDA DISTRICT",
-        "404001": "Jhenaidah Sadar",
+        "404001": "Jhenaidah",
         "404002": "Harinakunda",
         "404003": "Kaliganj",
         "404004": "Kotchandpur",
         "404005": "Maheshpur",
         "404006": "Shailkupa",
-        "": "",
         "405": "KHULNA DISTRICT",
         "405001": "Khulna City/Kotwali Thana",
         "405002": "Batiaghata",
         "405003": "Dacope",
         "405004": "Dumuria",
-        "405005": " Dighalia",
-        "405006": " Koyra",
+        "405005": "Dighalia",
+        "405006": "Koyra",
         "405007": "Paikgachha",
-        "405008": " Phultala",
+        "405008": "Phultala",
         "405009": "Rupsha",
         "405010": "Terokhada",
         "405011": "Daulatpur Thana",
         "405012": "Khalishpur Thana",
-        "405013": " Khan Jahan Ali Thana",
+        "405013": "Khan Jahan Ali Thana",
         "401014": "Sonadanga Thana",
         "405015": "Harintana Thana",
         "406": "KUSHTIA DISTRICT",
-        "406001": "Kushtia Sadar",
+        "406001": "Kushtia",
         "406002": "Bheramara",
         "406003": "Daulatpur",
         "406004": "Khoksa",
         "406005": "Kumarkhali",
         "406006": "Mirpur",
         "407": "MAGURA DISTRICT",
-        "407001": "Magura Sadar",
+        "407001": "Magura",
         "407002": "Mohammadpur",
-        "407003": " Shalikha",
+        "407003": "Shalikha",
         "407004": "Sreepur",
         "408": "MEHERPUR DISTRICT",
-        "408001": "Meherpur Sadar",
+        "408001": "Meherpur",
         "408002": "Gangni",
         "408003": "Mujibnagar",
         "409": "NARAIL DISTRICT",
-        "409001": "Narail Sadar",
-        "409002": " Kalia",
+        "409001": "Narail",
+        "409002": "Kalia",
         "409003": "Lohagara",
         "409004": "Naragati Thana",
         "410": "SATKHIRA DISTRICT",
-        "410001": "Satkhira Sadar",
+        "410001": "Satkhira",
         "410002": "Assasuni",
         "410003": "Debhata",
         "410004": "Kalaroa",
         "410005": "Kaliganj",
-        "410006": " Shyamnagar",
-        "410007": " Tala",
+        "410006": "Shyamnagar",
+        "410007": "Tala",
         "500": "RAJSHAHI DIVISION ",
         "501": "BOGRA DISTRICT",
-        "501001": "Bogra Sadar",
+        "501001": "Bogra",
         "501002": "Adamdighi",
         "501003": "Dhunat",
         "501004": "Dhupchanchia",
@@ -1001,13 +1000,13 @@ def parse():
         "501011": "Shibganj",
         "501012": "Sonatola",
         "502": "JOYPURHAT DISTRICT",
-        "502001": "Joypurhat Sadar",
+        "502001": "Joypurhat",
         "502002": "Akkelpur",
         "502003": "Kalai",
         "502004": "Khetlal",
         "502005": "Panchbibi",
         "503": "NAOGAON DISTRICT",
-        "503001": "Naogaon Sadar",
+        "503001": "Naogaon",
         "503002": "Atrai",
         "503003": "Badalgachhi",
         "503004": "Manda",
@@ -1016,10 +1015,10 @@ def parse():
         "503007": "Niamatpur",
         "503008": "Patnitala",
         "503009": "Porsha",
-        "503010": " Raninagar",
+        "503010": "Raninagar",
         "503011": "Sapahar",
         "504": "NATORE DISTRICT",
-        "504001": "Natore Sadar",
+        "504001": "Natore",
         "504002": "Bagatipara",
         "504003": "Baraigram",
         "504004": "Gurudaspur",
@@ -1027,17 +1026,17 @@ def parse():
         "504006": "Singra",
         "504007": "Naldanga",
         "505": "NAWABGANJ DISTRICT",
-        "505001": "Nawabganj Sadar",
+        "505001": "Nawabganj",
         "505002": "Bholahat",
         "505003": "Gomastapur",
         "505004": "Nachole",
         "505005": "Shibganj",
         "506": "PABNA DISTRICT",
-        "506001": "Pabna Sadar",
+        "506001": "Pabna",
         "506002": "Ataikula",
         "506003": "Atgharia",
         "506004": "Bera",
-        "506005": " Bhangura",
+        "506005": "Bhangura",
         "506006": "Chatmohar",
         "506007": "Faridpur",
         "506008": "Ishwardi",
@@ -1045,17 +1044,17 @@ def parse():
         "506010": "Sujanagar",
         "507": "RAJSHAHI DISTRICT",
         "507001": "Rajshahi City",
-        "507002": " Bagha",
+        "507002": "Bagha",
         "507003": "Bagmara",
         "507004": "Charghat",
         "507005": "Durgapur",
         "507006": "Godagari",
         "507007": "Mohanpur",
         "507008": "Paba",
-        "507009": " Puthia",
+        "507009": "Puthia",
         "507010": "Tanore",
         "508": "SIRAJGANJ DISTRICT",
-        "508001": "Sirajganj Sadar",
+        "508001": "Sirajganj",
         "508002": "Belkuchi",
         "508003": "Chauhali",
         "508004": "Kamarkhanda",
@@ -1066,11 +1065,11 @@ def parse():
         "508009": "Ullahpara",
         "600": "RANGPUR DIVISION",
         "601": "DINAJPUR DISTRICt",
-        "601001": "Dinajpur Sadar",
+        "601001": "Dinajpur",
         "601002": "Birampur",
         "601003": "Birganj",
         "601004": "Biral",
-        "601005": " Bochaganj",
+        "601005": "Bochaganj",
         "601006": "Chirirbandar",
         "601007": "Phulbari",
         "601008": "Ghoraghat",
@@ -1080,7 +1079,7 @@ def parse():
         "601012": "Nawabganj",
         "601013": "Parbatipur",
         "602": "GAIBANDHA DISTRICT",
-        "602001": "Gaibandha Sadar",
+        "602001": "Gaibandha",
         "602002": "Phulchhari",
         "602003": "Gobindaganj",
         "602004": "Palashbari",
@@ -1088,68 +1087,68 @@ def parse():
         "602006": "Sughatta",
         "602007": "Sundarganj",
         "603": "KURIGRAM DISTRICT",
-        "603001": "Kurigram Sadar",
+        "603001": "Kurigram",
         "603002": "Bhurungamari",
         "603003": "Char Rajibpur ",
         "603004": "Chilmari",
         "603005": "Phulbari",
         "603006": "Nageshwari",
-        "603007": " Rajarhat",
+        "603007": "Rajarhat",
         "603008": "Raomari",
         "603009": "Ulipur",
         "604": "LALMONIRHAT DISTRICT",
-        "604001": "Lalmonirhat Sadar",
+        "604001": "Lalmonirhat",
         "604002": "Aditmari",
         "604003": "Hatibandha",
         "604004": "Kaliganj",
         "604005": "Patgram",
         "605": "NILPHAMARI DISTRICT",
-        "605001": "Nilphamari Sadar",
-        "605002": " Dimla",
+        "605001": "Nilphamari",
+        "605002": "Dimla",
         "605003": "Domar",
         "605004": "Jaldhaka",
         "605005": "Kishoreganj",
         "605006": "Saidpur",
         "606": "PANCHAGARH DISTRICT",
-        "606001": "Panchagarh Sadar",
+        "606001": "Panchagarh",
         "606002": "Atwari",
         "606003": "Boda",
         "606004": "Debiganj",
         "606005": "Tetulia",
         "607": "RANGPUR DISTRICT",
-        "607001": "Rangpur City/Sadar",
+        "607001": "Rangpur",
         "607002": "Badarganj",
-        "607003": " Gangachhara",
+        "607003": "Gangachhara",
         "607004": "Kaunia",
-        "607005": " Mithapukur",
+        "607005": "Mithapukur",
         "607006": "Pirgachha",
         "607007": "Pirganj",
         "607008": "Taraganj",
         "608": "THAKURGAON DISTRICT",
-        "608001": "Thakurgaon Sadar",
+        "608001": "Thakurgaon",
         "608002": "Baliadangi",
         "608003": "Haripur",
         "608004": "Pirganj",
         "608005": "Ranisankail",
         "701": "HABIGANJ DISTRICT",
-        "701001": "Habiganj Sadar",
+        "701001": "Habiganj",
         "701002": "Ajmiriganj",
         "701003": "Bahubal",
-        "701004": "Baniyachong",
+        "701004": "Baniachong",
         "701005": "Chunarughat",
         "701006": "Lakhai",
         "701007": "Madhabpur",
         "701008": "Nabiganj",
         "702": "MOULVIBAZAR DISTRICT",
-        "702001": "Moulvibazar Sadar",
-        "702002": " Barlekha",
+        "702001": "Moulvibazar",
+        "702002": "Barlekha",
         "702003": "Kamalganj",
         "702004": "Kulaura",
         "702005": "Rajnagar",
         "702006": "Sreemangal",
         "702007": "Juri",
         "703": "SUNAMGANJ DISTRICT",
-        "703001": "Sunamganj Sadar",
+        "703001": "Sunamganj",
         "703002": "Bishwamvarpur",
         "703003": "Chhatak",
         "703004": "Derai",
@@ -1161,12 +1160,12 @@ def parse():
         "703010": "Tahirpur",
         "703011": "Dakshin Sunamganj",
         "704": "SYLHET DISTRICT",
-        "704001": "Sylhet City/Sadar",
+        "704001": "Sylhet",
         "704002": "Balaganj",
-        "704003": " Beanibazar",
+        "704003": "Beanibazar",
         "704004": "Bishwanath",
         "704005": "Companigonj",
-        "704006": " Fenchuganj",
+        "704006": "Fenchuganj",
         "704007": "Golapganj",
         "704008": "Gowainghat",
         "704009": "Jaintiapur",
@@ -1190,100 +1189,113 @@ def parse():
             for key in elem:
                 if key in json_structure:
                     if key == 'VSOUR':
-                        new_json[json_structure[key]] = violence_source[elem[key]]
+                        new_json[json_structure[key]] = violence_source[str(elem[key])]
                     elif key == 'NDPRO1' or key == 'NDPRO2' or key == 'NDPRO3':
-                        if elem[key] == '' or elem[key] == 'Imprecise' or elem[key] == 'imprecise':
+                        if elem[key] == '' or elem[key] == 'Imprecise' or elem[key] == 'imprecise' or elem[key] == None:
                             new_json[json_structure[key]] = 0
                         else:
                             new_json[json_structure[key]] = int(elem[key])
-                    elif key == 'CASACA' or key == 'CASACB':
+                    elif key == 'CAviolence_type_1SACA' or key == 'CASACB':
                         if elem[key] == '' or elem[key] == 'Imprecise' or elem[key] == 'imprecise' or elem[key] == None:
                             new_json[json_structure[key]] = 0
                         else:
                             new_json[json_structure[key]] = float(elem[key])
                     elif key == 'VTYP1':
-                        if elem[key] == "311":
+                        if elem[key] == "311" or elem[key] == 311 :
                             new_json[json_structure[key]] = violence_type_1["310"]
+                        elif elem[key] == 207 or elem[key] == None or elem[key] == 602 or elem[key] == 702 or elem[key] == 704 or elem[key] == 810 or elem[key] == 121:
+                            #TODO: Figure out what 207, 602, 702, 704, 810, 121 means
+                            new_json[json_structure[key]] = None
                         else:
-                            new_json[json_structure[key]] = violence_type_1[elem[key]]
+                            new_json[json_structure[key]] = violence_type_1[str(elem[key])]
                     elif key == 'VTYP2':
-                        if elem[key] == "311":
+                        if elem[key] == "311"  or elem[key] == 311:
                             new_json[json_structure[key]] = violence_type_1["310"]
-                        elif elem[key] == '321' or elem[key] == '140' or elem[key] == '':
+                        elif elem[key] == '321' or elem[key] == '140' or elem[key] == '' or elem[key]== None or elem[key] == 301:
                             #ToDo: Figure out what this number means
                             new_json[json_structure[key]] = None
                         else:
-                            new_json[json_structure[key]] = violence_type_1[elem[key]]
+                            new_json[json_structure[key]] = violence_type_1[str(elem[key])]
                     elif key == 'VTYP3':
                         if elem[key] == '' or elem[key] == None:
                             #ToDo: Figure out what this number means
                             new_json[json_structure[key]] = None
                         else:
-                            new_json[json_structure[key]] = violence_type_1[elem[key]]
+                            new_json[json_structure[key]] = violence_type_1[str(elem[key])]
                     elif key == "VTRIG1" or key == "VTRIG2":
                         if elem[key] == '240':
                             new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str("230"))]
-                        elif elem[key] == "111":
+                        elif elem[key] == "111" or elem[key] == 111:
                             new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str("110"))]
                         elif elem[key] == "199":
                             new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str("190"))]
-                        elif elem[key] == None or elem[key] == "":
+                        elif elem[key] == None or elem[key] == "" or elem[key] == 995:
+                            #TODO: Figure out what 995 means
                             new_json[json_structure[key]] = None
                         else:
                             new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str(elem[key]))]
                     elif key == "LDIS":
-                        if re.sub("\D", "", elem[key]) == "417":
+                        if re.sub("\D", "", str(elem[key])) == "417":
                             new_json[json_structure[key]] = event_location_district["317"]
-                        elif re.sub("\D", "", elem[key]) == '30':
+                        elif re.sub("\D", "", str(elem[key])) == '30':
                             new_json[json_structure[key]] = event_location_district["301"]
                         else:
-                            new_json[json_structure[key]] = event_location_district[re.sub("\D", "", elem[key])]
+                            new_json[json_structure[key]] = event_location_district[re.sub("\D", "", str(elem[key]))]
                     elif key == "VTRIGC":
                         if re.sub("\D", "", str(elem[key])) == "1":
                             new_json[json_structure[key]] = "Yes"
                         else:
                             new_json[json_structure[key]] = "No"
                     elif key == "VACTA1":
-                        new_json[json_structure[key]] = violence_actor_1[re.sub("\D", "", elem[key])]
+                        if elem[key] == None or elem[key] == '' or elem[key] == '32' or elem[key] == '299' :
+                            #TODO: Figure out what 32, 299 means
+                            new_json[json_structure[key]] = None
+                        else:
+                            new_json[json_structure[key]] = violence_actor_1[re.sub("\D", "", str(elem[key]))]
                     elif key == "VNUM":
                         new_json[json_structure[key]] = int(elem[key])
                     elif key == "VPOL":
-                        new_json[json_structure[key]] = violence_police_role[str(elem[key])]
+                        if elem[key] == None or elem[key] == 1000:
+                            new_json[json_structure[key]] = None
+                        else:
+                            new_json[json_structure[key]] = violence_police_role[str(elem[key])]
                     elif key == "DPROP1":
-                        if elem[key] == None:
+                        if elem[key] == None or elem[key] == 770 or elem[key] == 8500:
+                            #TODO: Figure out what 770, 8500 means
                             new_json[json_structure[key]] = None
                         else:
                             new_json[json_structure[key]] = destruction_of_property[str(elem[key])]
                     elif key == "DPROP2":
-                        if elem[key] == None:
+                        if elem[key] == None or elem[key] == 1:
                             new_json[json_structure[key]] = None
                         elif elem[key] == '8401':
                             new_json[json_structure[key]] = destruction_of_property['840']
                         else:
                             new_json[json_structure[key]] = destruction_of_property[str(elem[key])]
                     elif key == "DPROP3":
-                        if elem[key] == None:
+                        if elem[key] == None or elem[key] == 3:
+                            # TODO: Figure out what 3 means
                             new_json[json_structure[key]] = None
                         elif elem[key] == '8401' or elem[key] == '1':
                             new_json[json_structure[key]] = destruction_of_property['100']
                         else:
-                            new_json[json_structure[key]] = destruction_of_property[elem[key]]
+                            new_json[json_structure[key]] = destruction_of_property[str(elem[key])]
                     elif key == "VTAR1" or key == "VTAR2" or key == "VTAR3":
-                        if elem[key] == '' or elem[key] == None:
+                        if elem[key] == '' or elem[key] == None or elem[key] == '188:supporters of union parishad chairman':
                             new_json[json_structure[key]] = None
-                        elif elem[key] == '210*':
+                        elif elem[key] == '210*' :
                             new_json[json_structure[key]] = violence_actor_1['210']
                         else:
-                            new_json[json_structure[key]] = violence_actor_1[elem[key]]
+                            new_json[json_structure[key]] = violence_actor_1[str(elem[key])]
                     elif key == 'WOUACA':
-                        if elem[key] == '':
+                        if elem[key] == '' or elem[key]==None:
                             new_json[json_structure[key]] = 0
                         elif elem[key] == 'imprecise':
                             new_json[json_structure[key]] = 0
                         else:
                             new_json[json_structure[key]] = float(elem[key])
                     elif key == 'WOUACB':
-                        if elem[key] == '':
+                        if elem[key] == '' or elem[key] == None:
                             new_json[json_structure[key]] = 0
                         elif elem[key] == 'imprecise':
                             new_json[json_structure[key]] = 0
@@ -1302,7 +1314,7 @@ def parse():
                         elif elem[key] == '508012' or elem[key] =='508010' or elem[key] =='508011':
                             new_json[json_structure[key]] = upazilla['508002']
                         else:
-                            new_json[json_structure[key]] = upazilla[elem[key]]
+                            new_json[json_structure[key]] = upazilla[str(elem[key])]
                     elif key =='VDAY':
                         if key == None:
                             v_day = 1
@@ -1347,8 +1359,12 @@ def parse():
                         elif division_number == 800:
                             new_json['division'] = 'Multiple'
             if v_day and v_month and v_year:
-                datetime_object = datetime.strptime(str(v_day)+' '+str(v_month)+' '+str(v_year), '%d %m %Y')
-                new_json['incident_date'] = datetime_object
+                print str(v_day) + ' - ' + str(v_month)
+                try:
+                    datetime_object = datetime.strptime(str(v_day)+' '+str(v_month)+' '+str(v_year), '%d %m %Y')
+                    new_json['incident_date'] = datetime_object
+                except:
+                    pass
             collection.insert(new_json)
 
     print "Importing finished"

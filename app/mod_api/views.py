@@ -15,22 +15,32 @@ def index():
 
     return render_template('mod_importer/index.html')
 
-@mod_api.route('/bd/victims/<string:name>/<int:level>', methods=['GET'])
-def get_results(name, level):
-    level_json = {
-        0: "division",
-        1: "district",
-        2: "upazilla"
-    }
-
+@mod_api.route('/bd/victims/<string:name>/<int:level>/<string:violence_type>', methods=['GET'])
+def get_results(name, level, violence_type):
+    match_field = ""
+    group_by_location = ""
+    if level == 0:
+        match_field = "division"
+        group_by_location = "district"
+    elif level == 1:
+        match_field = "district"
+        group_by_location = "upazilla"
+    elif level == 2:
+        match_field = "upazilla"
+        group_by_location = "upazilla"
     match = {
         "$match": {
-            level_json[level]: {
+            match_field: {
                 "$nin": [
                     ""
                 ],
                 "$in": [
                     name
+                ]
+            },
+            "violence_type_1": {
+                "$in": [
+                    violence_type
                 ]
             }
         }
@@ -38,10 +48,34 @@ def get_results(name, level):
     group = {
         "$group": {
             "_id": {
-                level_json[level+1]: '$' + level_json[level+1]
+                group_by_location: '$' + group_by_location
             },
             "incidents": {
                 "$sum": 1
+            },
+            'total_injury_a': {
+                '$sum': '$total_number_of_wounded_reported_actor_a'
+            },
+            'total_injury_b': {
+                '$sum': '$total_number_of_wounded_reported_actor_b'
+            },
+            'total_injury_b': {
+                '$sum': '$total_number_of_wounded_reported_actor_b'
+            },
+            'total_property_a': {
+                '$sum': '$number_of_property_destroyed_1'
+            },
+            'total_property_b': {
+                '$sum': '$number_of_property_destroyed_3'
+            },
+            'total_property_c': {
+                '$sum': '$number_of_property_destroyed_1_1'
+            },
+            'total_death_a': {
+                '$sum': '$total_number_of_casualties_reported_actor_a'
+            },
+            'total_death_b': {
+                '$sum': '$total_number_of_casualties_reported_actor_b'
             }
         }
     }
@@ -54,8 +88,11 @@ def get_results(name, level):
     project = {
         "$project": {
             "_id": 0,
-            level_json[level + 1]: "$_id." + level_json[level+1],
-            "incidents": "$incidents"
+            'name': "$_id." + group_by_location,
+            "incidents": "$incidents",
+            'injuries': {'$add': ['$total_injury_b', '$total_injury_b']},
+            'property': {'$add': ['$total_property_a', '$total_property_b', '$total_property_c']},
+            'death': {'$add': ['$total_death_a', '$total_death_a']}
         }
     }
     aggregation = [match, group, sort, project]
@@ -66,8 +103,8 @@ def get_results(name, level):
     return resp
 
 
-@mod_api.route('/incidents/monthly/<string:name>/<int:level>')
-def monthly_incidents(name, level):
+@mod_api.route('/incidents/monthly/<string:name>/<int:level>/<string:violence_type>')
+def monthly_incidents(name, level, violence_type):
     level_json = {
         0: "division",
         1: "district",
@@ -75,7 +112,7 @@ def monthly_incidents(name, level):
     }
     json_result = {}
 
-    injury_result = mongo.db.mgr.aggregate(
+    data = mongo.db.mgr.aggregate(
         [
             {
                 "$match": {
@@ -90,6 +127,11 @@ def monthly_incidents(name, level):
                     'violence_month': {
                         "$nin": [
                             ""
+                        ]
+                    },
+                    'violence_type_1': {
+                        "$in": [
+                            violence_type
                         ]
                     }
                 }
@@ -144,7 +186,7 @@ def monthly_incidents(name, level):
             }
         ]
     )
-    json_result['incidents'] = injury_result['result']
+    json_result['incidents'] = data['result']
     resp = Response(
         response=json_util.dumps(json_result),
         mimetype='application/json')
