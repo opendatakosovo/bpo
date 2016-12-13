@@ -116,6 +116,7 @@ span.section-title {
     display: none;
 }
 
+
 /* Large desktops and laptops */
 @media (min-width: 1200px) {
 
@@ -128,6 +129,7 @@ span.section-title {
     }
 
 }
+
 #top{
     /*display:none;*/
 }
