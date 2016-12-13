@@ -767,7 +767,7 @@ def parse():
         "211010": "Rajasthali",
         "300": "DHAKA DIVISION",
         "301": "DHAKA DISTRICT",
-        "301001": "Dhaka City",
+        "301001": "Dhaka",
         "301002": "Dhamrai",
         "301003": "Dohar",
         "301004": "Keraniganj",
@@ -1365,6 +1365,7 @@ def parse():
                     new_json['incident_date'] = datetime_object
                 except:
                     pass
+            new_json['state'] = 'Bangladesh'
             collection.insert(new_json)
 
     print "Importing finished"

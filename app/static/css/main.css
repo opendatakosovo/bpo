@@ -112,5 +112,30 @@ span.section-title {
     display:none;
 }
 #top{
+    /*display:none;*/
+}
+.casualties-list-not-enogh-data{
     display:none;
 }
+.property-list-not-enogh-data{
+    display:none;
+}
+.perpetrators-list-not-enogh-data{
+    display:none;
+}
+.third-section-first-chart-no-data{
+    display:none;
+}
+.third-section-second-chart-no-data{
+    display:none;
+}
+.third-section-third-chart-no-data{
+    display:none;
+}
+#district-select, .district-select-label{
+    display:none;
+    margin-top: 24px;
+}
+/*.highcharts-container {*/
+    /*width: 100% !important;*/
+/*}*/

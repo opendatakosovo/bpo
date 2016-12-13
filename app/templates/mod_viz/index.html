@@ -24,15 +24,24 @@
         <br/>
         <div class="row">
             <div class="col-md-6 col-xs-6">
-                <label class="filter-label" for="division-select">Barisal Division</label>
-                <select class="form-control" id="division-select">
-                    <option value="Dhaka">Dhaka</option>
-                    <option value="Sylhet">Sylhet</option>
-                    <option value="Chittagong">Chittagong</option>
-                    <option value="Barisal">Barisal</option>
-                    <option value="Khulna">Khulna</option>
-                    <option value="Rajshahi">Rajshahi</option>
-                </select>
+                <div class="col-md-6">
+                    <label class="filter-label" for="division-select">Division</label>
+                    <select class="form-control" id="division-select">
+                        <option value="all">All</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Sylhet">Sylhet</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Barisal">Barisal</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="district-select-label" for="district-select">District</label>
+                    <select class="form-control" id="district-select">
+                        <option value="all">All</option>
+                    </select>
+                </div>
             </div>
             <div class="col-md-2 col-xs-6">
                 <label class="filter-label" for="data-source-select">Data Source</label>
@@ -50,7 +59,7 @@
             </div>
             <div class="col-md-2 col-xs-6">
                 <label class="filter-label" for="daterange">Time Period</label>
-                <input type="text" class="form-control" name="daterange" value="01/01/2015 - 01/31/2015"/>
+                <input type="text" class="form-control" name="daterange" value="ALL TIME"/>
 
             </div>
         </div>
@@ -97,35 +106,42 @@
             <div id="accordion">
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                    <span class="rate-1"></span> has the highest fatality rate.
+                    <span class="rate-1"></span> <span class="rate-1-text">has the highest fatality rate.</span>
                     <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
                     <span class="caret"></span>
                 </div>
                 <div>
-                    <p>
                     <div class="third-section-chart" id="third-section-first-chart">
                     </div>
-                    </p>
+                    <span class="third-section-first-chart-no-data">
+
+                    </span>
                 </div>
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
-                    <span class="rate-2"></span> has the highest injury count.
+                    <span class="rate-2"></span> <span class="rate-2-text">has the highest injury count.</span>
                     <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
                     <span class="caret"></span>
                 </div>
                 <div>
                     <div class="third-section-chart" id="third-section-second-chart">
                     </div>
+                    <span class="third-section-second-chart-no-data">
+
+                    </span>
                 </div>
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
-                    <span class="rate-3"></span> has the highest property damage count.
+                    <span class="rate-3"></span> <span class="rate-3-text">has the highest property damage count.</span>
                     <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
                     <span class="caret"></span>
                 </div>
                 <div>
                     <div class="third-section-chart" id="third-section-third-chart">
                     </div>
+                    <span class="third-section-third-chart-no-data">
+
+                    </span>
                 </div>
             </div>
         </div>
@@ -138,27 +154,27 @@
         <div id="top" class="col-md-12">
             <div class="col-md-6 top-3">
                 <span class="section-title-top-perpetrators">Top 3 Reported Perpetrators</span>
-                <ol>
-                    <li>Allahr Dol</li>
-                    <li>Gono Mukti Front</li>
-                    <li>Other Militant Group</li>
+                <ol id="perpetrators-list">
                 </ol>
+                <span class="perpetrators-list-not-enogh-data">
+                    Not enough data.
+                </span>
             </div>
             <div class="col-md-6 top-3">
                 <span class="section-title-top-casualties">Top 3 Reported Casualties</span>
-                <ol>
-                    <li>Women</li>
-                    <li>General Public</li>
-                    <li>Hindu Minority</li>
+                <ol id="casualties-list">
                 </ol>
+                <span class="casualties-list-not-enogh-data">
+                    Not enough data.
+                </span>
             </div>
             <div class="col-md-6 top-3">
                 <span class="section-title-top-property">Top 3 Property Type Destruction</span>
-                <ol>
-                    <li>Cars</li>
-                    <li>Public property</li>
-                    <li>Shops</li>
+                <ol id="property-list">
                 </ol>
+                <span class="property-list-not-enogh-data">
+                    Not enough data.
+                </span>
             </div>
         </div>
         <!--<div class="row">-->
@@ -219,21 +235,80 @@
     </div>
 
 </div>
+<script type="text/javascript" src="{{ url_for('static', filename='json/bangladesh.js') }}"></script>
 <script>
 
 
     $(document).ready(function () {
         jQuery.ajaxSetup({async: false});
+
+        populateLocationDropdown();
+        // Init and build the violence type dropdown list
         buildViolenceTypeDropDown();
+
+        // Build the date range input so we can select FROM - TO daterange
         buildDateRangeInput();
+
+        // Init and build the map
         buildMap();
-        createChart();
+
+        // Init and create the bottom line chart
+        createLineChart();
+
+        // Init the right death,injuries,property charts
+        initCharts();
+
+        // Init and build the national data, so when the user first lands on the page we have some data.
+        buildNationalData();
+
+
+        // Initialize the right accordions
+        $("#national-accordion").accordion({
+            collapsible: true, active: false
+        });
+
+        // Listen when we select a violence type, update the charts/data reflecting the selected violence type
+        $("#violence-type-select").change(function () {
+            updateViz(undefined, false);
+        })
+
+        // Listen when we select a date range, update the charts/data reflecting the selected date range
+        $('input[name=daterange]').change(function () {
+            updateViz(undefined, false);
+        });
+
+    });
+    function populateLocationDropdown() {
+        // Listen when we change the division/Update the visualizer reflecting the selected division data
+        $('#division-select').change(function () {
+            $('#district-select').css('display', 'block');
+            var district_select = $('#district-select');
+
+            var selected_division = $(this).val();
+            $('#district-select').empty();
+            district_select.append($("<option />").val('all').text('All'));
+            $.each(locations_list[selected_division].items, function (item) {
+                var name = capitalize(locations_list[selected_division].items[item].name.toLowerCase());
+                district_select.append($("<option />").val(name).text(name));
+            });
+            updateViz(selected_division, true);
+        });
+        $('#district-select').change(function () {
+            console.log(locations_list);
+            selected_district = $(this).val();
+            updateViz(selected_district, true);
+        })
+
+
+    }
+    function initCharts() {
+        var width= $("#third-section-first-chart").width();
         Highcharts.chart('third-section-first-chart', {
             chart: {
                 renderTo: 'chart',
                 type: 'column',
                 margin: 60,
-                height: 200,
+                height: 180,
                 defaultSeriesType: 'areaspline'
             },
             title: {
@@ -392,23 +467,7 @@
             }]
         });
 
-        $('#division-select').change(function () {
-            updateViz($(this).val(), true);
-        });
-
-        $("#national-accordion").accordion({
-            collapsible: true, active: false
-        });
-
-        buildNationalData();
-        $("#violence-type-select").change(function () {
-            updateViz(undefined, false);
-        })
-
-        $('input[name=daterange]').change(function () {
-            updateViz(undefined, false);
-        });
-    });
+    }
     function buildNationalData() {
         var rank_data;
 
@@ -424,7 +483,6 @@
             rank_data = data;
         });
 
-//        $('.location-name').html("Bangladesh");
         $('.national-ranked').parent().css("display", "none");
 
         // Set the highest rates
@@ -435,7 +493,7 @@
         $('.rate-2').html(top_injury_location);
         $('.rate-3').html(top_property_damage_location);
 
-         // Change third-section-first-chart values
+        // Change third-section-first-chart values
         var third_section_first_chart = $('#third-section-first-chart').highcharts();
         var third_section_first_chart_data = [];
         var url_for_chart_get_results_death = "{{ url_for('api.monthly_incidents', name='name', level=00)}}".replace('name', top_death_location).replace(0, level_number);
@@ -467,8 +525,10 @@
             });
         });
         third_section_third_chart.series[0].setData(third_section_third_chart_data);
+
+        updateTop3Section('Bangladesh', 0, $("#violence-type-select").val().replace('/','-'))
     }
-    function createChart() {
+    function createLineChart() {
 
         var seriesOptions = [],
                 seriesCounter = 0,
@@ -521,9 +581,8 @@
                 "months": 3
             },
         });
+        $('input[name="daterange"]').attr('disabled',true);
     }
-
-
     function buildMap() {
         var map_data = buildDataSeries();
         /*
@@ -617,9 +676,11 @@
 
                         this.setTitle(null, {text: e.point.name});
                     },
-//                    drillup: function () {
-//                        this.setTitle(null, {text: 'Bangladesh'});
-//                    }
+                    drillup: function (e) {
+                        updateViz(e.seriesOptions.name, false);
+//                                console.log(this.options.series[0].name);
+//                                console.log(this.options.series[0].data[0].name);
+                    }
                 }
             },
 
@@ -718,7 +779,6 @@
                                     $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
                                     updateViz(clicked_point, false);
                                 }
-
                             }
                         }
                     }
@@ -757,93 +817,110 @@
     }
     function updateViz(name, from_selection) {
 
-        var violence_type = $("#violence-type-select").val();
+        var violence_type = $("#violence-type-select").val().replace('/','-');
+
 
         // Get the map instance
         var the_map = $('#map').highcharts();
-        level_number = 0;
+
         // Get the drilldown level number
-        if ($(the_map)[0].drilldownLevels != undefined) {
-            var level_number = $(the_map)[0].drilldownLevels.length;
+        level_number = 0;
+        if ('drilldownLevels' in $('#map').highcharts()) {
+            var level_number = $('#map').highcharts().drilldownLevels.length;
+        }
+        if (name == undefined) {
+            name = $('#map').highcharts().series[0].name;
+        }
+        if (name == 'Bangladesh') {
+            buildNationalData();
+        } else {
+
+            // If we change the name in the location input
+            if (from_selection == true) {
+                if (level_number == 2) {
+                    $('.highcharts-drillup-button').click();
+                }
+                var map_data_ = $('#map').highcharts().series[0].data;
+                $.each(map_data_, function (index) {
+                    if (map_data_[index]['name'] == name) {
+                        map_data_[index].doDrilldown();
+                    }
+                });
+            }
+
+            updateTextValues(name, level_number, violence_type);
+            updateCharts(name, level_number, violence_type)
+            updateTop3Section(name, level_number, violence_type);
         }
 
+
+    }
+    function updateTextValues(name, level_number, violence_type) {
         //Instantiate rank_data array
         var rank_data = [];
-
-        if (name == undefined) {
-            name = the_map.series[0].name;
-        }
         var rank_api_url = '{{ url_for("api.get_results", name="name", level=0, violence_type="violence-type")}}';
-        rank_api_url = rank_api_url.replace('name', name).replace(0, level_number - 1).replace('violence-type', violence_type);
+        rank_api_url = rank_api_url.replace('name', name).replace(0, level_number).replace('violence-type', violence_type);
 
         // Get request for the ranking data
         $.get(rank_api_url, function (data) {
             rank_data = data;
         });
 
-        // Get the selected locaion name
-        var selected_name = name;
-
-        // If we change the name in the location input
-        if (from_selection == true) {
-            if (level_number == 2) {
-                $('.highcharts-drillup-button').click();
-            }
-            var map_data_ = $(the_map)[0].series[0].data;
-            $.each(map_data_, function (index) {
-                if (map_data_[index]['name'] == selected_name) {
-                    map_data_[index].doDrilldown();
-                }
-            });
-        }
         // Fill values of the right visualizer
         $.each(rank_data, function (item) {
-            if (rank_data[item]['name'] == selected_name) {
+            if (rank_data[item]['name'] == name) {
                 $('.national-ranked').html(rank_data[item]['rank']);
             }
         });
         // Set the highest rates
-        var top_death_location = getTopN(rank_data, 'death', 1)[0].name;
-        var top_injury_location = getTopN(rank_data, 'injury', 1)[0].name;
-        var top_property_damage_location = getTopN(rank_data, 'property', 1)[0].name;
-        $('.rate-1').html(top_death_location);
-        $('.rate-2').html(top_injury_location);
-        $('.rate-3').html(top_property_damage_location);
+
+        // Get top death location name
+        death_top_rank_data = getTopN(rank_data, 'death', 1);
+        var top_death_location = "";
+        if (death_top_rank_data.length != 0) {
+            $('.rate-1-text').html('has the highest fatality rate.')
+
+            $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
+            top_death_location = death_top_rank_data[0].name;
+            $('.rate-1').html(top_death_location);
+        } else {
+            $('.rate-1').html("");
+            $('#'+$('#accordion .rate-1').parent().id).collapse()
+            $('.rate-1-text').html('Not enough data');
+            $('#accordion .rate-1').parent().addClass("ui-state-disabled");
+        }
+
+        // Get top injury location name
+        injury_top_rank_data = getTopN(rank_data, 'injury', 1)
+        var top_injury_location = "";
+        if (injury_top_rank_data.length != 0) {
+            $('.rate-2-text').html('has the highest injury count.');
+            $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
+            top_injury_location = injury_top_rank_data[0].name;
+            $('.rate-2').html(top_injury_location);
+        } else {
+            $('.rate-2').html("");
+            $('#accordion .rate-2').parent().attr("aria-expanded",false);
+            $('.rate-2-text').html('Not enough data');
+            $('#accordion .rate-2').parent().addClass("ui-state-disabled");
+        }
+
+        // Get top property damage location name
+        property_top_rank_data = getTopN(rank_data, 'property', 1);
+        var top_property_damage_location = "";
+        if (property_top_rank_data.length != 0) {
+            $('.rate-3-text').html('has the highest property damage count.');
+            $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
+            top_property_damage_location = property_top_rank_data[0].name;
+            $('.rate-3').html(top_property_damage_location);
+        } else {
+            $('.rate-3').html("");
+            $('#accordion .rate-3').parent().attr("aria-expanded",false);
+            $('.rate-3-text').html('Not enough data');
+            $('#accordion .rate-3').parent().addClass("ui-state-disabled");
+        }
 
         $('.location-name').html(name);
-
-
-        // Change third-section-first-chart values
-        var third_section_first_chart = $('#third-section-first-chart').highcharts();
-        var third_section_first_chart_data = [];
-        var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=00, violence_type='violence-type')}}".replace('name', name).replace(0, level_number).replace('violence-type', violence_type);
-        $.get(url_for_chart_get_results, function (data) {
-            $.each(data.incidents, function (item) {
-                third_section_first_chart_data[item] = data.incidents[item].death;
-            });
-        });
-        third_section_first_chart.series[0].setData(third_section_first_chart_data);
-
-        // Change third-section-second-chart values
-        var third_section_second_chart = $('#third-section-second-chart').highcharts();
-        var third_section_second_chart_data = [];
-        $.get(url_for_chart_get_results, function (data) {
-            $.each(data.incidents, function (item) {
-                third_section_second_chart_data[item] = data.incidents[item].injuries;
-            });
-        });
-        third_section_second_chart.series[0].setData(third_section_second_chart_data);
-
-        // Change third-section-third-chart values
-        var third_section_third_chart = $('#third-section-third-chart').highcharts();
-        var third_section_third_chart_data = [];
-        $.get(url_for_chart_get_results, function (data) {
-            $.each(data.incidents, function (item) {
-                third_section_third_chart_data[item] = data.incidents[item].property;
-            });
-        });
-        third_section_third_chart.series[0].setData(third_section_third_chart_data);
-
 
         // Change the presentation text based on the level
         if (level_number == 0) {
@@ -851,13 +928,126 @@
         }
         else if (level_number == 1) {
             $('.section-title').text('Division Overview');
-
         }
         else {
             $('.section-title').text('District Overview');
         }
+    }
+    function updateCharts(name, level_number, violence_type) {
+
+        var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=00, violence_type='violence-type')}}".replace('name', name).replace(0, level_number).replace('violence-type', violence_type);
+        $.get(url_for_chart_get_results, function (data) {
+
+            // Update third-section-first-chart values
+            var third_section_first_chart = $('#third-section-first-chart').highcharts();
+            var third_section_first_chart_data = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
+            $.each(data.incidents, function (item) {
+                if (data.incidents[item].death != 0) {
+                    third_section_first_chart_data[parseInt(data.incidents[item].month) - 1] = data.incidents[item].death;
+                }
+
+            });
+            if (third_section_first_chart_data.reduce(add, 0) != 0) {
+                $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
+                third_section_first_chart.series[0].setData(third_section_first_chart_data);
+                $('.rate-1-text .not-enough-data-for-chart-rate-1').remove();
+            } else {
+                $('#accordion .rate-1').parent().addClass("ui-state-disabled");
+                $('.rate-1-text').append('<span style="color:red;" class"not-enough-data-for-chart-rate-1"> (Not enough data to display chart.)</span>')
+            }
+            // Update third-section-second-chart values
+            var third_section_second_chart = $('#third-section-second-chart').highcharts();
+            var third_section_second_chart_data = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
+            $.each(data.incidents, function (item) {
+                third_section_second_chart_data[parseInt(data.incidents[item].month) - 1] = data.incidents[item].injuries;
+            });
+
+            if (third_section_second_chart_data.reduce(add, 0) != 0) {
+                $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
+                third_section_second_chart.series[0].setData(third_section_second_chart_data);
+                $('.rate-2-text .not-enough-data-for-chart-rate-2').remove();
+            } else {
+                $('#accordion .rate-2').parent().addClass("ui-state-disabled");
+                $('.rate-2-text').append('<span style="color:red;" class"not-enough-data-for-chart-rate-2"> (Not enough data to display chart.)</span>')
+
+            }
 
 
+            // Update third-section-third-chart values
+            var third_section_third_chart = $('#third-section-third-chart').highcharts();
+            var third_section_third_chart_data = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
+
+            $.each(data.incidents, function (item) {
+                third_section_third_chart_data[parseInt(data.incidents[item].month) - 1] = data.incidents[item].property;
+            });
+            if (third_section_third_chart_data.reduce(add, 0) != 0) {
+                $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
+                third_section_third_chart.series[0].setData(third_section_third_chart_data);
+                $('.rate-3-text .not-enough-data-for-chart-rate-3').remove();
+            } else {
+                $('#accordion .rate-3').parent().addClass("ui-state-disabled");
+                $('.rate-3-text').append('<span style="color:red;" class"not-enough-data-for-chart-rate-3"> (Not enough data to display chart.)</span>')
+            }
+        });
+
+
+    }
+    function updateTop3Section(name, level_number, violence_type) {
+        // Update the Top 3 values
+        var top_3_data = "{{ url_for('api.get_top', name='name', level=00, violence_type='violence-type')}}".replace('name', name).replace(0, level_number).replace('violence-type', violence_type);
+
+        $.get(top_3_data, function (data) {
+
+            if (data.perpetrator.length != 0) {
+                var perpetrators = [];
+                $('#perpetrators-list').css('display', '');
+                $('.perpetrators-list-not-enogh-data').css('display', 'none');
+                $.each(data.perpetrator, function (i, item) {
+                    perpetrators.push('<li>' + item['perpetrator'] + '</li>');
+
+                });  // close each()
+
+                // Clear list and populate
+                $('#perpetrators-list li').remove();
+                $('#perpetrators-list').append(perpetrators.join(''));
+            } else {
+                $('#perpetrators-list').css('display', 'none');
+                $('.perpetrators-list-not-enogh-data').css('display', 'block');
+            }
+
+            if (data.casualties.length != 0) {
+                $('#casualties-list').css('display', '');
+                $('.casualties-list-not-enogh-data').css('display', 'none');
+                var casualties = [];
+                $.each(data.casualties, function (i, item) {
+                    casualties.push('<li>' + item['casualty'] + '</li>');
+                });  // close each()
+
+                // Clear list and populate
+                $('#casualties-list li').remove();
+                $('#casualties-list').append(casualties.join(''));
+            } else {
+                $('#casualties-list').css('display', 'none');
+                $('.casualties-list-not-enogh-data').css('display', 'block');
+            }
+
+            if (data.property.length != 0) {
+                $('#property-list').css('display', '');
+                $('.property-list-not-enogh-data').css('display', 'none');
+                var property = [];
+                $.each(data.property, function (i, item) {
+                    property.push('<li>' + item['property'] + '</li>');
+                });  // close each()
+
+                // Clear list and populate
+                $('#property-list li').remove();
+                $('#property-list').append(property.join(''));
+            } else {
+                $('#property-list').css('display', 'none');
+                $('.property-list-not-enogh-data').css('display', 'block');
+            }
+
+        });
     }
     function getTopN(arr, prop, n) {
         // clone before sorting, to preserve the original array
@@ -872,10 +1062,13 @@
 
         return clone.slice(0, n || 1);
     }
+    function add(a, b) {
+        return a + b;
+    }
     function buildViolenceTypeDropDown() {
         // Get violence dropdown options instance
         var violence_options = $("#violence-type-select");
-
+//        violence_options.append($("<option />").val('all').text('All'));
         // Get request to get the violence types
         $.get('{{ url_for("api.get_violence_types", dataset="mgr")}}', function (data) {
             $.each(data, function (item) {
@@ -883,7 +1076,6 @@
             });
         });
     }
-
     function capitalize(s) {
         return s[0].toUpperCase() + s.slice(1);
     }
