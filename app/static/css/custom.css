@@ -130,7 +130,7 @@ header .intro-text .intro-heading {
 }
 
 
-.btn-xl {
+.enter-about {
     color: #FFAA12;
     background-color: #1b6d85;
     border: 2px solid #FFAA12;
@@ -144,7 +144,7 @@ header .intro-text .intro-heading {
     /*float: right;*/
 }
 
-.btn-xl1 {
+.enter-landing {
     color: #FFAA12;
     background-color: #1b6d85;
     border: 2px solid #FFAA12;
