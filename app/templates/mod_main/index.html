@@ -1,74 +1,76 @@
 {% extends 'layout.html' %}
 
 {% block header %}
-<body id="page-top" class="index" style="background-color:#1b6d85;">
+    <body id="page-top" class="index" style="background-color:#1b6d85;">
 
-<!-- Navigation -->
-<nav class="navbar navbar-default">
-    <a class="navbar-brand" href="{{ url_for('main.about') }}">About</a>
-</nav>
-
-
-<!-- Header -->
-<header>
+    <!-- Navigation -->
     <div class="container">
-        <div class="intro-text-about">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                    <div class="intro-lead-in">Bangladesh Peace Oservatory</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <hr style="width:40%; margin-left: 29% !important;">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                    <div class="intro-text-about intro-lead-in1">Advancing understanding of peace and tolerance
-                        through data insights
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-2 col-sm-6 col-xs-7 col-xs-offset-3  ">
-                    <a href="{{ url_for('viz.index') }}" class=" btn btn-xl">Enter the Observatory</a>
-                </div>
-            </div>
-        </div>
+        <nav class="navbar navbar-default">
+            <a class="about" href="{{ url_for('main.about') }}">About</a>
+        </nav>
     </div>
-</header>
-{% endblock %}
-{% block body %}
-{% endblock %}
-    {% block footer %}
-        <footer>
-            <div class="container">
-                <div class="row">
 
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text-about">
+                <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                        <p class="intro-header col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3">A project by University of
-                            Dhaka
+                        <div class="intro-lead-in">Bangladesh Peace Oservatory</div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 intro-header1 ">Hosted by the Centre for
-                        Genocide Studies
+                    <div class="col-md-12 text-center">
+                        <hr style="width:40%; margin-left: 29% !important;">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                        <div class="col-md-9  col-md-offset-1 text-center">
-                            <p class="intro-header">In Partnership With</p>
-                            <p class="intro-header2">The Bangladesh Police | National Defense College | Micro-governance
-                                Research Initiative
-                                | Stop Violence Coalition | The Daily Star | The Metropolitan Chamber of Commerce and
-                                Industry |
-                                Society for Environment and Human Development | Action Aid Bangladesh
-                            </p>
+                        <div class="intro-text-about intro-lead-in1">Advancing understanding of peace and tolerance
+                            through data insights
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 col-md-offset-4">
+                        <a href="{{ url_for('viz.index') }}" class=" btn btn-xl enter-about">Enter the Observatory</a>
+                    </div>
+                </div>
             </div>
-        </footer>
-    {% endblock %}
+        </div>
+    </header>
+{% endblock %}
+{% block body %}
+{% endblock %}
+{% block footer %}
+    <footer>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                    <p class="intro-header col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3">A project by University of
+                        Dhaka
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 intro-header1 ">Hosted by the Centre for
+                    Genocide Studies
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                    <div class="col-md-9  col-md-offset-1 text-center">
+                        <p class="intro-header">In Partnership With</p>
+                        <p class="intro-header2">The Bangladesh Police | National Defense College | Micro-governance
+                            Research Initiative
+                            | Stop Violence Coalition | The Daily Star | The Metropolitan Chamber of Commerce and
+                            Industry |
+                            Society for Environment and Human Development | Action Aid Bangladesh
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
