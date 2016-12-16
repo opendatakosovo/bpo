@@ -19,7 +19,7 @@ dl {
 }
 
 .dl-horizontal dd {
-    text-align: left !important;
+    text-align: right !important;
     margin-left: 0px !important;
 }
 
@@ -168,4 +168,13 @@ span.section-title {
 
 .chart-container .highcharts-grid {
    display: none;
+}
+ol li {
+    text-align: justify;
+    /* width: 150px; */
+    /* display: inline-block; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    list-style-position: inside;
 }
