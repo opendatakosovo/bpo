@@ -4,7 +4,7 @@ div.division-overview-tab {
     background-color: white;
 }
 div#national-accordion {
-    border: 1px solid gray;
+    /*border: 1px solid gray;*/
     padding: 5px;
 }
 
@@ -46,11 +46,12 @@ dl {
 }
 
 .census-information {
-    border: 1px solid gray;
+    border: 1px solid #e2e2e2;
     padding: 5px;
     width: 92%;
     margin-left: 30px;
     margin-top: 9px;
+    background-color: #fff;
 }
 
 .caret {
@@ -139,3 +140,13 @@ span.section-title {
 /*.highcharts-container {*/
     /*width: 100% !important;*/
 /*}*/
+#division-overview{
+    display:none;
+}
+#viz-container path {
+    stroke: white;
+}
+
+.chart-container .highcharts-grid {
+   display: none;
+}

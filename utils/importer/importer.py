@@ -66,7 +66,7 @@ def parse():
         "DPROP2": "destruction_of_property_2",
         "DPROP3": "destruction_of_property_3",
         "NDPRO1": "number_of_property_destroyed_1",
-        "NDPRO1_1": "number_of_property_destroyed_1_1",
+        "NDPRO2": "number_of_property_destroyed_2",
         "NDPRO3": "number_of_property_destroyed_3",
         "VTAR1": "violence_target_group_1",
         "VTAR2": "violence_target_group_2",
@@ -507,7 +507,7 @@ def parse():
         "322": "Police participates in violent event on side of VACTA",
         "300": "Police arrives during the violent event",
         "310": "Police remains inactive during violent event",
-        "320": " Police intervenes during the violent event ",
+        "320": "Police intervenes during the violent event ",
         "321": "Police separates sides in violent event",
         "323": "Police participates in violent event on side of VACTA",
         "400": "Police arrives after the violent event"
@@ -643,7 +643,7 @@ def parse():
         "105006": "Bauphal",
         "105007": "Rangabali",
         "105008": "Dumki",
-        "106": " PIROJPUR DISTRICT",
+        "106": "PIROJPUR DISTRICT",
         "106001": "Pirojpur",
         "106002": "Kawkhali",
         "106003": "Mathbaria",
@@ -1186,18 +1186,26 @@ def parse():
             v_day = None
             v_month = None
             v_year = None
+            new_json['violence_actor'] = []
+            new_json['violence_type'] = []
+            new_json['responders'] = []
+            new_json['property_destroyed_type'] = []
+            new_json['injuries_count'] = 0
+            new_json['deaths_count'] = 0
+            new_json['property_destroyed_count'] = 0
             for key in elem:
                 if key in json_structure:
                     if key == 'VSOUR':
                         new_json[json_structure[key]] = violence_source[str(elem[key])]
                     elif key == 'NDPRO1' or key == 'NDPRO2' or key == 'NDPRO3':
                         if elem[key] == '' or elem[key] == 'Imprecise' or elem[key] == 'imprecise' or elem[key] == None:
-                            new_json[json_structure[key]] = 0
+                            pass
                         else:
-                            new_json[json_structure[key]] = int(elem[key])
+                            new_json['property_destroyed_count'] += int(elem[key])
                     elif key == 'CAviolence_type_1SACA' or key == 'CASACB':
                         if elem[key] == '' or elem[key] == 'Imprecise' or elem[key] == 'imprecise' or elem[key] == None:
                             new_json[json_structure[key]] = 0
+
                         else:
                             new_json[json_structure[key]] = float(elem[key])
                     elif key == 'VTYP1':
@@ -1207,21 +1215,19 @@ def parse():
                             #TODO: Figure out what 207, 602, 702, 704, 810, 121 means
                             new_json[json_structure[key]] = None
                         else:
-                            new_json[json_structure[key]] = violence_type_1[str(elem[key])]
+                            new_json['violence_type'].append(violence_type_1[str(elem[key])])
                     elif key == 'VTYP2':
                         if elem[key] == "311"  or elem[key] == 311:
-                            new_json[json_structure[key]] = violence_type_1["310"]
+                            new_json['violence_type'].append(violence_type_1["310"])
                         elif elem[key] == '321' or elem[key] == '140' or elem[key] == '' or elem[key]== None or elem[key] == 301:
-                            #ToDo: Figure out what this number means
-                            new_json[json_structure[key]] = None
+                            pass
                         else:
-                            new_json[json_structure[key]] = violence_type_1[str(elem[key])]
+                            new_json['violence_type'].append(violence_type_1[str(elem[key])])
                     elif key == 'VTYP3':
                         if elem[key] == '' or elem[key] == None:
-                            #ToDo: Figure out what this number means
-                            new_json[json_structure[key]] = None
+                            pass
                         else:
-                            new_json[json_structure[key]] = violence_type_1[str(elem[key])]
+                            new_json['violence_type'].append(violence_type_1[str(elem[key])])
                     elif key == "VTRIG1" or key == "VTRIG2":
                         if elem[key] == '240':
                             new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str("230"))]
@@ -1246,12 +1252,12 @@ def parse():
                             new_json[json_structure[key]] = "Yes"
                         else:
                             new_json[json_structure[key]] = "No"
-                    elif key == "VACTA1":
-                        if elem[key] == None or elem[key] == '' or elem[key] == '32' or elem[key] == '299' :
-                            #TODO: Figure out what 32, 299 means
-                            new_json[json_structure[key]] = None
+                    elif key == "VACTA1" or key == "VACTA2" or key == "VACTA3" or key == "VACTB1" or key == "VACTB2" or key == "VACTB3":
+                        if elem[key] == None or elem[key] == '' or elem[key] == '32' or elem[key] == '299' or elem[key] == 790 :
+                            #TODO: Figure out what 32, 299, 790 means
+                            pass
                         else:
-                            new_json[json_structure[key]] = violence_actor_1[re.sub("\D", "", str(elem[key]))]
+                            new_json['violence_actor'].append(violence_actor_1[re.sub("\D", "", str(elem[key]))])
                     elif key == "VNUM":
                         new_json[json_structure[key]] = int(elem[key])
                     elif key == "VPOL":
@@ -1261,46 +1267,62 @@ def parse():
                             new_json[json_structure[key]] = violence_police_role[str(elem[key])]
                     elif key == "DPROP1":
                         if elem[key] == None or elem[key] == 770 or elem[key] == 8500:
-                            #TODO: Figure out what 770, 8500 means
-                            new_json[json_structure[key]] = None
+                            pass
                         else:
                             new_json[json_structure[key]] = destruction_of_property[str(elem[key])]
+                            new_json['property_destroyed_type'].append(destruction_of_property[str(elem[key])])
                     elif key == "DPROP2":
                         if elem[key] == None or elem[key] == 1:
-                            new_json[json_structure[key]] = None
+                            pass
                         elif elem[key] == '8401':
-                            new_json[json_structure[key]] = destruction_of_property['840']
+                            new_json['property_destroyed_type'].append(destruction_of_property['840'])
                         else:
-                            new_json[json_structure[key]] = destruction_of_property[str(elem[key])]
+                            new_json['property_destroyed_type'].append(destruction_of_property[str(elem[key])])
                     elif key == "DPROP3":
                         if elem[key] == None or elem[key] == 3:
-                            # TODO: Figure out what 3 means
-                            new_json[json_structure[key]] = None
+                            pass
                         elif elem[key] == '8401' or elem[key] == '1':
                             new_json[json_structure[key]] = destruction_of_property['100']
+                            new_json['property_destroyed_type'].append(destruction_of_property['100'])
                         else:
                             new_json[json_structure[key]] = destruction_of_property[str(elem[key])]
+                            new_json['property_destroyed_type'].append(destruction_of_property[str(elem[key])])
                     elif key == "VTAR1" or key == "VTAR2" or key == "VTAR3":
                         if elem[key] == '' or elem[key] == None or elem[key] == '188:supporters of union parishad chairman':
                             new_json[json_structure[key]] = None
                         elif elem[key] == '210*' :
-                            new_json[json_structure[key]] = violence_actor_1['210']
+                            new_json['responders'].append(violence_actor_1['210'])
                         else:
-                            new_json[json_structure[key]] = violence_actor_1[str(elem[key])]
+                            new_json['responders'].append(violence_actor_1[str(elem[key])])
                     elif key == 'WOUACA':
                         if elem[key] == '' or elem[key]==None:
-                            new_json[json_structure[key]] = 0
+                            new_json['injuries_count'] += float(0)
                         elif elem[key] == 'imprecise':
-                            new_json[json_structure[key]] = 0
+                            new_json['injuries_count'] += float(0)
                         else:
-                            new_json[json_structure[key]] = float(elem[key])
+                            new_json['injuries_count'] += float(elem[key])
                     elif key == 'WOUACB':
                         if elem[key] == '' or elem[key] == None:
-                            new_json[json_structure[key]] = 0
+                            new_json['injuries_count'] += float(0)
                         elif elem[key] == 'imprecise':
-                            new_json[json_structure[key]] = 0
+                            new_json['injuries_count'] += float(0)
                         else:
-                            new_json[json_structure[key]] = float(elem[key])
+                            new_json['injuries_count'] += float(elem[key])
+
+                    elif key == 'CASACA' or key == 'CASACB':
+                        if elem[key] == '' or elem[key] == None:
+                            new_json['deaths_count'] += float(0)
+                        elif elem[key] == 'imprecise':
+                            new_json['deaths_count'] += float(0)
+                        else:
+                            new_json['deaths_count'] += float(elem[key])
+                    elif key == 'CASTAR':
+                        if elem[key] == '' or elem[key] == ' ' or elem[key] == '`' or elem[key] == None:
+                            new_json['deaths_count'] += float(0)
+                        elif elem[key] == 'imprecise':
+                            new_json['deaths_count'] += float(0)
+                        else:
+                            new_json['deaths_count'] += float(elem[key])
                     elif key == 'VNUM':
                         if elem[key] == '':
                             new_json[json_structure[key]] = 0

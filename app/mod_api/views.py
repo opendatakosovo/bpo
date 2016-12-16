@@ -1,6 +1,7 @@
 from bson import json_util
 from flask import Blueprint, render_template
 from flask import Response
+from datetime import datetime
 
 from app import mongo
 
@@ -15,85 +16,49 @@ def index():
 
     return render_template('mod_importer/index.html')
 
-
-@mod_api.route('/bd/victims/<string:name>/<int:level>', methods=['GET'])
-@mod_api.route('/bd/victims/<string:name>/<int:level>/<string:violence_type>', methods=['GET'])
-def get_results(name, level, violence_type=None):
+@mod_api.route('/results/<int:level>/<string:name>/<string:violence_type>/<string:date>', methods=['GET'])
+def get_results(name, level, violence_type, date, ):
     match_field = ""
     group_by_location = ""
-    match = None
-    if level == 0:
-        match_field = "division"
-        group_by_location = "district"
-    elif level == 1:
-        match_field = "district"
-        group_by_location = "upazilla"
-    elif level == 2:
-        match_field = "upazilla"
-        group_by_location = "upazilla"
 
-    if violence_type == None:
-        match = {
-            "$match": {
-                match_field: {
-                    "$nin": [
-                        ""
-                    ],
-                    "$in": [
-                        name, 'multiple'
-                    ]
-                }
+    violence_type = violence_type.replace('-', '/')
+
+    from_date = datetime.strptime(date.split('---')[0], '%m-%d-%Y')
+    to_date = datetime.strptime(date.split('---')[1], '%m-%d-%Y')
+
+    level_json = {
+        0: "division",
+        1: "district",
+        2: "upazilla",
+        3: "state"
+    }
+
+    match = {
+        "$match": {
+            level_json[level-1]: {"$in": [str(name)]},
+            "violence_type": {
+                "$in": [
+                    str(violence_type)
+                ]
             }
         }
-    else:
-        match = {
-            "$match": {
-                match_field: {
-                    "$nin": [
-                        "",'multiple'
-                    ],
-                    "$in": [
-                        name
-                    ]
-                },
-                "violence_type_1": {
-                    "$in": [
-                        violence_type
-                    ]
-                }
-            }
-        }
+    }
     group = {
         "$group": {
             "_id": {
-                group_by_location: '$' + group_by_location
+                level_json[level]: '$' + level_json[level]
             },
             "incidents": {
                 "$sum": 1
             },
-            'total_injury_a': {
-                '$sum': '$total_number_of_wounded_reported_actor_a'
+            'total_injury': {
+                '$sum': '$injuries_count'
             },
-            'total_injury_b': {
-                '$sum': '$total_number_of_wounded_reported_actor_b'
+            'total_property': {
+                '$sum': '$property_destroyed_count'
             },
-            'total_injury_b': {
-                '$sum': '$total_number_of_wounded_reported_actor_b'
-            },
-            'total_property_a': {
-                '$sum': '$number_of_property_destroyed_1'
-            },
-            'total_property_b': {
-                '$sum': '$number_of_property_destroyed_3'
-            },
-            'total_property_c': {
-                '$sum': '$number_of_property_destroyed_1_1'
-            },
-            'total_death_a': {
-                '$sum': '$total_number_of_casualties_reported_actor_a'
-            },
-            'total_death_b': {
-                '$sum': '$total_number_of_casualties_reported_actor_b'
+            'total_death': {
+                '$sum': '$deaths_count'
             }
         }
     }
@@ -106,11 +71,11 @@ def get_results(name, level, violence_type=None):
     project = {
         "$project": {
             "_id": 0,
-            'name': "$_id." + group_by_location,
+            'name': "$_id." + level_json[level],
             "incidents": "$incidents",
-            'injuries': {'$add': ['$total_injury_b', '$total_injury_b']},
-            'property': {'$add': ['$total_property_a', '$total_property_b', '$total_property_c']},
-            'death': {'$add': ['$total_death_a', '$total_death_a']}
+            'injuries': "$total_injury",
+            'property': "$total_property",
+            'death': "$total_death"
         }
     }
     aggregation = [match, group, sort, project]
@@ -121,9 +86,12 @@ def get_results(name, level, violence_type=None):
     return resp
 
 
-@mod_api.route('/incidents/monthly/<string:name>/<int:level>')
-@mod_api.route('/incidents/monthly/<string:name>/<int:level>/<string:violence_type>')
-def monthly_incidents(name, level, violence_type=None):
+@mod_api.route('/incidents/monthly/<string:name>/<int:level>/<string:date>/<string:violence_type>/<string:quarterly>')
+def monthly_incidents(name, level, date, quarterly,violence_type=None):
+    violence_type = violence_type.replace('-', '/')
+    from_date = datetime.strptime(date.split('---')[0], '%m-%d-%Y')
+    to_date = datetime.strptime(date.split('---')[1], '%m-%d-%Y')
+
     level_json = {
         0: "division",
         1: "district",
@@ -134,105 +102,171 @@ def monthly_incidents(name, level, violence_type=None):
     if name == 'Bangladesh':
         level_json[level] = 'state'
         match_location = {
-                    "$nin": [
-                        ""
-                    ],
-                    "$in": [
-                        'Bangladesh'
-                    ]
-                }
+            "$nin": [
+                ""
+            ],
+            "$in": [
+                'Bangladesh'
+            ]
+        }
     else:
         match_location = {
             "$nin": [
                 ""
             ],
             "$in": [
-                name
+                str(name)
             ]
         }
     match = None
     json_result = {}
-    if violence_type == None:
-        match = {
-            "$match": {
-                level_json[level]: match_location ,
-                'violence_month': {
-                    "$nin": [
-                        ""
-                    ]
-                }
-            }
+    match = {
+        "$match": {
+            level_json[level]: match_location,
+            'violence_month': {
+                "$nin": [
+                    ""
+                ]
+            },
+            'violence_type': {
+                "$in": [
+                    str(violence_type)
+                ]
+            },
+            "incident_date": {"$gte": from_date, "$lte": to_date}
         }
-    else:
-        match = {
-            "$match": {
-                level_json[level]: match_location,
-                'violence_month': {
-                    "$nin": [
-                        ""
-                    ]
-                },
-                'violence_type_1': {
-                    "$in": [
-                        violence_type
-                    ]
-                }
-            }
-        }
+    }
 
-    data = mongo.db.mgr.aggregate(
-        [match
-            ,
-         {
-             '$group': {
-                 '_id': {
-                     'month': {
-                         '$substr': ['$incident_date', 5, 2]
+    data = None
+
+    # If we are requesting monthly data
+    if quarterly == 'monthly':
+        group = {
+                 '$group': {
+                     '_id': {
+                         'month': {
+                             '$substr': ['$incident_date', 5, 2]
+                         }
+                     },
+                     'total_injury': {
+                         '$sum': '$injuries_count'
+                     },
+                     'total_property': {
+                         '$sum': '$property_destroyed_count'
+                     },
+                     'total_death': {
+                         '$sum': '$deaths_count'
                      }
-                 },
-                 'total_injury_a': {
-                     '$sum': '$total_number_of_wounded_reported_actor_a'
-                 },
-                 'total_injury_b': {
-                     '$sum': '$total_number_of_wounded_reported_actor_b'
-                 },
-                 'total_injury_b': {
-                     '$sum': '$total_number_of_wounded_reported_actor_b'
-                 },
-                 'total_property_a': {
-                     '$sum': '$number_of_property_destroyed_1'
-                 },
-                 'total_property_b': {
-                     '$sum': '$number_of_property_destroyed_3'
-                 },
-                 'total_property_c': {
-                     '$sum': '$number_of_property_destroyed_1_1'
-                 },
-                 'total_death_a': {
-                     '$sum': '$total_number_of_casualties_reported_actor_a'
-                 },
-                 'total_death_b': {
-                     '$sum': '$total_number_of_casualties_reported_actor_b'
                  }
              }
-         },
-         {
-             "$sort": {
-                 "_id.month": 1
+        sort = {
+                 "$sort": {
+                     "_id.month": 1
+                 }
              }
-         },
-         {
-             "$project": {
-                 "_id": 0,
-                 'month': "$_id.month",
-                 'injuries': {'$add': ['$total_injury_b', '$total_injury_b']},
-                 'property': {'$add': ['$total_property_a', '$total_property_b', '$total_property_c']},
-                 'death': {'$add': ['$total_death_a', '$total_death_a']}
+        project = {
+                 "$project": {
+                     "_id": 0,
+                     'month': "$_id.month",
+                     'injuries': "$total_injury",
+                     'property': "$total_property",
+                     'death': "$total_death"
 
+                 }
              }
-         }
-         ]
-    )
+        data = mongo.db.mgr.aggregate([match, group, sort, project])
+    else:
+        data = mongo.db.mgr.aggregate([
+            match,
+           {
+              "$project":{
+                 "incident_date":1,
+                 'year':{
+                    "$year":"$incident_date"
+                 },
+                 'injuries_count':1,
+                 'property_destroyed_count':1,
+                 'deaths_count':1,
+                 "quarter":{
+                    "$cond":[
+                       {
+                          "$lte":[
+                             {
+                                "$month":"$incident_date"
+                             },
+                             3
+                          ]
+                       },
+                       1,
+                       {
+                          "$cond":[
+                             {
+                                "$lte":[
+                                   {
+                                      "$month":"$incident_date"
+                                   },
+                                   6
+                                ]
+                             },
+                             2,
+                             {
+                                "$cond":[
+                                   {
+                                      "$lte":[
+                                         {
+                                            "$month":"$incident_date"
+                                         },
+                                         9
+                                      ]
+                                   },
+                                   3,
+                                   4
+                                ]
+                             }
+                          ]
+                       }
+                    ]
+                 }
+              }
+           },
+           {
+              "$group":{
+                 "_id":{
+                    "quarter":"$quarter",
+                    "year":"$year"
+                 },
+                 "incidents":{
+                    "$sum":1
+                 },
+                 'total_injury':{
+                    '$sum':'$injuries_count'
+                 },
+                 'total_property':{
+                    '$sum':'$property_destroyed_count'
+                 },
+                 'total_death':{
+                    '$sum':'$deaths_count'
+                 }
+              }
+           },
+           {
+              "$project":{
+                 "_id":0,
+                 "quarter":"$_id.quarter",
+                 "year":"$_id.year",
+                 "incidents":"$incidents",
+                 'injuries':"$total_injury",
+                 'property':"$total_property",
+                 'death':"$total_death"
+              }
+           },
+            {
+                "$sort": {
+                    "year": 1
+                }
+            }
+
+        ])
     json_result['incidents'] = data['result']
     resp = Response(
         response=json_util.dumps(json_result),
@@ -272,7 +306,7 @@ def get_victims(type, name=None):
         group = {
             "$group": {
                 "_id": {
-                    'district': '$' + 'district'
+                    'district': '$district'
                 },
                 "incidents": {
                     "$sum": 1
@@ -331,29 +365,14 @@ def get_rank(type):
             "victims": {
                 "$sum": 1
             },
-            'total_injury_a': {
-                '$sum': '$total_number_of_wounded_reported_actor_a'
+            'total_injury': {
+                '$sum': '$injuries_count'
             },
-            'total_injury_b': {
-                '$sum': '$total_number_of_wounded_reported_actor_b'
+            'total_property': {
+                '$sum': '$property_destroyed_count'
             },
-            'total_injury_b': {
-                '$sum': '$total_number_of_wounded_reported_actor_b'
-            },
-            'total_property_a': {
-                '$sum': '$number_of_property_destroyed_1'
-            },
-            'total_property_b': {
-                '$sum': '$number_of_property_destroyed_3'
-            },
-            'total_property_c': {
-                '$sum': '$number_of_property_destroyed_1_1'
-            },
-            'total_death_a': {
-                '$sum': '$total_number_of_casualties_reported_actor_a'
-            },
-            'total_death_b': {
-                '$sum': '$total_number_of_casualties_reported_actor_b'
+            'total_death': {
+                '$sum': '$deaths_count'
             }
         }
     }
@@ -369,9 +388,9 @@ def get_rank(type):
             "_id": 0,
             'name': "$_id." + type,
             "victims": "$victims",
-            'injuries': {'$add': ['$total_injury_b', '$total_injury_b']},
-            'property': {'$add': ['$total_property_a', '$total_property_b', '$total_property_c']},
-            'death': {'$add': ['$total_death_a', '$total_death_a']}
+            'injuries': "$total_injury",
+            'property': "$total_property",
+            'death': "$total_death"
         }
     }
     aggregation = [match, group, sort, project]
@@ -440,19 +459,20 @@ def get_division_rank(name=None):
 
 @mod_api.route('/<string:dataset>/get/violence-types', methods=['GET', 'POST'])
 def get_violence_types(dataset):
-    violence_types = mongo.db.mgr.distinct('violence_type_1')
-    violence_types1 = mongo.db.mgr.distinct('violence_type_2')
-    violence_types2 = mongo.db.mgr.distinct('violence_type_3')
-    violence_types_array = set(map(str, violence_types) + map(str, violence_types1) + map(str, violence_types2))
+    violence_types = mongo.db.mgr.distinct('violence_type')
     resp = Response(
-        response=json_util.dumps(violence_types_array),
+        response=json_util.dumps(violence_types),
         mimetype='application/json')
     return resp
 
 
-@mod_api.route('/top-3/<int:level>/<string:name>/<string:violence_type>', methods=['GET'])
-def get_top(level, name, violence_type):
-    violence_type = violence_type.replace('-','/')
+@mod_api.route('/top-3/<int:level>/<string:name>/<string:violence_type>/<string:date>', methods=['GET'])
+def get_top(level, name, violence_type, date):
+    violence_type = violence_type.replace('-', '/')
+    from_date = date.split('---')[0]
+    from_date_object = datetime.strptime(from_date, '%m-%d-%Y')
+    to_date = date.split('---')[1]
+    to_date_object = datetime.strptime(to_date, '%m-%d-%Y')
     level_json = {
         0: "division",
         1: "district",
@@ -463,42 +483,38 @@ def get_top(level, name, violence_type):
     if name == 'Bangladesh':
         level_json[level] = 'state'
         match = {
-                "$in": [
-                    'Bangladesh'
-                ]
-            }
+            "$in": [
+                'Bangladesh'
+            ]
+        }
     else:
         match = {
-                    "$nin": [
-                        None
-                    ],
-                    "$in": [name, 'multiple']
-                }
-
-    violence_type_match = ''
-    if violence_type == 'all':
-        violence_type_match = [{"violence_type_1":{
             "$nin": [
-                        None
-                    ]
-            }
-        }]
-    else:
-        violence_type_match = [{"violence_type_1": violence_type}, {"violence_type_2": violence_type}, {"violence_type_3": violence_type}]
+                None
+            ],
+            "$in": [name]
+        }
+
     casualties = mongo.db.mgr.aggregate([
+        {
+            "$unwind": "$responders"
+        },
         {
             "$match": {
                 level_json[level]: match,
-                "violence_target_group_1": {
+                "responders": {
                     "$nin": [None]
                 },
-                '$or': violence_type_match
+                'violence_type': {
+                    "$in": [violence_type]
+                },
+                "incident_date": {"$gte": from_date_object, "$lte": to_date_object}
             }
         },
         {
             "$group": {
                 "_id": {
-                    'casualties': "$violence_target_group_1"
+                    'casualties': "$responders"
                 },
                 "casualties_count": {
                     "$sum": 1
@@ -526,18 +542,24 @@ def get_top(level, name, violence_type):
 
     property = mongo.db.mgr.aggregate([
         {
+            "$unwind": "$property_destroyed_type"
+        },
+        {
             "$match": {
                 level_json[level]: match,
-                "destruction_of_property_1": {
+                "property_destroyed_type": {
                     "$nin": [None]
                 },
-                '$or': violence_type_match
+                'violence_type': {
+                    "$in": [violence_type]
+                },
+                "incident_date": {"$gte": from_date_object, "$lte": to_date_object}
             }
         },
         {
             "$group": {
                 "_id": {
-                    'property': "$destruction_of_property_1"
+                    'property': "$property_destroyed_type"
                 },
                 "property_count": {
                     "$sum": 1
@@ -563,21 +585,26 @@ def get_top(level, name, violence_type):
         }]
     )['result']
 
-    perpetrator = mongo.db.mgr.aggregate([
+    perpetrator = mongo.db.mgr.aggregate([ \
+        {
+            "$unwind": "$violence_actor"
+        },
         {
             "$match": {
                 level_json[level]: match,
-                "violence_actor_1": {
+                "violence_actor": {
                     "$nin": [None]
                 },
-                '$or': violence_type_match
-
+                'violence_type': {
+                    "$in": [violence_type]
+                },
+                "incident_date": {"$gte": from_date_object, "$lte": to_date_object}
             }
         },
         {
             "$group": {
                 "_id": {
-                    'perpetrator': "$violence_actor_1"
+                    'perpetrator': "$violence_actor"
                 },
                 "perpetrator_count": {
                     "$sum": 1
