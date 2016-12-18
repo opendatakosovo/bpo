@@ -78,7 +78,8 @@
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
                     <span class="rate-1"></span> <span class="rate-1-text">has the highest fatality rate. </span>
-                    <img class="rate-1-arrow viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <img class="rate-1-arrow viz-icon-arrow"
+                         src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -91,7 +92,8 @@
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
                     <span class="rate-2"></span> <span class="rate-2-text">has the highest injury count.</span>
-                    <img class="rate-2-arrow viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <img class="rate-2-arrow viz-icon-arrow"
+                         src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -104,7 +106,8 @@
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
                     <span class="rate-3"></span> <span class="rate-3-text">has the highest property damage count.</span>
-                    <img class="rate-3-arrow viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <img class="rate-3-arrow viz-icon-arrow"
+                         src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -887,24 +890,19 @@
 
 
     }
-    function updateCensusInfo(name, level){
+    function updateCensusInfo(name, level) {
         var url = '{{ url_for("api.get_census_info", name="NAME", level=10)}}'.replace('NAME', name).replace('10', level);
-        $.get(url, function(data){
-            if(data != null){
+        $.get(url, function (data) {
+            if (data != null) {
                 $('.population-data').text(data['population']);
-                if(data['poverty'] != null){
-                     $('.poverty-data').css('display','');
+                if (data['poverty'] != null) {
+                    $('.poverty-data').css('display', '');
                     $('.poverty-data').text(data['poverty'] + "%");
-                }else{
-                    $('.poverty-data').css('display','none');
+                } else {
+                    $('.poverty-data').css('display', 'none');
                 }
             }
-
-
-
         });
-
-
     }
     // Update the text trend values reflecting the selections
     function updateTextValues(name, level_number, violence_type, date) {
@@ -1226,16 +1224,16 @@
     }
 
     // Update trend arrays
-    function updateTrendArrows(array, chartNumber){
+    function updateTrendArrows(array, chartNumber) {
         console.log(array);
-        if(array[array.length-1]>array[array.length-2]){
-            $('.rate-'+chartNumber+'-arrow').css('display','');
-            $('.rate-'+chartNumber+'-arrow')[0].src = $('.rate-2-arrow')[0].src.replace('down','up');
-        }else if(array[array.length-1]<array[array.length-2]) {
-            $('.rate-'+chartNumber+'-arrow')[0].src = $('.rate-2-arrow')[0].src.replace('up','down');
+        if (array[array.length - 1] > array[array.length - 2]) {
+            $('.rate-' + chartNumber + '-arrow').css('display', '');
+            $('.rate-' + chartNumber + '-arrow')[0].src = $('.rate-2-arrow')[0].src.replace('down', 'up');
+        } else if (array[array.length - 1] < array[array.length - 2]) {
+            $('.rate-' + chartNumber + '-arrow')[0].src = $('.rate-2-arrow')[0].src.replace('up', 'down');
         }
-        else{
-            $('.rate-'+chartNumber+'-arrow').css('display','none');
+        else {
+            $('.rate-' + chartNumber + '-arrow').css('display', 'none');
         }
     }
 
