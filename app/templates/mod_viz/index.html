@@ -1029,12 +1029,11 @@
                             $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
                             Highcharts.charts[item].series[0].setData(data_series_array);
                             Highcharts.charts[item].xAxis[0].setCategories(categories);
-                            $('.rate-1-text .not-enough-data-for-chart-rate-1').remove();
                         } else {
                             $('#accordion .rate-1').parent().addClass("ui-state-disabled");
-                            $('.rate-1-text').append('<span style="color:red;" class="not-enough-data-for-chart-rate-1"> (Not enough data to display chart.)</span>')
                             data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
                             Highcharts.charts[item].series[0].setData(data_series_array);
+                            Highcharts.charts[item].showLoading('No data to display');
                         }
 
                         // Reset data series array
@@ -1052,14 +1051,12 @@
                             $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
                             Highcharts.charts[item].series[0].setData(data_series_array);
                             Highcharts.charts[item].xAxis[0].setCategories(categories);
-                            $('.rate-2-text .not-enough-data-for-chart-rate-2').remove();
                         } else {
                             $('#accordion .rate-2').parent().addClass("ui-state-disabled");
                             // Reset data series array
                             data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
                             Highcharts.charts[item].series[0].setData(data_series_array);
-                            $('.rate-2-text').append('<span style="color:red;" class="not-enough-data-for-chart-rate-2"> (Not enough data to display chart.)</span>')
-
+                            Highcharts.charts[item].showLoading('No data to display');
                         }
 
                         // Reset data series array
@@ -1081,7 +1078,7 @@
                             $('#accordion .rate-3').parent().addClass("ui-state-disabled");
                             data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
                             Highcharts.charts[item].series[0].setData(data_series_array);
-                            $('.rate-3-text').append('<span style="color:red;" class="not-enough-data-for-chart-rate-3"> (Not enough data to display chart.)</span>')
+                            Highcharts.charts[item].showLoading('No data to display');
                         }
 
                         // Reset data series array
@@ -1140,7 +1137,7 @@
                                 data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
                             });
                             Highcharts.charts[item].series[0].setData(data_series_array_chart);
-                            $('.rate-1-text').append('<span style="color:red;" class="not-enough-data-for-chart-rate-1"> (Not enough data to display chart.)</span>')
+                            Highcharts.charts[item].showLoading('No data to display');
                         }
 
                         // Reset data series array
@@ -1171,7 +1168,7 @@
                                 data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
                             });
                             Highcharts.charts[item].series[0].setData(data_series_array_chart);
-                            $('.rate-2-text').append('<span style="color:red;" class="not-enough-data-for-chart-rate-2"> (Not enough data to display chart.)</span>')
+                            Highcharts.charts[item].showLoading('No data to display');
                         }
 
                         // Reset data series array
@@ -1202,7 +1199,7 @@
                                 data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
                             });
                             Highcharts.charts[item].series[0].setData(data_series_array_chart);
-                            $('.rate-3-text').append('<span style="color:red;" class="not-enough-data-for-chart-rate-3"> (Not enough data to display chart.)</span>')
+                            Highcharts.charts[item].showLoading('No data to display');
                         }
                         // Reset data series array
                         data_series_array_chart = [];
@@ -1343,4 +1340,5 @@
         return json_data;
     }
 </script>
+
 {% endblock %}
