@@ -57,10 +57,9 @@
 
                 </select>
             </div>
-            <div class="col-md-2 col-xs-6">
+            <div class="col-md-2 col-xs-12">
                 <label class="filter-label" for="daterange">Time Period</label>
                 <input type="text" class="form-control" name="daterange" value=""/>
-
             </div>
         </div>
         <br/>
@@ -618,11 +617,12 @@
          - Not US Mainland text
          - Separators
          */
-        var mapData = Highcharts.maps['countries/bd/bd-all'],
-                myData = Highcharts.geojson(Highcharts.maps['countries/bd/bd-all']),
-                tempSeries,
-                // Some responsiveness
-                small = $('#map').width() < 400;
+        var mapData = Highcharts.maps['countries/bd/bd-all'];
+        var myData = Highcharts.geojson(Highcharts.maps['countries/bd/bd-all']);
+        var tempSeries;
+
+        // Some responsiveness
+        var small = $('#map').width() < 400;
 
         // Set drilldown pointers
         $.each(myData, function (i) {
@@ -633,6 +633,7 @@
             } else {
                 this.value = null;
             }
+            this.location_type = 'division';
             this.level = 1;
         });
 
@@ -641,6 +642,7 @@
             chart: {
                 events: {
                     drilldown: function (e) {
+                        map_data = buildDataSeries();
                         var map_key;
                         var drilldown_level = e.point.level;
                         if (drilldown_level == 1) {
@@ -653,10 +655,10 @@
                         // Font Awesome spinner
 
                         // Load the drilldown map
-
                         var data = Highcharts.maps[map_key];
                         var drillMyData = Highcharts.geojson(data);
                         var drilldown_data = [];
+
                         // Set a non-random bogus value
 
                         $.each(drillMyData, function (i) {
@@ -677,8 +679,8 @@
                                 if (this.properties.District == name) {
                                     this['hc-key'] = "bd-" + this.properties['Upazila'].substr(0, 2).toLowerCase();
                                     this.name = this.properties['Upazila'];
-                                    if (map_data['upazilla'][this.name] != undefined) {
-                                        this.value = map_data['upazilla'][this.name];
+                                    if (map_data['upazila'][this.name] != undefined) {
+                                        this.value = map_data['upazila'][this.name];
                                     } else {
                                         this.value = null;
                                     }
@@ -698,7 +700,7 @@
                             }
                         });
                         // Hide loading and add series
-                        chart.hideLoading();
+//                        chart.hideLoading();
 
 
                         this.setTitle(null, {text: e.point.name});
@@ -886,6 +888,7 @@
             updateCharts(name, level_number, violence_type, date)
             updateTop3Section(name, level_number, violence_type, date);
             updateCensusInfo(name, level_number);
+            updateMapValues(name);
         }
 
 
@@ -1024,7 +1027,7 @@
                             $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
                             Highcharts.charts[item].series[0].setData(data_series_array);
                             Highcharts.charts[item].xAxis[0].setCategories(categories);
-                            updateTrendArrows(data_series_array_chart, 1);
+                            updateTrendArrows(data_series_array, 1);
                             Highcharts.charts[item].hideLoading();
                         } else {
                             $('#accordion .rate-1').parent().addClass("ui-state-disabled");
@@ -1049,7 +1052,7 @@
                             $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
                             Highcharts.charts[item].series[0].setData(data_series_array);
                             Highcharts.charts[item].xAxis[0].setCategories(categories);
-                            updateTrendArrows(data_series_array_chart, 2);
+                            updateTrendArrows(data_series_array, 2);
                             Highcharts.charts[item].hideLoading();
                         } else {
                             $('#accordion .rate-2').parent().addClass("ui-state-disabled");
@@ -1073,7 +1076,7 @@
                             $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
                             Highcharts.charts[item].series[0].setData(data_series_array);
                             Highcharts.charts[item].xAxis[0].setCategories(categories);
-                            updateTrendArrows(data_series_array_chart, 3);
+                            updateTrendArrows(data_series_array, 3);
                             $('.rate-3-text .not-enough-data-for-chart-rate-3').remove();
                             Highcharts.charts[item].hideLoading();
                         } else {
@@ -1225,16 +1228,17 @@
 
     // Update trend arrays
     function updateTrendArrows(array, chartNumber) {
-        console.log(array);
         if (array[array.length - 1] > array[array.length - 2]) {
             $('.rate-' + chartNumber + '-arrow').css('display', '');
             $('.rate-' + chartNumber + '-arrow')[0].src = $('.rate-2-arrow')[0].src.replace('down', 'up');
         } else if (array[array.length - 1] < array[array.length - 2]) {
             $('.rate-' + chartNumber + '-arrow')[0].src = $('.rate-2-arrow')[0].src.replace('up', 'down');
         }
-        else {
+        else if (array[array.length - 1] == array[array.length - 2]) {
             $('.rate-' + chartNumber + '-arrow').css('display', 'none');
         }
+//        console.log('val 1: ' + array[array.length - 1]);
+//        console.log('val 2:' + array[array.length - 2]);
     }
 
     // Update the top 3 types
@@ -1333,32 +1337,167 @@
     function capitalize(s) {
         return s[0].toUpperCase() + s.slice(1);
     }
+    function updateMapValues(name) {
 
+//        var updated_data = buildDataSeries(name);
+        var map = $('#map').highcharts(),
+                points = map.series[0].points;
+        var level_number = 0;
+        if (map.drilldownLevels != undefined) {
+            level_number = $('#map').highcharts().drilldownLevels.length;
+        }
+
+        // Get selected violence type dropdown
+        var violence_type = $("#violence-type-select").val().replace('/', '-');
+
+        // Get date
+        var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
+
+        if (name == undefined) {
+            name = 'Bangladesh';
+        }
+
+        console.log(name);
+        console.log(level_number);
+
+        if (level_number == 1) {
+            var district_url = "{{ url_for('api.get_victims', type='division', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
+            $.get(district_url, function (data) {
+                console.log(data);
+                var district = {};
+                for (var item in data) {
+                    district[data[item]['division'].toString()] = data[item]["incidents"]
+                }
+                console.log(district);
+                console.log(points);
+                for (var i in points) {
+                    var val = district[points[i].name]
+                    if (val != undefined) {
+                        points[i].update({value: val}, false);
+                        points[i].update({color: mapColor(val)})
+                    } else {
+                        points[i].update({value: undefined}, true);
+                        points[i].update({color: mapColor(0)})
+                    }
+
+                }
+            });
+
+        }
+        if (level_number == 2) {
+            var upazila_url = "{{ url_for('api.get_victims', type='district', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
+            $.get(upazila_url, function (data) {
+                var upazila = {};
+                console.log(data);
+                for (var item in data) {
+                    upazila[data[item]['district'].toString()] = data[item]["incidents"]
+                }
+
+                for (var i in points) {
+                    var val = upazila[points[i].name]
+                    if (val != undefined) {
+                        points[i].update({value: val}, false);
+                        points[i].update({color: mapColor(val)})
+                    } else {
+                        points[i].update({value: undefined}, false);
+                        points[i].update({color: mapColor(0)})
+                    }
+
+                }
+            });
+        }
+        if (level_number == 0) {
+            var division_url = "{{ url_for('api.get_victims', type='division', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
+            $.get(division_url, function (data) {
+                var divisions = {};
+                for (var item in data) {
+                    divisions[data[item]['division'].toString()] = data[item]["incidents"]
+                }
+                for (var i in points) {
+                    var val = divisions[points[i].name]
+                    if (val != undefined) {
+                        points[i].update({value: val}, false);
+                    } else {
+                        points[i].update({value: undefined}, false);
+                        points[i].update({color: mapColor(0)})
+                    }
+
+                }
+            });
+        }
+
+        map.redraw();
+    }
+
+    function mapColor(val) {
+        if (val < 100 && val != 0) {
+            return "#a3dbb9"
+        }
+
+
+        if (val > 100 && val < 500) {
+            return "#fbfa20"
+        }
+        if (val > 500 && val < 1500) {
+            return "#feb126"
+        }
+
+
+        if (val > 1500 && val < 2000) {
+            return "#f7802d"
+        }
+
+
+        if (val > 2000) {
+            return "#fe363c"
+        }
+
+
+        if (val == 0) {
+            return "#ffffff"
+        }
+
+    }
     // Build map data series based on the incident number number
-    function buildDataSeries(url) {
+    function buildDataSeries(name) {
         var json_data = {};
         var divisions = {};
         var districts = {};
-        var upazillas = {};
+        var upazilas = {};
+        // Get selected violence type dropdown
+        var violence_type = $("#violence-type-select").val().replace('/', '-');
 
-        $.get("{{ url_for('api.get_victims', type='division')}}", function (data) {
+        // Get date
+        var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
+
+        if (name == undefined) {
+            name = 'Bangladesh';
+        }
+        var division_url = "{{ url_for('api.get_victims', type='division', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
+        $.get(division_url, function (data) {
             for (var item in data) {
                 divisions[data[item]['division'].toString()] = data[item]["incidents"]
             }
         });
-        $.get("{{ url_for('api.get_victims', type='district')}}", function (data) {
+
+        var district_url = "{{ url_for('api.get_victims', type='district', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
+
+        $.get(district_url, function (data) {
             for (var item in data) {
                 districts[data[item]['district'].toString()] = data[item]["incidents"]
             }
         });
-        $.get("{{ url_for('api.get_victims', type='upazilla')}}", function (data) {
+
+        var upazila_url = "{{ url_for('api.get_victims', type='upazila', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
+
+        $.get(upazila_url, function (data) {
             for (var item in data) {
-                upazillas[data[item]['upazilla']] = data[item]["incidents"]
+                upazilas[data[item]['upazila']] = data[item]["incidents"]
             }
         });
         json_data['division'] = divisions;
         json_data['district'] = districts;
-        json_data['upazilla'] = upazillas;
+        json_data['upazila'] = upazilas;
         return json_data;
     }
 </script>

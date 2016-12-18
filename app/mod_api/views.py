@@ -29,7 +29,7 @@ def get_results(name, level, violence_type, date, ):
     level_json = {
         0: "division",
         1: "district",
-        2: "upazilla",
+        2: "upazila",
         3: "state"
     }
 
@@ -95,7 +95,7 @@ def monthly_incidents(name, level, date, quarterly,violence_type=None):
     level_json = {
         0: "division",
         1: "district",
-        2: "upazilla",
+        2: "upazila",
         3: "state"
     }
     match_location = None
@@ -274,12 +274,18 @@ def monthly_incidents(name, level, date, quarterly,violence_type=None):
     return resp
 
 
-@mod_api.route('/bd/victims/<string:type>', methods=['GET'])
-@mod_api.route('/bd/victims/<string:type>/<string:name>', methods=['GET'])
-def get_victims(type, name=None):
+# @mod_api.route('/bd/victims/<string:type>', methods=['GET'])
+@mod_api.route('/get_total_victims_number/<string:type>/<string:date>/<string:violence_type>/<string:name>', methods=['GET'])
+def get_victims(type, date=None, violence_type=None, name=None):
+    if violence_type:
+        violence_type = violence_type.replace('-', '/')
+    if date:
+        from_date = datetime.strptime(date.split('---')[0], '%m-%d-%Y')
+        to_date = datetime.strptime(date.split('---')[1], '%m-%d-%Y')
+
     match = None
     group = None
-    if name:
+    if name != 'Bangladesh':
         match = {
             "$match": {
                 type: {
@@ -289,7 +295,13 @@ def get_victims(type, name=None):
                     "$in": [
                         name
                     ]
-                }
+                },
+                'violence_type': {
+                    "$in": [
+                        str(violence_type)
+                    ]
+                },
+                "incident_date": {"$gte": from_date, "$lte": to_date}
             }
         }
     else:
@@ -299,14 +311,16 @@ def get_victims(type, name=None):
                     "$nin": [
                         ""
                     ]
-                }
+                },
+                "incident_date": {"$gte": from_date, "$lte": to_date}
             }
         }
-    if name == 'division':
+
+    if type=='division':
         group = {
             "$group": {
                 "_id": {
-                    'district': '$district'
+                    'division': '$district'
                 },
                 "incidents": {
                     "$sum": 1
@@ -317,7 +331,7 @@ def get_victims(type, name=None):
         group = {
             "$group": {
                 "_id": {
-                    type: '$' + type
+                    type: '$'+type
                 },
                 "incidents": {
                     "$sum": 1
@@ -476,7 +490,7 @@ def get_top(level, name, violence_type, date):
     level_json = {
         0: "division",
         1: "district",
-        2: "upazilla",
+        2: "upazila",
         3: "state"
     }
     match = {}

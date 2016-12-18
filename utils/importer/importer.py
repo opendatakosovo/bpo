@@ -24,7 +24,7 @@ def parse():
         "VNUM": "violence_number",
         "RDATE": "report_date",
         "NCODE": "name_of_coder",
-        "LUPC": "upazilla",
+        "LUPC": "upazila",
         "LDIS": "district",
         "LUNW": "village",
         "WNONP": "woundednon_participant",
@@ -601,7 +601,7 @@ def parse():
         "999": "Other*"
     }
 
-    upazilla = {
+    upazila = {
         "100": "BARISAL DIVISION",
         "101": "BARGUNA DISTRICT",
         "101001": "Barguna",
@@ -1334,9 +1334,9 @@ def parse():
                         elif elem[key] == '800001' or elem[key] == '30100':
                             new_json[json_structure[key]] = "multiple"
                         elif elem[key] == '508012' or elem[key] =='508010' or elem[key] =='508011':
-                            new_json[json_structure[key]] = upazilla['508002']
+                            new_json[json_structure[key]] = upazila['508002']
                         else:
-                            new_json[json_structure[key]] = upazilla[str(elem[key])]
+                            new_json[json_structure[key]] = upazila[str(elem[key])]
                     elif key =='VDAY':
                         if key == None:
                             v_day = 1
