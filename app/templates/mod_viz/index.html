@@ -78,7 +78,7 @@
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
                     <span class="rate-1"></span> <span class="rate-1-text">has the highest fatality rate. </span>
-                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <img class="rate-1-arrow viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -91,7 +91,7 @@
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
                     <span class="rate-2"></span> <span class="rate-2-text">has the highest injury count.</span>
-                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <img class="rate-2-arrow viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -104,7 +104,7 @@
                 <div class="division-overview-tab">
                     <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
                     <span class="rate-3"></span> <span class="rate-3-text">has the highest property damage count.</span>
-                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <img class="rate-3-arrow viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -874,7 +874,6 @@
                 });
 
             }
-            console.log(level_number);
             if (level_number == 1) {
                 $('#division-overview').css('display', 'block');
             } else {
@@ -891,7 +890,6 @@
     function updateCensusInfo(name, level){
         var url = '{{ url_for("api.get_census_info", name="NAME", level=10)}}'.replace('NAME', name).replace('10', level);
         $.get(url, function(data){
-            console.log(data);
             if(data != null){
                 $('.population-data').text(data['population']);
                 if(data['poverty'] != null){
@@ -930,7 +928,6 @@
 
         // Get top death location name
         death_top_rank_data = getTopN(rank_data, 'death', 1);
-        console.log(death_top_rank_data);
         var top_death_location = "";
         if (death_top_rank_data.length != 0) {
             $('.rate-1-text').html('has the highest fatality rate.')
@@ -995,7 +992,7 @@
         var timeDiff = Math.abs((new Date(new_date[0])).getTime() - (new Date(new_date[1])).getTime())
         var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
         if (diffDays <= 365) {
-            console.log("We are showing yearly data charts.");
+
             var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=0,  date='date', quarterly='monthly' , violence_type='violence-type')}}".replace('name', name).replace(0, level_number).replace('violence-type', violence_type).replace('date', date);
             $.get(url_for_chart_get_results, function (data) {
 
@@ -1029,11 +1026,14 @@
                             $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
                             Highcharts.charts[item].series[0].setData(data_series_array);
                             Highcharts.charts[item].xAxis[0].setCategories(categories);
+                            updateTrendArrows(data_series_array_chart, 1);
+                            Highcharts.charts[item].hideLoading();
                         } else {
                             $('#accordion .rate-1').parent().addClass("ui-state-disabled");
                             data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
                             Highcharts.charts[item].series[0].setData(data_series_array);
                             Highcharts.charts[item].showLoading('No data to display');
+
                         }
 
                         // Reset data series array
@@ -1051,6 +1051,8 @@
                             $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
                             Highcharts.charts[item].series[0].setData(data_series_array);
                             Highcharts.charts[item].xAxis[0].setCategories(categories);
+                            updateTrendArrows(data_series_array_chart, 2);
+                            Highcharts.charts[item].hideLoading();
                         } else {
                             $('#accordion .rate-2').parent().addClass("ui-state-disabled");
                             // Reset data series array
@@ -1073,7 +1075,9 @@
                             $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
                             Highcharts.charts[item].series[0].setData(data_series_array);
                             Highcharts.charts[item].xAxis[0].setCategories(categories);
+                            updateTrendArrows(data_series_array_chart, 3);
                             $('.rate-3-text .not-enough-data-for-chart-rate-3').remove();
+                            Highcharts.charts[item].hideLoading();
                         } else {
                             $('#accordion .rate-3').parent().addClass("ui-state-disabled");
                             data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
@@ -1128,6 +1132,8 @@
                             Highcharts.charts[item].series[0].setData(data_series_array_chart);
                             Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
                             $('.not-enough-data-for-chart-rate-1').css('display', 'none');
+                            updateTrendArrows(data_series_array_chart, 1);
+                            Highcharts.charts[item].hideLoading();
                         }
                         else {
                             $('#accordion .rate-1').parent().addClass("ui-state-disabled");
@@ -1160,6 +1166,8 @@
                             $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
                             Highcharts.charts[item].series[0].setData(data_series_array_chart);
                             Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
+                            updateTrendArrows(data_series_array_chart, 2);
+                            Highcharts.charts[item].hideLoading();
                         }
                         else {
                             $('#accordion .rate-2').parent().addClass("ui-state-disabled");
@@ -1190,7 +1198,9 @@
                         if (data_series_array_chart.reduce(add, 0) != 0) {
                             $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
                             Highcharts.charts[item].series[0].setData(data_series_array_chart);
+                            updateTrendArrows(data_series_array_chart, 3);
                             Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
+                            Highcharts.charts[item].hideLoading();
                         }
                         else {
                             $('#accordion .rate-3').parent().addClass("ui-state-disabled");
@@ -1213,6 +1223,20 @@
         }
 
 
+    }
+
+    // Update trend arrays
+    function updateTrendArrows(array, chartNumber){
+        console.log(array);
+        if(array[array.length-1]>array[array.length-2]){
+            $('.rate-'+chartNumber+'-arrow').css('display','');
+            $('.rate-'+chartNumber+'-arrow')[0].src = $('.rate-2-arrow')[0].src.replace('down','up');
+        }else if(array[array.length-1]<array[array.length-2]) {
+            $('.rate-'+chartNumber+'-arrow')[0].src = $('.rate-2-arrow')[0].src.replace('up','down');
+        }
+        else{
+            $('.rate-'+chartNumber+'-arrow').css('display','none');
+        }
     }
 
     // Update the top 3 types

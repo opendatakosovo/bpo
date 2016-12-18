@@ -178,3 +178,15 @@ ol li {
     overflow: hidden;
     list-style-position: inside;
 }
+span.section-title-top-perpetrators {
+    font-weight: bold;
+}
+
+span.section-title-top-casualties {
+    font-weight: bold;
+}
+
+span.section-title-top-property {
+    font-weight: bold;
+}
+
