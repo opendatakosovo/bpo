@@ -638,3 +638,18 @@ def get_top(level, name, violence_type, date):
         response=json_util.dumps(result),
         mimetype='application/json')
     return resp
+
+@mod_api.route('/census/<string:name>/<int:level>', methods=['GET','POST'])
+def get_census_info(name, level):
+    census_info = None
+    if level == 0:
+        census_info = mongo.db.census.find_one({"division": name})
+    elif level == 1:
+        census_info = mongo.db.census.find_one({"district": name})
+    elif level == 2:
+        census_info = mongo.db.census.find_one({"upazila": name})
+    resp = Response(
+        response=json_util.dumps(census_info),
+        mimetype='application/json')
+    return resp
+

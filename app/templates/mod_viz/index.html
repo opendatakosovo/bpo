@@ -239,52 +239,51 @@
         <div class="row">
             <div class="col-md-12 census-information">
                 <div class="col-md-12">
-                    <span style="color: #03506b;font-size: 18px;">Census Information for <span class="location-name">Bangladesh</span><span
-                class="caret"></span></span>
+                    <span style="color: #03506b;font-size: 18px;">Census Information for <span class="location-name">Bangladesh</span></span>
                 </div>
 
                 <div class="col-md-6">
                     <dl class="dl-horizontal">
                         <dt>Population</dt>
-                        <dd>149,112,243</dd>
+                        <dd class="population-data">149,112,243</dd>
                     </dl>
-                     <dl class="dl-horizontal second-dl">
-                        <dt> - </dt>
-                        <dd> - </dd>
+                    <dl class="dl-horizontal second-dl">
+                        <dt> -</dt>
+                        <dd> -</dd>
                     </dl>
                     <dl class="dl-horizontal second-dl">
                         <dt>Unemployment</dt>
-                        <dd>4.3%</dd>
+                        <dd class="unemployment-data"></dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt>Literacy</dt>
-                        <dd>64.8%</dd>
+                        <dd class="literacy-data"></dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt>Poverty</dt>
-                        <dd>26.0%</dd>
+                        <dd class="poverty-data">26.0%</dd>
                     </dl>
                 </div>
                 <div class="col-md-6">
                     <dl class="dl-horizontal">
                         <dt>Religious diversity</dt>
-                        <dd>Muslim: 87.0 %</dd>
+                        <dd>Muslim:%</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Hindu: 12.0%</dd>
+                        <dd>Hindu: %</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Buddhist: 0.6%</dd>
+                        <dd>Buddhist: %</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Christian: 0.3%</dd>
+                        <dd>Christian: %</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Others: 0.1%</dd>
+                        <dd>Others: %</dd>
                     </dl>
                 </div>
 
@@ -347,6 +346,12 @@
         // Listen when we select a date range, update the charts/data reflecting the selected date range
         $('input[name=daterange]').change(function () {
             updateViz(undefined, false);
+        });
+
+        $(window).resize(function () {
+            $("#third-section-first-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
+            $("#third-section-second-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
+            $("#third-section-third-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
         });
     });
     function populateLocationDropdown() {
@@ -598,7 +603,7 @@
             locale: {
                 format: 'MM-DD-YYYY'
             },
-            startDate: "01-01-2013",
+            startDate: "01-01-2014",
             endDate: "12-31-2015"
         });
     }
@@ -702,7 +707,7 @@
             },
 
             title: {
-                text: 'Highcharts Map Drilldown'
+                text: '-'
             },
 
             subtitle: {
@@ -878,7 +883,28 @@
             updateTextValues(name, level_number, violence_type, date);
             updateCharts(name, level_number, violence_type, date)
             updateTop3Section(name, level_number, violence_type, date);
+            updateCensusInfo(name, level_number);
         }
+
+
+    }
+    function updateCensusInfo(name, level){
+        var url = '{{ url_for("api.get_census_info", name="NAME", level=10)}}'.replace('NAME', name).replace('10', level);
+        $.get(url, function(data){
+            console.log(data);
+            if(data != null){
+                $('.population-data').text(data['population']);
+                if(data['poverty'] != null){
+                     $('.poverty-data').css('display','');
+                    $('.poverty-data').text(data['poverty'] + "%");
+                }else{
+                    $('.poverty-data').css('display','none');
+                }
+            }
+
+
+
+        });
 
 
     }
