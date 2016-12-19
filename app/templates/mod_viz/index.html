@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block body %}
 <style>
-    .container {
+    .intro-text {
         display: none;
     }
 
@@ -20,7 +20,16 @@
 <script src="../static/js/geo-files/upazillas.js"></script>
 
 <div class="row">
+
     <div class="col-md-12" id="filtering">
+        <div class="row">
+            <div class="viz-title-container col-md-6">
+                <span class="viz-title">Bangladesh Peace Observatory</span>
+            </div>
+            <div class="col-md-2 col-md-offset-4">
+                <a class="viz-title-about" href="{{ url_for('main.about') }}">About</a>
+            </div>
+        </div>
         <br/>
         <div class="row">
             <div class="col-md-6 col-xs-6">
@@ -44,7 +53,7 @@
                 </div>
             </div>
             <div class="col-md-2 col-xs-6">
-                <label class="filter-label" for="data-source-select">Data Source</label>
+                <label class="filter-label" for="data-source-select">Choose data source</label>
                 <select class="form-control" id="data-source-select">
                     <option value="mgr">MGR</option>
                     <option value="idams" disabled>IDAMS</option>
@@ -52,25 +61,102 @@
                 </select>
             </div>
             <div class="col-md-2 col-xs-6">
-                <label class="filter-label" for="violence-type-select">Violence Type</label>
+                <label class="filter-label" for="violence-type-select">Violence Type:</label>
                 <select class="form-control" id="violence-type-select">
 
                 </select>
             </div>
             <div class="col-md-2 col-xs-12">
-                <label class="filter-label" for="daterange">Time Period</label>
+                <label class="filter-label" for="daterange">Time period:</label>
                 <input type="text" class="form-control" name="daterange" value=""/>
             </div>
         </div>
         <br/>
     </div>
     <div id="map" class="col-md-6">
-        MAP
     </div>
     <div id="viz-container" class="col-md-6">
-        <div class="col-md-12">
-            <span class="location-main-text">Violent Crimes in <span class="location-name">the Country</span></span>
+        <div class="violent-crimes-in col-md-12">
+            <span class="location-main-text">Violence in <span class="location-name">the Country</span></span>
         </div>
+        <div id="national-rank" class="col-md-12">
+            <span class="rank-section-title">National ranked:</span>
+            <div id="national-rank-accordion">
+                <div class="national-overview-tab">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                            <span class="death-rank-nth">n/a</span>
+                            <!--<img class="viz-icon-arrow"-->
+                                 <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
+                        </div>
+                        <div class="col-md-4">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                            <span class="injury-rank-nth">n/a</span>
+                            <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
+                        </div>
+                        <div class="col-md-4">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                            <span class="property-rank-nth">n/a</span>
+                            <!--<img class="viz-icon-arrow"-->
+                                 <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
+                            <span class="caret"></span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div>
+                    <span><span class="desc-death-rank-name"></span> ranked <span class="desc-death-rank"></span> in deaths with <span class="desc-death-rank-total"></span> deaths.</span></span><br />
+                    <span><span class="desc-injury-rank-name"></span> ranked <span class="desc-injury-rank"></span> in injuries with <span class="desc-injury-rank-total"></span> injuries.</span></span><br />
+                    <span><span class="desc-property-rank-name"></span> ranked <span class="desc-property-rank"></span> in property damage with <span class="desc-property-rank-total"></span> property damage.</span></span><br />
+
+                </div>
+
+            </div>
+        </div>
+        <!--<div id="district-rank" class="col-md-12">-->
+        <!--<span class="rank-section-title" >District rank:</span>-->
+        <!--<div id="district-rank-accordion">-->
+        <!--<div class="division-overview-tab">-->
+        <!--<div class="row">-->
+        <!--<div class="col-md-4">-->
+        <!--<img class="viz-icon"-->
+        <!--src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
+        <!--<span class="rank-nth">10th</span>-->
+        <!--<img class="viz-icon-arrow"-->
+        <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
+        <!--</div>-->
+        <!--<div class="col-md-4">-->
+        <!--<img class="viz-icon"-->
+        <!--src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>-->
+        <!--<span class="rank-nth">10th</span>-->
+        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
+        <!--</div>-->
+        <!--<div class="col-md-4">-->
+        <!--<img class="viz-icon"-->
+        <!--src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>-->
+        <!--<span class="rank-nth">10th</span>-->
+        <!--<img class="viz-icon-arrow"-->
+        <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
+        <!--<span class="caret"></span>-->
+        <!--</div>-->
+
+        <!--</div>-->
+
+
+        <!--</div>-->
+        <!--<div>-->
+        <!--<span class="rate-1"></span> <span class="rate-1-text">has the highest fatality rate.</span>-->
+        <!--<span class="rate-2"></span> <span class="rate-2-text">has the highest injury count.</span>-->
+        <!--</div>-->
+
+        <!--</div>-->
+        <!--</div>-->
         <div id="national-overview" class="col-md-12">
             <span class="section-title">National Overview:</span>
             <div id="national-accordion">
@@ -118,96 +204,17 @@
                 </div>
             </div>
         </div>
-        <div id="division-overview" class="col-md-12">
-            <span class="section-title">Division Overview:</span>
-            <div id="accordion">
-                <div class="division-overview-tab">
-                    <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                    <span class="rate-1"></span> <span class="rate-1-text">has the highest fatality rate.</span>
-                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
-                    <span class="caret"></span>
-                </div>
-                <div>
-                    <div class="third-section-chart" id="third-section-first-chart">
-                    </div>
-                    <span class="third-section-first-chart-no-data">
 
-                    </span>
-                </div>
-                <div class="division-overview-tab">
-                    <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
-                    <span class="rate-2"></span> <span class="rate-2-text">has the highest injury count.</span>
-                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                    <span class="caret"></span>
-                </div>
-                <div>
-                    <div class="third-section-chart" id="third-section-second-chart">
-                    </div>
-                    <span class="third-section-second-chart-no-data">
-
-                    </span>
-                </div>
-                <div class="division-overview-tab">
-                    <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
-                    <span class="rate-3"></span> <span class="rate-3-text">has the highest property damage count.</span>
-                    <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                    <span class="caret"></span>
-                </div>
-                <div>
-                    <div class="third-section-chart" id="third-section-third-chart">
-                    </div>
-                    <span class="third-section-third-chart-no-data">
-
-                    </span>
-                </div>
-            </div>
-        </div>
-        <!--<div id="upazila-overview" class="col-md-12">-->
-        <!--<span class="section-title">Upazila Overview:</span>-->
-        <!--<div id="accordion">-->
-        <!--<div class="division-overview-tab">-->
-        <!--<img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
-        <!--<span class="rate-1"></span> <span class="rate-1-text">has the highest fatality rate.</span>-->
-        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
-        <!--<span class="caret"></span>-->
-        <!--</div>-->
-        <!--<div>-->
-        <!--<div class="third-section-chart" id="third-section-first-chart">-->
-        <!--</div>-->
-        <!--<span class="third-section-first-chart-no-data">-->
-
-        <!--</span>-->
-        <!--</div>-->
-        <!--<div class="division-overview-tab">-->
-        <!--<img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>-->
-        <!--<span class="rate-2"></span> <span class="rate-2-text">has the highest injury count.</span>-->
-        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
-        <!--<span class="caret"></span>-->
-        <!--</div>-->
-        <!--<div>-->
-        <!--<div class="third-section-chart" id="third-section-second-chart">-->
-        <!--</div>-->
-        <!--<span class="third-section-second-chart-no-data">-->
-
-        <!--</span>-->
-        <!--</div>-->
-        <!--<div class="division-overview-tab">-->
-        <!--<img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>-->
-        <!--<span class="rate-3"></span> <span class="rate-3-text">has the highest property damage count.</span>-->
-        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
-        <!--<span class="caret"></span>-->
-        <!--</div>-->
-        <!--<div>-->
-        <!--<div class="third-section-chart" id="third-section-third-chart">-->
-        <!--</div>-->
-        <!--<span class="third-section-third-chart-no-data">-->
-
-        <!--</span>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
         <script>
             $("#accordion").accordion({
+                collapsible: true, active: false,
+                autoHeight: true
+            });
+            $("#national-rank-accordion").accordion({
+                collapsible: true, active: false,
+                autoHeight: true
+            });
+            $("#district-rank-accordion").accordion({
                 collapsible: true, active: false,
                 autoHeight: true
             });
@@ -241,13 +248,13 @@
         <div class="row">
             <div class="col-md-12 census-information">
                 <div class="col-md-12">
-                    <span style="color: #03506b;font-size: 18px;">Census Information for <span class="location-name">Bangladesh</span></span>
+                    <span style="color: #03506b;font-size: 16px;">Census Information for <span class="location-name">Bangladesh</span></span>
                 </div>
 
                 <div class="col-md-6">
                     <dl class="dl-horizontal">
                         <dt>Population</dt>
-                        <dd class="population-data">149,112,243</dd>
+                        <dd class="population-data">n/a</dd>
                     </dl>
                     <dl class="dl-horizontal second-dl">
                         <dt> -</dt>
@@ -255,37 +262,37 @@
                     </dl>
                     <dl class="dl-horizontal second-dl">
                         <dt>Unemployment</dt>
-                        <dd class="unemployment-data"></dd>
+                        <dd class="unemployment-data">n/a</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt>Literacy</dt>
-                        <dd class="literacy-data"></dd>
+                        <dd class="literacy-data">n/a</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt>Poverty</dt>
-                        <dd class="poverty-data">26.0%</dd>
+                        <dd class="poverty-data">n/a</dd>
                     </dl>
                 </div>
                 <div class="col-md-6">
                     <dl class="dl-horizontal">
                         <dt>Religious diversity</dt>
-                        <dd>Muslim:%</dd>
+                        <dd>Muslim: n/a</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Hindu: %</dd>
+                        <dd>Hindu: n/a</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Buddhist: %</dd>
+                        <dd>Buddhist: n/a</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Christian: %</dd>
+                        <dd>Christian: n/a</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Others: %</dd>
+                        <dd>Others: n/a</dd>
                     </dl>
                 </div>
 
@@ -298,8 +305,8 @@
 
 <div class="row">
     <div id="line-chart" class="col-md-12">
-        <h3>Human and Economic Impact</h3>
-        <h4>State of Violence in <span class="location-name">Bangladesh</span></h4>
+        <span class="line-chart-title">Human and Economic Impact</span><br/>
+        <span class="line-chart-description">State of Violence in <span class="location-name">Bangladesh</span></span>
         <div id="line-chart-container">
 
         </div>
@@ -553,6 +560,50 @@
         updateCharts('Bangladesh', 0, violence_type, date);
 
         updateTop3Section('Bangladesh', 0, violence_type, date);
+
+
+    }
+    function updateRankSections(name, level_number) {
+        var rank_data;
+        // Get request for the ranking data
+        var rank_url = '{{ url_for("api.get_stats_rank", type="division")}}'
+        $.get(rank_url, function (data) {
+            rank_data = data;
+        });
+        $.each(rank_data['death'],function(i, property){
+            if(property['name'] == name){
+                $('.death-rank-nth').text(property['rank'] + 'th');
+                $('.desc-death-rank-name').text(property['name']);
+                $('.desc-death-rank').text(property['rank']);
+                $('.desc-death-rank-total').text(Math.round(property['total']));
+            }
+        });
+        $.each(rank_data['injury'],function(i, property){
+            if(property['name'] == name){
+                $('.injury-rank-nth').text(property['rank'] + 'th');
+                $('.desc-injury-rank-name').text(property['name']);
+                $('.desc-injury-rank').text(property['rank']);
+                $('.desc-injury-rank-total').text(Math.round(property['total']));
+            }
+        });
+        $.each(rank_data['property'],function(i, property){
+            if(property['name'] == name){
+                $('.property-rank-nth').text(property['rank'] + 'th');
+                $('.desc-property-rank-name').text(property['name']);
+                $('.desc-property-rank').text(property['rank']);
+                $('.desc-property-rank-total').text(Math.round(property['total']));
+            }
+        });
+//        console.log(rank_data);
+//        $('.national-ranked').parent().css("display", "none");
+
+        // Set the highest rates
+//        var top_death_location = getTopN(rank_data, 'death', 1)[0].name;
+//        var top_injury_location = getTopN(rank_data, 'injury', 1)[0].name;
+//        var top_property_damage_location = getTopN(rank_data, 'property', 1)[0].name;
+//        $('.rate-1').html(top_death_location);
+//        $('.rate-2').html(top_injury_location);
+//        $('.rate-3').html(top_property_damage_location);
     }
     function createLineChart() {
         var seriesOptions = [];
@@ -574,7 +625,7 @@
                 yAxis: {
                     labels: {
                         formatter: function () {
-                            return  this.value;
+                            return this.value;
                         }
                     },
                     plotLines: [{
@@ -609,7 +660,7 @@
             $.get('{{url_for("api.get_line_chart_data")}}', function (data) {
 
                 $.each(data, function (item) {
-                    if(data[item]['date'] != null){
+                    if (data[item]['date'] != null) {
                         deaths.push([data[item]['date'].$date, data[item]['death']])
                         injuries.push([data[item]['date'].$date, data[item]['injuries']])
                         property_damage.push([data[item]['date'].$date, data[item]['property']])
@@ -618,38 +669,33 @@
                 })
             });
 
-            if(name == 'Deaths'){
+            if (name == 'Deaths') {
                 seriesOptions[i] = {
                     name: name,
                     data: deaths
                 };
-                console.log(i);
             }
-            if(name == 'Injuries'){
+            if (name == 'Injuries') {
                 seriesOptions[i] = {
                     name: name,
                     data: injuries
                 };
-                console.log(injuries);
             }
 
-            if(name == 'Incidents') {
+            if (name == 'Incidents') {
                 seriesOptions[i] = {
                     name: name,
                     data: incidents
                 };
-//                console.log(name);
             }
 
-            if(name=='Property Damage'){
+            if (name == 'Property Damage') {
                 seriesOptions[i] = {
                     name: name,
                     data: property_damage
                 };
-//                console.log(name);
             }
 
-            console.log(seriesOptions);
 
             // As we're loading the data asynchronously, we don't know what order it will arrive. So
             // we keep a counter and create the chart when all the data is loaded.
@@ -659,24 +705,7 @@
                 createChart(seriesOptions);
             }
         });
-//        $.each(names, function (i, name) {
-//
-//            $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?', function (data) {
-//
-//                seriesOptions[i] = {
-//                    name: name,
-//                    data: data
-//                };
-//
-//                // As we're loading the data asynchronously, we don't know what order it will arrive. So
-//                // we keep a counter and create the chart when all the data is loaded.
-//                seriesCounter += 1;
-//
-//                if (seriesCounter === names.length) {
-//                    createChart();
-//                }
-//            });
-//        });
+
     }
     function buildDateRangeInput() {
         // Add daterange jquery functionality
@@ -779,7 +808,7 @@
                             }
                         });
                         // Hide loading and add series
-//                        chart.hideLoading();
+                        chart.hideLoading();
 
 
                         this.setTitle(null, {text: e.point.name});
@@ -791,7 +820,7 @@
             },
 
             title: {
-                text: '-'
+                text: ' '
             },
 
             subtitle: {
@@ -937,6 +966,8 @@
         if ('drilldownLevels' in $('#map').highcharts()) {
             var level_number = $('#map').highcharts().drilldownLevels.length;
         }
+
+
         if (name == undefined) {
             name = $('#map').highcharts().series[0].name;
         }
@@ -959,9 +990,11 @@
 
             }
             if (level_number == 1) {
-                $('#division-overview').css('display', 'block');
+                $('#national-rank').css('display', 'block');
+                updateRankSections(name, level_number);
+
             } else {
-                $('#division-overview').css('display', 'none');
+                $('#national-rank').css('display', 'none');
             }
             updateTextValues(name, level_number, violence_type, date);
             updateCharts(name, level_number, violence_type, date)
@@ -1072,7 +1105,6 @@
         var timeDiff = Math.abs((new Date(new_date[0])).getTime() - (new Date(new_date[1])).getTime())
         var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
         if (diffDays <= 365) {
-
             var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=0,  date='date', quarterly='monthly' , violence_type='violence-type')}}".replace('name', name).replace(0, level_number).replace('violence-type', violence_type).replace('date', date);
             $.get(url_for_chart_get_results, function (data) {
 
@@ -1436,19 +1468,13 @@
             name = 'Bangladesh';
         }
 
-        console.log(name);
-        console.log(level_number);
-
         if (level_number == 1) {
             var district_url = "{{ url_for('api.get_victims', type='division', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
             $.get(district_url, function (data) {
-                console.log(data);
                 var district = {};
                 for (var item in data) {
                     district[data[item]['division'].toString()] = data[item]["incidents"]
                 }
-                console.log(district);
-                console.log(points);
                 for (var i in points) {
                     var val = district[points[i].name]
                     if (val != undefined) {
@@ -1467,7 +1493,6 @@
             var upazila_url = "{{ url_for('api.get_victims', type='district', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
             $.get(upazila_url, function (data) {
                 var upazila = {};
-                console.log(data);
                 for (var item in data) {
                     upazila[data[item]['district'].toString()] = data[item]["incidents"]
                 }

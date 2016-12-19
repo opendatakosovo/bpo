@@ -5,8 +5,8 @@ div.division-overview-tab {
 }
 
 div#national-accordion {
-    /*border: 1px solid gray;*/
-    padding: 5px;
+    padding-top: 9px;
+
 }
 
 dl {
@@ -38,6 +38,7 @@ dl {
     border: 1px solid gray;
     /*height: 300px;*/
     width: 100%;
+    padding: 3%;
 }
 
 .top-3 {
@@ -105,15 +106,13 @@ path {
 
 span.section-title {
     color: #03506b;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .location-main-text {
     color: #03506b;
-    font-size: 22px;
+    font-size: 18px;
 }
-
-
 
 /* Large desktops and laptops */
 @media (min-width: 1200px) {
@@ -128,44 +127,54 @@ span.section-title {
 
 }
 
-#top{
+#top {
     /*display:none;*/
 }
-.casualties-list-not-enogh-data{
-    display:none;
+
+.casualties-list-not-enogh-data {
+    display: none;
 }
-.property-list-not-enogh-data{
-    display:none;
+
+.property-list-not-enogh-data {
+    display: none;
 }
-.perpetrators-list-not-enogh-data{
-    display:none;
+
+.perpetrators-list-not-enogh-data {
+    display: none;
 }
-.third-section-first-chart-no-data{
-    display:none;
+
+.third-section-first-chart-no-data {
+    display: none;
 }
-.third-section-second-chart-no-data{
-    display:none;
+
+.third-section-second-chart-no-data {
+    display: none;
 }
-.third-section-third-chart-no-data{
-    display:none;
+
+.third-section-third-chart-no-data {
+    display: none;
 }
-#district-select, .district-select-label{
-    display:none;
+
+#district-select, .district-select-label {
+    display: none;
     margin-top: 24px;
 }
+
 /*.highcharts-container {*/
-    /*width: 100% !important;*/
+/*width: 100% !important;*/
 /*}*/
-#division-overview{
-    display:none;
+#division-overview {
+    display: none;
 }
+
 #viz-container path {
     stroke: white;
 }
 
 .chart-container .highcharts-grid {
-   display: none;
+    display: none;
 }
+
 ol li {
     text-align: justify;
     /* width: 150px; */
@@ -175,6 +184,7 @@ ol li {
     overflow: hidden;
     list-style-position: inside;
 }
+
 span.section-title-top-perpetrators {
     font-weight: bold;
 }
@@ -187,3 +197,65 @@ span.section-title-top-property {
     font-weight: bold;
 }
 
+.rank-section-title {
+    color: #03506b;
+    font-size: 16px;
+}
+
+#national-rank {
+    display: none
+}
+
+div.national-overview-tab {
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    padding: 5px;
+    background-color: white;
+}
+
+.violent-crimes-in {
+    padding-bottom: 12px;
+    padding-top: 12px;
+}
+
+.line-chart-title {
+    color: #03506b;
+    font-size: 20px;
+}
+
+.line-chart-description {
+    color: #03506b;
+    font-size: 16px;
+}
+
+#national-rank-accordion #ui-id-2 {
+    height: 96px !important;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 7px;
+}
+
+.viz-title {
+    color: white;
+    font-family: "Noto Serif";
+    font-size: 26px;
+
+}
+
+.viz-title-about {
+    float: right;
+    font-size: 24px;
+    font-family: "Noto Serif";
+    color: #FFC84A;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+div#map {
+    padding: 20px;
+}
+
+.viz-title-container {
+
+    padding-right: 10px;
+    padding-top: 10px;
+}

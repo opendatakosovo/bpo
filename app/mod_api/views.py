@@ -363,16 +363,29 @@ def get_victims(type, date=None, violence_type=None, name=None):
 
 
 @mod_api.route('/bd/rank/<string:type>', methods=['GET'])
-def get_rank(type):
-    match = {
-        "$match": {
-            type: {
-                "$nin": [
-                    None
-                ]
+@mod_api.route('/bd/rank/<string:type>/<string:name>', methods=['GET'])
+def get_rank(type, name=None):
+    if name:
+        match = {
+            "$match": {
+                type: {
+                    "$nin": [
+                        None
+                    ],
+                    "$in":[str(name)]
+                }
             }
         }
-    }
+    else:
+        match = {
+            "$match": {
+                type: {
+                    "$nin": [
+                        None
+                    ]
+                }
+            }
+        }
     group = {
         "$group": {
             "_id": {
@@ -417,6 +430,94 @@ def get_rank(type):
         item['rank'] = index
         index = index + 1
     rendered_result = json_util.dumps(result)
+    resp = Response(
+        response=rendered_result,
+        mimetype='application/json')
+    return resp
+
+@mod_api.route('/stats_rank/<string:type>', methods=['GET'])
+def get_stats_rank(type, name=None):
+
+    match = {
+            "$match": {
+                type: {
+                    "$nin": [
+                        None
+                    ]
+                }
+            }
+        }
+    group_by_death = {
+        "$group": {
+            "_id": {
+                type: "$" + type
+            },
+            'total': {
+                '$sum': '$deaths_count'
+            }
+        }
+    }
+    group_by_property = {
+        "$group": {
+            "_id": {
+                type: "$" + type
+            },
+            'total': {
+                '$sum': '$property_destroyed_count'
+            }
+        }
+    }
+    group_by_injuries = {
+        "$group": {
+            "_id": {
+                type: "$" + type
+            },
+            'total': {
+                '$sum': '$injuries_count'
+            }
+        }
+    }
+
+
+    sort = {
+        "$sort": {
+            "total": -1
+        }
+    }
+
+    project = {
+        "$project": {
+            "_id": 0,
+            'name': "$_id." + type,
+            "total": "$total",
+        }
+    }
+    aggregation_by_death = [match, group_by_death, sort, project]
+    aggregation_by_injury = [match, group_by_injuries, sort, project]
+    aggregation_by_property = [match, group_by_property, sort, project]
+    result_death = mongo.db.mgr.aggregate(aggregation_by_death)['result']
+    result_injury = mongo.db.mgr.aggregate(aggregation_by_injury)['result']
+    result_property = mongo.db.mgr.aggregate(aggregation_by_property)['result']
+
+    index = 1
+    for item in result_death:
+        item['rank'] = index
+        index = index + 1
+    index = 1
+    for item in result_injury:
+        item['rank'] = index
+        index = index + 1
+    index = 1
+    for item in result_property:
+        item['rank'] = index
+        index = index + 1
+
+    json_result = {}
+    json_result['death'] = result_death
+    json_result['injury'] = result_injury
+    json_result['property'] = result_property
+
+    rendered_result = json_util.dumps(json_result)
     resp = Response(
         response=rendered_result,
         mimetype='application/json')
