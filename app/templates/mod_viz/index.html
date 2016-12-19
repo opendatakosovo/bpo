@@ -299,8 +299,8 @@
 <div class="row">
     <div id="line-chart" class="col-md-12">
         <h3>Human and Economic Impact</h3>
-        <h4>State of Violence in Barisal Division</h4>
-        <div style="width:100%; height:200px;" id="line-chart-container">
+        <h4>State of Violence in <span class="location-name">Bangladesh</span></h4>
+        <div id="line-chart-container">
 
         </div>
     </div>
@@ -321,8 +321,6 @@
         // Init and build the map
         buildMap();
 
-        // Init and create the bottom line chart
-        createLineChart();
 
         // Init the right death,injuries,property charts
         initCharts(deaths_data_series = [12, 2, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
@@ -349,6 +347,9 @@
         $('input[name=daterange]').change(function () {
             updateViz(undefined, false);
         });
+
+        // Init and create the bottom line chart
+        createLineChart();
 
         $(window).resize(function () {
             $("#third-section-first-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
@@ -554,50 +555,128 @@
         updateTop3Section('Bangladesh', 0, violence_type, date);
     }
     function createLineChart() {
-
-        var seriesOptions = [],
-                seriesCounter = 0,
-                names = ['MSFT', 'AAPL', 'GOOG'];
+        var seriesOptions = [];
+        var seriesCounter = 0;
+        var names = ['Deaths', 'Injuries', 'Incidents', 'Property Damage'];
 
         /**
          * Create the chart when all data is loaded
          * @returns {undefined}
          */
+        function createChart(seriesOptions) {
 
-        Highcharts.stockChart('line-chart-container', {
+            Highcharts.stockChart('line-chart-container', {
 
-            rangeSelector: {
-                selected: 4
-            },
+                rangeSelector: {
+                    selected: 8
+                },
 
-            yAxis: {
-                labels: {
-                    formatter: function () {
-                        return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                yAxis: {
+                    labels: {
+                        formatter: function () {
+                            return  this.value;
+                        }
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 2,
+                        color: 'silver'
+                    }]
+                },
+
+                plotOptions: {
+                    series: {
+                        compare: 'value',
+                        showInNavigator: true
                     }
                 },
-                plotLines: [{
-                    value: 0,
-                    width: 2,
-                    color: 'silver'
-                }]
-            },
 
-            plotOptions: {
-                series: {
-                    compare: 'percent',
-                    showInNavigator: true
-                }
-            },
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+                    valueDecimals: 0,
+                    split: true
+                },
 
-            tooltip: {
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
-                valueDecimals: 2,
-                split: true
-            },
+                series: seriesOptions
+            });
+        }
 
-            series: seriesOptions
+        $.each(names, function (i, name) {
+            var deaths = [];
+            var injuries = [];
+            var incidents = [];
+            var property_damage = [];
+            $.get('{{url_for("api.get_line_chart_data")}}', function (data) {
+
+                $.each(data, function (item) {
+                    if(data[item]['date'] != null){
+                        deaths.push([data[item]['date'].$date, data[item]['death']])
+                        injuries.push([data[item]['date'].$date, data[item]['injuries']])
+                        property_damage.push([data[item]['date'].$date, data[item]['property']])
+                        incidents.push([data[item]['date'].$date, data[item]['incidents']])
+                    }
+                })
+            });
+
+            if(name == 'Deaths'){
+                seriesOptions[i] = {
+                    name: name,
+                    data: deaths
+                };
+                console.log(i);
+            }
+            if(name == 'Injuries'){
+                seriesOptions[i] = {
+                    name: name,
+                    data: injuries
+                };
+                console.log(injuries);
+            }
+
+            if(name == 'Incidents') {
+                seriesOptions[i] = {
+                    name: name,
+                    data: incidents
+                };
+//                console.log(name);
+            }
+
+            if(name=='Property Damage'){
+                seriesOptions[i] = {
+                    name: name,
+                    data: property_damage
+                };
+//                console.log(name);
+            }
+
+            console.log(seriesOptions);
+
+            // As we're loading the data asynchronously, we don't know what order it will arrive. So
+            // we keep a counter and create the chart when all the data is loaded.
+            seriesCounter += 1;
+
+            if (seriesCounter === names.length) {
+                createChart(seriesOptions);
+            }
         });
+//        $.each(names, function (i, name) {
+//
+//            $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?', function (data) {
+//
+//                seriesOptions[i] = {
+//                    name: name,
+//                    data: data
+//                };
+//
+//                // As we're loading the data asynchronously, we don't know what order it will arrive. So
+//                // we keep a counter and create the chart when all the data is loaded.
+//                seriesCounter += 1;
+//
+//                if (seriesCounter === names.length) {
+//                    createChart();
+//                }
+//            });
+//        });
     }
     function buildDateRangeInput() {
         // Add daterange jquery functionality

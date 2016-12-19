@@ -16,6 +16,7 @@ def index():
 
     return render_template('mod_importer/index.html')
 
+
 @mod_api.route('/results/<int:level>/<string:name>/<string:violence_type>/<string:date>', methods=['GET'])
 def get_results(name, level, violence_type, date, ):
     match_field = ""
@@ -35,7 +36,7 @@ def get_results(name, level, violence_type, date, ):
 
     match = {
         "$match": {
-            level_json[level-1]: {"$in": [str(name)]},
+            level_json[level - 1]: {"$in": [str(name)]},
             "violence_type": {
                 "$in": [
                     str(violence_type)
@@ -87,7 +88,7 @@ def get_results(name, level, violence_type, date, ):
 
 
 @mod_api.route('/incidents/monthly/<string:name>/<int:level>/<string:date>/<string:violence_type>/<string:quarterly>')
-def monthly_incidents(name, level, date, quarterly,violence_type=None):
+def monthly_incidents(name, level, date, quarterly, violence_type=None):
     violence_type = violence_type.replace('-', '/')
     from_date = datetime.strptime(date.split('---')[0], '%m-%d-%Y')
     to_date = datetime.strptime(date.split('---')[1], '%m-%d-%Y')
@@ -142,124 +143,124 @@ def monthly_incidents(name, level, date, quarterly,violence_type=None):
     # If we are requesting monthly data
     if quarterly == 'monthly':
         group = {
-                 '$group': {
-                     '_id': {
-                         'month': {
-                             '$substr': ['$incident_date', 5, 2]
-                         }
-                     },
-                     'total_injury': {
-                         '$sum': '$injuries_count'
-                     },
-                     'total_property': {
-                         '$sum': '$property_destroyed_count'
-                     },
-                     'total_death': {
-                         '$sum': '$deaths_count'
-                     }
-                 }
-             }
+            '$group': {
+                '_id': {
+                    'month': {
+                        '$substr': ['$incident_date', 5, 2]
+                    }
+                },
+                'total_injury': {
+                    '$sum': '$injuries_count'
+                },
+                'total_property': {
+                    '$sum': '$property_destroyed_count'
+                },
+                'total_death': {
+                    '$sum': '$deaths_count'
+                }
+            }
+        }
         sort = {
-                 "$sort": {
-                     "_id.month": 1
-                 }
-             }
+            "$sort": {
+                "_id.month": 1
+            }
+        }
         project = {
-                 "$project": {
-                     "_id": 0,
-                     'month': "$_id.month",
-                     'injuries': "$total_injury",
-                     'property': "$total_property",
-                     'death': "$total_death"
+            "$project": {
+                "_id": 0,
+                'month': "$_id.month",
+                'injuries': "$total_injury",
+                'property': "$total_property",
+                'death': "$total_death"
 
-                 }
-             }
+            }
+        }
         data = mongo.db.mgr.aggregate([match, group, sort, project])
     else:
         data = mongo.db.mgr.aggregate([
             match,
-           {
-              "$project":{
-                 "incident_date":1,
-                 'year':{
-                    "$year":"$incident_date"
-                 },
-                 'injuries_count':1,
-                 'property_destroyed_count':1,
-                 'deaths_count':1,
-                 "quarter":{
-                    "$cond":[
-                       {
-                          "$lte":[
-                             {
-                                "$month":"$incident_date"
-                             },
-                             3
-                          ]
-                       },
-                       1,
-                       {
-                          "$cond":[
-                             {
-                                "$lte":[
-                                   {
-                                      "$month":"$incident_date"
-                                   },
-                                   6
+            {
+                "$project": {
+                    "incident_date": 1,
+                    'year': {
+                        "$year": "$incident_date"
+                    },
+                    'injuries_count': 1,
+                    'property_destroyed_count': 1,
+                    'deaths_count': 1,
+                    "quarter": {
+                        "$cond": [
+                            {
+                                "$lte": [
+                                    {
+                                        "$month": "$incident_date"
+                                    },
+                                    3
                                 ]
-                             },
-                             2,
-                             {
-                                "$cond":[
-                                   {
-                                      "$lte":[
-                                         {
-                                            "$month":"$incident_date"
-                                         },
-                                         9
-                                      ]
-                                   },
-                                   3,
-                                   4
+                            },
+                            1,
+                            {
+                                "$cond": [
+                                    {
+                                        "$lte": [
+                                            {
+                                                "$month": "$incident_date"
+                                            },
+                                            6
+                                        ]
+                                    },
+                                    2,
+                                    {
+                                        "$cond": [
+                                            {
+                                                "$lte": [
+                                                    {
+                                                        "$month": "$incident_date"
+                                                    },
+                                                    9
+                                                ]
+                                            },
+                                            3,
+                                            4
+                                        ]
+                                    }
                                 ]
-                             }
-                          ]
-                       }
-                    ]
-                 }
-              }
-           },
-           {
-              "$group":{
-                 "_id":{
-                    "quarter":"$quarter",
-                    "year":"$year"
-                 },
-                 "incidents":{
-                    "$sum":1
-                 },
-                 'total_injury':{
-                    '$sum':'$injuries_count'
-                 },
-                 'total_property':{
-                    '$sum':'$property_destroyed_count'
-                 },
-                 'total_death':{
-                    '$sum':'$deaths_count'
-                 }
-              }
-           },
-           {
-              "$project":{
-                 "_id":0,
-                 "quarter":"$_id.quarter",
-                 "year":"$_id.year",
-                 "incidents":"$incidents",
-                 'injuries':"$total_injury",
-                 'property':"$total_property",
-                 'death':"$total_death"
-              }
-           },
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "$group": {
+                    "_id": {
+                        "quarter": "$quarter",
+                        "year": "$year"
+                    },
+                    "incidents": {
+                        "$sum": 1
+                    },
+                    'total_injury': {
+                        '$sum': '$injuries_count'
+                    },
+                    'total_property': {
+                        '$sum': '$property_destroyed_count'
+                    },
+                    'total_death': {
+                        '$sum': '$deaths_count'
+                    }
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "quarter": "$_id.quarter",
+                    "year": "$_id.year",
+                    "incidents": "$incidents",
+                    'injuries': "$total_injury",
+                    'property': "$total_property",
+                    'death': "$total_death"
+                }
+            },
             {
                 "$sort": {
                     "year": 1
@@ -275,7 +276,8 @@ def monthly_incidents(name, level, date, quarterly,violence_type=None):
 
 
 # @mod_api.route('/bd/victims/<string:type>', methods=['GET'])
-@mod_api.route('/get_total_victims_number/<string:type>/<string:date>/<string:violence_type>/<string:name>', methods=['GET'])
+@mod_api.route('/get_total_victims_number/<string:type>/<string:date>/<string:violence_type>/<string:name>',
+               methods=['GET'])
 def get_victims(type, date=None, violence_type=None, name=None):
     if violence_type:
         violence_type = violence_type.replace('-', '/')
@@ -316,7 +318,7 @@ def get_victims(type, date=None, violence_type=None, name=None):
             }
         }
 
-    if type=='division':
+    if type == 'division':
         group = {
             "$group": {
                 "_id": {
@@ -331,7 +333,7 @@ def get_victims(type, date=None, violence_type=None, name=None):
         group = {
             "$group": {
                 "_id": {
-                    type: '$'+type
+                    type: '$' + type
                 },
                 "incidents": {
                     "$sum": 1
@@ -653,7 +655,8 @@ def get_top(level, name, violence_type, date):
         mimetype='application/json')
     return resp
 
-@mod_api.route('/census/<string:name>/<int:level>', methods=['GET','POST'])
+
+@mod_api.route('/census/<string:name>/<int:level>', methods=['GET', 'POST'])
 def get_census_info(name, level):
     census_info = None
     if level == 0:
@@ -667,3 +670,47 @@ def get_census_info(name, level):
         mimetype='application/json')
     return resp
 
+
+@mod_api.route('/line-chart', methods=['GET'])
+def get_line_chart_data():
+    result = mongo.db.mgr.aggregate([
+        {
+            '$group': {
+                '_id': {
+                    'date': '$incident_date'
+                },
+                'total_injury': {
+                    '$sum': '$injuries_count'
+                },
+                'total_property': {
+                    '$sum': '$property_destroyed_count'
+                },
+                'total_death': {
+                    '$sum': '$deaths_count'
+                },
+                'incidents': {
+                    '$sum': 1
+                }
+            }
+        },
+        {
+            '$project': {
+                '_id': 0,
+                'date': '$_id.date',
+                'death': '$total_death',
+                'incidents': '$incidents',
+                'property': '$total_property',
+                'injuries': '$total_injury'
+            }
+        },
+        {
+            '$sort': {
+                'date': 1
+            }
+        }
+    ])
+
+    resp = Response(
+        response=json_util.dumps(result['result']),
+        mimetype='application/json')
+    return resp
