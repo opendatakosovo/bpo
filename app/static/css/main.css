@@ -15,11 +15,13 @@ dl {
 .dl-horizontal dt {
     width: 160px;
     text-align: left !important;
+    font-family: "Noto Serif";
 }
 
 .dl-horizontal dd {
     text-align: right !important;
     margin-left: 0px !important;
+    font-family: "Noto Serif";
 }
 
 #viz-container {
@@ -31,6 +33,7 @@ dl {
     overflow-x: scroll;
     overflow-y: scroll;
     padding-bottom: 10px;
+    font-family: "Noto Serif";
 }
 
 #line-chart {
@@ -89,7 +92,8 @@ div#ui-id-4 {
 
 div#filtering {
     padding-left: 30px;
-    background-color: #1B6D85;
+    /*background-color: #1B6D85;*/
+    background-color: #007CA4;
     font-family: "Noto Serif";
 }
 
@@ -266,4 +270,7 @@ div#map {
 .viz-title-container {
     padding-right: 10px;
     padding-top: 10px;
+}
+ol{
+    padding-left: 0px !important;
 }
