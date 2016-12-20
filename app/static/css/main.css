@@ -105,7 +105,8 @@ path {
 
 span.section-title {
     color: #03506b;
-    font-size: 16px;
+    font-size: 18px;
+    font-family: "Noto Serif";
 }
 
 .location-main-text {
