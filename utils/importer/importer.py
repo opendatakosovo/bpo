@@ -1353,10 +1353,12 @@ def parse():
                             new_json[json_structure[key]] = elem[key]
                     elif key =='VYEAR':
                         print elem['VYEAR']
-                        if elem['VYEAR'] == '2103':
-                            print "DID IT"
+                        if elem['VYEAR'] == '2103' or elem['VYEAR'] == 2103:
                             new_json[json_structure[key]] = 2013
                             v_year = 2013
+                        if elem['VYEAR'] == '2104' or elem['VYEAR'] == 2104:
+                            new_json[json_structure[key]] = 2014
+                            v_year = 2014
                         else:
                             v_year = elem['VYEAR']
                             new_json[json_structure[key]] = elem[key]
