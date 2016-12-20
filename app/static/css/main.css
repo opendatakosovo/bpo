@@ -6,7 +6,6 @@ div.division-overview-tab {
 
 div#national-accordion {
     padding-top: 9px;
-
 }
 
 dl {
@@ -50,8 +49,6 @@ dl {
 .census-information {
     border: 1px solid #e2e2e2;
     padding: 5px;
-    width: 92%;
-    margin-left: 30px;
     margin-top: 9px;
     background-color: #fff;
 }
@@ -93,11 +90,13 @@ div#ui-id-4 {
 div#filtering {
     padding-left: 30px;
     background-color: #1B6D85;
+    font-family: "Noto Serif";
 }
 
 .filter-label {
     font-size: 12px;
     color: #fff;
+    font-family: "Noto Serif";
 }
 
 path {
@@ -111,7 +110,8 @@ span.section-title {
 
 .location-main-text {
     color: #03506b;
-    font-size: 18px;
+    font-size: 24px;
+    font-family: "Noto Serif";
 }
 
 /* Large desktops and laptops */
@@ -158,6 +158,7 @@ span.section-title {
 #district-select, .district-select-label {
     display: none;
     margin-top: 24px;
+    font-family: "Noto Serif";
 }
 
 /*.highcharts-container {*/
@@ -177,8 +178,7 @@ span.section-title {
 
 ol li {
     text-align: justify;
-    /* width: 150px; */
-    /* display: inline-block; */
+    font-family: "Noto Serif";
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -187,29 +187,35 @@ ol li {
 
 span.section-title-top-perpetrators {
     font-weight: bold;
+    font-family: "Noto Serif";
 }
 
 span.section-title-top-casualties {
     font-weight: bold;
+    font-family: "Noto Serif";
 }
 
 span.section-title-top-property {
     font-weight: bold;
+    font-family: "Noto Serif";
 }
 
 .rank-section-title {
     color: #03506b;
-    font-size: 16px;
+    font-size: 18px;
+    font-family: "Noto Serif";
 }
 
 #national-rank {
-    display: none
+    display: none;
+    font-family: "Noto Serif";
 }
 
 div.national-overview-tab {
     border: 1px solid rgba(128, 128, 128, 0.25);
     padding: 5px;
     background-color: white;
+    font-family: "Noto Serif";
 }
 
 .violent-crimes-in {
@@ -219,12 +225,14 @@ div.national-overview-tab {
 
 .line-chart-title {
     color: #03506b;
-    font-size: 20px;
+    font-size: 24px;
+    font-family: "Noto Serif";
 }
 
 .line-chart-description {
     color: #03506b;
-    font-size: 16px;
+    font-size: 18px;
+    font-family: "Noto Serif";
 }
 
 #national-rank-accordion #ui-id-2 {
@@ -243,7 +251,7 @@ div.national-overview-tab {
 
 .viz-title-about {
     float: right;
-    font-size: 24px;
+    font-size: 20px;
     font-family: "Noto Serif";
     color: #FFC84A;
     padding-right: 10px;
@@ -255,7 +263,6 @@ div#map {
 }
 
 .viz-title-container {
-
     padding-right: 10px;
     padding-top: 10px;
 }

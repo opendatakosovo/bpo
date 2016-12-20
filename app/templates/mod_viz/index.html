@@ -89,7 +89,7 @@
                                  src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
                             <span class="death-rank-nth">n/a</span>
                             <!--<img class="viz-icon-arrow"-->
-                                 <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
+                            <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
                         </div>
                         <div class="col-md-4">
                             <img class="viz-icon"
@@ -102,7 +102,7 @@
                                  src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
                             <span class="property-rank-nth">n/a</span>
                             <!--<img class="viz-icon-arrow"-->
-                                 <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
+                            <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
                             <span class="caret"></span>
                         </div>
 
@@ -111,9 +111,12 @@
 
                 </div>
                 <div>
-                    <span><span class="desc-death-rank-name"></span> ranked <span class="desc-death-rank"></span> in deaths with <span class="desc-death-rank-total"></span> deaths.</span></span><br />
-                    <span><span class="desc-injury-rank-name"></span> ranked <span class="desc-injury-rank"></span> in injuries with <span class="desc-injury-rank-total"></span> injuries.</span></span><br />
-                    <span><span class="desc-property-rank-name"></span> ranked <span class="desc-property-rank"></span> in property damage with <span class="desc-property-rank-total"></span> property damage.</span></span><br />
+                    <span><span class="desc-death-rank-name"></span> ranked <span class="desc-death-rank"></span> in deaths with <span
+                            class="desc-death-rank-total"></span> deaths.</span></span><br/>
+                    <span><span class="desc-injury-rank-name"></span> ranked <span class="desc-injury-rank"></span> in injuries with <span
+                            class="desc-injury-rank-total"></span> injuries.</span></span><br/>
+                    <span><span class="desc-property-rank-name"></span> ranked <span class="desc-property-rank"></span> in property damage with <span
+                            class="desc-property-rank-total"></span> property damage.</span></span><br/>
 
                 </div>
 
@@ -245,7 +248,7 @@
                 </span>
             </div>
         </div>
-        <div class="row">
+        <div class="col-md-12">
             <div class="col-md-12 census-information">
                 <div class="col-md-12">
                     <span style="color: #03506b;font-size: 16px;">Census Information for <span class="location-name">Bangladesh</span></span>
@@ -570,24 +573,24 @@
         $.get(rank_url, function (data) {
             rank_data = data;
         });
-        $.each(rank_data['death'],function(i, property){
-            if(property['name'] == name){
+        $.each(rank_data['death'], function (i, property) {
+            if (property['name'] == name) {
                 $('.death-rank-nth').text(property['rank'] + 'th');
                 $('.desc-death-rank-name').text(property['name']);
                 $('.desc-death-rank').text(property['rank']);
                 $('.desc-death-rank-total').text(Math.round(property['total']));
             }
         });
-        $.each(rank_data['injury'],function(i, property){
-            if(property['name'] == name){
+        $.each(rank_data['injury'], function (i, property) {
+            if (property['name'] == name) {
                 $('.injury-rank-nth').text(property['rank'] + 'th');
                 $('.desc-injury-rank-name').text(property['name']);
                 $('.desc-injury-rank').text(property['rank']);
                 $('.desc-injury-rank-total').text(Math.round(property['total']));
             }
         });
-        $.each(rank_data['property'],function(i, property){
-            if(property['name'] == name){
+        $.each(rank_data['property'], function (i, property) {
+            if (property['name'] == name) {
                 $('.property-rank-nth').text(property['rank'] + 'th');
                 $('.desc-property-rank-name').text(property['name']);
                 $('.desc-property-rank').text(property['rank']);
@@ -619,7 +622,7 @@
             Highcharts.stockChart('line-chart-container', {
 
                 rangeSelector: {
-                    selected: 8
+                    selected: 2
                 },
 
                 yAxis: {
@@ -634,7 +637,9 @@
                         color: 'silver'
                     }]
                 },
-
+                xAxis: {
+                    range: 6 * 30 * 24 * 3600 * 1000
+                },
                 plotOptions: {
                     series: {
                         compare: 'value',

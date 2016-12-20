@@ -1352,8 +1352,15 @@ def parse():
                             v_month = elem['VMONT']
                             new_json[json_structure[key]] = elem[key]
                     elif key =='VYEAR':
-                        v_year = elem['VYEAR']
-                        new_json[json_structure[key]] = elem[key]
+                        print elem['VYEAR']
+                        if elem['VYEAR'] == '2103':
+                            print "DID IT"
+                            new_json[json_structure[key]] = 2013
+                            v_year = 2013
+                        else:
+                            v_year = elem['VYEAR']
+                            new_json[json_structure[key]] = elem[key]
+                            # print v_year
                     else:
                         new_json[json_structure[key]] = elem[key]
 
@@ -1381,7 +1388,7 @@ def parse():
                         elif division_number == 800:
                             new_json['division'] = 'Multiple'
             if v_day and v_month and v_year:
-                print str(v_day) + ' - ' + str(v_month)
+                # print str(v_day) + ' - ' + str(v_month)
                 try:
                     datetime_object = datetime.strptime(str(v_day)+' '+str(v_month)+' '+str(v_year), '%d %m %Y')
                     new_json['incident_date'] = datetime_object
