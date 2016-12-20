@@ -115,9 +115,9 @@ header .intro-text .intro-heading {
 }
 
 .enter-about {
-    color: #FFAA12;
+    color: #FDA200;
     background-color: #007CA4;
-    border: 2px solid #FFAA12;
+    border: 2px solid #FDA200;
     border-style: solid;
     font-family: Lato;
     text-transform: uppercase;
@@ -129,9 +129,9 @@ header .intro-text .intro-heading {
 }
 
 .enter-landing {
-    color: #FFAA12;
+    color: #FDA200;
     background-color: #007CA4;
-    border: 2px solid #FFAA12;
+    border: 2px solid #FDA200;
     border-style: solid;
     font-family: Lato;
     text-transform: uppercase;
@@ -140,14 +140,14 @@ header .intro-text .intro-heading {
     font-size: 20px;
     padding: 17px;
     float: right;
-    margin-right: 18px;
+    margin-right: 50px;
     height: 62px;
 }
 
 .btn-xl1:hover {
     color: white;
-    background-color: #FFAA12;
-    border-color: #FFAA12;
+    background-color: #FDA200;
+    border-color: #FDA200;
 }
 
 hr {
@@ -303,9 +303,11 @@ footer .footer-below {
 }
 
 .navbar-default .navbar-brand {
-    color: #FFAA12;
+    color: #FDA200;
 }
-
+.navbar-nav {
+    background-color: #007ca4;
+}
 footer {
     color: white;
     background-color: #007CA4;
@@ -1228,4 +1230,7 @@ body {
 i.fa {
     font-size: 22px;
     margin-left: -12px;
+}
+.nav-container{
+    background-color:#fff;
 }
