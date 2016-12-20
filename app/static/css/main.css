@@ -1,7 +1,9 @@
 div.division-overview-tab {
     border: 1px solid rgba(128, 128, 128, 0.25);
     padding: 5px;
-    background-color: white;
+    background-color: #FFFFFF;
+    box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
 }
 
 div#national-accordion {
@@ -16,12 +18,19 @@ dl {
     width: 160px;
     text-align: left !important;
     font-family: "Noto Serif";
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 22px;
+    color: #00506B;
 }
 
 .dl-horizontal dd {
     text-align: right !important;
     margin-left: 0px !important;
     font-family: "Noto Serif";
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 22px;
 }
 
 #viz-container {
@@ -47,6 +56,8 @@ dl {
     border: 1px solid rgba(128, 128, 128, 0.23);
     margin-top: 10px;
     background-color: white;
+    box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
 }
 
 .census-information {
@@ -54,6 +65,8 @@ dl {
     padding: 5px;
     margin-top: 9px;
     background-color: #fff;
+    box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
 }
 
 .caret {
@@ -73,11 +86,15 @@ dl {
 /*height: 300px !important;*/
 /*}*/
 div#ui-id-2 {
-    height: 200px !important;
+    height: 181px !important;
+    box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
 }
 
 div#ui-id-4 {
-    height: 200px !important;
+    height: 181px !important;
+    box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
 }
 
 .viz-icon {
@@ -108,15 +125,19 @@ path {
 }
 
 span.section-title {
-    color: #03506b;
-    font-size: 18px;
     font-family: "Noto Serif";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    color: #00506B;
 }
 
 .location-main-text {
-    color: #03506b;
-    font-size: 24px;
     font-family: "Noto Serif";
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 33px;
+    color: #00506B;
 }
 
 /* Large desktops and laptops */
@@ -183,7 +204,10 @@ span.section-title {
 
 ol li {
     text-align: justify;
-    font-family: "Noto Serif";
+    font-family: Lato;
+    font-size: 18px;
+    line-height: 32px;
+    color: #666666;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -191,18 +215,27 @@ ol li {
 }
 
 span.section-title-top-perpetrators {
-    font-weight: bold;
     font-family: "Noto Serif";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    color: #00506B;
 }
 
 span.section-title-top-casualties {
-    font-weight: bold;
     font-family: "Noto Serif";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    color: #00506B;
 }
 
 span.section-title-top-property {
-    font-weight: bold;
     font-family: "Noto Serif";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    color: #00506B;
 }
 
 .rank-section-title {
@@ -229,15 +262,19 @@ div.national-overview-tab {
 }
 
 .line-chart-title {
-    color: #03506b;
-    font-size: 24px;
     font-family: "Noto Serif";
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 33px;
+    color: #00506B;
 }
 
 .line-chart-description {
-    color: #03506b;
-    font-size: 18px;
     font-family: "Noto Serif";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    color: #00506B;
 }
 
 #national-rank-accordion #ui-id-2 {
@@ -271,6 +308,23 @@ div#map {
     padding-right: 10px;
     padding-top: 10px;
 }
-ol{
+
+ol {
     padding-left: 0px !important;
+}
+
+.rate-1, .rate-2, .rate-3, .rate-1-text, .rate-2-text, .rate-3-text {
+    font-family: Lato;
+    font-size: 18px;
+    line-height: 32px;
+    color: #333333;
+}
+
+.rate-1, .rate-2, .rate-3 {
+    font-weight: bold;
+}
+
+.viz-icon-arrow {
+    width: 24.11px;
+    height: 15px;
 }
