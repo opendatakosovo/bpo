@@ -42,13 +42,13 @@ header .intro-text .intro-heading {
 }
 
 .navbar-custom {
-    background-color: #1b6d85;
+    background-color: #007CA4;
     border-color: transparent;
 }
 
 .section-heading5 {
 
-    font-size: 50px;
+    font-size: 48px;
     text-transform: capitalize;
     font-family: "Playfair Display";
     margin-bottom: 50px;
@@ -116,7 +116,7 @@ header .intro-text .intro-heading {
 
 .enter-about {
     color: #FFAA12;
-    background-color: #1b6d85;
+    background-color: #007CA4;
     border: 2px solid #FFAA12;
     border-style: solid;
     font-family: Lato;
@@ -130,17 +130,18 @@ header .intro-text .intro-heading {
 
 .enter-landing {
     color: #FFAA12;
-    background-color: #1b6d85;
+    background-color: #007CA4;
     border: 2px solid #FFAA12;
     border-style: solid;
     font-family: Lato;
     text-transform: uppercase;
     font-weight: 700;
-    border-radius: 3px;
+    border-radius: 4px;
     font-size: 20px;
-    padding: 20px;
+    padding: 17px;
     float: right;
     margin-right: 18px;
+    height: 62px;
 }
 
 .btn-xl1:hover {
@@ -170,7 +171,7 @@ header {
     -o-background-size: cover;
     text-align: center;
     color: white;
-    background-color: #1b6d85;
+    background-color: #007CA4;
 }
 
 .bg-light-gray {
@@ -178,42 +179,42 @@ header {
 }
 
 .bg-light-blue {
-    background-color: #1b6d85;
+    background-color: #007CA4;
 }
 
 .lead1 {
-    font-size: 22px;
+    font-size: 18px;
     color: #FFFFFF;
     text-align: justify;
     font-family: Lato;
 }
 
 .lead2 {
-    font-size: 22px;
+    font-size: 18px;
     color: black;
     text-align: justify;
     font-family: Lato;
 }
 
 .lead3 {
-    font-size: 22px;
+    font-size: 18px;
     color: black;
     text-align: justify;
-    font-family: Lato;
+    font-family: 'Lato';
 }
 
 .lead4 {
-    font-size: 22px;
+    font-size: 18px;
     color: white;
     text-align: justify;
-    font-family: Lato;
+    font-family: 'Lato';
+    padding-left: 50px !important;
 }
 
 .test {
-    height: 85px;
+    height: 37px;
     width: 0px;
-    /*position:relative;*/
-    border: 5px solid #ADD8E6;
+    border: 3px solid #ADD8E6;
     margin-left: 0px;
     float: left;
 }
@@ -271,23 +272,14 @@ header {
 
 .intro-footer-one {
     font-family: "Noto Serif";
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 6px;
-
 }
 
 .footer1 {
     font-family: Lato;
     font-size: 16px;
     text-align: justify;
-}
-
-header .intro-text .intro-lead-in {
-    font-family: "Playfair Display";
-    font-style: normal;
-    font-size: 54px;
-    line-height: 42px;
-    margin-bottom: 55px;
 }
 
 footer .footer-above {
@@ -305,8 +297,8 @@ footer .footer-below {
 }
 
 .navbar-default {
-    background-color: #1b6d85;
-    border-color: #1b6d85;
+    background-color: #007CA4;
+    border-color: #007CA4;
 
 }
 
@@ -316,7 +308,7 @@ footer .footer-below {
 
 footer {
     color: white;
-    background-color: #1b6d85;
+    background-color: #007CA4;
 
 }
 
@@ -362,22 +354,22 @@ footer {
 
 .fa-facebook-f:before, .fa-facebook:before {
     content: "\f09a";
-    color: #1b6d85;
+    color: #007CA4;
 }
 
 .fa-twitter:before {
     content: "\f099";
-    color: #1b6d85;
+    color: #007CA4;
 }
 
 .fa-pinterest:before {
     content: "\f0e1";
-    color: #1b6d85;
+    color: #007CA4;
 }
 
 .fa-google-plus:before {
     content: "\f0d5";
-    color: #1b6d85;
+    color: #007CA4;
 }
 
 /*!
@@ -431,9 +423,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-transform: uppercase;
-    font-weight: 700;
+    font-family: "Noto Serif";
 }
 
 .img-centered {
@@ -445,7 +435,7 @@ h6 {
 }
 
 .btn-primary {
-    color: #1b6d85;
+    color: #007CA4;
     background-color: white;
     border-color: white;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -461,7 +451,7 @@ h6 {
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-    color: #1b6d85;
+    color: #007CA4;
     background-color: #fec503;
     border-color: #f6bf01;
 }
@@ -587,7 +577,7 @@ fieldset[disabled] .btn-xl.active {
 
 @media (min-width: 768px) {
     .navbar-custom {
-        background-color: #1b6d85;
+        background-color: #007CA4;
         padding: 25px 0;
         -webkit-transition: padding 0.3s;
         -moz-transition: padding 0.3s;
@@ -609,7 +599,7 @@ fieldset[disabled] .btn-xl.active {
 
 @media (min-width: 768px) {
     .navbar-custom.affix {
-        background-color: #1b6d85;
+        background-color: #007CA4;
         padding: 10px 0;
     }
 
@@ -629,7 +619,7 @@ header {
     -o-background-size: cover;
     text-align: center;
     color: white;
-    background-color: #1b6d85;
+    background-color: #007CA4;
 }
 
 header .intro-text-about {
@@ -645,15 +635,15 @@ header .intro-text {
 header .intro-text .intro-lead-in {
     font-family: "Playfair Display";
     font-style: normal;
-    font-size: 54px;
-    line-height: 50px;
+    font-size: 64px;
+    line-height: 59px;
     margin-bottom: 55px;
 }
 
 header .intro-text .intro-lead-in1 {
-    font-family: "Playfair Display";
+    font-family: "Lato";
     font-style: normal;
-    font-size: 22px;
+    font-size: 24px;
     /*line-height: 62px;*/
     margin-bottom: 55px;
 }
@@ -677,11 +667,12 @@ section h2.section-heading {
     font-size: 40px;
     margin-top: 0;
     margin-bottom: 15px;
+    font-family: "Noto Serif";
 }
 
 section h3.section-subheading {
     font-size: 16px;
-    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Noto Serif";
     text-transform: none;
     font-style: italic;
     font-weight: 400;
@@ -1219,4 +1210,22 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: #fed136;
+}
+.section-img{
+    width:134.45px;
+    height: 113px;
+}
+.section-2-part-4 {
+    padding-top: 53px;
+}
+.section-2-part-5{
+    padding-top: 30px;
+}
+.social-login-btn {
+    width: 30px;
+    height: 30px;
+}
+i.fa {
+    font-size: 22px;
+    margin-left: -12px;
 }
