@@ -36,6 +36,7 @@ def search():
     result['incident-stats'] = utils.get_incidents_stats(params)
     result['violence-types'] = utils.get_violence_types(params)
     result['daily-stats'] = utils.get_incident_types_by_time(params)
+    result['top-3'] = utils.get_top_3_stats(params)
     resp = Response(
         response=json_util.dumps(result),
         mimetype='application/json')

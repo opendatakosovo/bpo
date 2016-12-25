@@ -766,3 +766,115 @@ class MongoUtils(object):
         data = self.mongo.db[params['dataset']].aggregate([match, group, project, sort])
         rendered_result = data['result']
         return rendered_result
+
+    def get_top_3_stats(self, params):
+        match = self.build_match(params)
+
+        casualties = self.mongo.db[params['dataset']].aggregate([
+            {
+                "$unwind": "$responders"
+            },
+            match,
+            {
+                "$group": {
+                    "_id": {
+                        'casualties': "$responders"
+                    },
+                    "casualties_count": {
+                        "$sum": 1
+                    }
+
+                }
+            },
+            {
+                "$sort": {
+                    "casualties_count": -1,
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "casualty": "$_id.casualties",
+                    "count": "$casualties_count"
+
+                }
+            },
+            {
+                "$limit": 3
+            }]
+        )['result']
+
+        property = self.mongo.db[params['dataset']].aggregate([
+            {
+                "$unwind": "$property_destroyed_type"
+            },
+            match,
+            {
+                "$group": {
+                    "_id": {
+                        'property': "$property_destroyed_type"
+                    },
+                    "property_count": {
+                        "$sum": 1
+                    }
+
+                }
+            },
+            {
+                "$sort": {
+                    "property_count": -1,
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "property": "$_id.property",
+                    "count": "$property_count"
+
+                }
+            },
+            {
+                "$limit": 3
+            }]
+        )['result']
+
+        perpetrator = self.mongo.db[params['dataset']].aggregate([ \
+            {
+                "$unwind": "$violence_actor"
+            },
+            match,
+            {
+                "$group": {
+                    "_id": {
+                        'perpetrator': "$violence_actor"
+                    },
+                    "perpetrator_count": {
+                        "$sum": 1
+                    }
+
+                }
+            },
+            {
+                "$sort": {
+                    "perpetrator_count": -1,
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "perpetrator": "$_id.perpetrator",
+                    "count": "$perpetrator_count"
+
+                }
+            },
+            {
+                "$limit": 3
+            }]
+        )['result']
+        result = {
+            "casualties": casualties,
+            "property": property,
+            "perpetrator": perpetrator
+        }
+
+        return result

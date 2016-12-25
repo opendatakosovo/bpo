@@ -13,7 +13,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Barisal",
-            "upazila": "Barguna sadar",
+            "upazila": "Barguna",
             "district": "Barguna",
             "population": 261343
         },
@@ -67,7 +67,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Barisal",
-            "upazila": "Barisal sadar (kotwali)",
+            "upazila": "Barisal (kotwali)",
             "district": "Barisal ",
             "population": 527017
         },
@@ -91,7 +91,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Barisal",
-            "upazila": "Bhola sadar",
+            "upazila": "Bhola",
             "district": "Bhola",
             "population": 430520
         },
@@ -133,7 +133,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Barisal",
-            "upazila": "Jhalokati sadar",
+            "upazila": "Jhalokati",
             "district": "Jhalokati",
             "population": 216357
         },
@@ -193,7 +193,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Barisal",
-            "upazila": "Patuakhali sadar",
+            "upazila": "Patuakhali",
             "district": "Patuakhali ",
             "population": 316462
         },
@@ -223,7 +223,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Barisal",
-            "upazila": "Pirojpur sadar",
+            "upazila": "Pirojpur",
             "district": "Pirojpur",
             "population": 163470
         },
@@ -247,7 +247,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Bandarban Sadar",
+            "upazila": "Bandarban",
             "district": "Bandarban ",
             "population": 88282
         },
@@ -301,7 +301,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Brahmanbaria Sadar",
+            "upazila": "Brahmanbaria",
             "district": "Brahmanbaria",
             "population": 521994
         },
@@ -337,7 +337,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Chandpur Sadar",
+            "upazila": "Chandpur",
             "district": "Chandpur",
             "population": 465919
         },
@@ -565,7 +565,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Comilla Sadar dakshin",
+            "upazila": "Comilla dakshin",
             "district": "Comilla",
             "population": 427391
         },
@@ -589,7 +589,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Comilla Adarsha Sadar",
+            "upazila": "Comilla Adarsha",
             "district": "Comilla",
             "population": 532419
         },
@@ -637,7 +637,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Cox's bazar Sadar",
+            "upazila": "Cox's bazar",
             "district": "Cox's bazar",
             "population": 459082
         },
@@ -691,7 +691,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Feni Sadar",
+            "upazila": "Feni",
             "district": "Feni",
             "population": 512646
         },
@@ -721,7 +721,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Khagrachhari Sadar",
+            "upazila": "Khagrachhari",
             "district": "Khagrachhari",
             "population": 111833
         },
@@ -769,7 +769,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Lakshmipur Sadar",
+            "upazila": "Lakshmipur",
             "district": "Lakshmipur",
             "population": 684425
         },
@@ -841,7 +841,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Noakhali Sadar",
+            "upazila": "Noakhali",
             "district": "Noakhali ",
             "population": 525934
         },
@@ -853,7 +853,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Barkal upazila",
+            "upazila": "Barkal",
             "district": "Rangamati",
             "population": 47523
         },
@@ -871,7 +871,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Kaptai  upazila",
+            "upazila": "Kaptai ",
             "district": "Rangamati",
             "population": 59693
         },
@@ -883,25 +883,25 @@ var grouped_locations_list = [
         },
         {
             "division": "Chittagong",
-            "upazila": "Langadu  upazila",
+            "upazila": "Langadu ",
             "district": "Rangamati",
             "population": 81548
         },
         {
             "division": "Chittagong",
-            "upazila": "Naniarchar  upazila",
+            "upazila": "Naniarchar ",
             "district": "Rangamati",
             "population": 43616
         },
         {
             "division": "Chittagong",
-            "upazila": "Rajasthali  upazila",
+            "upazila": "Rajasthali ",
             "district": "Rangamati",
             "population": 26083
         },
         {
             "division": "Chittagong",
-            "upazila": "Rangamati Sadar  up",
+            "upazila": "Rangamati  up",
             "district": "Rangamati",
             "population": 124728
         },
@@ -1207,7 +1207,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Faridpur Sadar",
+            "upazila": "Faridpur",
             "district": "Faridpur",
             "population": 469410
         },
@@ -1237,7 +1237,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Gazipur Sadar",
+            "upazila": "Gazipur",
             "district": "Gazipur",
             "population": 1820374
         },
@@ -1267,7 +1267,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Gopalganj Sadar",
+            "upazila": "Gopalganj",
             "district": "Gopalganj",
             "population": 344008
         },
@@ -1315,7 +1315,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Jamalpur Sadar",
+            "upazila": "Jamalpur",
             "district": "Jamalpur",
             "population": 615072
         },
@@ -1333,7 +1333,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Sarishabari upazila",
+            "upazila": "Sarishabari",
             "district": "Jamalpur",
             "population": 325320
         },
@@ -1381,7 +1381,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Kishoreganj Sadar",
+            "upazila": "Kishoreganj",
             "district": "Kishoreganj",
             "population": 414208
         },
@@ -1423,7 +1423,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Madaripur Sadar",
+            "upazila": "Madaripur",
             "district": "Madaripur",
             "population": 345764
         },
@@ -1459,7 +1459,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Manikganj Sadar",
+            "upazila": "Manikganj",
             "district": "Manikganj",
             "population": 309413
         },
@@ -1495,7 +1495,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Munshiganj Sadar",
+            "upazila": "Munshiganj",
             "district": "Munshiganj",
             "population": 383263
         },
@@ -1561,7 +1561,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Mymensingh Sadar",
+            "upazila": "Mymensingh",
             "district": "Mymensingh",
             "population": 775733
         },
@@ -1609,7 +1609,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Narayanganj Sadar",
+            "upazila": "Narayanganj",
             "district": "Narayanganj",
             "population": 1323600
         },
@@ -1633,7 +1633,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Narsingdi Sadar",
+            "upazila": "Narsingdi",
             "district": "Narsingdi",
             "population": 707525
         },
@@ -1705,7 +1705,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Netrokona Sadar",
+            "upazila": "Netrokona",
             "district": "Netrokona",
             "population": 372785
         },
@@ -1741,7 +1741,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Rajbari Sadar",
+            "upazila": "Rajbari",
             "district": "Rajbari",
             "population": 331631
         },
@@ -1771,7 +1771,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Shariatpur Sadar",
+            "upazila": "Shariatpur",
             "district": "Shariatpur",
             "population": 210259
         },
@@ -1801,7 +1801,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Sherpur Sadar",
+            "upazila": "Sherpur",
             "district": "Sherpur",
             "population": 497179
         },
@@ -1879,13 +1879,13 @@ var grouped_locations_list = [
         },
         {
             "division": "Dhaka",
-            "upazila": "Tangail Sadar",
+            "upazila": "Tangail",
             "district": "Tangail ",
             "population": 521104
         },
         {
             "division": "Khulna",
-            "upazila": "Bagerhat Sadar",
+            "upazila": "Bagerhat",
             "district": "Bagerhat",
             "population": 266389
         },
@@ -1945,7 +1945,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Khulna",
-            "upazila": "Chuadanga Sadar",
+            "upazila": "Chuadanga",
             "district": "Chuadanga",
             "population": 313935
         },
@@ -1993,7 +1993,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Khulna",
-            "upazila": "Jessore Sadar",
+            "upazila": "Jessore",
             "district": "Jessore",
             "population": 742898
         },
@@ -2017,7 +2017,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Khulna",
-            "upazila": "Jhenaidah Sadar",
+            "upazila": "Jhenaidah",
             "district": "Jhenaidah",
             "population": 455932
         },
@@ -2089,7 +2089,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Khulna",
-            "upazila": "Khulna Sadar",
+            "upazila": "Khulna",
             "district": "Khulna",
             "population": 224444
         },
@@ -2155,7 +2155,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Khulna",
-            "upazila": "Kushtia Sadar",
+            "upazila": "Kushtia",
             "district": "Kushtia",
             "population": 502255
         },
@@ -2167,7 +2167,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Khulna",
-            "upazila": "Magura Sadar",
+            "upazila": "Magura",
             "district": "Magura",
             "population": 380107
         },
@@ -2203,7 +2203,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Khulna",
-            "upazila": "Meherpur Sadar",
+            "upazila": "Meherpur",
             "district": "Meherpur",
             "population": 256642
         },
@@ -2221,7 +2221,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Khulna",
-            "upazila": "Narail Sadar",
+            "upazila": "Narail",
             "district": "Narail",
             "population": 272872
         },
@@ -2251,7 +2251,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Khulna",
-            "upazila": "Satkhira Sadar",
+            "upazila": "Satkhira",
             "district": "Satkhira",
             "population": 460892
         },
@@ -2275,7 +2275,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rajshahi",
-            "upazila": "Bogra sadar",
+            "upazila": "Bogra",
             "district": "Bogra ",
             "population": 555014
         },
@@ -2347,7 +2347,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rajshahi",
-            "upazila": "Joypurhat sadar",
+            "upazila": "Joypurhat",
             "district": "Joypurhat",
             "population": 289058
         },
@@ -2401,7 +2401,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rajshahi",
-            "upazila": "Naogaon sadar",
+            "upazila": "Naogaon",
             "district": "Naogaon",
             "population": 405148
         },
@@ -2461,7 +2461,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rajshahi",
-            "upazila": "Natore sadar",
+            "upazila": "Natore",
             "district": "Natore",
             "population": 442422
         },
@@ -2491,7 +2491,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rajshahi",
-            "upazila": "Chapai nababganj sadar",
+            "upazila": "Chapai nababganj",
             "district": "Chapai nababganj",
             "population": 530592
         },
@@ -2539,7 +2539,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rajshahi",
-            "upazila": "Pabna sadar",
+            "upazila": "Pabna",
             "district": "Pabna",
             "population": 590914
         },
@@ -2671,7 +2671,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rajshahi",
-            "upazila": "Sirajganj sadar",
+            "upazila": "Sirajganj",
             "district": "Sirajganj",
             "population": 555155
         },
@@ -2749,7 +2749,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rangpur",
-            "upazila": "Dinajpur Sadar",
+            "upazila": "Dinajpur",
             "district": "Dinajpur",
             "population": 484597
         },
@@ -2773,7 +2773,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rangpur",
-            "upazila": "Gaibandha Sadar",
+            "upazila": "Gaibandha",
             "district": "Gaibandha",
             "population": 437268
         },
@@ -2827,13 +2827,13 @@ var grouped_locations_list = [
         },
         {
             "division": "Rangpur",
-            "upazila": "Phulbari Sadar",
+            "upazila": "Phulbari",
             "district": "Kurigram",
             "population": 160250
         },
         {
             "division": "Rangpur",
-            "upazila": "Kurigram Sadar",
+            "upazila": "Kurigram",
             "district": "Kurigram",
             "population": 312408
         },
@@ -2881,7 +2881,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rangpur",
-            "upazila": "Lalmonirhat Sadar",
+            "upazila": "Lalmonirhat",
             "district": "Lalmonirhat",
             "population": 333166
         },
@@ -2917,7 +2917,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rangpur",
-            "upazila": "Nilphamari Sadar",
+            "upazila": "Nilphamari",
             "district": "Nilphamari",
             "population": 435162
         },
@@ -2947,7 +2947,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rangpur",
-            "upazila": "Panchagarh Sadar",
+            "upazila": "Panchagarh",
             "district": "Panchagarh",
             "population": 271707
         },
@@ -2977,7 +2977,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rangpur",
-            "upazila": "Rangpur Sadar",
+            "upazila": "Rangpur",
             "district": "Rangpur",
             "population": 718203
         },
@@ -3031,7 +3031,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Rangpur",
-            "upazila": "Thakurgaon Sadar",
+            "upazila": "Thakurgaon",
             "district": "Thakurgaon",
             "population": 581227
         },
@@ -3061,7 +3061,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Sylhet",
-            "upazila": "Habiganj Sadar",
+            "upazila": "Habiganj",
             "district": "Habiganj",
             "population": 329093
         },
@@ -3109,7 +3109,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Sylhet",
-            "upazila": "Maulvibazar Sadar",
+            "upazila": "Maulvibazar",
             "district": "Maulvibazar",
             "population": 342468
         },
@@ -3181,7 +3181,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Sylhet",
-            "upazila": "Sunamganj Sadar",
+            "upazila": "Sunamganj",
             "district": "Sunamganj",
             "population": 279019
         },
@@ -3253,7 +3253,7 @@ var grouped_locations_list = [
         },
         {
             "division": "Sylhet",
-            "upazila": "Sylhet Sadar",
+            "upazila": "Sylhet",
             "district": "Sylhet",
             "population": 829103
         },

@@ -563,14 +563,31 @@
         $("#division-select").autocomplete({
             source: availableTags,
             select: function (event, ui) {
-                selected_district = ui.item.label.split(',')[0];
-
-                updateViz(selected_district, true);
+                selected_vals = ui.item.label.split(',');
+                doDrillDown(selected_vals);
+                $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
+//                updateViz(selected_district, true);
             }
         });
         $('#division-select').change(function () {
-
+            console.log(this.val);
         })
+    }
+    function doDrillDown(dDownArray) {
+        $('.highcharts-drillup-button').click();
+        $('.highcharts-drillup-button').click();
+        $.each(dDownArray, function (item) {
+            if (item < 2) {
+                var map_data_ = $('#map').highcharts().series[0].data;
+                $.each(map_data_, function (index) {
+                    if (map_data_[index]['name'] == dDownArray[item].trim()) {
+                        map_data_[index].doDrilldown();
+                    }
+                });
+            }
+
+        });
+
     }
     function initCharts() {
 
@@ -747,7 +764,7 @@
                 global_district = district;
                 division = $('#map').highcharts().drilldownLevels[0].lowerSeriesOptions.name;
                 global_division = division;
-            } else {
+            } else if ($('#map').highcharts().drilldownLevels.length == 1) {
                 division = $('#map').highcharts().drilldownLevels[0].lowerSeriesOptions.name
                 global_division = division;
             }
@@ -1601,62 +1618,58 @@
     }
 
     // Update the top 3 types
-    function updateTop3Section(name, level_number, violence_type, date) {
+    function updateTop3Section() {
         // Update the Top 3 values
-        var top_3_data_url = "{{ url_for('api.get_top', name='name', level=00, violence_type='violence-type', date='date')}}".replace('name', name).replace(0, level_number).replace('violence-type', violence_type).replace('date', date);
 
-        $.get(top_3_data_url, function (data) {
+        var data = allData['top-3'];
+        if (data.perpetrator.length != 0) {
+            var perpetrators = [];
+            $('#perpetrators-list').css('display', '');
+            $('.perpetrators-list-not-enogh-data').css('display', 'none');
+            $.each(data.perpetrator, function (i, item) {
+                perpetrators.push('<li>' + item['perpetrator'] + '</li>');
 
-            if (data.perpetrator.length != 0) {
-                var perpetrators = [];
-                $('#perpetrators-list').css('display', '');
-                $('.perpetrators-list-not-enogh-data').css('display', 'none');
-                $.each(data.perpetrator, function (i, item) {
-                    perpetrators.push('<li>' + item['perpetrator'] + '</li>');
+            });  // close each()
 
-                });  // close each()
+            // Clear list and populate
+            $('#perpetrators-list li').remove();
+            $('#perpetrators-list').append(perpetrators.join(''));
+        } else {
+            $('#perpetrators-list').css('display', 'none');
+            $('.perpetrators-list-not-enogh-data').css('display', 'block');
+        }
 
-                // Clear list and populate
-                $('#perpetrators-list li').remove();
-                $('#perpetrators-list').append(perpetrators.join(''));
-            } else {
-                $('#perpetrators-list').css('display', 'none');
-                $('.perpetrators-list-not-enogh-data').css('display', 'block');
-            }
+        if (data.casualties.length != 0) {
+            $('#casualties-list').css('display', '');
+            $('.casualties-list-not-enogh-data').css('display', 'none');
+            var casualties = [];
+            $.each(data.casualties, function (i, item) {
+                casualties.push('<li>' + item['casualty'] + '</li>');
+            });  // close each()
 
-            if (data.casualties.length != 0) {
-                $('#casualties-list').css('display', '');
-                $('.casualties-list-not-enogh-data').css('display', 'none');
-                var casualties = [];
-                $.each(data.casualties, function (i, item) {
-                    casualties.push('<li>' + item['casualty'] + '</li>');
-                });  // close each()
+            // Clear list and populate
+            $('#casualties-list li').remove();
+            $('#casualties-list').append(casualties.join(''));
+        } else {
+            $('#casualties-list').css('display', 'none');
+            $('.casualties-list-not-enogh-data').css('display', 'block');
+        }
 
-                // Clear list and populate
-                $('#casualties-list li').remove();
-                $('#casualties-list').append(casualties.join(''));
-            } else {
-                $('#casualties-list').css('display', 'none');
-                $('.casualties-list-not-enogh-data').css('display', 'block');
-            }
+        if (data.property.length != 0) {
+            $('#property-list').css('display', '');
+            $('.property-list-not-enogh-data').css('display', 'none');
+            var property = [];
+            $.each(data.property, function (i, item) {
+                property.push('<li>' + item['property'] + '</li>');
+            });  // close each()
 
-            if (data.property.length != 0) {
-                $('#property-list').css('display', '');
-                $('.property-list-not-enogh-data').css('display', 'none');
-                var property = [];
-                $.each(data.property, function (i, item) {
-                    property.push('<li>' + item['property'] + '</li>');
-                });  // close each()
-
-                // Clear list and populate
-                $('#property-list li').remove();
-                $('#property-list').append(property.join(''));
-            } else {
-                $('#property-list').css('display', 'none');
-                $('.property-list-not-enogh-data').css('display', 'block');
-            }
-
-        });
+            // Clear list and populate
+            $('#property-list li').remove();
+            $('#property-list').append(property.join(''));
+        } else {
+            $('#property-list').css('display', 'none');
+            $('.property-list-not-enogh-data').css('display', 'block');
+        }
     }
 
     // Get max json item based on an array of JSON's
