@@ -438,132 +438,137 @@ class MongoUtils(object):
         match = self.build_match(params)
         data = None
 
-        if params['period'] == 'monthly':
-            group = {
-                '$group': {
-                    '_id': {
-                        'month': {
-                            '$substr': ['$incident_date', 5, 2]
+        group = {
+            '$group': {
+                '_id': {
+                    'month': {
+                        '$substr': ['$incident_date', 5, 2]
+                    }
+                },
+                'total_injury': {
+                    '$sum': '$injuries_count'
+                },
+                'total_property': {
+                    '$sum': '$property_destroyed_count'
+                },
+                'total_death': {
+                    '$sum': '$deaths_count'
+                }
+            }
+        }
+        sort = {
+            "$sort": {
+                "_id.month": 1
+            }
+        }
+        project = {
+            "$project": {
+                "_id": 0,
+                'month': "$_id.month",
+                'injuries': "$total_injury",
+                'property': "$total_property",
+                'death': "$total_death"
+
+            }
+        }
+        data = self.mongo.db[params['dataset']].aggregate([match, group, sort, project])
+        rendered_result = data['result']
+        return rendered_result
+
+    def get_quarterly_incidents_stats(self, params):
+        match = self.build_match(params)
+        data = None
+
+        project = {
+            "$project": {
+                "incident_date": 1,
+                'year': {
+                    "$year": "$incident_date"
+                },
+                'injuries_count': 1,
+                'property_destroyed_count': 1,
+                'deaths_count': 1,
+                "quarter": {
+                    "$cond": [
+                        {
+                            "$lte": [
+                                {
+                                    "$month": "$incident_date"
+                                },
+                                3
+                            ]
+                        },
+                        1,
+                        {
+                            "$cond": [
+                                {
+                                    "$lte": [
+                                        {
+                                            "$month": "$incident_date"
+                                        },
+                                        6
+                                    ]
+                                },
+                                2,
+                                {
+                                    "$cond": [
+                                        {
+                                            "$lte": [
+                                                {
+                                                    "$month": "$incident_date"
+                                                },
+                                                9
+                                            ]
+                                        },
+                                        3,
+                                        4
+                                    ]
+                                }
+                            ]
                         }
-                    },
-                    'total_injury': {
-                        '$sum': '$injuries_count'
-                    },
-                    'total_property': {
-                        '$sum': '$property_destroyed_count'
-                    },
-                    'total_death': {
-                        '$sum': '$deaths_count'
-                    }
+                    ]
                 }
             }
-            sort = {
-                "$sort": {
-                    "_id.month": 1
-                }
-            }
-            project = {
-                "$project": {
-                    "_id": 0,
-                    'month': "$_id.month",
-                    'injuries': "$total_injury",
-                    'property': "$total_property",
-                    'death': "$total_death"
+        }
 
+        group = {
+            "$group": {
+                "_id": {
+                    "quarter": "$quarter",
+                    "year": "$year"
+                },
+                "incidents": {
+                    "$sum": 1
+                },
+                'total_injury': {
+                    '$sum': '$injuries_count'
+                },
+                'total_property': {
+                    '$sum': '$property_destroyed_count'
+                },
+                'total_death': {
+                    '$sum': '$deaths_count'
                 }
             }
-            data = self.mongo.db[params['dataset']].aggregate([match, group, sort, project])
-        else:
-            project = {
-                "$project": {
-                    "incident_date": 1,
-                    'year': {
-                        "$year": "$incident_date"
-                    },
-                    'injuries_count': 1,
-                    'property_destroyed_count': 1,
-                    'deaths_count': 1,
-                    "quarter": {
-                        "$cond": [
-                            {
-                                "$lte": [
-                                    {
-                                        "$month": "$incident_date"
-                                    },
-                                    3
-                                ]
-                            },
-                            1,
-                            {
-                                "$cond": [
-                                    {
-                                        "$lte": [
-                                            {
-                                                "$month": "$incident_date"
-                                            },
-                                            6
-                                        ]
-                                    },
-                                    2,
-                                    {
-                                        "$cond": [
-                                            {
-                                                "$lte": [
-                                                    {
-                                                        "$month": "$incident_date"
-                                                    },
-                                                    9
-                                                ]
-                                            },
-                                            3,
-                                            4
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
+        }
+        second_project = {
+            "$project": {
+                "_id": 0,
+                "quarter": "$_id.quarter",
+                "year": "$_id.year",
+                "incidents": "$incidents",
+                'injuries': "$total_injury",
+                'property': "$total_property",
+                'death': "$total_death"
             }
-
-            group = {
-                "$group": {
-                    "_id": {
-                        "quarter": "$quarter",
-                        "year": "$year"
-                    },
-                    "incidents": {
-                        "$sum": 1
-                    },
-                    'total_injury': {
-                        '$sum': '$injuries_count'
-                    },
-                    'total_property': {
-                        '$sum': '$property_destroyed_count'
-                    },
-                    'total_death': {
-                        '$sum': '$deaths_count'
-                    }
-                }
+        }
+        sort = {
+            "$sort": {
+                "year": 1
             }
-            second_project = {
-                "$project": {
-                    "_id": 0,
-                    "quarter": "$_id.quarter",
-                    "year": "$_id.year",
-                    "incidents": "$incidents",
-                    'injuries': "$total_injury",
-                    'property': "$total_property",
-                    'death': "$total_death"
-                }
-            }
-            sort = {
-                "$sort": {
-                    "year": 1
-                }
-            }
-            query = [match, project, group, second_project, sort]
-            data = self.mongo.db[params['dataset']].aggregate(query)
+        }
+        query = [match, project, group, second_project, sort]
+        data = self.mongo.db[params['dataset']].aggregate(query)
         rendered_result = data['result']
         return rendered_result
 

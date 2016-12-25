@@ -480,6 +480,8 @@
         });
         $('#data-source-select').change(function () {
             buildViolenceTypeDropDown();
+            allData = getData();
+            updateViz(undefined, false);
         });
 
         // Populate the global allData variable
@@ -716,16 +718,10 @@
     }
     function buildNationalData() {
         var rank_data = allData['rank-stats'];
-        var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
+        // Get selected violence type dropdown
         var violence_type = $("#violence-type-select").val().replace('/', '-');
-
-        var the_map = $('#map').highcharts();
-        level_number = 0;
-        // Get the drilldown level number
-        if ($(the_map)[0].drilldownLevels != undefined) {
-            var level_number = $(the_map)[0].drilldownLevels.length;
-        }
-
+        // Get date
+        var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
         // Set the highest rates
         var top_death_location = getTopN(rank_data, 'death', 1)[0].name;
         var top_injury_location = getTopN(rank_data, 'injury', 1)[0].name;
@@ -734,7 +730,7 @@
         $('.rate-2').html(top_injury_location);
         $('.rate-3').html(top_property_damage_location);
 
-        updateCharts('Bangladesh', 0, violence_type, date);
+        updateCharts();
 
         updateTop3Section('Bangladesh', 0, violence_type, date);
         updateRankSections();
@@ -787,6 +783,7 @@
         return dataResults;
     }
     function updateRankSections() {
+        var rank_data = allData['stats'];
         if (global_division != '') {
             $('#division-rank').css('display', '');
         } else {
@@ -797,9 +794,6 @@
         } else {
             $('#district-rank').css('display', 'none');
         }
-//        console.log(global_division + ' - ' + global_district);
-        var rank_data = allData['stats'];
-
         var types = ['division', 'district', 'upazila'];
         $.each(types, function (item) {
             $.each(rank_data[types[item]]['death'], function (i, property) {
@@ -1245,7 +1239,7 @@
         });
 
     }
-    function updateViz(name, from_selection) {
+    function updateViz(name) {
 
         // Get selected violence type dropdown
         var violence_type = $("#violence-type-select").val().replace('/', '-');
@@ -1267,40 +1261,16 @@
             name = $('#map').highcharts().series[0].name;
         }
         // If we are in the country version we should build national data visualizer
-        if (name == 'Bangladesh') {
-            $('#division-overview').css('display', 'none');
-            buildNationalData();
-            updateLineChart();
 
-        } else {
-            // If we change the name in the location input
-            if (from_selection == true) {
-                if (level_number == 2) {
-                    $('.highcharts-drillup-button').click();
-                }
-                var map_data_ = $('#map').highcharts().series[0].data;
-                $.each(map_data_, function (index) {
-                    if (map_data_[index]['name'] == name) {
-                        map_data_[index].doDrilldown();
-                    }
-                });
+        updateTextValues();
+        updateCharts()
+        updateMapValues();
+        updateLineChart();
+        updateRankSections();
 
-            }
-            if (level_number == 1) {
-//                $('#national-rank').css('display', 'block');
-                updateRankSections();
-
-            } else {
-                $('#national-rank').css('display', 'none');
-            }
-            updateTextValues(name, level_number, violence_type, date);
-            updateCharts(name, level_number, violence_type, date)
-            updateTop3Section(name, level_number, violence_type, date);
-            updateCensusInfo(name, level_number);
-            updateMapValues(name);
-            updateLineChart();
-            updateRankSections();
-        }
+        // To be refactored
+        updateTop3Section(name, level_number, violence_type, date);
+        updateCensusInfo(name, level_number);
 
 
     }
@@ -1319,7 +1289,7 @@
         });
     }
     // Update the text trend values reflecting the selections
-    function updateTextValues(name, level_number, violence_type, date) {
+    function updateTextValues() {
         //Instantiate rank_data array
         var rank_data = allData['rank-stats'];
 
@@ -1372,10 +1342,10 @@
         $('.location-name').html(name);
 
         // Change the presentation text based on the level
-        if (level_number == 0) {
+        if (global_division != "" && global_district == "") {
             $('.section-title').text('National Overview');
         }
-        else if (level_number == 1) {
+        else if (global_district != "") {
             $('.section-title').text('Division Overview');
         }
         else {
@@ -1384,12 +1354,13 @@
     }
 
     // Update charts in the accordions reflecting the selections
-    function updateCharts(name, level_number, violence_type, date) {
+    function updateCharts() {
+        // Get date
+        var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
         var new_date = date.split('---');
         var timeDiff = Math.abs((new Date(new_date[0])).getTime() - (new Date(new_date[1])).getTime())
         var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
         if (diffDays <= 365) {
-            var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=0,  date='date', quarterly='monthly' , violence_type='violence-type')}}".replace('name', name).replace(0, level_number).replace('violence-type', violence_type).replace('date', date);
             var data = allData['monthly-stats'];
             var data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
             var categories = [
@@ -1486,133 +1457,130 @@
 
             })
         } else {
+            var data = allData['quarterly-stats'];
+            var third_section_third_chart = $('#third-section-third-chart').highcharts();
+            var years = [];
+            var data_series_array_chart = [];
 
-            var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=0,  date='date', quarterly='quarterly' , violence_type='violence-type')}}".replace('name', name).replace(0, level_number).replace('violence-type', violence_type).replace('date', date);
-            $.get(url_for_chart_get_results, function (data) {
-                var third_section_third_chart = $('#third-section-third-chart').highcharts();
-                var years = [];
-                var data_series_array_chart = [];
+            // Build the data series and categories for the charts
+            $.each(data, function (item) {
+                years.push(data[item].year);
+            });
+            years = Array.from(new Set(years));
 
-                // Build the data series and categories for the charts
-                $.each(data.incidents, function (item) {
-                    years.push(data.incidents[item].year);
+            $.each(years, function (item) {
+                data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
+            });
+
+            data_series_array_categories = [];
+            $.each(years, function (item) {
+                $.each([1, 2, 3, 4], function (index) {
+                    data_series_array_categories.push("Q" + (index + 1) + " " + years[item].toString().slice(-2));
+                    ;
                 });
-                years = Array.from(new Set(years));
+            });
 
-                $.each(years, function (item) {
-                    data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
-                });
+            $.each(Highcharts.charts, function (item) {
 
-                data_series_array_categories = [];
-                $.each(years, function (item) {
-                    $.each([1, 2, 3, 4], function (index) {
-                        data_series_array_categories.push("Q" + (index + 1) + " " + years[item].toString().slice(-2));
-                        ;
+                if (Highcharts.charts[item].renderTo.id == 'third-section-first-chart') {
+                    // Populate data series array
+                    $.each(data, function (itemIndex) {
+                        var data_index = years.indexOf(data[itemIndex].year) * 4 + (data[itemIndex].quarter - 1);
+                        data_series_array_chart[data_index] = data[itemIndex].death;
                     });
-                });
 
-                $.each(Highcharts.charts, function (item) {
-
-                    if (Highcharts.charts[item].renderTo.id == 'third-section-first-chart') {
-                        // Populate data series array
-                        $.each(data.incidents, function (itemIndex) {
-                            var data_index = years.indexOf(data.incidents[itemIndex].year) * 4 + (data.incidents[itemIndex].quarter - 1);
-                            data_series_array_chart[data_index] = data.incidents[itemIndex].death;
-                        });
-
-                        // Let's check if we have data and remove the red warning messages
-                        if (data_series_array_chart.reduce(add, 0) != 0) {
-                            $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
-                            Highcharts.charts[item].series[0].setData(data_series_array_chart);
-                            Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
-                            $('.not-enough-data-for-chart-rate-1').css('display', 'none');
-                            updateTrendArrows(data_series_array_chart, 1);
-                            Highcharts.charts[item].hideLoading();
-                        }
-                        else {
-                            $('#accordion .rate-1').parent().addClass("ui-state-disabled");
-                            // Reset data series array
-                            data_series_array_chart = [];
-                            $.each(years, function (item) {
-                                data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
-                            });
-                            Highcharts.charts[item].series[0].setData(data_series_array_chart);
-                            Highcharts.charts[item].showLoading('No data to display');
-                        }
-
+                    // Let's check if we have data and remove the red warning messages
+                    if (data_series_array_chart.reduce(add, 0) != 0) {
+                        $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
+                        Highcharts.charts[item].series[0].setData(data_series_array_chart);
+                        Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
+                        $('.not-enough-data-for-chart-rate-1').css('display', 'none');
+                        updateTrendArrows(data_series_array_chart, 1);
+                        Highcharts.charts[item].hideLoading();
+                    }
+                    else {
+                        $('#accordion .rate-1').parent().addClass("ui-state-disabled");
                         // Reset data series array
                         data_series_array_chart = [];
                         $.each(years, function (item) {
                             data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
                         });
+                        Highcharts.charts[item].series[0].setData(data_series_array_chart);
+                        Highcharts.charts[item].showLoading('No data to display');
                     }
-                    if (Highcharts.charts[item].renderTo.id == 'third-section-second-chart') {
 
-                        // Populate data series array
-                        $.each(data.incidents, function (itemIndex) {
-                            var data_index = years.indexOf(data.incidents[itemIndex].year) * 4 + (data.incidents[itemIndex].quarter - 1);
-                            data_series_array_chart[data_index] = data.incidents[itemIndex].injuries;
+                    // Reset data series array
+                    data_series_array_chart = [];
+                    $.each(years, function (item) {
+                        data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
+                    });
+                }
+                if (Highcharts.charts[item].renderTo.id == 'third-section-second-chart') {
 
-                        });
+                    // Populate data series array
+                    $.each(data, function (itemIndex) {
+                        var data_index = years.indexOf(data[itemIndex].year) * 4 + (data[itemIndex].quarter - 1);
+                        data_series_array_chart[data_index] = data[itemIndex].injuries;
 
-                        // Let's check if we have data and remove the red warning messages
-                        if (data_series_array_chart.reduce(add, 0) != 0) {
-                            $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
-                            Highcharts.charts[item].series[0].setData(data_series_array_chart);
-                            Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
-                            updateTrendArrows(data_series_array_chart, 2);
-                            Highcharts.charts[item].hideLoading();
-                        }
-                        else {
-                            $('#accordion .rate-2').parent().addClass("ui-state-disabled");
-                            data_series_array_chart = [];
-                            $.each(years, function (item) {
-                                data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
-                            });
-                            Highcharts.charts[item].series[0].setData(data_series_array_chart);
-                            Highcharts.charts[item].showLoading('No data to display');
-                        }
+                    });
 
-                        // Reset data series array
+                    // Let's check if we have data and remove the red warning messages
+                    if (data_series_array_chart.reduce(add, 0) != 0) {
+                        $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
+                        Highcharts.charts[item].series[0].setData(data_series_array_chart);
+                        Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
+                        updateTrendArrows(data_series_array_chart, 2);
+                        Highcharts.charts[item].hideLoading();
+                    }
+                    else {
+                        $('#accordion .rate-2').parent().addClass("ui-state-disabled");
                         data_series_array_chart = [];
                         $.each(years, function (item) {
                             data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
                         });
-
+                        Highcharts.charts[item].series[0].setData(data_series_array_chart);
+                        Highcharts.charts[item].showLoading('No data to display');
                     }
-                    if (Highcharts.charts[item].renderTo.id == 'third-section-third-chart') {
-                        // Populate data series array
-                        $.each(data.incidents, function (itemIndex) {
-                            var data_index = years.indexOf(data.incidents[itemIndex].year) * 4 + (data.incidents[itemIndex].quarter - 1);
-                            data_series_array_chart[data_index] = data.incidents[itemIndex].property;
 
-                        });
+                    // Reset data series array
+                    data_series_array_chart = [];
+                    $.each(years, function (item) {
+                        data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
+                    });
 
-                        // Let's check if we have data and remove the red warning messages
-                        if (data_series_array_chart.reduce(add, 0) != 0) {
-                            $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
-                            Highcharts.charts[item].series[0].setData(data_series_array_chart);
-                            updateTrendArrows(data_series_array_chart, 3);
-                            Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
-                            Highcharts.charts[item].hideLoading();
-                        }
-                        else {
-                            $('#accordion .rate-3').parent().addClass("ui-state-disabled");
-                            data_series_array_chart = [];
-                            $.each(years, function (item) {
-                                data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
-                            });
-                            Highcharts.charts[item].series[0].setData(data_series_array_chart);
-                            Highcharts.charts[item].showLoading('No data to display');
-                        }
-                        // Reset data series array
+                }
+                if (Highcharts.charts[item].renderTo.id == 'third-section-third-chart') {
+                    // Populate data series array
+                    $.each(data, function (itemIndex) {
+                        var data_index = years.indexOf(data[itemIndex].year) * 4 + (data[itemIndex].quarter - 1);
+                        data_series_array_chart[data_index] = data[itemIndex].property;
+
+                    });
+
+                    // Let's check if we have data and remove the red warning messages
+                    if (data_series_array_chart.reduce(add, 0) != 0) {
+                        $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
+                        Highcharts.charts[item].series[0].setData(data_series_array_chart);
+                        updateTrendArrows(data_series_array_chart, 3);
+                        Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
+                        Highcharts.charts[item].hideLoading();
+                    }
+                    else {
+                        $('#accordion .rate-3').parent().addClass("ui-state-disabled");
                         data_series_array_chart = [];
                         $.each(years, function (item) {
                             data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
                         });
+                        Highcharts.charts[item].series[0].setData(data_series_array_chart);
+                        Highcharts.charts[item].showLoading('No data to display');
                     }
+                    // Reset data series array
+                    data_series_array_chart = [];
+                    $.each(years, function (item) {
+                        data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
+                    });
+                }
 
-                });
             });
         }
 
@@ -1729,7 +1697,7 @@
     function capitalize(s) {
         return s[0].toUpperCase() + s.slice(1);
     }
-    function updateMapValues(name) {
+    function updateMapValues() {
 
         var map = $('#map').highcharts(),
                 points = map.series[0].points;

@@ -31,6 +31,7 @@ def search():
     result = {}
     result['stats'] = utils.get_stats(params)
     result['monthly-stats'] = utils.get_monthly_incidents_stats(params)
+    result['quarterly-stats'] = utils.get_quarterly_incidents_stats(params)
     result['rank-stats'] = utils.get_rank_stats(params)
     result['incident-stats'] = utils.get_incidents_stats(params)
     result['violence-types'] = utils.get_violence_types(params)
