@@ -6,6 +6,17 @@ div.division-overview-tab {
     border-radius: 4px;
 }
 
+.ui-accordion-content {
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    /*padding: 20px;*/
+    background-color: #FFFFFF;
+    box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    height: auto !important;
+}
+.rank-text.ui-accordion-content{
+    padding:20px;
+}
 div#national-accordion {
     padding-top: 9px;
 }
@@ -37,17 +48,28 @@ dl {
     background-color: #f5f5f5;
     border: 1px solid gray;
     height: 500px;
-    overflow: auto;
+    overflow: scroll;
     white-space: nowrap;
-    overflow-x: scroll;
-    overflow-y: scroll;
     padding-bottom: 10px;
     font-family: "Noto Serif";
+    /*margin-right:10px;*/
 }
+
+body::-webkit-scrollbar {
+    width: 1em;
+}
+
+/*body::-webkit-scrollbar-track {*/
+/*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+/*}*/
+/*body::-webkit-scrollbar-thumb {*/
+/*background-color: darkgrey;*/
+/*outline: 1px solid slategrey;*/
+/*}*/
 
 #line-chart {
     border: 1px solid gray;
-    /*height: 300px;*/
+    height: 550px;
     width: 100%;
     padding: 3%;
 }
@@ -72,10 +94,13 @@ dl {
 .caret {
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-top: 8px solid #000000;
+    border-top: 8px solid #FFAA12;
     float: right;
     margin-top: 9px;
     margin-right: 5px;
+    font-family: FontAwesome;
+    font-size: 18px;
+    line-height: 18px;
 }
 
 #3d-map {
@@ -105,6 +130,10 @@ div#ui-id-4 {
 .viz-icon-array {
     width: 15px;
     height: 15px;
+}
+
+.icon-container {
+    padding: 5px;
 }
 
 div#filtering {
@@ -239,13 +268,39 @@ span.section-title-top-property {
 }
 
 .rank-section-title {
-    color: #03506b;
-    font-size: 18px;
     font-family: "Noto Serif";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    color: #00506B;
 }
 
 #national-rank {
     display: none;
+    font-family: "Noto Serif";
+}
+
+#division-rank {
+    /*display: none;*/
+    font-family: "Noto Serif";
+}
+
+#district-rank {
+    /*display: none;*/
+    font-family: "Noto Serif";
+}
+
+div.upazila-overview-tab {
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    padding: 5px;
+    background-color: white;
+    font-family: "Noto Serif";
+}
+
+div.district-overview-tab {
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    padding: 5px;
+    background-color: white;
     font-family: "Noto Serif";
 }
 
@@ -327,4 +382,157 @@ ol {
 .viz-icon-arrow {
     width: 24.11px;
     height: 15px;
+}
+
+.rank-text span {
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 15px;
+    color: #555555;
+}
+
+.rank-stats span {
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 32px;
+    color: #333333;
+}
+
+.rank-text-row {
+    margin-top: -6px !important;
+}
+
+.highcharts-drillup-button {
+    display: none !important;
+}
+
+a.drillup-button {
+    cursor: pointer;
+    font-family: "Noto Serif";
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 22px;
+    color: #FFC84A;
+    text-shadow: 0 1px 0 0 #006586;
+}
+
+.highcharts-contextbutton {
+    display: none !important;
+}
+
+.highcharts-credits {
+    display: none !important;
+}
+
+g.highcharts-legend-box {
+    background-color: #FFFFFF !important;
+    box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2) !important;
+    border-radius: 2px !important;
+}
+
+.highcharts-legend-title tspan {
+    font-family: "Noto Serif";
+    font-size: 14px !important;
+    font-weight: bold !important;
+    line-height: 19px !important;
+    color: #333333 !important;
+}
+
+.ui-menu .ui-menu-item a {
+    background: red;
+    height: 10px;
+    font-size: 8px;
+}
+
+.ui-autocomplete {
+    background: #fff;
+    border-radius: 0px;
+    width: 300px;
+}
+
+.ui-tooltip {
+    background: #fff;
+    color: #96f226;
+    border: 2px solid #454545;
+    border-radius: 0px;
+    box-shadow: 0 0
+    list-style-position: inside;
+}
+
+input.empty {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+
+input.empty::-webkit-input-placeholder {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    text-align: right;
+    color: orange;
+}
+
+input.empty::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    text-align: right;
+    color: orange;
+}
+
+input.empty::-moz-placeholder { /* Firefox 19+ */
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    text-align: right;
+    color: orange;
+}
+
+input.empty:-ms-input-placeholder { /* IE 10+ */
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    text-align: right;
+    color: orange;
+}
+
+input.empty:-moz-placeholder { /* Firefox 18- */
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    text-align: right;
+    color: orange;
+}
+
+.fa-caret-up {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #FFAA12;
+    float: right;
+    margin-top: 9px;
+    margin-right: 5px;
+    font-size: 18px;
+    line-height: 18px;
+
+}
+
+.rotate {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+
+.fa-caret-up:before {
+    display: none;
 }

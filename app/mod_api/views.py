@@ -1,10 +1,11 @@
 from bson import json_util
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from flask import Response
 from datetime import datetime
 
 from app import mongo
-
+from app import utils
+import json
 mod_api = Blueprint('api', __name__, url_prefix='/api')
 
 
@@ -16,6 +17,28 @@ def index():
 
     return render_template('mod_importer/index.html')
 
+
+@mod_api.route('/search', methods=['POST'])
+def search():
+     
+    params = request.json
+
+    # Format date
+    if 'date' in params:
+        params['to_date'] = datetime.strptime(params['date'].split('---')[1], '%m-%d-%Y')
+        params['from_date'] = datetime.strptime(params['date'].split('---')[0], '%m-%d-%Y')
+
+    result = {}
+    result['stats'] = utils.get_stats(params)
+    result['monthly-stats'] = utils.get_monthly_incidents_stats(params)
+    result['rank-stats'] = utils.get_rank_stats(params)
+    result['incident-stats'] = utils.get_incidents_stats(params)
+    result['violence-types'] = utils.get_violence_types(params)
+    result['daily-stats'] = utils.get_incident_types_by_time(params)
+    resp = Response(
+        response=json_util.dumps(result),
+        mimetype='application/json')
+    return resp
 
 @mod_api.route('/results/<int:level>/<string:name>/<string:violence_type>/<string:date>', methods=['GET'])
 def get_results(name, level, violence_type, date, ):
@@ -36,7 +59,7 @@ def get_results(name, level, violence_type, date, ):
 
     match = {
         "$match": {
-            level_json[level - 1]: {"$in": [str(name)]},
+            level_json[level]: {"$in": [str(name)]},
             "violence_type": {
                 "$in": [
                     str(violence_type)
@@ -438,13 +461,44 @@ def get_rank(type, name=None):
 @mod_api.route('/stats_rank/<string:type>', methods=['GET'])
 def get_stats_rank(type, name=None):
 
-    match = {
+    match_by_property = {
             "$match": {
                 type: {
                     "$nin": [
                         None
                     ]
+                },
+                'property_destroyed_count':{
+                    "$ne":[0]
                 }
+                
+            }
+        }
+    match_by_death = {
+            "$match": {
+                type: {
+                    "$nin": [
+                        None
+                    ]
+                },
+                'deaths_count':{
+                    "$ne":[0]
+                }
+                
+            }
+        }
+
+    match_by_injuries = {
+            "$match": {
+                type: {
+                    "$nin": [
+                        None
+                    ]
+                },
+                'injuries_count':{
+                    "$ne":[0]
+                }
+                
             }
         }
     group_by_death = {
@@ -492,9 +546,9 @@ def get_stats_rank(type, name=None):
             "total": "$total",
         }
     }
-    aggregation_by_death = [match, group_by_death, sort, project]
-    aggregation_by_injury = [match, group_by_injuries, sort, project]
-    aggregation_by_property = [match, group_by_property, sort, project]
+    aggregation_by_death = [match_by_death, group_by_death, sort, project]
+    aggregation_by_injury = [match_by_injuries, group_by_injuries, sort, project]
+    aggregation_by_property = [match_by_property, group_by_property, sort, project]
     result_death = mongo.db.mgr.aggregate(aggregation_by_death)['result']
     result_injury = mongo.db.mgr.aggregate(aggregation_by_injury)['result']
     result_property = mongo.db.mgr.aggregate(aggregation_by_property)['result']
@@ -576,7 +630,7 @@ def get_division_rank(name=None):
 
 @mod_api.route('/<string:dataset>/get/violence-types', methods=['GET', 'POST'])
 def get_violence_types(dataset):
-    violence_types = mongo.db.mgr.distinct('violence_type')
+    violence_types = mongo.db[dataset].distinct('violence_type')
     resp = Response(
         response=json_util.dumps(violence_types),
         mimetype='application/json')

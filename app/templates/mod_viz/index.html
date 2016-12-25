@@ -34,41 +34,30 @@
         <div class="row">
             <div class="col-md-6 col-xs-6">
                 <div class="col-md-6">
-                    <label class="filter-label" for="division-select">Division</label>
-                    <select class="form-control" id="division-select">
-                        <option value="all">All</option>
-                        <option value="Dhaka">Dhaka</option>
-                        <option value="Sylhet">Sylhet</option>
-                        <option value="Chittagong">Chittagong</option>
-                        <option value="Barisal">Barisal</option>
-                        <option value="Khulna">Khulna</option>
-                        <option value="Rajshahi">Rajshahi</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label class="district-select-label" for="district-select">District</label>
-                    <select class="form-control" id="district-select">
-                        <option value="all">All</option>
-                    </select>
+                    <div class="drillup">
+                        <a class="drillup-button">Back to country</a>
+                    </div>
+                    <input name='division-select' class="form-control update-chart empty" id="division-select" value=''
+                           placeholder="Search divisions, districts, upazilas              &#xF002;">
+
                 </div>
             </div>
             <div class="col-md-2 col-xs-6">
                 <label class="filter-label" for="data-source-select">Choose data source</label>
                 <select class="form-control" id="data-source-select">
                     <option value="mgr">MGR</option>
-                    <option value="idams" disabled>IDAMS</option>
-
+                    <option value="idams">IDAMS</option>
                 </select>
             </div>
             <div class="col-md-2 col-xs-6">
                 <label class="filter-label" for="violence-type-select">Violence Type:</label>
-                <select class="form-control" id="violence-type-select">
+                <select class="form-control update-chart" id="violence-type-select">
 
                 </select>
             </div>
             <div class="col-md-2 col-xs-12">
                 <label class="filter-label" for="daterange">Time period:</label>
-                <input type="text" class="form-control" name="daterange" value=""/>
+                <input type="text" class="form-control update-chart" name="daterange" value=""/>
             </div>
         </div>
         <br/>
@@ -83,26 +72,26 @@
             <span class="rank-section-title">National ranked:</span>
             <div id="national-rank-accordion">
                 <div class="national-overview-tab">
-                    <div class="row">
+                    <div class="row rank-stats">
                         <div class="col-md-4">
                             <img class="viz-icon"
                                  src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                            <span class="death-rank-nth">n/a</span>
-                            <!--<img class="viz-icon-arrow"-->
-                            <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
+                            <span class="division-death-rank-nth">n/a</span>
+                            <img class="viz-icon-arrow"
+                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
                         </div>
                         <div class="col-md-4">
                             <img class="viz-icon"
                                  src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
-                            <span class="injury-rank-nth">n/a</span>
-                            <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
+                            <span class="division-injury-rank-nth">n/a</span>
+                            <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                         </div>
                         <div class="col-md-4">
                             <img class="viz-icon"
                                  src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
-                            <span class="property-rank-nth">n/a</span>
-                            <!--<img class="viz-icon-arrow"-->
-                            <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
+                            <span class="division-property-rank-nth">n/a</span>
+                            <img class="viz-icon-arrow"
+                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
                             <span class="caret"></span>
                         </div>
 
@@ -110,64 +99,194 @@
 
 
                 </div>
-                <div>
-                    <span><span class="desc-death-rank-name"></span> ranked <span class="desc-death-rank"></span> in deaths with <span
-                            class="desc-death-rank-total"></span> deaths.</span></span><br/>
-                    <span><span class="desc-injury-rank-name"></span> ranked <span class="desc-injury-rank"></span> in injuries with <span
-                            class="desc-injury-rank-total"></span> injuries.</span></span><br/>
-                    <span><span class="desc-property-rank-name"></span> ranked <span class="desc-property-rank"></span> in property damage with <span
-                            class="desc-property-rank-total"></span> property damage.</span></span><br/>
+                <div class="rank-text">
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                        </div>
+                        <span class="desc-death-rank-name"></span> ranked <span class="desc-death-rank"></span> in
+                        deaths with <span class="desc-death-rank-total"></span> incidents.
+                    </div>
+                    <br/>
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                        </div>
+                        <span class="desc-injury-rank-name"></span> ranked <span class="desc-injury-rank"></span> in
+                        injuries with <span
+                            class="desc-injury-rank-total"></span> incidents.
+                    </div>
+                    <br/>
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                        </div>
+                        <span class="desc-property-rank-name"></span> ranked <span class="desc-property-rank"></span> in
+                        property damage with <span
+                            class="desc-property-rank-total"></span> incidents.
+                        <i class="fa fa-caret-up rotate collapse-national-stats" aria-hidden="true"></i>
+                    </div>
+                    <br/>
 
                 </div>
 
             </div>
         </div>
-        <!--<div id="district-rank" class="col-md-12">-->
-        <!--<span class="rank-section-title" >District rank:</span>-->
-        <!--<div id="district-rank-accordion">-->
-        <!--<div class="division-overview-tab">-->
-        <!--<div class="row">-->
-        <!--<div class="col-md-4">-->
-        <!--<img class="viz-icon"-->
-        <!--src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>-->
-        <!--<span class="rank-nth">10th</span>-->
-        <!--<img class="viz-icon-arrow"-->
-        <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
-        <!--</div>-->
-        <!--<div class="col-md-4">-->
-        <!--<img class="viz-icon"-->
-        <!--src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>-->
-        <!--<span class="rank-nth">10th</span>-->
-        <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
-        <!--</div>-->
-        <!--<div class="col-md-4">-->
-        <!--<img class="viz-icon"-->
-        <!--src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>-->
-        <!--<span class="rank-nth">10th</span>-->
-        <!--<img class="viz-icon-arrow"-->
-        <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
-        <!--<span class="caret"></span>-->
-        <!--</div>-->
+        <div id="division-rank" class="col-md-12">
+            <span class="rank-section-title">Division ranked:</span>
+            <div id="division-rank-accordion">
+                <div class="division-overview-tab">
+                    <div class="row rank-stats">
+                        <div class="col-md-4">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                            <span class="division-death-rank-nth">n/a</span>
+                            <img class="viz-icon-arrow"
+                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
+                        </div>
+                        <div class="col-md-4">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                            <span class="division-injury-rank-nth">n/a</span>
+                            <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                        </div>
+                        <div class="col-md-4">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                            <span class="division-property-rank-nth">n/a</span>
+                            <img class="viz-icon-arrow"
+                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
+                            <span class="caret"></span>
+                        </div>
 
-        <!--</div>-->
+                    </div>
 
 
-        <!--</div>-->
-        <!--<div>-->
-        <!--<span class="rate-1"></span> <span class="rate-1-text">has the highest fatality rate.</span>-->
-        <!--<span class="rate-2"></span> <span class="rate-2-text">has the highest injury count.</span>-->
-        <!--</div>-->
+                </div>
+                <div class="rank-text">
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                        </div>
+                        <span class="division-desc-death-rank-name"></span> ranked <span
+                            class="division-desc-death-rank"></span> in
+                        deaths with <span class="division-desc-death-rank-total"></span> incidents.
+                    </div>
+                    <br/>
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                        </div>
+                        <span class="division-desc-injury-rank-name"></span> ranked <span
+                            class="division-desc-injury-rank"></span> in
+                        injuries with <span
+                            class="division-desc-injury-rank-total"></span> incidents.
+                    </div>
+                    <br/>
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                        </div>
+                        <span class="division-desc-property-rank-name"></span> ranked <span
+                            class="division-desc-property-rank"></span> in
+                        property damage with <span
+                            class="division-desc-property-rank-total"></span> incidents.
+                        <i class="fa fa-caret-up rotate collapse-division-stats" aria-hidden="true"></i>
+                    </div>
+                    <br/>
 
-        <!--</div>-->
-        <!--</div>-->
+                </div>
+
+            </div>
+        </div>
+        <div id="district-rank" class="col-md-12">
+            <span class="rank-section-title">District ranked:</span>
+            <div id="district-rank-accordion">
+                <div class="district-overview-tab">
+                    <div class="row rank-stats">
+                        <div class="col-md-4">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                            <span class="district-death-rank-nth">n/a</span>
+                            <img class="viz-icon-arrow"
+                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
+                        </div>
+                        <div class="col-md-4">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                            <span class="district-injury-rank-nth">n/a</span>
+                            <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                        </div>
+                        <div class="col-md-4">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                            <span class="district-property-rank-nth">n/a</span>
+                            <img class="viz-icon-arrow"
+                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
+                            <span class="caret"></span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="rank-text">
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                        </div>
+                        <span class="district-desc-death-rank-name"></span> ranked <span
+                            class="district-desc-death-rank"></span> in
+                        deaths with <span class="district-desc-death-rank-total"></span> incidents.
+                    </div>
+                    <br/>
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                        </div>
+                        <span class="district-desc-injury-rank-name"></span> ranked <span
+                            class="district-desc-injury-rank"></span> in
+                        injuries with <span
+                            class="district-desc-injury-rank-total"></span> incidents.
+                    </div>
+                    <br/>
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                        </div>
+                        <span class="district-desc-property-rank-name"></span> ranked <span
+                            class="district-desc-property-rank"></span> in
+                        property damage with <span
+                            class="district-desc-property-rank-total"></span> incidents.
+                        <i class="fa fa-caret-up rotate collapse-district-stats" aria-hidden="true"></i>
+                    </div>
+                    <br/>
+
+                </div>
+
+            </div>
+        </div>
         <div id="national-overview" class="col-md-12">
             <span class="section-title">National Overview:</span>
             <div id="national-accordion">
                 <div class="division-overview-tab">
-                    <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                    <div class="icon-container">
+                        <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                    </div>
+
                     <span class="rate-1"></span> <span class="rate-1-text">has the highest fatality rate. </span>
                     <img class="rate-1-arrow viz-icon-arrow"
                          src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -178,7 +297,9 @@
                     </span>
                 </div>
                 <div class="division-overview-tab">
-                    <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                    <div class="icon-container">
+                        <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                    </div>
                     <span class="rate-2"></span> <span class="rate-2-text">has the highest injury count.</span>
                     <img class="rate-2-arrow viz-icon-arrow"
                          src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
@@ -192,7 +313,9 @@
                     </span>
                 </div>
                 <div class="division-overview-tab">
-                    <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                    <div class="icon-container">
+                        <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                    </div>
                     <span class="rate-3"></span> <span class="rate-3-text">has the highest property damage count.</span>
                     <img class="rate-3-arrow viz-icon-arrow"
                          src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
@@ -209,18 +332,7 @@
         </div>
 
         <script>
-            $("#accordion").accordion({
-                collapsible: true, active: false,
-                autoHeight: true
-            });
-            $("#national-rank-accordion").accordion({
-                collapsible: true, active: false,
-                autoHeight: true
-            });
-            $("#district-rank-accordion").accordion({
-                collapsible: true, active: false,
-                autoHeight: true
-            });
+
         </script>
         <div id="top" class="col-md-12">
             <div class="col-md-6 top-3">
@@ -263,14 +375,14 @@
                         <dt> -</dt>
                         <dd> -</dd>
                     </dl>
-                    <dl class="dl-horizontal second-dl">
-                        <dt>Unemployment</dt>
-                        <dd class="unemployment-data">n/a</dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                        <dt>Literacy</dt>
-                        <dd class="literacy-data">n/a</dd>
-                    </dl>
+                    <!--<dl class="dl-horizontal second-dl">-->
+                    <!--<dt>Unemployment</dt>-->
+                    <!--<dd class="unemployment-data">n/a</dd>-->
+                    <!--</dl>-->
+                    <!--<dl class="dl-horizontal">-->
+                    <!--<dt>Literacy</dt>-->
+                    <!--<dd class="literacy-data">n/a</dd>-->
+                    <!--</dl>-->
                     <dl class="dl-horizontal">
                         <dt>Poverty</dt>
                         <dd class="poverty-data">n/a</dd>
@@ -317,12 +429,15 @@
 
 </div>
 <script type="text/javascript" src="{{ url_for('static', filename='json/bangladesh.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='json/locations.js') }}"></script>
 <script>
+    var allData = undefined;
+    var global_division = '';
+    var global_district = '';
+    var global_upazila = '';
     $(document).ready(function () {
         jQuery.ajaxSetup({async: false});
 
-        populateLocationDropdown();
-        // Init and build the violence type dropdown list
         buildViolenceTypeDropDown();
 
         // Build the date range input so we can select FROM - TO daterange
@@ -331,63 +446,129 @@
         // Init and build the map
         buildMap();
 
+        // Build searxh box
+        buildSearchBox();
 
         // Init the right death,injuries,property charts
-        initCharts(deaths_data_series = [12, 2, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+        initCharts();
+
+        // Init the jQuery UI accordions
+        initAccordions();
+
+        // Resize charts on window resize
+        initResizeChartsOnResizeWindow();
+
+
+        $('.highcharts-drillup-button').on('change', function () {
+            $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
+        });
+        $('.drillup-button').click(function () {
+            $('.highcharts-drillup-button').click();
+        });
+
+        // Build the ranking on the right on location based stats
+        buildRankingBasedOnLocation();
+
+        // Populate location searchbox dropdown list
+        populateLocationDropdown();
+
+        // Init and build the violence type dropdown list
+        $('#violence-type-select [value="Attack"]').attr('selected', true);
+        $('.update-chart').change(function () {
+            allData = getData();
+            updateViz(undefined, false);
+        });
+        $('#data-source-select').change(function () {
+            buildViolenceTypeDropDown();
+        });
+
+        // Populate the global allData variable
+        allData = getData();
 
         // Init and build the national data, so when the user first lands on the page we have some data.
         buildNationalData();
 
-
-        // Initialize the right accordions
-        $("#national-accordion").accordion({
-            collapsible: true, active: false
-        });
-
-        $("#division-accordion").accordion({
-            collapsible: true, active: false
-        });
-
-        // Listen when we select a violence type, update the charts/data reflecting the selected violence type
-        $("#violence-type-select").change(function () {
-            updateViz(undefined, false);
-        })
-
-        // Listen when we select a date range, update the charts/data reflecting the selected date range
-        $('input[name=daterange]').change(function () {
-            updateViz(undefined, false);
-        });
-
         // Init and create the bottom line chart
         createLineChart();
+    });
 
+    function initResizeChartsOnResizeWindow() {
         $(window).resize(function () {
             $("#third-section-first-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
             $("#third-section-second-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
             $("#third-section-third-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
+            $("#map").highcharts().setSize($("#map").width(), $("#map").height(), doAnimation = true);
         });
-    });
+    }
+
+    function initAccordions() {
+        // Initialize the right accordions
+        $("#national-accordion").accordion({
+            collapsible: true, active: false
+        });
+        $("#national-rank-accordion").accordion({
+            collapsible: true, active: false,
+            autoHeight: true
+        });
+        $("#district-rank-accordion").accordion({
+            collapsible: true, active: false,
+            autoHeight: true
+        });
+        $("#division-rank-accordion").accordion({
+            collapsible: true, active: false,
+            autoHeight: true
+        });
+    }
+    function buildRankingBasedOnLocation() {
+
+        // National stats accordion
+        $('#national-rank-accordion .national-overview-tab').click(function () {
+            $('#national-rank-accordion .national-overview-tab').hide();
+        });
+        $('.collapse-national-stats').click(function () {
+            $('#national-rank-accordion .national-overview-tab').click();
+            $('#national-rank-accordion .national-overview-tab').show();
+        });
+
+        // Division stats accordion
+        $('#division-rank-accordion .division-overview-tab').click(function () {
+            $('#division-rank-accordion .division-overview-tab').hide();
+        });
+        $('.collapse-division-stats').click(function () {
+            $('#division-rank-accordion .division-overview-tab').click();
+            $('#division-rank-accordion .division-overview-tab').show();
+        });
+
+        // District stats accordion
+        $('#district-rank-accordion .district-overview-tab').click(function () {
+            $('#district-rank-accordion .district-overview-tab').hide();
+        });
+        $('.collapse-district-stats').click(function () {
+            $('#district-rank-accordion .district-overview-tab').click();
+            $('#district-rank-accordion .district-overview-tab').show();
+        });
+    }
+    function buildSearchBox() {
+
+    }
     function populateLocationDropdown() {
         // Listen when we change the division/Update the visualizer reflecting the selected division data
-        $('#division-select').change(function () {
-            $('#district-select').css('display', 'block');
-            var district_select = $('#district-select');
+        var availableTags = [];
 
-            var selected_division = $(this).val();
-            $('#district-select').empty();
-            district_select.append($("<option />").val('all').text('All'));
-            $.each(locations_list[selected_division].items, function (item) {
-                var name = capitalize(locations_list[selected_division].items[item].name.toLowerCase());
-                district_select.append($("<option />").val(name).text(name));
-            });
-            updateViz(selected_division, true);
+        $.each(grouped_locations_list, function (i, item) {
+            availableTags.push(item.division + ', ' + item.district + ', ' + item.upazila)
         });
-        $('#district-select').change(function () {
-            selected_district = $(this).val();
-            updateViz(selected_district, true);
+        $("#division-select").autocomplete({
+            source: availableTags,
+            select: function (event, ui) {
+                selected_district = ui.item.label.split(',')[0];
+
+                updateViz(selected_district, true);
+            }
+        });
+        $('#division-select').change(function () {
+
         })
-
-
     }
     function initCharts() {
 
@@ -534,7 +715,7 @@
 
     }
     function buildNationalData() {
-        var rank_data;
+        var rank_data = allData['rank-stats'];
         var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
         var violence_type = $("#violence-type-select").val().replace('/', '-');
 
@@ -544,13 +725,6 @@
         if ($(the_map)[0].drilldownLevels != undefined) {
             var level_number = $(the_map)[0].drilldownLevels.length;
         }
-
-        // Get request for the ranking data
-        $.get('{{ url_for("api.get_rank", type="division")}}', function (data) {
-            rank_data = data;
-        });
-
-        $('.national-ranked').parent().css("display", "none");
 
         // Set the highest rates
         var top_death_location = getTopN(rank_data, 'death', 1)[0].name;
@@ -563,50 +737,101 @@
         updateCharts('Bangladesh', 0, violence_type, date);
 
         updateTop3Section('Bangladesh', 0, violence_type, date);
-
-
+        updateRankSections();
     }
-    function updateRankSections(name, level_number) {
-        var rank_data;
-        // Get request for the ranking data
-        var rank_url = '{{ url_for("api.get_stats_rank", type="division")}}'
-        $.get(rank_url, function (data) {
-            rank_data = data;
-        });
-        $.each(rank_data['death'], function (i, property) {
-            if (property['name'] == name) {
-                $('.death-rank-nth').text(property['rank'] + 'th');
-                $('.desc-death-rank-name').text(property['name']);
-                $('.desc-death-rank').text(property['rank']);
-                $('.desc-death-rank-total').text(Math.round(property['total']));
-            }
-        });
-        $.each(rank_data['injury'], function (i, property) {
-            if (property['name'] == name) {
-                $('.injury-rank-nth').text(property['rank'] + 'th');
-                $('.desc-injury-rank-name').text(property['name']);
-                $('.desc-injury-rank').text(property['rank']);
-                $('.desc-injury-rank-total').text(Math.round(property['total']));
-            }
-        });
-        $.each(rank_data['property'], function (i, property) {
-            if (property['name'] == name) {
-                $('.property-rank-nth').text(property['rank'] + 'th');
-                $('.desc-property-rank-name').text(property['name']);
-                $('.desc-property-rank').text(property['rank']);
-                $('.desc-property-rank-total').text(Math.round(property['total']));
-            }
-        });
-//        console.log(rank_data);
-//        $('.national-ranked').parent().css("display", "none");
+    function getData() {
 
-        // Set the highest rates
-//        var top_death_location = getTopN(rank_data, 'death', 1)[0].name;
-//        var top_injury_location = getTopN(rank_data, 'injury', 1)[0].name;
-//        var top_property_damage_location = getTopN(rank_data, 'property', 1)[0].name;
-//        $('.rate-1').html(top_death_location);
-//        $('.rate-2').html(top_injury_location);
-//        $('.rate-3').html(top_property_damage_location);
+        var dataResults = undefined;
+        var division = "";
+        var district = "";
+        var upazila = "";
+        if ($('#map').highcharts().drilldownLevels != undefined) {
+            if ($('#map').highcharts().drilldownLevels.length == 2) {
+                district = $('#map').highcharts().drilldownLevels[1].lowerSeriesOptions.name;
+                global_district = district;
+                division = $('#map').highcharts().drilldownLevels[0].lowerSeriesOptions.name;
+                global_division = division;
+            } else {
+                division = $('#map').highcharts().drilldownLevels[0].lowerSeriesOptions.name
+                global_division = division;
+            }
+
+        }
+
+        // Get the selected dataset
+        var dataset = $('#data-source-select').val();
+
+        // Get selected violence type dropdown
+        var violence_type = $("#violence-type-select").val().replace('/', '-');
+
+        // Get date
+        var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
+
+        var jsonData = {
+            "division": division,
+            "district": district,
+            "upazila": upazila,
+            "date": date,
+            "violence_type": violence_type,
+            "dataset": dataset,
+            "period": "monthly"
+        }
+        $.ajax('{{ url_for("api.search")}}', {
+            type: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify(jsonData),
+            success: function (data) {
+                dataResults = data;
+            }
+        });
+        return dataResults;
+    }
+    function updateRankSections() {
+        if (global_division != '') {
+            $('#division-rank').css('display', '');
+        } else {
+            $('#division-rank').css('display', 'none');
+        }
+        if (global_district != '') {
+            $('#district-rank').css('display', '');
+        } else {
+            $('#district-rank').css('display', 'none');
+        }
+//        console.log(global_division + ' - ' + global_district);
+        var rank_data = allData['stats'];
+
+        var types = ['division', 'district', 'upazila'];
+        $.each(types, function (item) {
+            $.each(rank_data[types[item]]['death'], function (i, property) {
+                if (global_division == property['name'] || global_district == property['name']) {
+                    $('.' + types[item] + '-death-rank-nth').text(property['rank'] + 'th');
+                    $('.' + types[item] + '-desc-death-rank-name').text(property['name']);
+                    $('.' + types[item] + '-desc-death-rank').text(property['rank']);
+                    $('.' + types[item] + '-desc-death-rank-total').text(Math.round(property['total']));
+                }
+
+            });
+
+            $.each(rank_data[types[item]]['injury'], function (i, property) {
+                if (global_division == property['name'] || global_district == property['name']) {
+                    $('.' + types[item] + '-injury-rank-nth').text(property['rank'] + 'th');
+                    $('.' + types[item] + '-desc-injury-rank-name').text(property['name']);
+                    $('.' + types[item] + '-desc-injury-rank').text(property['rank']);
+                    $('.' + types[item] + '-desc-injury-rank-total').text(Math.round(property['total']));
+                }
+            });
+            $.each(rank_data[types[item]]['property'], function (i, property) {
+                if (global_division == property['name'] || global_district == property['name']) {
+
+                    $('.' + types[item] + '-property-rank-nth').text(property['rank'] + 'th');
+                    $('.' + types[item] + '-desc-property-rank-name').text(property['name']);
+                    $('.' + types[item] + '-desc-property-rank').text(property['rank']);
+                    $('.' + types[item] + '-desc-property-rank-total').text(Math.round(property['total']));
+                }
+            });
+        });
+
+
     }
     function createLineChart() {
         var seriesOptions = [];
@@ -622,7 +847,7 @@
             Highcharts.stockChart('line-chart-container', {
 
                 rangeSelector: {
-                    selected: 2
+                    selected: 5
                 },
 
                 yAxis: {
@@ -638,12 +863,13 @@
                     }]
                 },
                 xAxis: {
-                    range: 6 * 30 * 24 * 3600 * 1000
+                    range: 12 * 30 * 24 * 3600 * 1000
                 },
                 plotOptions: {
+
                     series: {
                         compare: 'value',
-                        showInNavigator: true
+                        showInNavigator: true,
                     }
                 },
 
@@ -652,8 +878,23 @@
                     valueDecimals: 0,
                     split: true
                 },
+                legend: {
 
-                series: seriesOptions
+                    enabled: true,
+                    showCheckbox: true,
+                    align: 'right',
+                    backgroundColor: '#fff',
+                    borderColor: 'black',
+                    borderWidth: 2,
+                    layout: 'horizontal',
+                    verticalAlign: 'right',
+                    y: 0,
+                    x: -320,
+                    shadow: true,
+                    symbolWidth: 5
+                },
+                series: seriesOptions,
+
             });
         }
 
@@ -662,17 +903,15 @@
             var injuries = [];
             var incidents = [];
             var property_damage = [];
-            $.get('{{url_for("api.get_line_chart_data")}}', function (data) {
-
-                $.each(data, function (item) {
-                    if (data[item]['date'] != null) {
-                        deaths.push([data[item]['date'].$date, data[item]['death']])
-                        injuries.push([data[item]['date'].$date, data[item]['injuries']])
-                        property_damage.push([data[item]['date'].$date, data[item]['property']])
-                        incidents.push([data[item]['date'].$date, data[item]['incidents']])
-                    }
-                })
-            });
+            var data = allData['daily-stats'];
+            $.each(data, function (item) {
+                if (data[item]['date'] != null) {
+                    deaths.push([data[item]['date'].$date, data[item]['death']])
+                    injuries.push([data[item]['date'].$date, data[item]['injuries']])
+                    property_damage.push([data[item]['date'].$date, data[item]['property']])
+                    incidents.push([data[item]['date'].$date, data[item]['incidents']])
+                }
+            })
 
             if (name == 'Deaths') {
                 seriesOptions[i] = {
@@ -701,7 +940,6 @@
                 };
             }
 
-
             // As we're loading the data asynchronously, we don't know what order it will arrive. So
             // we keep a counter and create the chart when all the data is loaded.
             seriesCounter += 1;
@@ -711,6 +949,39 @@
             }
         });
 
+    }
+
+    function updateLineChart() {
+        var deaths = [];
+        var injuries = [];
+        var incidents = [];
+        var property_damage = [];
+        var data = allData['daily-stats'];
+        $.each(data, function (item) {
+            if (data[item]['date'] != null) {
+                deaths.push([data[item]['date'].$date, data[item]['death']])
+                injuries.push([data[item]['date'].$date, data[item]['injuries']])
+                property_damage.push([data[item]['date'].$date, data[item]['property']])
+                incidents.push([data[item]['date'].$date, data[item]['incidents']])
+            }
+        })
+        $.each(Highcharts.charts, function (item) {
+            if (Highcharts.charts[item].renderTo.id == 'line-chart-container') {
+                $.each(Highcharts.charts[item].series, function (index) {
+                    var name = Highcharts.charts[item].series[index].name;
+                    if (name == 'Deaths') {
+                        Highcharts.charts[item].series[index].setData(deaths);
+                    } else if ('Injuries') {
+                        Highcharts.charts[item].series[index].setData(injuries);
+                    } else if ('Incidents') {
+                        Highcharts.charts[item].series[index].setData(incidents);
+                    } else if ('Property Damage') {
+                        Highcharts.charts[item].series[index].setData(property_damage);
+                    }
+                });
+                Highcharts.charts[item].redraw();
+            }
+        });
     }
     function buildDateRangeInput() {
         // Add daterange jquery functionality
@@ -843,14 +1114,19 @@
                     text: "No of Incidents"
                 },
                 itemStyle: {
-                    fontSize: '10px'
+                    'font-family': "Noto Serif",
+                    'font-size': '14px !important',
+                    'font-weight': 'bold',
+                    'line-height': '19px',
+                    'color': '#333333'
                 },
                 layout: 'vertical',
-                borderColor: "gray",
                 borderWidth: 1,
+                shadow: '-1px 2px 2px 0 rgba(0, 0, 0, 0.2)',
+                borderRadius: 2,
                 align: 'right',
                 verticalAlign: 'top',
-                y: 70,
+                y: -5,
                 labelFormatter: function () {
                     if (this.from === undefined) {
                         return 'Below ' + this.to;
@@ -913,11 +1189,21 @@
                                 if (i.target.className.baseVal.split(' ')[1] != undefined) {
                                     var clicked_point = capitalize(i.target.className.baseVal.split(' ')[1].split('-')[2]);
                                     $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
+                                    allData = getData();
                                     updateViz(clicked_point, false);
+                                    $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
+                                    $('g.highcharts-button.highcharts-drillup-button.highcharts-button-normal').css('display', 'none');
+                                    allData = getData();
+                                    return clicked_point;
                                 } else {
                                     var clicked_point = $(i.target)[0].textContent;
                                     $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
+                                    allData = getData();
                                     updateViz(clicked_point, false);
+                                    $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
+                                    $('g.highcharts-button.highcharts-drillup-button.highcharts-button-normal').css('display', 'none');
+                                    allData = getData();
+                                    return clicked_point;
                                 }
                             }
                         }
@@ -948,7 +1234,11 @@
                     relativeTo: 'spacingBox',
                     position: {
                         x: 0,
-                        y: 30
+                        y: -20
+                    },
+                    event: {
+                        change: function () {
+                        }
                     }
                 }
             }
@@ -980,6 +1270,8 @@
         if (name == 'Bangladesh') {
             $('#division-overview').css('display', 'none');
             buildNationalData();
+            updateLineChart();
+
         } else {
             // If we change the name in the location input
             if (from_selection == true) {
@@ -995,8 +1287,8 @@
 
             }
             if (level_number == 1) {
-                $('#national-rank').css('display', 'block');
-                updateRankSections(name, level_number);
+//                $('#national-rank').css('display', 'block');
+                updateRankSections();
 
             } else {
                 $('#national-rank').css('display', 'none');
@@ -1006,6 +1298,8 @@
             updateTop3Section(name, level_number, violence_type, date);
             updateCensusInfo(name, level_number);
             updateMapValues(name);
+            updateLineChart();
+            updateRankSections();
         }
 
 
@@ -1027,22 +1321,7 @@
     // Update the text trend values reflecting the selections
     function updateTextValues(name, level_number, violence_type, date) {
         //Instantiate rank_data array
-        var rank_data = [];
-        var rank_api_url = '{{ url_for("api.get_results", name="name", level=0, violence_type="violence-type", date="date")}}';
-        rank_api_url = rank_api_url.replace('name', name).replace(0, level_number).replace('violence-type', violence_type).replace('date', date);
-
-        // Get request for the ranking data
-        $.get(rank_api_url, function (data) {
-            rank_data = data;
-        });
-
-        // Fill values of the right visualizer
-        $.each(rank_data, function (item) {
-            if (rank_data[item]['name'] == name) {
-                $('.national-ranked').html(rank_data[item]['rank']);
-            }
-        });
-        // Set the highest rates
+        var rank_data = allData['rank-stats'];
 
         // Get top death location name
         death_top_rank_data = getTopN(rank_data, 'death', 1);
@@ -1111,103 +1390,101 @@
         var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
         if (diffDays <= 365) {
             var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=0,  date='date', quarterly='monthly' , violence_type='violence-type')}}".replace('name', name).replace(0, level_number).replace('violence-type', violence_type).replace('date', date);
-            $.get(url_for_chart_get_results, function (data) {
+            var data = allData['monthly-stats'];
+            var data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
+            var categories = [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ]
+            $.each(Highcharts.charts, function (item) {
+                if (Highcharts.charts[item].renderTo.id == 'third-section-first-chart') {
 
-                var data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
-                var categories = [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
-                ]
-                $.each(Highcharts.charts, function (item) {
-                    if (Highcharts.charts[item].renderTo.id == 'third-section-first-chart') {
-
-                        // Update third-section-first-chart values
-                        $.each(data.incidents, function (item) {
-                            if (data.incidents[item].death != 0) {
-                                data_series_array[parseInt(data.incidents[item].month) - 1] = data.incidents[item].death;
-                            }
-                        });
-
-                        // Populate data series array and show the message if there is no data
-                        if (data_series_array.reduce(add, 0) != 0) {
-                            $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
-                            Highcharts.charts[item].series[0].setData(data_series_array);
-                            Highcharts.charts[item].xAxis[0].setCategories(categories);
-                            updateTrendArrows(data_series_array, 1);
-                            Highcharts.charts[item].hideLoading();
-                        } else {
-                            $('#accordion .rate-1').parent().addClass("ui-state-disabled");
-                            data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
-                            Highcharts.charts[item].series[0].setData(data_series_array);
-                            Highcharts.charts[item].showLoading('No data to display');
-
+                    // Update third-section-first-chart values
+                    $.each(data, function (item) {
+                        if (data[item].death != 0) {
+                            data_series_array[parseInt(data[item].month) - 1] = data[item].death;
                         }
+                    });
 
-                        // Reset data series array
+                    // Populate data series array and show the message if there is no data
+                    if (data_series_array.reduce(add, 0) != 0) {
+                        $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
+                        Highcharts.charts[item].series[0].setData(data_series_array);
+                        Highcharts.charts[item].xAxis[0].setCategories(categories);
+                        updateTrendArrows(data_series_array, 1);
+                        Highcharts.charts[item].hideLoading();
+                    } else {
+                        $('#accordion .rate-1').parent().addClass("ui-state-disabled");
                         data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
-                    }
-                    if (Highcharts.charts[item].renderTo.id == 'third-section-second-chart') {
+                        Highcharts.charts[item].series[0].setData(data_series_array);
+                        Highcharts.charts[item].showLoading('No data to display');
 
-                        // Update third-section-second-chart values
-                        $.each(data.incidents, function (item) {
-                            data_series_array[parseInt(data.incidents[item].month) - 1] = data.incidents[item].injuries;
-                        });
-
-                        // Populate data series array and show the message if there is no data
-                        if (data_series_array.reduce(add, 0) != 0) {
-                            $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
-                            Highcharts.charts[item].series[0].setData(data_series_array);
-                            Highcharts.charts[item].xAxis[0].setCategories(categories);
-                            updateTrendArrows(data_series_array, 2);
-                            Highcharts.charts[item].hideLoading();
-                        } else {
-                            $('#accordion .rate-2').parent().addClass("ui-state-disabled");
-                            // Reset data series array
-                            data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
-                            Highcharts.charts[item].series[0].setData(data_series_array);
-                            Highcharts.charts[item].showLoading('No data to display');
-                        }
-
-                        // Reset data series array
-                        data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
-                    }
-                    if (Highcharts.charts[item].renderTo.id == 'third-section-third-chart') {
-                        // Update third-section-third-chart values
-                        $.each(data.incidents, function (item) {
-                            data_series_array[parseInt(data.incidents[item].month) - 1] = data.incidents[item].property;
-                        });
-
-                        // Populate data series array and show the message if there is no data
-                        if (data_series_array.reduce(add, 0) != 0) {
-                            $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
-                            Highcharts.charts[item].series[0].setData(data_series_array);
-                            Highcharts.charts[item].xAxis[0].setCategories(categories);
-                            updateTrendArrows(data_series_array, 3);
-                            $('.rate-3-text .not-enough-data-for-chart-rate-3').remove();
-                            Highcharts.charts[item].hideLoading();
-                        } else {
-                            $('#accordion .rate-3').parent().addClass("ui-state-disabled");
-                            data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
-                            Highcharts.charts[item].series[0].setData(data_series_array);
-                            Highcharts.charts[item].showLoading('No data to display');
-                        }
-
-                        // Reset data series array
-                        data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
                     }
 
-                })
-            });
+                    // Reset data series array
+                    data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
+                }
+                if (Highcharts.charts[item].renderTo.id == 'third-section-second-chart') {
+
+                    // Update third-section-second-chart values
+                    $.each(data, function (item) {
+                        data_series_array[parseInt(data[item].month) - 1] = data[item].injuries;
+                    });
+
+                    // Populate data series array and show the message if there is no data
+                    if (data_series_array.reduce(add, 0) != 0) {
+                        $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
+                        Highcharts.charts[item].series[0].setData(data_series_array);
+                        Highcharts.charts[item].xAxis[0].setCategories(categories);
+                        updateTrendArrows(data_series_array, 2);
+                        Highcharts.charts[item].hideLoading();
+                    } else {
+                        $('#accordion .rate-2').parent().addClass("ui-state-disabled");
+                        // Reset data series array
+                        data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
+                        Highcharts.charts[item].series[0].setData(data_series_array);
+                        Highcharts.charts[item].showLoading('No data to display');
+                    }
+
+                    // Reset data series array
+                    data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
+                }
+                if (Highcharts.charts[item].renderTo.id == 'third-section-third-chart') {
+                    // Update third-section-third-chart values
+                    $.each(data, function (item) {
+                        data_series_array[parseInt(data[item].month) - 1] = data[item].property;
+                    });
+
+                    // Populate data series array and show the message if there is no data
+                    if (data_series_array.reduce(add, 0) != 0) {
+                        $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
+                        Highcharts.charts[item].series[0].setData(data_series_array);
+                        Highcharts.charts[item].xAxis[0].setCategories(categories);
+                        updateTrendArrows(data_series_array, 3);
+                        $('.rate-3-text .not-enough-data-for-chart-rate-3').remove();
+                        Highcharts.charts[item].hideLoading();
+                    } else {
+                        $('#accordion .rate-3').parent().addClass("ui-state-disabled");
+                        data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
+                        Highcharts.charts[item].series[0].setData(data_series_array);
+                        Highcharts.charts[item].showLoading('No data to display');
+                    }
+
+                    // Reset data series array
+                    data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
+                }
+
+            })
         } else {
 
             var url_for_chart_get_results = "{{ url_for('api.monthly_incidents', name='name', level=0,  date='date', quarterly='quarterly' , violence_type='violence-type')}}".replace('name', name).replace(0, level_number).replace('violence-type', violence_type).replace('date', date);
@@ -1353,8 +1630,6 @@
         else if (array[array.length - 1] == array[array.length - 2]) {
             $('.rate-' + chartNumber + '-arrow').css('display', 'none');
         }
-//        console.log('val 1: ' + array[array.length - 1]);
-//        console.log('val 2:' + array[array.length - 2]);
     }
 
     // Update the top 3 types
@@ -1440,9 +1715,10 @@
     function buildViolenceTypeDropDown() {
         // Get violence dropdown options instance
         var violence_options = $("#violence-type-select");
-        // violence_options.append($("<option />").val('all').text('All'));
+        var url = '{{ url_for("api.get_violence_types", dataset="dataset")}}'.replace('dataset', $('#data-source-select').val());
         // Get request to get the violence types
-        $.get('{{ url_for("api.get_violence_types", dataset="mgr")}}', function (data) {
+        $.get(url, function (data) {
+            violence_options.empty();
             $.each(data, function (item) {
                 violence_options.append($("<option />").val(data[item]).text(data[item]));
             });
@@ -1455,86 +1731,26 @@
     }
     function updateMapValues(name) {
 
-//        var updated_data = buildDataSeries(name);
         var map = $('#map').highcharts(),
                 points = map.series[0].points;
-        var level_number = 0;
-        if (map.drilldownLevels != undefined) {
-            level_number = $('#map').highcharts().drilldownLevels.length;
+
+        var data = allData['incident-stats'];
+        var values_array = {};
+        for (var item in data) {
+            values_array[data[item]['name'].toString()] = data[item]["incidents"]
         }
+        for (var i in points) {
+            var val = values_array[points[i].name]
 
-        // Get selected violence type dropdown
-        var violence_type = $("#violence-type-select").val().replace('/', '-');
-
-        // Get date
-        var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
-
-        if (name == undefined) {
-            name = 'Bangladesh';
-        }
-
-        if (level_number == 1) {
-            var district_url = "{{ url_for('api.get_victims', type='division', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
-            $.get(district_url, function (data) {
-                var district = {};
-                for (var item in data) {
-                    district[data[item]['division'].toString()] = data[item]["incidents"]
-                }
-                for (var i in points) {
-                    var val = district[points[i].name]
-                    if (val != undefined) {
-                        points[i].update({value: val}, false);
-                        points[i].update({color: mapColor(val)})
-                    } else {
-                        points[i].update({value: undefined}, true);
-                        points[i].update({color: mapColor(0)})
-                    }
-
-                }
-            });
+            if (val != undefined) {
+                points[i].update({value: val}, false);
+                points[i].update({color: mapColor(val)})
+            } else {
+                points[i].update({value: undefined}, true);
+                points[i].update({color: mapColor(0)})
+            }
 
         }
-        if (level_number == 2) {
-            var upazila_url = "{{ url_for('api.get_victims', type='district', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
-            $.get(upazila_url, function (data) {
-                var upazila = {};
-                for (var item in data) {
-                    upazila[data[item]['district'].toString()] = data[item]["incidents"]
-                }
-
-                for (var i in points) {
-                    var val = upazila[points[i].name]
-                    if (val != undefined) {
-                        points[i].update({value: val}, false);
-                        points[i].update({color: mapColor(val)})
-                    } else {
-                        points[i].update({value: undefined}, false);
-                        points[i].update({color: mapColor(0)})
-                    }
-
-                }
-            });
-        }
-        if (level_number == 0) {
-            var division_url = "{{ url_for('api.get_victims', type='division', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
-            $.get(division_url, function (data) {
-                var divisions = {};
-                for (var item in data) {
-                    divisions[data[item]['division'].toString()] = data[item]["incidents"]
-                }
-                for (var i in points) {
-                    var val = divisions[points[i].name]
-                    if (val != undefined) {
-                        points[i].update({value: val}, false);
-                    } else {
-                        points[i].update({value: undefined}, false);
-                        points[i].update({color: mapColor(0)})
-                    }
-
-                }
-            });
-        }
-
         map.redraw();
     }
 
