@@ -566,7 +566,7 @@
                 selected_vals = ui.item.label.split(',');
                 doDrillDown(selected_vals);
                 $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
-//                updateViz(selected_district, true);
+                updateViz(selected_district, true);
             }
         });
         $('#division-select').change(function () {
@@ -753,7 +753,7 @@
         updateRankSections();
     }
     function getData() {
-
+        $('#loadingmessage').show();
         var dataResults = undefined;
         var division = "";
         var district = "";
@@ -795,6 +795,7 @@
             data: JSON.stringify(jsonData),
             success: function (data) {
                 dataResults = data;
+                $('#loadingmessage').hide();
             }
         });
         return dataResults;
@@ -1284,9 +1285,9 @@
         updateMapValues();
         updateLineChart();
         updateRankSections();
+        updateTop3Section();
 
         // To be refactored
-        updateTop3Section(name, level_number, violence_type, date);
         updateCensusInfo(name, level_number);
 
 
@@ -1807,5 +1808,7 @@
         return json_data;
     }
 </script>
-
+<div id='loadingmessage' style='display:none'>
+  <img src='{{ url_for("static", filename="assets/loading.gif")}}'/>
+</div>
 {% endblock %}

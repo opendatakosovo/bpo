@@ -536,3 +536,10 @@ input.empty:-moz-placeholder { /* Firefox 18- */
 .fa-caret-up:before {
     display: none;
 }
+#loadingmessage {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    margin-left: -(X/2)px;
+    margin-top: -(Y/2)px;
+}
