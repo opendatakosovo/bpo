@@ -66,6 +66,7 @@ header .intro-text .intro-heading {
     line-height: 64px;
     color: #333333;
 }
+
 .logos {
     width: 110px;
     height: 110px;
@@ -141,6 +142,7 @@ header .intro-text .intro-heading {
     margin-right: 50px;
     height: 62px;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .btn-xl1:hover {
@@ -167,9 +169,11 @@ hr {
 .bg-light-blue {
     background-color: #007CA4;
 }
-.bg-dark-blue{
+
+.bg-dark-blue {
     background-color: #003D52;
 }
+
 .lead-desc-1 {
     font-family: Lato;
     font-size: 18px;
@@ -278,9 +282,61 @@ hr {
 }
 
 .intro-footer-one {
+    font-family: Lato;
+    font-size: 24px;
+    text-align: center;
+    line-height: 24px;
+    color: #FFFFFF;
+    margin-top: 6px;
+}
+
+.footer-hosted-by {
+    font-family: Lato;
+    font-size: 20px;
+    text-align: center;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.footer-supported-by {
+    font-family: Lato;
+    font-size: 14px;
+    text-align: center;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+.copyright-text {
+    font-family: Lato;
+    font-size: 14px;
+    text-align: center;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+.footer-disclaimer-title {
     font-family: "Noto Serif";
     font-size: 16px;
-    margin-top: 6px;
+    font-weight: bold;
+    line-height: 22px;
+    color: #EEEEEE;
+    text-align: left;
+}
+
+.footer-disclaimer-text {
+    font-family: Lato;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+    text-align: left;
+}
+
+.find-us-on-social {
+    font-family: "Noto Serif";
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 22px;
+    color: #EEEEEE;
 }
 
 .footer1 {
@@ -1224,9 +1280,12 @@ body {
     height: 30px;
 }
 
-i.fa {
+i.fa:before {
     font-size: 22px;
-    margin-left: -6px;
+    margin-left: -10px;
+    width: 30px;
+    height: 30px;
+    color: #003d52 !important;
 }
 
 .nav-container {
@@ -1241,16 +1300,20 @@ i.fa {
 #section-about-description {
     background-color: #00506B;
 }
+
 #advisory-board img {
     filter: grayscale(100%);
 }
-#advisory-board img:hover{
+
+#advisory-board img:hover {
     filter: grayscale(0%);
 }
-#advisory-board{
-    margin-bottom:100px;
-    margin-top:50px;
+
+#advisory-board {
+    margin-bottom: 100px;
+    margin-top: 50px;
 }
-.advisory-board-title{
-    padding-bottom:40px;
+
+.advisory-board-title {
+    padding-bottom: 40px;
 }
