@@ -52,43 +52,45 @@
 </head>
 
 {% block header %}
-<body id="page-top" class="index">
-{#    <!-- Navigation -->#}
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-    <div class="nav-container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll nav navbar-nav navbar-right">
-            <ul class="nav navbar-nav navbar-right">
-                <a href="{{ url_for('viz.index') }}" class=" btn btn-xl enter-landing">Enter the Observatory</a>
-            </ul>
+<!-- Navigation -->
+<div id="header">
+    <nav id="mainNav" class="navbar navbar-fixed-top">
+        <div class="nav-container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right">
+                    <a href="{{ url_for('viz.index') }}" class=" btn btn-xl enter-landing">Enter the Observatory</a>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<!-- Header -->
-<div class="row header">
-    <div class="container">
-        <div class="intro-text">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                    <div class="intro-lead-in">Bangladesh Peace Observatory</div>
+    <!-- Header -->
+    <div class="row header">
+        <div class="container">
+            <div class="intro-text">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <div class="intro-lead-in">Bangladesh Peace Observatory</div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <hr style="width:40%; margin-left: 29% !important;">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <hr style="width:40%; margin-left: 29% !important;">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                    <div class="intro-lead-in1">Advancing understanding of peace and tolerance
-                        through data insights
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <div class="intro-lead-in1">Advancing understanding of peace and tolerance
+                            through data insights
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
 {% block body %}
 {% endblock %}
@@ -101,7 +103,8 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="col-md-3 ">
                         <h4 class="footer-disclaimer-title">Disclaimer:</h4>
-                        <p class="footer-disclaimer-text">Duis mollis, est non commodo lucts, nisi erat porttitor ligula,
+                        <p class="footer-disclaimer-text">Duis mollis, est non commodo lucts, nisi erat porttitor
+                            ligula,
                             eget lacinia
                             odio sem nec elit.
                             Donec ullamcorper nulla non metus auctr fringilla.
@@ -126,20 +129,21 @@
                         </div>
                         <div class="row">
                             <!--<div class="col-md-1 col-md-offset-1 col-sm-2 col-sm-offset-2 col-xs-2 col-xs-offset-2">-->
-                                <!--<a class="btn social-login-btn social-twitter" href="/auth/twitter"><i-->
-                                        <!--class="fa fa-twitter"></i></a>-->
+                            <!--<a class="btn social-login-btn social-twitter" href="/auth/twitter"><i-->
+                            <!--class="fa fa-twitter"></i></a>-->
                             <!--</div>-->
                             <div class="col-md-1 col-md-offset-1  col-sm-2 col-xs-2">
-                                <a class="btn social-login-btn social-facebook" href="https://www.facebook.com/genocide.du/?fref=ts"><i
+                                <a class="btn social-login-btn social-facebook"
+                                   href="https://www.facebook.com/genocide.du/?fref=ts"><i
                                         class="fa fa-facebook"></i></a>
                             </div>
                             <!--<div class="col-md-1 col-md-offset-1 col-sm-2 col-xs-2">-->
-                                <!--<a class="btn social-login-btn social-pinterest" href="/auth/pinterest"><i-->
-                                        <!--class="fa fa-pinterest-p"></i></a>-->
+                            <!--<a class="btn social-login-btn social-pinterest" href="/auth/pinterest"><i-->
+                            <!--class="fa fa-pinterest-p"></i></a>-->
                             <!--</div>-->
                             <!--<div class="col-md-1 col-md-offset-1 col-sm-2 col-xs-2">-->
-                                <!--<a class="btn social-login-btn social-google" href="/auth/google"><i-->
-                                        <!--class="fa fa-google-plus"></i></a>-->
+                            <!--<a class="btn social-login-btn social-google" href="/auth/google"><i-->
+                            <!--class="fa fa-google-plus"></i></a>-->
                             <!--</div>-->
                         </div>
                     </div>

@@ -125,6 +125,7 @@ header .intro-text .intro-heading {
     background-color: #FFA400;
     border-radius: 4px;
     padding: 20px;
+    text-align: center;
 }
 
 .enter-landing {
@@ -160,8 +161,11 @@ hr {
 
 .header {
     background-color: #007CA4;
+    padding-bottom: 104px;
 }
-
+#mainNav{
+    background-color: #007CA4;
+}
 .bg-light-gray {
     background-color: white;
 }
@@ -359,24 +363,12 @@ footer .footer-below {
     /*background-color: #233140;*/
 }
 
-.navbar-default {
-    background-color: #007CA4;
-    border-color: #007CA4;
-
-}
-
 .navbar-default .navbar-brand {
     color: #FDA200;
 }
 
 .navbar-nav {
     background-color: #007ca4;
-}
-
-footer {
-    color: white;
-    background-color: #007CA4;
-
 }
 
 .social-google {
@@ -672,20 +664,6 @@ fieldset[disabled] .btn-xl.active {
     .navbar-custom.affix .navbar-brand {
         font-size: 1.5em;
     }
-}
-
-header {
-    /*background-image: url('../img/header-bg.jpg');*/
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: center center;
-    /*-webkit-background-size: cover;*/
-    /*-moz-background-size: cover;*/
-    background-size: cover;
-    -o-background-size: cover;
-    text-align: center;
-    color: white;
-    background-color: #007CA4;
 }
 
 .intro-lead-in1 {
@@ -1316,4 +1294,8 @@ i.fa:before {
 
 .advisory-board-title {
     padding-bottom: 40px;
+}
+
+#header {
+    background: linear-gradient(0deg, #003D52 0%, #007CA4 100%);
 }
