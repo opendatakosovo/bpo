@@ -35,7 +35,7 @@
             <div class="col-md-6 col-xs-6">
                 <div class="col-md-6">
                     <div class="drillup">
-                        <a class="drillup-button">Back to country</a>
+                        <a class="drillup-button">Home</a>
                     </div>
                     <input name='division-select' class="form-control update-chart empty" id="division-select" value=''
                            placeholder="Search divisions, districts, upazilas              &#xF002;">
@@ -283,7 +283,7 @@
                         <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
                     </div>
 
-                    <span class="rate-1"></span> <span class="rate-1-text">has the highest fatality rate. </span>
+                    <span class="rate-1"></span><span class="rate-text"> has the </span> <span class="rate-1-text">highest fatality rate. </span>
                     <img class="rate-1-arrow viz-icon-arrow"
                          src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
 
@@ -300,7 +300,7 @@
                     <div class="icon-container">
                         <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
                     </div>
-                    <span class="rate-2"></span> <span class="rate-2-text">has the highest injury count.</span>
+                    <span class="rate-2"></span><span class="rate-text"> has the </span>  <span class="rate-2-text">highest injury count.</span>
                     <img class="rate-2-arrow viz-icon-arrow"
                          src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
@@ -316,7 +316,7 @@
                     <div class="icon-container">
                         <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
                     </div>
-                    <span class="rate-3"></span> <span class="rate-3-text">has the highest property damage count.</span>
+                    <span class="rate-3"></span><span class="rate-text"> has the </span>  <span class="rate-3-text">highest property damage count.</span>
                     <img class="rate-3-arrow viz-icon-arrow"
                          src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
@@ -458,12 +458,26 @@
         // Resize charts on window resize
         initResizeChartsOnResizeWindow();
 
-
+        $('.drillup-button').text("Home");
         $('.highcharts-drillup-button').on('change', function () {
-            $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
+            if($($('.highcharts-drillup-button')[0]).length !=0){
+                $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
+            }else{
+                $('.drillup-button').text("Home");
+            }
+
         });
         $('.drillup-button').click(function () {
             $('.highcharts-drillup-button').click();
+            if($('.drillup-button').text() == "◁ Back to Bangladesh"){
+                var home_url = "{{ url_for('main.index')}}";
+                $('.drillup-button').text("Home");
+            }
+            if($($('.highcharts-drillup-button')[0]).length !=0){
+                $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
+            }else{
+                $('.drillup-button').text("Home");
+            }
         });
 
         // Build the ranking on the right on location based stats
@@ -572,6 +586,7 @@
         $('#division-select').change(function () {
             console.log(this.val);
         })
+
     }
     function doDrillDown(dDownArray) {
         $('.highcharts-drillup-button').click();
@@ -753,7 +768,7 @@
         updateRankSections();
     }
     function getData() {
-        $('#loadingmessage').show();
+
         var dataResults = undefined;
         var division = "";
         var district = "";
@@ -793,6 +808,9 @@
             type: "POST",
             contentType: 'application/json',
             data: JSON.stringify(jsonData),
+            beforeSend: function() {
+              $('#loadingmessage').show();
+            },
             success: function (data) {
                 dataResults = data;
                 $('#loadingmessage').hide();
@@ -1203,6 +1221,7 @@
                                     $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
                                     allData = getData();
                                     updateViz(clicked_point, false);
+                                    $('.drillup-button').show();
                                     $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
                                     $('g.highcharts-button.highcharts-drillup-button.highcharts-button-normal').css('display', 'none');
                                     allData = getData();
@@ -1212,6 +1231,7 @@
                                     $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
                                     allData = getData();
                                     updateViz(clicked_point, false);
+                                    $('.drillup-button').show();
                                     $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
                                     $('g.highcharts-button.highcharts-drillup-button.highcharts-button-normal').css('display', 'none');
                                     allData = getData();

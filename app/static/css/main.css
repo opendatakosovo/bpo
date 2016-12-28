@@ -374,7 +374,12 @@ ol {
     line-height: 32px;
     color: #333333;
 }
-
+.rate-text {
+    font-family: Lato;
+    font-size: 18px;
+    line-height: 32px;
+    color: #333333;
+}
 .rate-1, .rate-2, .rate-3 {
     font-weight: bold;
 }
@@ -542,4 +547,7 @@ input.empty:-moz-placeholder { /* Firefox 18- */
     left: 30%;
     margin-left: -(X/2)px;
     margin-top: -(Y/2)px;
+}
+.rate-1-text, .rate-2-text, .rate-3-text{
+    font-weight: bold;
 }

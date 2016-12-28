@@ -1,17 +1,11 @@
-header .intro-text-about .intro-lead-in {
+.intro-lead-in {
     font-family: "Playfair Display";
-    font-style: normal;
-    font-size: 63px;
-    line-height: 62px;
-    margin-bottom: 55px;
-}
-
-header .intro-text-about .intro-lead-in1 {
-    font-family: "Playfair Display";
-    font-style: normal;
-    font-size: 22px;
-    /*line-height: 62px;*/
-    margin-bottom: 55px;
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 85px;
+    color: #FFFFFF;
+    padding-top: 25%;
 }
 
 header .intro-text .intro-heading {
@@ -27,11 +21,13 @@ header .intro-text .intro-heading {
     float: right;
     font-size: 24px;
     font-family: "Noto Serif";
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
+    line-height: 33px;
     color: #FFC84A;
     text-shadow: 0 1px 0 0 #006586;
-    /*width: 75px;*/
 }
-
 
 .navbar-custom .nav li a {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -47,32 +43,29 @@ header .intro-text .intro-heading {
 }
 
 .section-heading5 {
-
-    font-size: 48px;
-    text-transform: capitalize;
     font-family: "Playfair Display";
-    margin-bottom: 50px;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 64px;
+    color: #333333;
 }
 
-.section-heading1 {
-    margin-bottom: 80px;
-    /*margin-left: 15%*/
-    /*width: 60%;*/
-    color: white;
-    font-size: 48px;
+.section-heading-about {
     font-family: "Playfair Display";
-    text-transform: capitalize;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 64px;
+    color: #FFFFFF;
 }
 
-.section-heading2 {
-    margin-bottom: 111px;
-    /* margin-left: 30%; */
-    /* width: 60%; */
-    color: black;
-    font-size: 48px;
+.advisory-board-title {
     font-family: "Playfair Display";
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 64px;
+    color: #333333;
 }
-
 .logos {
     width: 110px;
     height: 110px;
@@ -114,18 +107,23 @@ header .intro-text .intro-heading {
 
 }
 
-.enter-about {
-    color: #FDA200;
-    background-color: #007CA4;
-    border: 2px solid #FDA200;
-    border-style: solid;
+.enter-btn {
+    box-sizing: border-box;
+    width: 256px;
+    height: 25px;
     font-family: Lato;
-    text-transform: uppercase;
-    font-weight: 700;
-    border-radius: 3px;
     font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.enter-about {
+    height: 68px;
+    background-color: #FFA400;
+    border-radius: 4px;
     padding: 20px;
-    /*float: right;*/
 }
 
 .enter-landing {
@@ -142,6 +140,7 @@ header .intro-text .intro-heading {
     float: right;
     margin-right: 50px;
     height: 62px;
+    margin-top: 20px;
 }
 
 .btn-xl1:hover {
@@ -151,26 +150,13 @@ header .intro-text .intro-heading {
 }
 
 hr {
-    display: block;
-    height: 10px;
-    border: 0;
-    border-top: 4px solid #FF8C00;
-    margin: 1em 0;
-    padding: 0;
-    margin-left: 3% !important;
+    box-sizing: border-box;
+    width: 348px;
+    height: 3px;
+    border: 6px solid #FFAA12;
 }
 
-header {
-    /*background-image: url('../img/header-bg.jpg');*/
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: center center;
-    /*-webkit-background-size: cover;*/
-    /*-moz-background-size: cover;*/
-    background-size: cover;
-    -o-background-size: cover;
-    text-align: center;
-    color: white;
+.header {
     background-color: #007CA4;
 }
 
@@ -181,19 +167,21 @@ header {
 .bg-light-blue {
     background-color: #007CA4;
 }
-
-.lead1 {
-    font-size: 18px;
-    color: #FFFFFF;
-    text-align: justify;
+.bg-dark-blue{
+    background-color: #003D52;
+}
+.lead-desc-1 {
     font-family: Lato;
+    font-size: 18px;
+    line-height: 31px;
+    color: #FFFFFF;
 }
 
 .lead2 {
-    font-size: 18px;
-    color: black;
-    text-align: justify;
     font-family: Lato;
+    font-size: 18px;
+    line-height: 31px;
+    color: #333333;
 }
 
 .lead3 {
@@ -211,28 +199,47 @@ header {
     padding-left: 50px !important;
 }
 
-.test {
-    height: 37px;
+.lead-hr {
+    height: 3.5em;
     width: 0px;
     border: 3px solid #ADD8E6;
     margin-left: 0px;
     float: left;
 }
 
-.intro-header {
+.project-by {
     font-family: Lato;
     font-size: 22px;
-    margin-top: 40px;
-    color: white;
+    text-align: center;
+    line-height: 22px;
+    color: #FFFFFF;
+    padding-top: 150px;
 }
 
-.intro-header1 {
+.hosted-by {
     font-family: Lato;
-    font-size: 20px;
-    /*margin-top: 67px;*/
-    margin-bottom: 50px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+    color: #FFFFFF;
+}
 
-    color: white;
+.in-partnership-title {
+    font-family: Lato;
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+    color: #FFFFFF;
+    padding-top: 30px;
+}
+
+.in-partnership-desc {
+    font-family: Lato;
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+    color: #FFFFFF;
+
 }
 
 .intro-header2 {
@@ -305,9 +312,11 @@ footer .footer-below {
 .navbar-default .navbar-brand {
     color: #FDA200;
 }
+
 .navbar-nav {
     background-color: #007ca4;
 }
+
 footer {
     color: white;
     background-color: #007CA4;
@@ -558,7 +567,6 @@ fieldset[disabled] .btn-xl.active {
     background-color: #fed136;
 }
 
-
 .navbar-custom .nav li a:hover,
 .navbar-custom .nav li a:focus {
     color: #fed136;
@@ -624,30 +632,14 @@ header {
     background-color: #007CA4;
 }
 
-header .intro-text-about {
-    /*padding-top: 100px;*/
-    /*padding-bottom: 50px;*/
-}
-
-header .intro-text {
-    padding-top: 300px;
-    padding-bottom: 200px;
-}
-
-header .intro-text .intro-lead-in {
-    font-family: "Playfair Display";
-    font-style: normal;
-    font-size: 64px;
-    line-height: 59px;
-    margin-bottom: 55px;
-}
-
-header .intro-text .intro-lead-in1 {
-    font-family: "Lato";
-    font-style: normal;
+.intro-lead-in1 {
+    font-family: Lato;
     font-size: 24px;
-    /*line-height: 62px;*/
-    margin-bottom: 55px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
+    color: #FFFFFF;
+    padding-bottom: 50px;
 }
 
 header .intro-text .intro-heading {
@@ -1213,24 +1205,52 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: #fed136;
 }
-.section-img{
-    width:134.45px;
+
+.section-img {
+    width: 134.45px;
     height: 113px;
 }
+
 .section-2-part-4 {
     padding-top: 53px;
 }
-.section-2-part-5{
+
+.section-2-part-5 {
     padding-top: 30px;
 }
+
 .social-login-btn {
     width: 30px;
     height: 30px;
 }
+
 i.fa {
     font-size: 22px;
     margin-left: -6px;
 }
-.nav-container{
-    background-color:#fff;
+
+.nav-container {
+    background-color: #fff;
+}
+
+.blue-div.row {
+    background-color: #007ca4;
+    height: 150px;
+}
+
+#section-about-description {
+    background-color: #00506B;
+}
+#advisory-board img {
+    filter: grayscale(100%);
+}
+#advisory-board img:hover{
+    filter: grayscale(0%);
+}
+#advisory-board{
+    margin-bottom:100px;
+    margin-top:50px;
+}
+.advisory-board-title{
+    padding-bottom:40px;
 }
