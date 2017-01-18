@@ -301,7 +301,7 @@
                     <div class="icon-container">
                         <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
                     </div>
-                    <span class="rate-2"></span><span class="rate-text"> has the </span>  <span class="rate-2-text">highest injury count.</span>
+                    <span class="rate-2"></span><span class="rate-text"> has the </span> <span class="rate-2-text">highest injury count.</span>
                     <img class="rate-2-arrow viz-icon-arrow"
                          src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
@@ -317,7 +317,7 @@
                     <div class="icon-container">
                         <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
                     </div>
-                    <span class="rate-3"></span><span class="rate-text"> has the </span>  <span class="rate-3-text">highest property damage count.</span>
+                    <span class="rate-3"></span><span class="rate-text"> has the </span> <span class="rate-3-text">highest property damage count.</span>
                     <img class="rate-3-arrow viz-icon-arrow"
                          src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
@@ -461,22 +461,22 @@
 
         $('.drillup-button').text("Home");
         $('.highcharts-drillup-button').on('change', function () {
-            if($($('.highcharts-drillup-button')[0]).length !=0){
+            if ($($('.highcharts-drillup-button')[0]).length != 0) {
                 $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
-            }else{
+            } else {
                 $('.drillup-button').text("Home");
             }
 
         });
         $('.drillup-button').click(function () {
             $('.highcharts-drillup-button').click();
-            if($('.drillup-button').text() == "◁ Back to Bangladesh"){
+            if ($('.drillup-button').text() == "◁ Back to Bangladesh") {
                 var home_url = "{{ url_for('main.index')}}";
                 $('.drillup-button').text("Home");
             }
-            if($($('.highcharts-drillup-button')[0]).length !=0){
+            if ($($('.highcharts-drillup-button')[0]).length != 0) {
                 $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
-            }else{
+            } else {
                 $('.drillup-button').text("Home");
             }
         });
@@ -809,8 +809,8 @@
             type: "POST",
             contentType: 'application/json',
             data: JSON.stringify(jsonData),
-            beforeSend: function() {
-              $('#loadingmessage').show();
+            beforeSend: function () {
+                $('#loadingmessage').show();
             },
             success: function (data) {
                 dataResults = data;
@@ -1153,18 +1153,18 @@
                 },
                 layout: 'vertical',
                 borderWidth: 1,
-                shadow: '-1px 2px 2px 0 rgba(0, 0, 0, 0.2)',
-                borderRadius: 2,
+                symbolRadius:0,
+                boxShadow: '-1px 2px 2px 0 rgba(0, 0, 0, 0.2)',
                 align: 'right',
                 verticalAlign: 'top',
                 y: -5,
                 labelFormatter: function () {
                     if (this.from === undefined) {
-                        return 'Below ' + this.to;
+                        return '< ' + this.to;
                     }
 
                     if (this.to === undefined) {
-                        return 'Above ' + this.from;
+                        return '> ' + this.from;
                     }
 
                     return this.from + ' to ' + this.to;
@@ -1173,26 +1173,30 @@
 
             colorAxis: {
                 dataClasses: [{
-                    to: 100,
+                    to: 10,
                     color: "#a3dbb9"
                 }, {
-                    from: 101,
-                    to: 500,
+                    from: 11,
+                    to: 50,
                     color: "#fbfa20"
                 }, {
-                    from: 501,
-                    to: 1000,
+                    from: 51,
+                    to: 100,
                     color: "#f8c733"
                 }, {
-                    from: 1001,
-                    to: 1500,
+                    from: 101,
+                    to: 200,
                     color: "#feb126"
                 }, {
-                    from: 1501,
-                    to: 2000,
+                    from:201 ,
+                    to: 500,
+                    color: "#f7802d"
+                },{
+                    from:501 ,
+                    to: 1000,
                     color: "#f7802d"
                 }, {
-                    from: 2001,
+                    from: 1001,
                     color: "#fe363c"
                 }]
             },
@@ -1307,7 +1311,7 @@
         updateLineChart();
         updateRankSections();
         updateTop3Section();
-
+        $('.location-name').html(name);
         // To be refactored
         updateCensusInfo(name, level_number);
 
@@ -1378,7 +1382,7 @@
             $('#accordion .rate-3').parent().addClass("ui-state-disabled");
         }
 
-        $('.location-name').html(name);
+
 
         // Change the presentation text based on the level
         if (global_division != "" && global_district == "") {
@@ -1758,25 +1762,30 @@
     }
 
     function mapColor(val) {
-        if (val < 100 && val != 0) {
+        if (val < 10 && val != 0) {
             return "#a3dbb9"
         }
 
 
-        if (val > 100 && val < 500) {
+        if (val > 10 && val < 50) {
             return "#fbfa20"
         }
-        if (val > 500 && val < 1500) {
+        if (val > 50 && val < 100) {
             return "#feb126"
         }
 
 
-        if (val > 1500 && val < 2000) {
+        if (val > 100 && val < 200) {
             return "#f7802d"
         }
 
-
-        if (val > 2000) {
+        if (val > 201 && val < 500) {
+            return "#f7802d"
+        }
+        if (val > 501 && val < 1000) {
+            return "#f7802d"
+        }
+        if (val > 1000) {
             return "#fe363c"
         }
 
@@ -1830,6 +1839,6 @@
     }
 </script>
 <div id='loadingmessage' style='display:none'>
-  <img src='{{ url_for("static", filename="assets/loading.gif")}}'/>
+    <img src='{{ url_for("static", filename="assets/loading.gif")}}'/>
 </div>
 {% endblock %}
