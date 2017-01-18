@@ -369,6 +369,7 @@ div.national-overview-tab {
 
 div#map {
     padding: 20px;
+    height:550px;
 }
 
 .viz-title-container {

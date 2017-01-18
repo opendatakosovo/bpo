@@ -39,15 +39,14 @@
                     </div>
                     <span class="fa fa-search search-icon"></span>
                     <input name='division-select' class="form-control update-chart empty" id="division-select" value=''
-                           placeholder="Search divisions, districts, upazilas">
-
+                           placeholder="Search insights for divisions, districts, upazilas">
                 </div>
             </div>
             <div class="col-md-2 col-xs-12">
                 <label class="filter-label" for="data-source-select">Choose data source</label>
                 <select class="form-control" id="data-source-select">
-                    <option value="mgr">MGR</option>
-                    <option value="idams">IDAMS</option>
+                    <option value="mgr">Print Media Review</option>
+                    <option value="idams">Online Media Review</option>
                 </select>
             </div>
             <div class="col-md-2 col-xs-12">
@@ -514,7 +513,7 @@
             $("#third-section-first-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
             $("#third-section-second-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
             $("#third-section-third-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
-            $("#map").highcharts().setSize($("#map").width(), $("#map").height(), doAnimation = true);
+//            $("#map").highcharts().setSize($("#map").width(), $("#map").height(), doAnimation = true);
         });
     }
 
@@ -1021,7 +1020,7 @@
                 format: 'MM-DD-YYYY'
             },
             startDate: "01-01-2014",
-            endDate: "12-31-2015"
+            endDate: "12-31-2014"
         });
     }
     function buildMap() {
@@ -1037,7 +1036,7 @@
         var tempSeries;
 
         // Some responsiveness
-        var small = $('#map').width() < 400;
+        var small = $('#map').width() < 500;
 
         // Set drilldown pointers
         $.each(myData, function (i) {
