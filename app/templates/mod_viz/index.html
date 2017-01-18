@@ -32,14 +32,14 @@
         </div>
         <br/>
         <div class="row">
-            <div class="col-md-6 col-xs-6">
-                <div class="col-md-6">
+            <div class="col-md-6 col-xs-12">
+                <div class="col-md-8">
                     <div class="drillup">
                         <a class="drillup-button">Home</a>
                     </div>
-                    <span class="fa fa-search search-icon"></span>
                     <input name='division-select' class="form-control update-chart empty" id="division-select" value=''
                            placeholder="Search insights for divisions, districts, upazilas">
+                    <span class="fa fa-search search-icon"></span>
                 </div>
             </div>
             <div class="col-md-2 col-xs-12">
@@ -435,9 +435,11 @@
     var global_division = '';
     var global_district = '';
     var global_upazila = '';
-    $(document).ready(function () {
-        jQuery.ajaxSetup({async: false});
 
+    $(document).ready(function () {
+
+        jQuery.ajaxSetup({async: false});
+        $('#loadingmessage').show();
         buildViolenceTypeDropDown();
 
         // Build the date range input so we can select FROM - TO daterange
@@ -513,7 +515,7 @@
             $("#third-section-first-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
             $("#third-section-second-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
             $("#third-section-third-chart").highcharts().setSize($('#national-accordion').width(), '180', doAnimation = true);
-//            $("#map").highcharts().setSize($("#map").width(), $("#map").height(), doAnimation = true);
+            $("#map").highcharts().setSize($("#map").width(), $("#map").height(), doAnimation = true);
         });
     }
 
@@ -579,8 +581,9 @@
             select: function (event, ui) {
                 selected_vals = ui.item.label.split(',');
                 doDrillDown(selected_vals);
+                console.log(selected_vals);
                 $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
-                updateViz(selected_district, true);
+                updateViz(undefined, true);
             }
         });
         $('#division-select').change(function () {
@@ -809,11 +812,12 @@
             contentType: 'application/json',
             data: JSON.stringify(jsonData),
             beforeSend: function () {
-                $('#loadingmessage').show();
+                console.log("Getting data");
             },
             success: function (data) {
                 dataResults = data;
                 $('#loadingmessage').hide();
+                console.log("Got data.");
             }
         });
         return dataResults;

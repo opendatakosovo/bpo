@@ -369,7 +369,7 @@ div.national-overview-tab {
 
 div#map {
     padding: 20px;
-    height:550px;
+    height: 550px;
 }
 
 .viz-title-container {
@@ -482,8 +482,6 @@ g.highcharts-legend-box {
 }
 
 input.empty {
-    width: 310px;
-    height: 35px;
     background-color: #FFFFFF;
     border: 1px solid #006C8F;
     border-radius: 2px;
@@ -500,12 +498,12 @@ select#data-source-select, select#violence-type-select, .update-chart {
 .search-icon {
     position: absolute;
     top: 32px;
-    left: 295.5px;
     font-family: FontAwesome;
     font-size: 16px;
     line-height: 16px;
     color: #FFA400;
-
+    float: right;
+    margin-left: -20px;
 }
 
 input.empty::-webkit-input-placeholder {
@@ -573,16 +571,23 @@ input.empty:-moz-placeholder { /* Firefox 18- */
 }
 
 #loadingmessage {
+    width: 100%;
+    height: 100%;
     position: absolute;
-    top: 50%;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.86);
+}
+
+#loadingmessage img {
+    position: absolute;
+    top: 5%;
     left: 30%;
-    margin-left: -(X/2) px;
-    margin-top: -(Y/2) px;
 }
 
 .rate-1-text, .rate-2-text, .rate-3-text {
     font-weight: bold;
 }
+
 .ui-state-focus {
-    outline-color:#EA9600;
+    outline-color: #EA9600;
 }
