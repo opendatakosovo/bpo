@@ -346,7 +346,7 @@ div.national-overview-tab {
 
 .viz-title {
     font-family: "Noto Serif";
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
     line-height: 49px;
     color: #FFFFFF;
@@ -355,7 +355,7 @@ div.national-overview-tab {
 }
 
 .viz-title-about {
-    float: right;
+
     font-family: "Noto Serif";
     font-size: 24px;
     font-weight: bold;
@@ -364,7 +364,7 @@ div.national-overview-tab {
     color: #FFC84A;
     text-shadow: 0 1px 0 0 #006586;
     padding-right: 10px;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 div#map {
@@ -460,16 +460,23 @@ g.highcharts-legend-box {
     color: #333333 !important;
 }
 
-.ui-menu .ui-menu-item a {
-    background: red;
-    height: 10px;
-    font-size: 8px;
+.ui-menu {
+    background: white;
 }
-
+.ui-menu-item {
+    font-family: Lato;
+    font-size: 18px;
+    line-height: 17px;
+    color: #000000;
+}
 .ui-autocomplete {
     background: #fff;
-    border-radius: 0px;
+    border-radius: 10px;
     width: 300px;
+    list-style: none;
+    height:300px;
+    overflow: scroll;
+    padding-left:10px;
 }
 
 .ui-tooltip {
@@ -483,8 +490,8 @@ g.highcharts-legend-box {
 
 input.empty {
     background-color: #FFFFFF;
-    border: 1px solid #006C8F;
-    border-radius: 2px;
+    /*border: 1px solid #006C8F;*/
+    /*border-radius: 2px;*/
     float: left;
 }
 
@@ -581,7 +588,10 @@ input.empty:-moz-placeholder { /* Firefox 18- */
 #loadingmessage img {
     position: absolute;
     top: 5%;
-    left: 30%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .rate-1-text, .rate-2-text, .rate-3-text {

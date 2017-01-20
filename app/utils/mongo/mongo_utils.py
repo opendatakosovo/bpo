@@ -878,3 +878,73 @@ class MongoUtils(object):
         }
 
         return result
+
+    def get_map_victims_count(self, params):
+        match = self.build_match(params)
+        group_by_division = {
+            "$group": {
+                "_id": {
+                    'division': '$division'
+                },
+                "incidents": {
+                    "$sum": 1
+                }
+            }
+        }
+        group_by_district = {
+            "$group": {
+                "_id": {
+                    'district': '$upazila'
+                },
+                "incidents": {
+                    "$sum": 1
+                }
+            }
+        }
+        group_by_upazila = group = {
+            "$group": {
+                "_id": {
+                    'upazila': '$upazila'
+                },
+                "incidents": {
+                    "$sum": 1
+                }
+            }
+        }
+        sort = {
+            "$sort": {
+                "incidents": -1
+            }
+        }
+
+        project_division = {
+            "$project": {
+                "_id": 0,
+                'division': "$_id.division",
+                "incidents": "$incidents"
+            }
+        }
+        project_district = {
+            "$project": {
+                "_id": 0,
+                'district': "$_id.district",
+                "incidents": "$incidents"
+            }
+        }
+        project_upazila = {
+            "$project": {
+                "_id": 0,
+                'upazila': "$_id.upazila",
+                "incidents": "$incidents"
+            }
+        }
+        result = {}
+        division_aggregation = [match, group_by_division, sort, project_division]
+        district_aggregation = [match, group_by_district, sort, project_district]
+        upazila_aggregation = [match, group_by_upazila, sort, project_upazila]
+
+        result['divisions'] = self.mongo.db[params['dataset']].aggregate(division_aggregation)['result']
+        result['districts'] = self.mongo.db[params['dataset']].aggregate(district_aggregation)['result']
+        result['upazilas'] = self.mongo.db[params['dataset']].aggregate(upazila_aggregation)['result']
+
+        return result

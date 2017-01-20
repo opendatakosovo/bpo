@@ -26,7 +26,8 @@
             <div class="viz-title-container col-md-6">
                 <span class="viz-title">The Bangladesh Peace Observatory</span>
             </div>
-            <div class="col-md-2 col-md-offset-4">
+            <div class="col-md-2 col-md-offset-4" style="padding-top:20px">
+                <a class="viz-title-about" href="{{ url_for('main.index') }}">Home</a>
                 <a class="viz-title-about" href="{{ url_for('main.about') }}">About</a>
             </div>
         </div>
@@ -43,21 +44,28 @@
                 </div>
             </div>
             <div class="col-md-2 col-xs-12">
-                <label class="filter-label" for="data-source-select">Choose data source</label>
-                <select class="form-control" id="data-source-select">
-                    <option value="mgr">Print Media Review</option>
-                    <option value="idams">Online Media Review</option>
-                </select>
-            </div>
-            <div class="col-md-2 col-xs-12">
-                <label class="filter-label" for="violence-type-select">Violence Type:</label>
-                <select class="form-control update-chart" id="violence-type-select">
+                <div class="col-md-12">
+                    <label class="filter-label" for="data-source-select">Choose data source:</label>
+                    <select class="form-control" id="data-source-select">
+                        <option value="mgr">Print Media Review</option>
+                        <option value="idams">Online Media Review</option>
+                    </select>
+                </div>
 
-                </select>
             </div>
             <div class="col-md-2 col-xs-12">
-                <label class="filter-label" for="daterange">Time period:</label>
-                <input type="text" class="form-control update-chart" name="daterange" value=""/>
+                <div class="col-md-12">
+                    <label class="filter-label" for="violence-type-select">Violence Type:</label>
+                    <select class="form-control update-chart" id="violence-type-select">
+                        <option value="Arson">Arson</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-12">
+                <div class="col-md-12">
+                    <label class="filter-label" for="daterange">Time period:</label>
+                    <input type="text" class="form-control update-chart" name="daterange" value=""/>
+                </div>
             </div>
         </div>
         <br/>
@@ -438,76 +446,48 @@
 
     $(document).ready(function () {
 
-        jQuery.ajaxSetup({async: false});
-        $('#loadingmessage').show();
+        // Get selected violence type dropdown
         buildViolenceTypeDropDown();
 
         // Build the date range input so we can select FROM - TO daterange
         buildDateRangeInput();
 
-        // Init and build the map
-        buildMap();
+        // Populate the global allData variable
+        allData = getData(true);
 
-        // Build searxh box
-        buildSearchBox();
-
-        // Init the right death,injuries,property charts
-        initCharts();
-
-        // Init the jQuery UI accordions
-        initAccordions();
-
-        // Resize charts on window resize
-        initResizeChartsOnResizeWindow();
-
-        $('.drillup-button').text("Home");
         $('.highcharts-drillup-button').on('change', function () {
             if ($($('.highcharts-drillup-button')[0]).length != 0) {
                 $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
             } else {
                 $('.drillup-button').text("Home");
             }
-
         });
         $('.drillup-button').click(function () {
             $('.highcharts-drillup-button').click();
             if ($('.drillup-button').text() == "◁ Back to Bangladesh") {
                 var home_url = "{{ url_for('main.index')}}";
                 $('.drillup-button').text("Home");
+
             }
             if ($($('.highcharts-drillup-button')[0]).length != 0) {
                 $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
             } else {
                 $('.drillup-button').text("Home");
             }
+            global_division = "";
+            global_district = "";
+            global_upazila = "";
+            allData = getData(false);
         });
-
-        // Build the ranking on the right on location based stats
-        buildRankingBasedOnLocation();
-
-        // Populate location searchbox dropdown list
-        populateLocationDropdown();
-
-        // Init and build the violence type dropdown list
-        $('#violence-type-select [value="Attack"]').attr('selected', true);
+//        $('#loadingmessage').show();
         $('.update-chart').change(function () {
-            allData = getData();
-            updateViz(undefined, false);
+            allData = getData(false);
         });
         $('#data-source-select').change(function () {
             buildViolenceTypeDropDown();
-            allData = getData();
-            updateViz(undefined, false);
+            allData = getData(false);
         });
 
-        // Populate the global allData variable
-        allData = getData();
-
-        // Init and build the national data, so when the user first lands on the page we have some data.
-        buildNationalData();
-
-        // Init and create the bottom line chart
-        createLineChart();
     });
 
     function initResizeChartsOnResizeWindow() {
@@ -566,34 +546,36 @@
             $('#district-rank-accordion .district-overview-tab').show();
         });
     }
-    function buildSearchBox() {
 
-    }
     function populateLocationDropdown() {
         // Listen when we change the division/Update the visualizer reflecting the selected division data
         var availableTags = [];
 
         $.each(grouped_locations_list, function (i, item) {
+            availableTags.push(item.division)
+            availableTags.push(item.division + ', ' + item.district)
             availableTags.push(item.division + ', ' + item.district + ', ' + item.upazila)
         });
+        var uniqueNames = [];
+        $.each(availableTags, function (i, el) {
+            if ($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+        });
         $("#division-select").autocomplete({
-            source: availableTags,
+            source: uniqueNames,
             select: function (event, ui) {
                 selected_vals = ui.item.label.split(',');
                 doDrillDown(selected_vals);
-                console.log(selected_vals);
+                allData = getData(false);
                 $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
-                updateViz(undefined, true);
+
             }
         });
-        $('#division-select').change(function () {
-            console.log(this.val);
-        })
 
     }
     function doDrillDown(dDownArray) {
-        $('.highcharts-drillup-button').click();
-        $('.highcharts-drillup-button').click();
+
+//        $('.highcharts-drillup-button').click();
+//        $('.highcharts-drillup-button').click();
         $.each(dDownArray, function (item) {
             if (item < 2) {
                 var map_data_ = $('#map').highcharts().series[0].data;
@@ -752,42 +734,25 @@
 
     }
     function buildNationalData() {
-        var rank_data = allData['rank-stats'];
-        // Get selected violence type dropdown
-        var violence_type = $("#violence-type-select").val().replace('/', '-');
-        // Get date
-        var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
         // Set the highest rates
-        var top_death_location = getTopN(rank_data, 'death', 1)[0].name;
-        var top_injury_location = getTopN(rank_data, 'injury', 1)[0].name;
-        var top_property_damage_location = getTopN(rank_data, 'property', 1)[0].name;
+        var top_death_location = getTopN(allData['rank-stats'], 'death', 1)[0].name;
+        var top_injury_location = getTopN(allData['rank-stats'], 'injury', 1)[0].name;
+        var top_property_damage_location = getTopN(allData['rank-stats'], 'property', 1)[0].name;
         $('.rate-1').html(top_death_location);
         $('.rate-2').html(top_injury_location);
         $('.rate-3').html(top_property_damage_location);
 
         updateCharts();
-
-        updateTop3Section('Bangladesh', 0, violence_type, date);
+        updateTop3Section();
         updateRankSections();
     }
-    function getData() {
+    function getData(init) {
 
         var dataResults = undefined;
         var division = "";
         var district = "";
         var upazila = "";
-        if ($('#map').highcharts().drilldownLevels != undefined) {
-            if ($('#map').highcharts().drilldownLevels.length == 2) {
-                district = $('#map').highcharts().drilldownLevels[1].lowerSeriesOptions.name;
-                global_district = district;
-                division = $('#map').highcharts().drilldownLevels[0].lowerSeriesOptions.name;
-                global_division = division;
-            } else if ($('#map').highcharts().drilldownLevels.length == 1) {
-                division = $('#map').highcharts().drilldownLevels[0].lowerSeriesOptions.name
-                global_division = division;
-            }
 
-        }
 
         // Get the selected dataset
         var dataset = $('#data-source-select').val();
@@ -798,29 +763,95 @@
         // Get date
         var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
 
+        if (init == false) {
+            if ($('#map').highcharts().drilldownLevels != undefined) {
+                if ($('#map').highcharts().drilldownLevels.length == 2) {
+                    district = $('#map').highcharts().drilldownLevels[1].lowerSeriesOptions.name;
+                    global_district = district;
+                    division = $('#map').highcharts().drilldownLevels[0].lowerSeriesOptions.name;
+                    global_division = division;
+                } else if ($('#map').highcharts().drilldownLevels.length == 1) {
+                    division = $('#map').highcharts().drilldownLevels[0].lowerSeriesOptions.name
+                    global_division = division;
+                }
+            }
+        }
+
         var jsonData = {
-            "division": division,
-            "district": district,
-            "upazila": upazila,
+            "division": global_division,
+            "district": global_district,
+            "upazila": global_upazila,
             "date": date,
             "violence_type": violence_type,
             "dataset": dataset,
             "period": "monthly"
-        }
+        };
+
         $.ajax('{{ url_for("api.search")}}', {
             type: "POST",
             contentType: 'application/json',
             data: JSON.stringify(jsonData),
             beforeSend: function () {
-                console.log("Getting data");
+                $('#loadingmessage').show();
             },
             success: function (data) {
-                dataResults = data;
-                $('#loadingmessage').hide();
-                console.log("Got data.");
+                allData = data;
+                if (init == true) {
+                    init_viz();
+                } else {
+                    updateViz();
+                    $('#loadingmessage').hide();
+                }
+//                if ($('.drillup-button').text() == "◁ Back to Bangladesh" || $('.drillup-button').text() == "Home") {
+//                    var home_url = "{{ url_for('main.index')}}";
+//                    $('.drillup-button').attr('href', home_url);
+//                } else {
+//                    $('.drillup-button')[0].href = "";
+//                }
+                if (division == "") {
+                    $('.location-name').html(" the country");
+                } else if (global_division != "" && global_district == "") {
+                    $('.location-name').html(global_division);
+                } else if (division != "" && global_district != "") {
+                    $('.location-name').html(global_division + ", " + global_district);
+                } else if (global_division != "" && global_district != "" && global_upazila != "") {
+                    $('.location-name').html(global_division + ", " + global_district + ", " + global_upazila);
+                }
+                return data;
             }
         });
-        return dataResults;
+
+    }
+    function init_viz() {
+        // Init and build the map
+        buildMap();
+        // Init the right death,injuries,property charts
+        initCharts();
+
+        // Init and build the national data, so when the user first lands on the page we have some data.
+        buildNationalData();
+
+        // Init and create the bottom line chart
+        createLineChart();
+
+        // Init the jQuery UI accordions
+        initAccordions();
+
+        // Resize charts on window resize
+        initResizeChartsOnResizeWindow();
+
+        $('.drillup-button').text("Home");
+
+
+        // Build the ranking on the right on location based stats
+        buildRankingBasedOnLocation();
+
+        // Populate location searchbox dropdown list
+        populateLocationDropdown();
+
+        // Init and build the violence type dropdown list
+        $('#violence-type-select [value="Arson"]').attr('selected', true);
+        $('#loadingmessage').hide();
     }
     function updateRankSections() {
         var rank_data = allData['stats'];
@@ -876,6 +907,36 @@
          * Create the chart when all data is loaded
          * @returns {undefined}
          */
+        var isBig = $(window).width() > 700;
+
+        var legendBig = {
+
+            enabled: true,
+            showCheckbox: true,
+            align: 'right',
+            backgroundColor: '#fff',
+            borderColor: 'black',
+            borderWidth: 2,
+            layout: 'horizontal',
+            verticalAlign: 'right',
+            y: 0,
+            x: -320,
+            shadow: true,
+            symbolWidth: 5
+        };
+
+        var legendSmall = {
+            enabled: true,
+            showCheckbox: true,
+            align: 'bottom',
+            backgroundColor: '#fff',
+            borderColor: 'black',
+            borderWidth: 2,
+            shadow: true,
+            symbolWidth: 5
+        };
+
+
         function createChart(seriesOptions) {
 
             Highcharts.stockChart('line-chart-container', {
@@ -912,21 +973,7 @@
                     valueDecimals: 0,
                     split: true
                 },
-                legend: {
-
-                    enabled: true,
-                    showCheckbox: true,
-                    align: 'right',
-                    backgroundColor: '#fff',
-                    borderColor: 'black',
-                    borderWidth: 2,
-                    layout: 'horizontal',
-                    verticalAlign: 'right',
-                    y: 0,
-                    x: -320,
-                    shadow: true,
-                    symbolWidth: 5
-                },
+                legend: isBig ? legendBig : legendSmall,
                 series: seriesOptions,
 
             });
@@ -1124,7 +1171,7 @@
                         this.setTitle(null, {text: e.point.name});
                     },
                     drillup: function (e) {
-                        updateViz(e.seriesOptions.name, false);
+                        updateViz();
                     }
                 }
             },
@@ -1156,7 +1203,7 @@
                 },
                 layout: 'vertical',
                 borderWidth: 1,
-                symbolRadius:0,
+                symbolRadius: 0,
                 boxShadow: '-1px 2px 2px 0 rgba(0, 0, 0, 0.2)',
                 align: 'right',
                 verticalAlign: 'top',
@@ -1191,11 +1238,11 @@
                     to: 200,
                     color: "#feb126"
                 }, {
-                    from:201 ,
+                    from: 201,
                     to: 500,
                     color: "#f7802d"
-                },{
-                    from:501 ,
+                }, {
+                    from: 501,
                     to: 1000,
                     color: "#f7802d"
                 }, {
@@ -1226,23 +1273,22 @@
                             click: function (i) {
                                 if (i.target.className.baseVal.split(' ')[1] != undefined) {
                                     var clicked_point = capitalize(i.target.className.baseVal.split(' ')[1].split('-')[2]);
-                                    $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
-                                    allData = getData();
-                                    updateViz(clicked_point, false);
+                                    if ($(i.target)[0].point != null && global_upazila == "") {
+                                        global_upazila = $(i.target)[0].point.options.properties.Upazila;
+                                    } else {
+                                        global_upazila = "";
+                                    }
+                                    allData = getData(false);
                                     $('.drillup-button').show();
                                     $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
                                     $('g.highcharts-button.highcharts-drillup-button.highcharts-button-normal').css('display', 'none');
-                                    allData = getData();
                                     return clicked_point;
                                 } else {
                                     var clicked_point = $(i.target)[0].textContent;
-                                    $('#division-select [value="' + clicked_point + '"]').attr('selected', true);
-                                    allData = getData();
-                                    updateViz(clicked_point, false);
+                                    allData = getData(false);
                                     $('.drillup-button').show();
                                     $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
                                     $('g.highcharts-button.highcharts-drillup-button.highcharts-button-normal').css('display', 'none');
-                                    allData = getData();
                                     return clicked_point;
                                 }
                             }
@@ -1285,27 +1331,7 @@
         });
 
     }
-    function updateViz(name) {
-
-        // Get selected violence type dropdown
-        var violence_type = $("#violence-type-select").val().replace('/', '-');
-
-        // Get date
-        var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
-
-        // Get the map instance
-        var the_map = $('#map').highcharts();
-
-        // Get the drilldown level number
-        level_number = 0;
-        if ('drilldownLevels' in $('#map').highcharts()) {
-            var level_number = $('#map').highcharts().drilldownLevels.length;
-        }
-
-
-        if (name == undefined) {
-            name = $('#map').highcharts().series[0].name;
-        }
+    function updateViz() {
         // If we are in the country version we should build national data visualizer
 
         updateTextValues();
@@ -1314,9 +1340,10 @@
         updateLineChart();
         updateRankSections();
         updateTop3Section();
-        $('.location-name').html(name);
+//        name = $('#map').highcharts().series[0].name;
+//        $('.location-name').html(name);
         // To be refactored
-        updateCensusInfo(name, level_number);
+//        updateCensusInfo(name, level_number);
 
 
     }
@@ -1343,14 +1370,13 @@
         death_top_rank_data = getTopN(rank_data, 'death', 1);
         var top_death_location = "";
         if (death_top_rank_data.length != 0) {
-            $('.rate-1-text').html('has the highest fatality rate.')
-
+            $('.rate-1-text').html('highest fatality rate.')
             $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
             top_death_location = death_top_rank_data[0].name;
             $('.rate-1').html(top_death_location);
         } else {
             $('.rate-1').html("");
-            $('#' + $('#accordion .rate-1').parent().id).collapse()
+            $('#' + $('#accordion .rate-1').parent().id).collapse();
             $('.rate-1-text').html('Not enough data');
             $('#accordion .rate-1').parent().addClass("ui-state-disabled");
         }
@@ -1359,7 +1385,7 @@
         injury_top_rank_data = getTopN(rank_data, 'injury', 1)
         var top_injury_location = "";
         if (injury_top_rank_data.length != 0) {
-            $('.rate-2-text').html('has the highest injury count.');
+            $('.rate-2-text').html('highest injury count.');
             $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
             top_injury_location = injury_top_rank_data[0].name;
             $('.rate-2').html(top_injury_location);
@@ -1374,7 +1400,7 @@
         property_top_rank_data = getTopN(rank_data, 'property', 1);
         var top_property_damage_location = "";
         if (property_top_rank_data.length != 0) {
-            $('.rate-3-text').html('has the highest property damage count.');
+            $('.rate-3-text').html('highest property damage count.');
             $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
             top_property_damage_location = property_top_rank_data[0].name;
             $('.rate-3').html(top_property_damage_location);
@@ -1384,7 +1410,6 @@
             $('.rate-3-text').html('Not enough data');
             $('#accordion .rate-3').parent().addClass("ui-state-disabled");
         }
-
 
 
         // Change the presentation text based on the level
@@ -1799,42 +1824,24 @@
 
     }
     // Build map data series based on the incident number number
-    function buildDataSeries(name) {
+    function buildDataSeries() {
         var json_data = {};
         var divisions = {};
         var districts = {};
         var upazilas = {};
-        // Get selected violence type dropdown
-        var violence_type = $("#violence-type-select").val().replace('/', '-');
 
-        // Get date
-        var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
-
-        if (name == undefined) {
-            name = 'Bangladesh';
+        for (var item in allData['map-victims-count']['divisions']) {
+            divisions[allData['map-victims-count']['divisions'][item]['division'].toString()] = allData['map-victims-count']['divisions'][item]["incidents"]
         }
-        var division_url = "{{ url_for('api.get_victims', type='division', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
-        $.get(division_url, function (data) {
-            for (var item in data) {
-                divisions[data[item]['division'].toString()] = data[item]["incidents"]
-            }
-        });
 
-        var district_url = "{{ url_for('api.get_victims', type='district', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
+        for (var item in allData['map-victims-count']['districts']) {
+            districts[allData['map-victims-count']['districts'][item]['district'].toString()] = allData['map-victims-count']['districts'][item]["incidents"]
+        }
 
-        $.get(district_url, function (data) {
-            for (var item in data) {
-                districts[data[item]['district'].toString()] = data[item]["incidents"]
-            }
-        });
+        for (var item in allData['map-victims-count']['upazilas']) {
+            upazilas[allData['map-victims-count']['upazilas'][item]['upazila']] = allData['map-victims-count']['upazilas'][item]["incidents"]
+        }
 
-        var upazila_url = "{{ url_for('api.get_victims', type='upazila', date='DATE', violence_type='violence', name='Bangladesh')}}".replace('DATE', date).replace('violence', violence_type).replace('Bangladesh', name);
-
-        $.get(upazila_url, function (data) {
-            for (var item in data) {
-                upazilas[data[item]['upazila']] = data[item]["incidents"]
-            }
-        });
         json_data['division'] = divisions;
         json_data['district'] = districts;
         json_data['upazila'] = upazilas;
