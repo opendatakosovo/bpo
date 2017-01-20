@@ -463,11 +463,13 @@
             }
         });
         $('.drillup-button').click(function () {
+            if($('.drillup-button').text()=='Home'){
+                window.location = "{{url_for('main.index')}}";
+            }
             $('.highcharts-drillup-button').click();
             if ($('.drillup-button').text() == "◁ Back to Bangladesh") {
                 var home_url = "{{ url_for('main.index')}}";
                 $('.drillup-button').text("Home");
-
             }
             if ($($('.highcharts-drillup-button')[0]).length != 0) {
                 $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);

@@ -18,7 +18,7 @@ header .intro-text .intro-heading {
 }
 
 .about {
-    float: right;
+    /*float: right;*/
     font-size: 24px;
     font-family: "Noto Serif";
     font-size: 24px;
@@ -36,7 +36,9 @@ header .intro-text .intro-heading {
     letter-spacing: 0px;
     color: white;
 }
-
+.navbar{
+    text-align: right !important;
+}
 .navbar-custom {
     background-color: #007CA4;
     border-color: transparent;
