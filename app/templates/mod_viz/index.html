@@ -914,8 +914,10 @@
     function createLineChart() {
         function titleMove(e) {
             var title = this.legend.title;
+            if( $(window).width() > 768){
+                title.translate(-80,28);
+            }
 
-            title.translate(-80,28);
         }
 
         var seriesOptions = [];
@@ -948,15 +950,15 @@
 
         var legendSmall = {
             enabled: true,
-            align: 'bottom',
+            align: 'right',
+            layout: 'vertical',
+            verticalAlign: 'right',
+            horizontalAlign:"right",
             symbolWidth: 0,
+            x:-20,
             useHTML: true,
             labelFormatter: function () {
-                return '<div class="line-chart-item" style="height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox" type="checkbox" style="border-radius: 6px;"> ' + this.name + ' </div>';
-            },
-            title: {
-                text: "Show data:",
-                style: "margin-left:-30px;"
+                return '<div class="line-chart-item" style="width:138px; height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox" type="checkbox" style="border-radius: 6px;"> ' + this.name + ' </div>';
             }
         };
 
