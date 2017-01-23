@@ -344,7 +344,7 @@
         </script>
         <div id="top" class="col-md-12">
             <div class="col-md-6 top-3">
-                <span class="section-title-top-perpetrators">Top 3 Reported Perpetrators</span>
+                <span class="section-title-top">Top 3 Reported Perpetrators:</span>
                 <ol id="perpetrators-list">
                 </ol>
                 <span class="perpetrators-list-not-enogh-data">
@@ -352,7 +352,7 @@
                 </span>
             </div>
             <div class="col-md-6 top-3">
-                <span class="section-title-top-casualties">Top 3 Reported Casualties</span>
+                <span class="section-title-top">Top 3 Reported Casualties:</span>
                 <ol id="casualties-list">
                 </ol>
                 <span class="casualties-list-not-enogh-data">
@@ -360,8 +360,16 @@
                 </span>
             </div>
             <div class="col-md-6 top-3">
-                <span class="section-title-top-property">Top 3 Property Type Destruction</span>
+                <span class="section-title-top">Top 3 Property Type Destruction:</span>
                 <ol id="property-list">
+                </ol>
+                <span class="property-list-not-enogh-data">
+                    Not enough data.
+                </span>
+            </div>
+            <div class="col-md-6 top-3">
+                <span class="section-title-top">Top 3 Motivations:</span>
+                <ol id="motivations-list">
                 </ol>
                 <span class="property-list-not-enogh-data">
                     Not enough data.
@@ -463,7 +471,7 @@
             }
         });
         $('.drillup-button').click(function () {
-            if($('.drillup-button').text()=='Home'){
+            if ($('.drillup-button').text() == 'Home') {
                 window.location = "{{url_for('main.index')}}";
             }
             $('.highcharts-drillup-button').click();
@@ -901,6 +909,12 @@
 
     }
     function createLineChart() {
+        function titleMove(e) {
+            var title = this.legend.title;
+
+            title.translate(-80,28);
+        }
+
         var seriesOptions = [];
         var seriesCounter = 0;
         var names = ['Deaths', 'Injuries', 'Incidents', 'Property Damage'];
@@ -909,41 +923,53 @@
          * Create the chart when all data is loaded
          * @returns {undefined}
          */
-        var isBig = $(window).width() > 700;
+        var isBig = $(window).width() > 768;
 
         var legendBig = {
-
             enabled: true,
-            showCheckbox: true,
             align: 'right',
             backgroundColor: '#fff',
-            borderColor: 'black',
-            borderWidth: 2,
             layout: 'horizontal',
             verticalAlign: 'right',
-            y: 0,
-            x: -320,
-            shadow: true,
-            symbolWidth: 5
+            symbolWidth: 0,
+            y: -25,
+            useHTML: true,
+            labelFormatter: function () {
+                return '<div class="line-chart-item" style="height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input type="checkbox" checked> <span style="font-family: Roboto;font-size: 11px;line-height: 13px;color: #FFFFFF;">' + this.name + '</span></div>';
+            },
+            title: {
+                text: "Show data:",
+                style: "margin-left:-30px;"
+            },
         };
 
         var legendSmall = {
             enabled: true,
-            showCheckbox: true,
             align: 'bottom',
-            backgroundColor: '#fff',
-            borderColor: 'black',
-            borderWidth: 2,
-            shadow: true,
-            symbolWidth: 5
+            symbolWidth: 0,
+            useHTML: true,
+            labelFormatter: function () {
+                return '<div class="line-chart-item" style="height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox" type="checkbox" style="border-radius: 6px;"> ' + this.name + ' </div>';
+            },
+            title: {
+                text: "Show data:",
+                style: "margin-left:-30px;"
+            }
         };
 
 
         function createChart(seriesOptions) {
 
             Highcharts.stockChart('line-chart-container', {
-
+                chart: {
+                    events: {
+                        load: titleMove,
+                        redraw: titleMove
+                    }
+                }
+                ,
                 rangeSelector: {
+                    inputEnabled: false,
                     selected: 5
                 },
 
@@ -976,6 +1002,7 @@
                     split: true
                 },
                 legend: isBig ? legendBig : legendSmall,
+
                 series: seriesOptions,
 
             });
@@ -989,22 +1016,25 @@
             var data = allData['daily-stats'];
             $.each(data, function (item) {
                 if (data[item]['date'] != null) {
+                    incidents.push([data[item]['date'].$date, data[item]['incidents']])
                     deaths.push([data[item]['date'].$date, data[item]['death']])
                     injuries.push([data[item]['date'].$date, data[item]['injuries']])
                     property_damage.push([data[item]['date'].$date, data[item]['property']])
-                    incidents.push([data[item]['date'].$date, data[item]['incidents']])
+
                 }
             })
 
             if (name == 'Deaths') {
                 seriesOptions[i] = {
                     name: name,
+                    color: '#ED7D31',
                     data: deaths
                 };
             }
             if (name == 'Injuries') {
                 seriesOptions[i] = {
                     name: name,
+                    color: "#A5A5A5",
                     data: injuries
                 };
             }
@@ -1012,6 +1042,7 @@
             if (name == 'Incidents') {
                 seriesOptions[i] = {
                     name: name,
+                    color: "#FFC000",
                     data: incidents
                 };
             }
@@ -1019,6 +1050,7 @@
             if (name == 'Property Damage') {
                 seriesOptions[i] = {
                     name: name,
+                    color: "#7CB6EB",
                     data: property_damage
                 };
             }
