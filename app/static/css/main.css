@@ -82,6 +82,7 @@ body::-webkit-scrollbar {
     background-color: white;
     box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2);
     border-radius: 4px;
+    padding-top: 10px;
 }
 
 .census-information {

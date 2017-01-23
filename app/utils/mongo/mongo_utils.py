@@ -948,3 +948,77 @@ class MongoUtils(object):
         result['upazilas'] = self.mongo.db[params['dataset']].aggregate(upazila_aggregation)['result']
 
         return result
+
+    def get_census_info(self, params):
+        match = None
+        if params['division'] != '' and params['district'] != '' and params['upazila'] != '':
+            match = {
+                "$match": {
+                    'division': params['division'],
+                    'district': params['district'],
+                    'upazila': params['upazila'],
+                }
+            }
+        elif params['division'] != '' and params['district']:
+            match = {
+                "$match": {
+                    'division': params['division'],
+                    'district': params['district']
+                }
+            }
+        elif params['division'] != '':
+            match = {
+                "$match": {
+                    'division': params['division']
+                }
+            }
+        else:
+            match = {
+                "$match": {
+                }
+            }
+        result = self.mongo.db.census.aggregate([
+            match,
+            {
+                "$group": {
+                    "_id": {
+                    },
+                    "population": {
+                        "$sum": "$population"
+                    },
+                    "poverty":{
+                        "$avg":"$poverty"
+                    },
+                    "muslim": {
+                        "$sum": "$Muslim"
+                    },
+                    "buddhist": {
+                        "$sum": "$Buddhist"
+                    },
+                    "hindu": {
+                        "$sum": "$Hindu"
+                    },
+                    "christian": {
+                        "$sum": "$Christian"
+                    },
+                    "other": {
+                        "$sum": "$Other"
+                    },
+
+
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "population": "$population",
+                    "poverty":{ "$substr": [ "$poverty", 0, 4 ]},
+                    "muslim": "$muslim",
+                    "buddhist": "$buddhist",
+                    "hindu": "$hindu",
+                    "christian": "$christian",
+                    "other": "$other",
+                }
+            }]
+        )['result']
+        return result

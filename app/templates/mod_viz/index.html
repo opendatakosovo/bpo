@@ -407,23 +407,23 @@
                 <div class="col-md-6">
                     <dl class="dl-horizontal">
                         <dt>Religious diversity</dt>
-                        <dd>Muslim: n/a</dd>
+                        <dd>Muslim: <span id="muslim-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Hindu: n/a</dd>
+                        <dd>Hindu: <span id="hindu-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Buddhist: n/a</dd>
+                        <dd>Buddhist: <span id="buddhist-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Christian: n/a</dd>
+                        <dd>Christian: <span id="christian-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
                         <dt></dt>
-                        <dd>Others: n/a</dd>
+                        <dd>Others: <span id="others-data">n/a</span>%</dd>
                     </dl>
                 </div>
 
@@ -755,6 +755,7 @@
         updateCharts();
         updateTop3Section();
         updateRankSections();
+        updateCensusInfo();
     }
     function getData(init) {
 
@@ -1374,26 +1375,32 @@
         updateLineChart();
         updateRankSections();
         updateTop3Section();
-//        name = $('#map').highcharts().series[0].name;
-//        $('.location-name').html(name);
-        // To be refactored
-//        updateCensusInfo(name, level_number);
-
-
+        updateCensusInfo();
     }
-    function updateCensusInfo(name, level) {
-        var url = '{{ url_for("api.get_census_info", name="NAME", level=10)}}'.replace('NAME', name).replace('10', level);
-        $.get(url, function (data) {
-            if (data != null) {
-                $('.population-data').text(data['population']);
-                if (data['poverty'] != null) {
-                    $('.poverty-data').css('display', '');
-                    $('.poverty-data').text(data['poverty'] + "%");
-                } else {
-                    $('.poverty-data').css('display', 'none');
-                }
+    function updateCensusInfo() {
+        var data = allData['census'][0]
+        if (data != null) {
+            $('.population-data').text(data['population']);
+            if (data['poverty'] != null) {
+                $('.poverty-data').css('display', '');
+                $('.poverty-data').text(data['poverty'] + "%");
+            } else {
+                $('.poverty-data').css('display', 'none');
+                $('.poverty-data').text(data['poverty'] + "%");
             }
-        });
+            var total = data['muslim'] + data['hindu'] + data['christian'] + data['buddhist'] + data['other'];
+            var percentage_of_muslims = String(data['muslim']*100/total).substring(0, 4);
+            var percentage_of_hindu = String(data['hindu']*100/total).substring(0, 4);
+            var percentage_of_christian = String(data['christian']*100/total).substring(0, 4);
+            var percentage_of_buddhist = String(data['buddhist']*100/total).substring(0, 4);
+            var percentage_of_other = String(data['other']*100/total).substring(0, 4);
+
+            $('#muslim-data').text(percentage_of_muslims);
+            $('#hindu-data').text(percentage_of_hindu);
+            $('#christian-data').text(percentage_of_christian);
+            $('#buddhist-data').text(percentage_of_buddhist);
+            $('#others-data').text(percentage_of_other);
+        }
     }
     // Update the text trend values reflecting the selections
     function updateTextValues() {

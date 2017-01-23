@@ -38,6 +38,8 @@ def search():
     result['daily-stats'] = utils.get_incident_types_by_time(params)
     result['top-3'] = utils.get_top_3_stats(params)
     result['map-victims-count'] = utils.get_map_victims_count(params)
+    result['census'] = utils.get_census_info(params)
+
     resp = Response(
         response=json_util.dumps(result),
         mimetype='application/json')
