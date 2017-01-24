@@ -57,7 +57,7 @@
                 <div class="col-md-12">
                     <label class="filter-label" for="violence-type-select">Violence Type:</label>
                     <select class="form-control update-chart" id="violence-type-select">
-                        <option value="Arson">Arson</option>
+                        <option value="Destruction of property">Destruction of property</option>
                     </select>
                 </div>
             </div>
@@ -863,7 +863,7 @@
         populateLocationDropdown();
 
         // Init and build the violence type dropdown list
-        $('#violence-type-select [value="Arson"]').attr('selected', true);
+        $('#violence-type-select [value="Destruction of property"]').attr('selected', true);
         $('#loadingmessage').hide();
     }
     function updateRankSections() {

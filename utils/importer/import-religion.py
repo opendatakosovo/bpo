@@ -20,10 +20,10 @@ def parse():
     print "Importing Data"
     dir_path = os.path.dirname(os.path.realpath(__file__))
 
-    for filename in os.listdir(dir_path + '/data/'):
+    for filename in os.listdir(dir_path + '/data_religion/'):
 
         if (filename.endswith(".csv")):
-            with open(dir_path + '/data/' + filename, 'rb') as csvfile:
+            with open(dir_path + '/data_religion/' + filename, 'rb') as csvfile:
                 reader = csv.reader(csvfile, delimiter=',')
                 document = {}
                 upazila = ""
