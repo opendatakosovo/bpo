@@ -194,14 +194,26 @@ span.section-title {
 
 .casualties-list-not-enogh-data {
     display: none;
+    font-family: Lato;
+    font-size: 18px;
+    line-height: 32px;
+    color: #666666;
 }
 
 .property-list-not-enogh-data {
     display: none;
+    font-family: Lato;
+    font-size: 18px;
+    line-height: 32px;
+    color: #666666;
 }
 
 .perpetrators-list-not-enogh-data {
     display: none;
+    font-family: Lato;
+    font-size: 18px;
+    line-height: 32px;
+    color: #666666;
 }
 
 .third-section-first-chart-no-data {
@@ -411,9 +423,29 @@ ol {
 }
 
 .highcharts-drillup-button {
-    display: none !important;
+    color: white !important;
 }
-
+dt.religious-diversity {
+    /* padding-left: 45px; */
+    font-size: 16px;
+}
+.horizontal-line {
+    border-top: 1px solid #eee;
+    padding: 5px;
+}
+.census-info-container{
+    font-family: "Noto Serif";
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #00506B;
+    padding-bottom:10px;
+}
+.daterangepicker .daterangepicker_input i {
+    position: absolute;
+    left: 14px !important;
+    top: 4px !important;
+}
 a.drillup-button {
     cursor: pointer;
     font-family: "Noto Serif";
@@ -428,10 +460,12 @@ a.drillup-button {
     display: none !important;
 }
 
-.highcharts-credits {
+.highcharts-credits tspan:nth-child(2) {
     display: none !important;
 }
-
+.highcharts-credits tspan:nth-child(3) {
+    display: none !important;
+}
 g.highcharts-legend-box {
     background-color: #FFFFFF !important;
     box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2) !important;

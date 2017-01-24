@@ -26,18 +26,15 @@
             <div class="viz-title-container col-md-6">
                 <span class="viz-title">The Bangladesh Peace Observatory</span>
             </div>
-            <div class="col-md-2 col-md-offset-4" style="padding-top:20px">
-                <a class="viz-title-about" href="{{ url_for('main.index') }}">Home |</a>
-                <a class="viz-title-about" href="{{ url_for('main.about') }}">About</a>
+            <div class="col-md-1 col-md-offset-5" style="padding-top:20px">
+                <a class="viz-title-about" href="{{ url_for('main.index') }}">Home</a>
             </div>
         </div>
         <br/>
         <div class="row">
             <div class="col-md-6 col-xs-12">
                 <div class="col-md-8">
-                    <div class="drillup">
-                        <a class="drillup-button">Home</a>
-                    </div>
+                    <br/>
                     <input name='division-select' class="form-control update-chart empty" id="division-select" value=''
                            placeholder="Search insights for divisions, districts, upazilas">
                     <span class="fa fa-search search-icon"></span>
@@ -63,7 +60,7 @@
             </div>
             <div class="col-md-2 col-xs-12">
                 <div class="col-md-12">
-                    <label class="filter-label" for="daterange">Time period:</label>
+                    <label class="filter-label" for="daterange">Select time period:</label>
                     <input type="text" class="form-control update-chart" name="daterange" value=""/>
                 </div>
             </div>
@@ -71,10 +68,12 @@
         <br/>
     </div>
     <div id="map" class="col-md-6">
+        <span>Drill Down in the Map to See Results</span>
     </div>
+
     <div id="viz-container" class="col-md-6">
         <div class="violent-crimes-in col-md-12">
-            <span class="location-main-text">Violence in <span class="location-name">the Country</span></span>
+            <span class="location-main-text">Reported violence in <span class="location-name">the Country</span></span>
         </div>
         <div id="national-rank" class="col-md-12">
             <span class="rank-section-title">National ranked:</span>
@@ -378,18 +377,19 @@
         </div>
         <div class="col-md-12">
             <div class="col-md-12 census-information">
-                <div class="col-md-12">
-                    <span style="color: #03506b;font-size: 16px;">Census Information for <span class="location-name">Bangladesh</span></span>
+                <div class="col-md-12 census-info-container">
+                    <span >Census Information for <span class="location-name">Bangladesh</span>(Census 2011)</span>
                 </div>
-
+                <div class="col-md-12 horizontal-line"></div>
                 <div class="col-md-6">
                     <dl class="dl-horizontal">
-                        <dt>Population</dt>
-                        <dd class="population-data">n/a</dd>
+                        <dt>General information</dt>
+                        <dd></dd>
                     </dl>
-                    <dl class="dl-horizontal second-dl">
-                        <dt> -</dt>
-                        <dd> -</dd>
+                    <div class="horizontal-line"></div>
+                    <dl class="dl-horizontal">
+                        <dt>Population:</dt>
+                        <dd class="population-data">n/a</dd>
                     </dl>
                     <!--<dl class="dl-horizontal second-dl">-->
                     <!--<dt>Unemployment</dt>-->
@@ -400,33 +400,37 @@
                     <!--<dd class="literacy-data">n/a</dd>-->
                     <!--</dl>-->
                     <dl class="dl-horizontal">
-                        <dt>Poverty</dt>
+                        <dt>Poverty rate:</dt>
                         <dd class="poverty-data">n/a</dd>
                     </dl>
                 </div>
                 <div class="col-md-6">
                     <dl class="dl-horizontal">
                         <dt>Religious diversity</dt>
-                        <dd>Muslim: <span id="muslim-data">n/a</span>%</dd>
+                        <dd></dd>
+                    </dl>
+                    <div class="horizontal-line"></div>
+                    <dl class="dl-horizontal">
+                        <dt>Muslim: </dt>
+                        <dd><span id="muslim-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
-                        <dt></dt>
-                        <dd>Hindu: <span id="hindu-data">n/a</span>%</dd>
+                        <dt>Hindu: </dt>
+                        <dd><span id="hindu-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
-                        <dt></dt>
-                        <dd>Buddhist: <span id="buddhist-data">n/a</span>%</dd>
+                        <dt>Buddhist: </dt>
+                        <dd><span id="buddhist-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
-                        <dt></dt>
-                        <dd>Christian: <span id="christian-data">n/a</span>%</dd>
+                        <dt>Christian: </dt>
+                        <dd><span id="christian-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
-                        <dt></dt>
-                        <dd>Others: <span id="others-data">n/a</span>%</dd>
+                        <dt>Others: </dt>
+                        <dd><span id="others-data">n/a</span>%</dd>
                     </dl>
                 </div>
-
             </div>
         </div>
 
@@ -439,10 +443,8 @@
         <span class="line-chart-title">Human and Economic Impact</span><br/>
         <span class="line-chart-description">State of Violence in <span class="location-name">Bangladesh</span></span>
         <div id="line-chart-container">
-
         </div>
     </div>
-
 </div>
 <script type="text/javascript" src="{{ url_for('static', filename='json/bangladesh.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='json/locations.js') }}"></script>
@@ -464,32 +466,9 @@
         allData = getData(true);
 
         $('.highcharts-drillup-button').on('change', function () {
-            if ($($('.highcharts-drillup-button')[0]).length != 0) {
-                $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
-            } else {
-                $('.drillup-button').text("Home");
-            }
+
         });
-        $('.drillup-button').click(function () {
-            if ($('.drillup-button').text() == 'Home') {
-                window.location = "{{url_for('main.index')}}";
-            }
-            $('.highcharts-drillup-button').click();
-            if ($('.drillup-button').text() == "◁ Back to Bangladesh") {
-                var home_url = "{{ url_for('main.index')}}";
-                $('.drillup-button').text("Home");
-            }
-            if ($($('.highcharts-drillup-button')[0]).length != 0) {
-                $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
-            } else {
-                $('.drillup-button').text("Home");
-            }
-            global_division = "";
-            global_district = "";
-            global_upazila = "";
-            allData = getData(false);
-        });
-//        $('#loadingmessage').show();
+
         $('.update-chart').change(function () {
             allData = getData(false);
         });
@@ -576,7 +555,6 @@
                 selected_vals = ui.item.label.split(',');
                 doDrillDown(selected_vals);
                 allData = getData(false);
-                $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
 
             }
         });
@@ -815,14 +793,8 @@
                     updateViz();
                     $('#loadingmessage').hide();
                 }
-//                if ($('.drillup-button').text() == "◁ Back to Bangladesh" || $('.drillup-button').text() == "Home") {
-//                    var home_url = "{{ url_for('main.index')}}";
-//                    $('.drillup-button').attr('href', home_url);
-//                } else {
-//                    $('.drillup-button')[0].href = "";
-//                }
                 if (division == "") {
-                    $('.location-name').html(" the country");
+                    $('.location-name').html(" Bangladesh");
                 } else if (global_division != "" && global_district == "") {
                     $('.location-name').html(global_division);
                 } else if (division != "" && global_district != "") {
@@ -853,9 +825,6 @@
         // Resize charts on window resize
         initResizeChartsOnResizeWindow();
 
-        $('.drillup-button').text("Home");
-
-
         // Build the ranking on the right on location based stats
         buildRankingBasedOnLocation();
 
@@ -863,7 +832,7 @@
         populateLocationDropdown();
 
         // Init and build the violence type dropdown list
-        $('#violence-type-select [value="Destruction of property"]').attr('selected', true);
+//        $('#violence-type-select [value="Attack: Coordinated action each-other political parties, groups, fractions and authorities"]').attr('selected', true);
         $('#loadingmessage').hide();
     }
     function updateRankSections() {
@@ -914,8 +883,8 @@
     function createLineChart() {
         function titleMove(e) {
             var title = this.legend.title;
-            if( $(window).width() > 768){
-                title.translate(-80,28);
+            if ($(window).width() > 768) {
+                title.translate(-80, 28);
             }
 
         }
@@ -943,7 +912,7 @@
                 return '<div class="line-chart-item" style="height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input type="checkbox" checked> <span style="font-family: Roboto;font-size: 11px;line-height: 13px;color: #FFFFFF;">' + this.name + '</span></div>';
             },
             title: {
-                text: "Show data:",
+                text: "Filter data:",
                 style: "margin-left:-30px;"
             },
         };
@@ -953,10 +922,10 @@
             align: 'right',
             layout: 'vertical',
             verticalAlign: 'right',
-            horizontalAlign:"right",
+            horizontalAlign: "right",
             symbolWidth: 0,
-            x:-20,
-            y:20,
+            x: -20,
+            y: 20,
             useHTML: true,
             labelFormatter: function () {
                 return '<div class="line-chart-item" style="width:138px; height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox" type="checkbox" style="border-radius: 6px;"> ' + this.name + ' </div>';
@@ -1110,9 +1079,11 @@
             locale: {
                 format: 'MM-DD-YYYY'
             },
-            startDate: "01-01-2014",
-            endDate: "12-31-2014"
+            startDate: "06-01-2014",
+            endDate: "06-29-2015"
         });
+        $('.left').prepend('<p>From:</p>');
+        $('.right').prepend('<p>To:</p>');
     }
     function buildMap() {
         var map_data = buildDataSeries();
@@ -1211,7 +1182,11 @@
                         this.setTitle(null, {text: e.point.name});
                     },
                     drillup: function (e) {
-                        updateViz();
+                        console.log("Drilled up.");
+                        global_division = "";
+                        global_district = "";
+                        global_upazila = "";
+                        allData = getData(false);
                     }
                 }
             },
@@ -1260,7 +1235,16 @@
                     return this.from + ' to ' + this.to;
                 }
             },
-
+            credits: {
+                text: '* Click area(drill down) to see results.<br/>',
+                position: {
+                    align: 'center',
+                    y: -5 // position of credits
+                },
+                style: {
+                    fontSize: '11pt' // you can style it!
+                }
+            },
             colorAxis: {
                 dataClasses: [{
                     to: 10,
@@ -1319,16 +1303,10 @@
                                         global_upazila = "";
                                     }
                                     allData = getData(false);
-                                    $('.drillup-button').show();
-                                    $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
-                                    $('g.highcharts-button.highcharts-drillup-button.highcharts-button-normal').css('display', 'none');
                                     return clicked_point;
                                 } else {
                                     var clicked_point = $(i.target)[0].textContent;
                                     allData = getData(false);
-                                    $('.drillup-button').show();
-                                    $('.drillup .drillup-button ').text($($('.highcharts-drillup-button')[0])[0]['textContent']);
-                                    $('g.highcharts-button.highcharts-drillup-button.highcharts-button-normal').css('display', 'none');
                                     return clicked_point;
                                 }
                             }
@@ -1358,12 +1336,20 @@
                 },
                 drillUpButton: {
                     relativeTo: 'spacingBox',
-                    position: {
-                        x: 0,
-                        y: -20
-                    },
-                    event: {
-                        change: function () {
+                    position: 'left',
+                    theme: {
+                        fill: '#007CA4',
+                        'stroke-width': 1,
+                        stroke: 'white',
+                        r: 14,
+                        states: {
+                            hover: {
+                                fill: '#1B6D85'
+                            },
+                            select: {
+                                stroke: '#039',
+                                fill: '#a4edba'
+                            }
                         }
                     }
                 }
@@ -1382,10 +1368,13 @@
         updateTop3Section();
         updateCensusInfo();
     }
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
     function updateCensusInfo() {
         var data = allData['census'][0]
         if (data != null) {
-            $('.population-data').text(data['population']);
+            $('.population-data').text(numberWithCommas(data['population']));
             if (data['poverty'] != null) {
                 $('.poverty-data').css('display', '');
                 $('.poverty-data').text(data['poverty'] + "%");
@@ -1394,11 +1383,11 @@
                 $('.poverty-data').text(data['poverty'] + "%");
             }
             var total = data['muslim'] + data['hindu'] + data['christian'] + data['buddhist'] + data['other'];
-            var percentage_of_muslims = String(data['muslim']*100/total).substring(0, 4);
-            var percentage_of_hindu = String(data['hindu']*100/total).substring(0, 4);
-            var percentage_of_christian = String(data['christian']*100/total).substring(0, 4);
-            var percentage_of_buddhist = String(data['buddhist']*100/total).substring(0, 4);
-            var percentage_of_other = String(data['other']*100/total).substring(0, 4);
+            var percentage_of_muslims = String(data['muslim'] * 100 / total).substring(0, 4);
+            var percentage_of_hindu = String(data['hindu'] * 100 / total).substring(0, 4);
+            var percentage_of_christian = String(data['christian'] * 100 / total).substring(0, 4);
+            var percentage_of_buddhist = String(data['buddhist'] * 100 / total).substring(0, 4);
+            var percentage_of_other = String(data['other'] * 100 / total).substring(0, 4);
 
             $('#muslim-data').text(percentage_of_muslims);
             $('#hindu-data').text(percentage_of_hindu);

@@ -1,77 +1,233 @@
 {% extends 'layout.html' %}
-
-{% block header %}
-<div id="header">
-    <!-- Navigation -->
+{% block body %}
+<!-- The Challenge and Response -->
+<div id="portfolio" class="bg-light-gray">
     <div class="container">
-        <nav class="navbar">
-            <a class="about" href="{{ url_for('main.index') }}">Home | </a>
-            <a class="about" href="{{ url_for('main.about') }}">About  | </a>
-            <a class="about" href="{{ url_for('viz.index') }}">The Observatory</a>
-        </nav>
-    </div>
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="intro-text-about">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                        <div class="intro-lead-in">The Bangladesh Peace Oservatory</div>
-                    </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <h1 class="section-heading5">The Challenge</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
+                <div class="col-md-3 col-xs-4">
+                    <img src="static/assets/about_graphic01.png" alt="Mountain View" class="img-responsive">
                 </div>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                        <hr class="col-md-6 col-md-offset-3 col-xs-12">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                        <div class="intro-text-about intro-lead-in1">Advancing understanding of peace and tolerance
-                            through data insights
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1 enter-about">
-                        <a href="{{ url_for('viz.index') }}" class="enter-btn">Enter the Observatory</a>
-                    </div>
+                <div class="col-md-8">
+                    <p class="lead2">Designing effective responses to public policy challenges is heavily
+                        dependent on evidence. Evidence is dependent on good data.
+                        In the present day "Open Data" is the future. More data has been produced globally
+                        in
+                        the last two years than in the previous 3000 years of human activity.
+                        Most of this data is openly accessible. Therefore, the future challenge for
+                        decision-makes is no finding data: the challenge is efficiently managing and
+                        digesting
+                        the explosion of public data. Bangladesh is no exception.
+                    </p>
+                    <br>
                 </div>
             </div>
         </div>
-    </header>
-    <div>
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                    <p class="project-by">A project by University of
-                        Dhaka
-                </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <h1 class="col-md-6 col-md-offset-4 section-heading5">The Response</h1>
             </div>
-            <div class="row">
-                <div class="hosted-by">Hosted by the Centre for
-                    Genocide Studies
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
+                <div class="col-md-3 col-xs-4 col-md-offset-1">
+                    <img src="static/assets/about_graphic02.png" alt="Mountain View" class="section-img img-responsive">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                    <div class=" text-center">
-                        <p class="in-partnership-title">In Partnership With</p>
-                        <p class="in-partnership-desc">The Bangladesh Police | National Defense College |
-                            Micro-governance
-                            Research Initiative
-                            | Stop Violence Coalition | The Daily Star | The Metropolitan Chamber of Commerce and
-                            Industry |
-                            Society for Environment and Human Development | Action Aid Bangladesh
-                        </p>
-                    </div>
+                <div class="col-md-8">
+                    <p class="lead3">The Bangladesh Peace Observatory is a response to the challenge. The
+                        Bangladesh Peace Observatory is a research facility housed at the Center for
+                        Genocide Studies at the University of Dhaka, which seeks to harness the power of
+                        Open Data to advance knowledge and understanding of peace and development in the
+                        country. The Observatory will focus on the pressing and interconnected issues of the
+                        youth bulge, violence prevention, and social cohesion.
+                    </p>
+                    <br><br><br>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
-{% block footer %}
+<!-- The Bangladesh Peace Observatory Platform -->
+<div id="section-about-description">
+    <div class="row">
+        <div class="col-md-11 col-md-offset-1">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
+                    <h1 class="section-heading-about text-center">The Bangladesh
+                        Peace Observatory Platform</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 ">
+                    <hr class="lead-hr">
+                    <div class="col-lg-9  col-md-8 col-xs-7">
+                        <p class="lead-desc-1">The Bangladesh Peace Observatory is a virtual platform equipped with
+                            mapping
+                            and data analytics technology that informs users on the state of violence – political,
+                            ethnic, communal, criminal, gender-based, as well as extremist – and other forms of
+                            discord
+                            in terms of time, space and themes.
+                        </p>
+                        <br><br><br>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-xs-4">
+                        <br>
+                        <div class="clearfix"></div>
+                        <img class="section-img img-responsive" src="static/assets/about_graphic03.png"
+                             alt="Mountain View">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 ">
+                    <div class="col-md-2 col-xs-4">
+                        <br>
+                        <div class="clearfix"></div>
+                        <img class="img-responsive" height="142" width="164" src="static/assets/about_graphic04.png">
+                    </div>
+                    <div class="section-2-part-4 col-md-6 col-md-offset-1 col-lg-9 col-xs-8">
+                        <hr class="lead-hr">
+                        <p class="lead4">The Bangladesh Peace Observatory brings together different
+                            streams
+                            of publically available data, analyses and visualizes them in a useful and interactive
+                            way
+                            for decision makers, civil society and media to understand, consume, and debate.
+                        </p>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
+
+                    <div class="section-2-part-5   col-lg-9  col-md-8 col-xs-7">
+                        <hr class="lead-hr">
+                        <p class="lead4">The Bangladesh Peace Observatory seeks to support a wide range of actors in
+                            making better public policy decisions, tailored interventions and programming, enhanced
+                            research, and effective advocacy campaigning for social cohesion and peace development
+                            based
+                            on evidence and data.
+                        </p>
+                        <br><br><br>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-xs-4">
+                        <br>
+                        <div class="clearfix"></div>
+
+                        <img class="section-img img-responsive" src="static/assets/about_graphic05.png"
+                             alt="Mountain View">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- Advisory Board -->
+
+<div id="advisory-board" class="bg-light-gray">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+            <h2 class="advisory-board-title">Advisory Board</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+            <div class="col-md-3 col-sm-3 col-xs-3">
+
+                <img class="img-responsive" src="static/assets/logo_SVC.png"
+                     alt="Logo_SVC"
+                >
+
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+
+                <img class="img-responsive" src="static/assets/logo_police.png"
+                     alt="Logo_Police">
+
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+
+                <img class="img-responsive" src="static/assets/logo_mgr.png"
+                     alt="Logo_mgr">
+
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+
+                <img class="img-responsive" src="static/assets/logo_lamp.png"
+                     alt="LOgo_lamp">
+
+            </div>
+        </div>
+    </div>
+    <div class="row" style="    padding-top: 30px;
+    padding-bottom: 30px;">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+            <div class="col-md-6 col-xs-6 col-sm-6">
+
+                <img class="img-responsive" src="static/assets/logo_actionaid.png"
+                     alt="Logo_actionaid">
+                {#                        </a>#}
+            </div>
+            <div class="col-md-6 col-xs-6 col-sm-6">
+
+                <img class="img-responsive" src="static/assets/logo_star.png"
+                     alt="Logo_star">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+            <div class="col-md-3 col-sm-3 col-xs-3">
+
+                <img class="img-responsive" src="static/assets/logo_CGS.png"
+                     alt="Logo_CGS">
+
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+
+                <img class="img-responsive" src="static/assets/logo_SEHD.png"
+                     alt="Logo_SEHD" style="
+
+    position: absolute;
+
+    left: 0;
+
+    vertical-align: middle;
+
+    padding-top: 10%;">
+
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+
+                <img class="img-responsive" src="static/assets/logo_MCCI.png"
+                     alt="Logo_MCCI" style="line-height: 200px;
+    position: absolute;
+
+    left: 0;
+
+    ">
+
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+
+                <img class="img-responsive" src="static/assets/logo_DhakaUni.png"
+                     alt="logo_DhakaUni">
+
+            </div>
+        </div>
+    </div>
+
+</div>
 {% endblock %}

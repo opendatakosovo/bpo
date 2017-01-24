@@ -5,7 +5,7 @@
     text-align: center;
     line-height: 85px;
     color: #FFFFFF;
-    padding-top: 25%;
+    padding-top: 80px;
 }
 
 header .intro-text .intro-heading {
@@ -163,7 +163,6 @@ hr {
 
 .header {
     background-color: #007CA4;
-    padding-bottom: 104px;
 }
 #mainNav{
     background-color: #007CA4;
@@ -206,7 +205,7 @@ hr {
     color: white;
     text-align: justify;
     font-family: 'Lato';
-    padding-left: 50px !important;
+    padding-left: 20px !important;
 }
 
 .lead-hr {
@@ -223,7 +222,6 @@ hr {
     text-align: center;
     line-height: 22px;
     color: #FFFFFF;
-    padding-top: 150px;
 }
 
 .hosted-by {
@@ -232,6 +230,7 @@ hr {
     text-align: center;
     line-height: 20px;
     color: #FFFFFF;
+    padding-bottom: 20px
 }
 
 .in-partnership-title {
@@ -1242,10 +1241,6 @@ body {
     webkit-tap-highlight-color: #fed136;
 }
 
-.section-img {
-    width: 134.45px;
-    height: 113px;
-}
 
 .section-2-part-4 {
     padding-top: 53px;
