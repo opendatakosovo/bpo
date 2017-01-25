@@ -5,7 +5,7 @@
     text-align: center;
     line-height: 85px;
     color: #FFFFFF;
-    padding-top: 80px;
+    padding-top: 27%;
 }
 
 header .intro-text .intro-heading {
@@ -232,7 +232,7 @@ hr {
     text-align: center;
     line-height: 20px;
     color: #FFFFFF;
-    padding-bottom: 20px
+    padding-bottom: 5%;
 }
 
 .in-partnership-title {
@@ -676,7 +676,7 @@ fieldset[disabled] .btn-xl.active {
     text-align: center;
     line-height: 40px;
     color: #FFFFFF;
-    padding-bottom: 50px;
+    padding-bottom: 10%;
 }
 
 header .intro-text .intro-heading {
@@ -1297,4 +1297,33 @@ i.fa:before {
 
 #header {
     background: linear-gradient(0deg, #003D52 0%, #007CA4 100%);
+}
+.arrow {
+  white-space: nowrap;
+  font-size: 8rem;
+  position: absolute;
+  right: 0;
+  bottom: 50px;
+  left: 0;
+  margin: auto;
+  width: 40px;
+  height: 40px;
+  -webkit-transition: all 500ms ease-in-out;
+  -moz-transition: all 750ms ease-in-out;
+  -ms-transition: all 750ms ease-in-out;
+  -o-transition: all 750ms ease-in-out;
+  transition: all 750ms ease-in-out;
+}
+
+/* this sets the position of the arrow when it's up, so it will move up or down by 14px when you add or remove this class */
+.lift {
+  bottom: 64px;
+}
+
+i.fa.arrow:before {
+    font-size: 51px;
+    margin-left: -10px;
+    width: 30px;
+    height: 30px;
+    color: #ffffff !important;
 }
