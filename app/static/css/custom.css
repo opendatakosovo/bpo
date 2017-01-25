@@ -191,11 +191,13 @@ hr {
     font-size: 18px;
     line-height: 31px;
     color: #333333;
+    text-align: justify;
 }
 
 .lead3 {
     font-size: 18px;
     color: black;
+    line-height: 31px;
     text-align: justify;
     font-family: 'Lato';
 }
