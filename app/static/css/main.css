@@ -652,13 +652,14 @@ g.highcharts-legend-item.highcharts-line-series {
 #Human_and_Economic_Impact_Download_Text {
     width: 71px;
     height: 19px;
-    font-family: "Open Sans";
+    font-family: Lato;
     font-size: 14px;
     font-weight: bold;
-    line-height: 19px;
+    line-height: 17px;
     color: #FFFFFF;
     text-shadow: 0 1px 0 0 #DA740C;
 }
+
 #Story_Frame_Data_Download {
     width: 109px;
     height: 32px;
@@ -671,19 +672,21 @@ g.highcharts-legend-item.highcharts-line-series {
 #Story_Frame_Data_Download_Text {
     width: 71px;
     height: 19px;
-    font-family: "Open Sans";
+    font-family: Lato;
     font-size: 14px;
     font-weight: bold;
-    line-height: 19px;
+    line-height: 17px;
     color: #FFFFFF;
     text-shadow: 0 1px 0 0 #DA740C;
 }
+
 .fa.fa-file-pdf-o.download-icon:before {
     width: 14px;
     height: 16px;
     font-size: 14px;
     color: #FFFFFF !important;
 }
+
 .download-icon {
     width: 14px;
     height: 16px;
