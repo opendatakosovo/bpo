@@ -16,6 +16,7 @@
 <script src="../static/js/highcharts/bd-all.min.js"></script>
 <script src="../static/js/highcharts/stock-exporting-module.min.js"></script>
 <script src="../static/js/highcharts/map-drilldown-module.min.js"></script>
+<script src="http://highcharts.github.io/export-csv/export-csv.js"></script>
 <script src="../static/js/geo-files/divisions.js"></script>
 <script src="../static/js/geo-files/upazillas.js"></script>
 
@@ -72,8 +73,17 @@
     </div>
 
     <div id="viz-container" class="col-md-6">
-        <div class="violent-crimes-in col-md-12">
-            <span class="location-main-text">Reported violence in <span class="location-name">the Country</span></span>
+        <div class="violent-crimes-in">
+            <div class="col-md-9">
+                <span class="location-main-text">Reported violence in <span
+                        class="location-name">the Country</span> </span>
+            </div>
+
+            <div class="col-md-2">
+                <button id="Story_Frame_Data_Download"><i class="fa fa-file-pdf-o download-icon" aria-hidden="true"></i><span
+                        id="Story_Frame_Data_Download_Text">Download</span></button>
+            </div>
+
         </div>
 
         <div id="division-rank" class="col-md-12">
@@ -305,9 +315,19 @@
 
 <div class="row">
     <div id="line-chart" class="col-md-12">
-        <span class="line-chart-title">Human and Economic Impact</span><br/>
-        <span class="line-chart-description">State of Violence in <span class="location-name">Bangladesh</span></span>
-        <div id="line-chart-container">
+        <div class="col-md-10">
+            <span class="line-chart-title">Human and Economic Impact</span><br/>
+            <span class="line-chart-description">State of Violence in <span
+                    class="location-name">Bangladesh</span></span>
+        </div>
+        <div class="col-md-2">
+            <button id="Human_and_Economic_Impact_Download"><i class="fa fa-file-pdf-o download-icon"
+                                                               aria-hidden="true"></i><span
+                    id="Human_and_Economic_Impact_Download_Text">Download</span></button>
+        </div>
+        <div class="col-md-12">
+            <div id="line-chart-container">
+            </div>
         </div>
     </div>
 </div>
@@ -477,7 +497,7 @@
             defaultSeriesType: 'areaspline'
         }
 
-        Highcharts.chart('third-section-first-chart', {
+        var chart1 = Highcharts.chart('third-section-first-chart', {
             chart: chart_options,
             title: {
                 text: ''
@@ -513,13 +533,23 @@
                     borderWidth: 0
                 }
             },
+            navigator: {
+                series: {
+                    includeInCSVExport: false
+                }
+            },
             series: [{
                 name: "Deaths",
                 data: deaths_data_series
 
-            }]
+            }],
+            exporting: {
+                csv: {
+                    dateFormat: '%Y-%m-%d'
+                }
+            }
         });
-        Highcharts.chart('third-section-second-chart', {
+        var chart2 = Highcharts.chart('third-section-second-chart', {
             chart: chart_options,
             title: {
                 text: ''
@@ -546,15 +576,25 @@
                 column: {
                     pointPadding: 0.2,
                     borderWidth: 0
+                }
+            },
+            navigator: {
+                series: {
+                    includeInCSVExport: false
                 }
             },
             series: [{
                 name: 'Injuries',
                 data: injuries_data_series
 
-            }]
+            }],
+            exporting: {
+                csv: {
+                    dateFormat: '%Y-%m-%d'
+                }
+            }
         });
-        Highcharts.chart('third-section-third-chart', {
+        var chart3 = Highcharts.chart('third-section-third-chart', {
             chart: chart_options,
             title: {
                 text: ''
@@ -583,12 +623,27 @@
                     borderWidth: 0
                 }
             },
+            navigator: {
+                series: {
+                    includeInCSVExport: false
+                }
+            },
             series: [{
                 name: 'Property damage',
                 data: property_damage_data_series
 
-            }]
+            }],
+            exporting: {
+                csv: {
+                    dateFormat: '%Y-%m-%d'
+                }
+            }
         });
+
+        $('#Story_Frame_Data_Download').click(function () {
+            download('Story_Frame_Data.csv',chart1.getCSV() +"\r\n"+ chart2.getCSV()+"\r\n"+chart3.getCSV());
+        });
+
 
     }
     function buildNationalData() {
@@ -810,7 +865,7 @@
 
         function createChart(seriesOptions) {
 
-            Highcharts.stockChart('line-chart-container', {
+            var chart = Highcharts.stockChart('line-chart-container', {
                 chart: {
                     events: {
                         load: titleMove,
@@ -834,11 +889,11 @@
                         width: 2,
                         color: 'silver'
                     }],
-                    min:0
+                    min: 0
                 },
                 xAxis: {
                     range: 12 * 30 * 24 * 3600 * 1000,
-                    min : 0
+                    min: 0
                 },
                 plotOptions: {
 
@@ -854,9 +909,22 @@
                     split: true
                 },
                 legend: isBig ? legendBig : legendSmall,
-
+                navigator: {
+                    series: {
+                        includeInCSVExport: false
+                    }
+                },
                 series: seriesOptions,
 
+                exporting: {
+                    csv: {
+                        dateFormat: '%Y-%m-%d'
+                    }
+                }
+
+            });
+            $('#Human_and_Economic_Impact_Download').click(function () {
+                download('Human_and_Economic_Impact.csv', chart.getCSV());
             });
         }
 
@@ -920,7 +988,20 @@
         });
 
     }
+    function download(filename, text) {
+        var pom = document.createElement('a');
+        pom.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(text));
+        pom.setAttribute('download', filename);
 
+        if (document.createEvent) {
+            var event = document.createEvent('MouseEvents');
+            event.initEvent('click', true, true);
+            pom.dispatchEvent(event);
+        }
+        else {
+            pom.click();
+        }
+    }
     function updateLineChart() {
         var deaths = [];
         var injuries = [];

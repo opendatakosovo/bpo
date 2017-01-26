@@ -269,7 +269,6 @@ span.section-title-top {
     color: #00506B;
 }
 
-
 .rank-section-title {
     font-family: "Noto Serif";
     font-size: 18px;
@@ -425,27 +424,32 @@ ol {
 .highcharts-drillup-button {
     color: white !important;
 }
+
 dt.religious-diversity {
     /* padding-left: 45px; */
     font-size: 16px;
 }
+
 .horizontal-line {
     border-top: 1px solid #eee;
     padding: 5px;
 }
-.census-info-container{
+
+.census-info-container {
     font-family: "Noto Serif";
     font-size: 17px;
     font-weight: bold;
     line-height: 20px;
     color: #00506B;
-    padding-bottom:10px;
+    padding-bottom: 10px;
 }
+
 .daterangepicker .daterangepicker_input i {
     position: absolute;
     left: 14px !important;
     top: 4px !important;
 }
+
 a.drillup-button {
     cursor: pointer;
     font-family: "Noto Serif";
@@ -463,9 +467,11 @@ a.drillup-button {
 .highcharts-credits tspan:nth-child(2) {
     display: none !important;
 }
+
 .highcharts-credits tspan:nth-child(3) {
     display: none !important;
 }
+
 g.highcharts-legend-box {
     background-color: #FFFFFF !important;
     box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2) !important;
@@ -483,24 +489,27 @@ g.highcharts-legend-box {
 .ui-menu {
     background: white;
 }
+
 .ui-menu-item {
     font-family: Lato;
     font-size: 18px;
     line-height: 17px;
     color: #000000;
 }
+
 .ui-menu-item:hover {
-    color:gray;
-    cursor:pointer;
+    color: gray;
+    cursor: pointer;
 }
+
 .ui-autocomplete {
     background: #fff;
     border-radius: 10px;
     width: 300px;
     list-style: none;
-    height:300px;
+    height: 300px;
     overflow: scroll;
-    padding-left:10px;
+    padding-left: 10px;
 }
 
 .ui-tooltip {
@@ -628,4 +637,55 @@ input.empty:-moz-placeholder { /* Firefox 18- */
 
 g.highcharts-legend-item.highcharts-line-series {
     border: 1px solid black !important;
+}
+
+#Human_and_Economic_Impact_Download {
+    width: 109px;
+    height: 32px;
+    background-color: #FFA400;
+    border: 1px solid #E79400;
+    border-radius: 2px;
+    float: right;
+    margin-top: 20px;
+}
+
+#Human_and_Economic_Impact_Download_Text {
+    width: 71px;
+    height: 19px;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 19px;
+    color: #FFFFFF;
+    text-shadow: 0 1px 0 0 #DA740C;
+}
+#Story_Frame_Data_Download {
+    width: 109px;
+    height: 32px;
+    background-color: #FFA400;
+    border: 1px solid #E79400;
+    border-radius: 2px;
+    margin-top: 20px;
+}
+
+#Story_Frame_Data_Download_Text {
+    width: 71px;
+    height: 19px;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 19px;
+    color: #FFFFFF;
+    text-shadow: 0 1px 0 0 #DA740C;
+}
+.fa.fa-file-pdf-o.download-icon:before {
+    width: 14px;
+    height: 16px;
+    font-size: 14px;
+    color: #FFFFFF !important;
+}
+.download-icon {
+    width: 14px;
+    height: 16px;
+    color: #FFFFFF !important;
 }
