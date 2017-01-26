@@ -839,7 +839,7 @@
             y: -25,
             useHTML: true,
             labelFormatter: function () {
-                return '<div class="line-chart-item" style="height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input type="checkbox" checked> <span style="font-family: Roboto;font-size: 11px;line-height: 13px;color: #FFFFFF;">' + this.name + '</span></div>';
+                return '<div class="line-chart-item" style="height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox '+ this.name +'" type="checkbox" checked> <span style="font-family: Roboto;font-size: 11px;line-height: 13px;color: #FFFFFF;">' + this.name + '</span></div>';
             },
             title: {
                 text: "Filter data:",
@@ -858,7 +858,7 @@
             y: 20,
             useHTML: true,
             labelFormatter: function () {
-                return '<div class="line-chart-item" style="width:138px; height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox" type="checkbox" style="border-radius: 6px;"> ' + this.name + ' </div>';
+                return '<div class="line-chart-item" style="width:138px; height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox '+ this.name +'" type="checkbox" style="border-radius: 6px; " checked> ' + this.name + ' </div>';
             }
         };
 
@@ -983,9 +983,22 @@
                 createChart(seriesOptions);
             }
         });
-        $('#line-chart .highcharts-legend-item').click(function () {
-            console.log($(this));
+        $('.line-chart-item').click(function(){
+            if($(this).children().is(':checked') == true){
+                $(this).children().removeAttr("checked");
+            }else{
+                $(this).children().prop('checked', true);
+            }
+            console.log($(this).children().is(':checked'));
         });
+        $('.line-chart-checkbox').click(function(){
+            if($(this).is(':checked') == true){
+                $(this).removeAttr("checked");
+            }else{
+                $(this).prop('checked', true);
+            }
+        })
+
 
     }
     function download(filename, text) {
