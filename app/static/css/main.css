@@ -16,7 +16,7 @@ div.division-overview-tab {
 }
 
 .rank-text.ui-accordion-content {
-    padding: 20px;
+    padding-top: 20px;
 }
 
 div#national-accordion {
@@ -284,7 +284,7 @@ span.section-title-top {
 }
 
 #division-rank {
-    /*display: none;*/
+    display: none;
     font-family: "Noto Serif";
 }
 

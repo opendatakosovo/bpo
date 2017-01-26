@@ -75,73 +75,7 @@
         <div class="violent-crimes-in col-md-12">
             <span class="location-main-text">Reported violence in <span class="location-name">the Country</span></span>
         </div>
-        <div id="national-rank" class="col-md-12">
-            <span class="rank-section-title">National ranked:</span>
-            <div id="national-rank-accordion">
-                <div class="national-overview-tab">
-                    <div class="row rank-stats">
-                        <div class="col-md-4">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                            <span class="division-death-rank-nth">n/a</span>
-                            <img class="viz-icon-arrow"
-                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
-                        </div>
-                        <div class="col-md-4">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
-                            <span class="division-injury-rank-nth">n/a</span>
-                            <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                        </div>
-                        <div class="col-md-4">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
-                            <span class="division-property-rank-nth">n/a</span>
-                            <img class="viz-icon-arrow"
-                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
-                            <span class="caret"></span>
-                        </div>
 
-                    </div>
-
-
-                </div>
-                <div class="rank-text">
-                    <div class='rank-text-row'>
-                        <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                        </div>
-                        <span class="desc-death-rank-name"></span> ranked <span class="desc-death-rank"></span> in
-                        deaths with <span class="desc-death-rank-total"></span> incidents.
-                    </div>
-                    <br/>
-                    <div class='rank-text-row'>
-                        <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
-                        </div>
-                        <span class="desc-injury-rank-name"></span> ranked <span class="desc-injury-rank"></span> in
-                        injuries with <span
-                            class="desc-injury-rank-total"></span> incidents.
-                    </div>
-                    <br/>
-                    <div class='rank-text-row'>
-                        <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
-                        </div>
-                        <span class="desc-property-rank-name"></span> ranked <span class="desc-property-rank"></span> in
-                        property damage with <span
-                            class="desc-property-rank-total"></span> incidents.
-                        <i class="fa fa-caret-up rotate collapse-national-stats" aria-hidden="true"></i>
-                    </div>
-                    <br/>
-
-                </div>
-
-            </div>
-        </div>
         <div id="division-rank" class="col-md-12">
             <span class="rank-section-title">Division ranked:</span>
             <div id="division-rank-accordion">
@@ -181,7 +115,7 @@
                         </div>
                         <span class="division-desc-death-rank-name"></span> ranked <span
                             class="division-desc-death-rank"></span> in
-                        deaths with <span class="division-desc-death-rank-total"></span> incidents.
+                        deaths with <span class="division-desc-death-rank-total"></span> deaths.
                     </div>
                     <br/>
                     <div class='rank-text-row'>
@@ -192,7 +126,7 @@
                         <span class="division-desc-injury-rank-name"></span> ranked <span
                             class="division-desc-injury-rank"></span> in
                         injuries with <span
-                            class="division-desc-injury-rank-total"></span> incidents.
+                            class="division-desc-injury-rank-total"></span> injuries.
                     </div>
                     <br/>
                     <div class='rank-text-row'>
@@ -203,7 +137,7 @@
                         <span class="division-desc-property-rank-name"></span> ranked <span
                             class="division-desc-property-rank"></span> in
                         property damage with <span
-                            class="division-desc-property-rank-total"></span> incidents.
+                            class="division-desc-property-rank-total"></span> property damages.
                         <i class="fa fa-caret-up rotate collapse-division-stats" aria-hidden="true"></i>
                     </div>
                     <br/>
@@ -212,78 +146,9 @@
 
             </div>
         </div>
-        <div id="district-rank" class="col-md-12">
-            <span class="rank-section-title">District ranked:</span>
-            <div id="district-rank-accordion">
-                <div class="district-overview-tab">
-                    <div class="row rank-stats">
-                        <div class="col-md-4">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                            <span class="district-death-rank-nth">n/a</span>
-                            <img class="viz-icon-arrow"
-                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
-                        </div>
-                        <div class="col-md-4">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
-                            <span class="district-injury-rank-nth">n/a</span>
-                            <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
-                        </div>
-                        <div class="col-md-4">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
-                            <span class="district-property-rank-nth">n/a</span>
-                            <img class="viz-icon-arrow"
-                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
-                            <span class="caret"></span>
-                        </div>
 
-                    </div>
-
-
-                </div>
-                <div class="rank-text">
-                    <div class='rank-text-row'>
-                        <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                        </div>
-                        <span class="district-desc-death-rank-name"></span> ranked <span
-                            class="district-desc-death-rank"></span> in
-                        deaths with <span class="district-desc-death-rank-total"></span> incidents.
-                    </div>
-                    <br/>
-                    <div class='rank-text-row'>
-                        <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
-                        </div>
-                        <span class="district-desc-injury-rank-name"></span> ranked <span
-                            class="district-desc-injury-rank"></span> in
-                        injuries with <span
-                            class="district-desc-injury-rank-total"></span> incidents.
-                    </div>
-                    <br/>
-                    <div class='rank-text-row'>
-                        <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
-                        </div>
-                        <span class="district-desc-property-rank-name"></span> ranked <span
-                            class="district-desc-property-rank"></span> in
-                        property damage with <span
-                            class="district-desc-property-rank-total"></span> incidents.
-                        <i class="fa fa-caret-up rotate collapse-district-stats" aria-hidden="true"></i>
-                    </div>
-                    <br/>
-
-                </div>
-
-            </div>
-        </div>
         <div id="national-overview" class="col-md-12">
-            <span class="section-title">National Overview:</span>
+            <span class="section-title">National Overview of Divisions:</span>
             <div id="national-accordion">
                 <div class="division-overview-tab">
                     <div class="icon-container">
@@ -378,7 +243,7 @@
         <div class="col-md-12">
             <div class="col-md-12 census-information">
                 <div class="col-md-12 census-info-container">
-                    <span >Census Information for <span class="location-name">Bangladesh</span>(Census 2011)</span>
+                    <span>Census Information for <span class="location-name">Bangladesh</span>(Census 2011)</span>
                 </div>
                 <div class="col-md-12 horizontal-line"></div>
                 <div class="col-md-6">
@@ -411,23 +276,23 @@
                     </dl>
                     <div class="horizontal-line"></div>
                     <dl class="dl-horizontal">
-                        <dt>Muslim: </dt>
+                        <dt>Muslim:</dt>
                         <dd><span id="muslim-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
-                        <dt>Hindu: </dt>
+                        <dt>Hindu:</dt>
                         <dd><span id="hindu-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
-                        <dt>Buddhist: </dt>
+                        <dt>Buddhist:</dt>
                         <dd><span id="buddhist-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
-                        <dt>Christian: </dt>
+                        <dt>Christian:</dt>
                         <dd><span id="christian-data">n/a</span>%</dd>
                     </dl>
                     <dl class="dl-horizontal">
-                        <dt>Others: </dt>
+                        <dt>Others:</dt>
                         <dd><span id="others-data">n/a</span>%</dd>
                     </dl>
                 </div>
@@ -476,6 +341,9 @@
             buildViolenceTypeDropDown();
             allData = getData(false);
         });
+        $('.line-chart-item').bind('click', function () {
+            console.log($(this));
+        })
 
     });
 
@@ -837,47 +705,54 @@
     }
     function updateRankSections() {
         var rank_data = allData['stats'];
-        if (global_division != '') {
-            $('#division-rank').css('display', '');
+        var match_name = "";
+        if (global_division != '' && global_district == "") {
+            match_name = global_division;
+            $('#division-rank').show();
+        } else if (global_division != '' && global_district != "") {
+            match_name = global_district;
+            $('#division-rank').show();
         } else {
-            $('#division-rank').css('display', 'none');
+            $('#division-rank').hide();
         }
-        if (global_district != '') {
-            $('#district-rank').css('display', '');
-        } else {
-            $('#district-rank').css('display', 'none');
+
+        // Set death ranks
+        if (rank_data['death'] != undefined) {
+            $.each(rank_data['death'], function (i, item) {
+                if (item.name == match_name) {
+                    console.log(item);
+                    $('.division-death-rank-nth').text(item['rank'] + 'th');
+                    $('.division-desc-death-rank-name').text(item['name']);
+                    $('.division-desc-death-rank').text(item['rank']);
+                    $('.division-desc-death-rank-total').text(Math.round(item['total']));
+                }
+            });
         }
-        var types = ['division', 'district', 'upazila'];
-        $.each(types, function (item) {
-            $.each(rank_data[types[item]]['death'], function (i, property) {
-                if (global_division == property['name'] || global_district == property['name']) {
-                    $('.' + types[item] + '-death-rank-nth').text(property['rank'] + 'th');
-                    $('.' + types[item] + '-desc-death-rank-name').text(property['name']);
-                    $('.' + types[item] + '-desc-death-rank').text(property['rank']);
-                    $('.' + types[item] + '-desc-death-rank-total').text(Math.round(property['total']));
-                }
 
-            });
-
-            $.each(rank_data[types[item]]['injury'], function (i, property) {
-                if (global_division == property['name'] || global_district == property['name']) {
-                    $('.' + types[item] + '-injury-rank-nth').text(property['rank'] + 'th');
-                    $('.' + types[item] + '-desc-injury-rank-name').text(property['name']);
-                    $('.' + types[item] + '-desc-injury-rank').text(property['rank']);
-                    $('.' + types[item] + '-desc-injury-rank-total').text(Math.round(property['total']));
+        // Set injury ranks
+        if (rank_data['injury'] != undefined) {
+            $.each(rank_data['injury'], function (i, item) {
+                if (item.name == match_name) {
+                    console.log(item);
+                    $('.division-injury-rank-nth').text(item['rank'] + 'th');
+                    $('.division-desc-injury-rank-name').text(item['name']);
+                    $('.division-desc-injury-rank').text(item['rank']);
+                    $('.division-desc-injury-rank-total').text(Math.round(item['total']));
                 }
             });
-            $.each(rank_data[types[item]]['property'], function (i, property) {
-                if (global_division == property['name'] || global_district == property['name']) {
-
-                    $('.' + types[item] + '-property-rank-nth').text(property['rank'] + 'th');
-                    $('.' + types[item] + '-desc-property-rank-name').text(property['name']);
-                    $('.' + types[item] + '-desc-property-rank').text(property['rank']);
-                    $('.' + types[item] + '-desc-property-rank-total').text(Math.round(property['total']));
+        }
+        // Set Property Damage ranks
+        if (rank_data['property'] != undefined) {
+            $.each(rank_data['property'], function (i, item) {
+                if (item.name == match_name) {
+                    console.log(item);
+                    $('.division-property-rank-nth').text(item['rank'] + 'th');
+                    $('.division-desc-property-rank-name').text(item['name']);
+                    $('.division-desc-property-rank').text(item['rank']);
+                    $('.division-desc-property-rank-total').text(Math.round(item['total']));
                 }
             });
-        });
-
+        }
 
     }
     function createLineChart() {
@@ -958,10 +833,12 @@
                         value: 0,
                         width: 2,
                         color: 'silver'
-                    }]
+                    }],
+                    min:0
                 },
                 xAxis: {
-                    range: 12 * 30 * 24 * 3600 * 1000
+                    range: 12 * 30 * 24 * 3600 * 1000,
+                    min : 0
                 },
                 plotOptions: {
 
@@ -1037,6 +914,9 @@
             if (seriesCounter === names.length) {
                 createChart(seriesOptions);
             }
+        });
+        $('#line-chart .highcharts-legend-item').click(function () {
+            console.log($(this));
         });
 
     }
@@ -1448,14 +1328,16 @@
 
 
         // Change the presentation text based on the level
-        if (global_division != "" && global_district == "") {
-            $('.section-title').text('National Overview');
+        if (global_division == "" && global_district == "" && global_upazila == "") {
+            $('.section-title').text('National Overview of Divisions:');
         }
-        else if (global_district != "") {
-            $('.section-title').text('Division Overview');
+        else if (global_division != "" && global_district == "" && global_upazila == "") {
+            $('.section-title').text('Division Overview:');
+            $('.rank-section-title').text('National Rank of ' + global_division + ' Division:');
         }
-        else {
-            $('.section-title').text('District Overview');
+        else if (global_division != "" && global_district != "" && global_upazila == "") {
+            $('.section-title').text('District Overview:');
+            $('.rank-section-title').text('National Rank of ' + global_district + ' District:');
         }
     }
 

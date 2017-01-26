@@ -1285,7 +1285,6 @@ def parse():
                         else:
                             new_json[json_structure[key]] = violence_police_role[str(elem[key])]
                     elif key == "DPROP1":
-                        print destruction_of_property['710']
                         if elem[key] == None:
                             pass
                         elif  elem[key] == 770:
@@ -1320,21 +1319,14 @@ def parse():
                             new_json['responders'].append(violence_actor_1['210'])
                         else:
                             new_json['responders'].append(violence_actor_1[str(elem[key])])
-                    elif key == 'WOUACA':
-                        if elem[key] == '' or elem[key]==None:
-                            new_json['injuries_count'] += float(0)
-                        elif elem[key] == 'imprecise':
+                    elif key == 'WOUACA' or key == 'WOUACB' or key == 'WOUTAR'  or key == 'WNONP':
+                        if elem[key] == '' or elem[key]==None or elem[key] == 'imprecise' or elem[key] == 'Imprecise':
                             new_json['injuries_count'] += float(0)
                         else:
-                            new_json['injuries_count'] += float(elem[key])
-                    elif key == 'WOUACB':
-                        if elem[key] == '' or elem[key] == None:
-                            new_json['injuries_count'] += float(0)
-                        elif elem[key] == 'imprecise':
-                            new_json['injuries_count'] += float(0)
-                        else:
-                            new_json['injuries_count'] += float(elem[key])
-
+                            try:
+                                new_json['injuries_count'] += float(elem[key])
+                            except:
+                                new_json['injuries_count'] += float(0)
                     elif key == 'CASACA' or key == 'CASACB':
                         if elem[key] == '' or elem[key] == None:
                             new_json['deaths_count'] += float(0)
@@ -1342,7 +1334,7 @@ def parse():
                             new_json['deaths_count'] += float(0)
                         else:
                             new_json['deaths_count'] += float(elem[key])
-                    elif key == 'CASTAR':
+                    elif key == 'CASTAR' or key == 'CNONP':
                         if elem[key] == '' or elem[key] == ' ' or elem[key] == '`' or elem[key] == None:
                             new_json['deaths_count'] += float(0)
                         elif elem[key] == 'imprecise':

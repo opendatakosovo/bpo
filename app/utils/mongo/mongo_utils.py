@@ -12,15 +12,13 @@ class MongoUtils(object):
         field_match = ''
         value_match = ''
         result = {}
-        result['upazila'] = self.get_upazila_stats(params)
-        result['division'] = self.get_division_stats(params)
-        result['district'] = self.get_district_stats(params)
-        # if params['division'] != '' and params['district'] != '' and params['upazila'] != '':
-        #     return self.get_upazila_stats(params)
-        # elif params['division'] != '' and params['district']:
-        #     return self.get_district_stats(params)
-        # elif params['division'] != '':
-        #     return self.get_division_stats(params)
+
+        if params['division'] != '' and params['district'] != '' and params['upazila'] != '':
+            return self.get_upazila_stats(params)
+        elif params['division'] != '' and params['district'] != '' and params['upazila'] == '':
+            return self.get_district_stats(params)
+        elif params['division'] != '' and params['district'] == '' and params['upazila'] == '':
+            return self.get_division_stats(params)
         return result
 
     def get_district_stats(self, params):
@@ -36,7 +34,6 @@ class MongoUtils(object):
                 'property_destroyed_count': {
                     "$ne": [0]
                 },
-                "division": params['division'],
                 'violence_type': {
                     "$in": [
                         str(params['violence_type'])
@@ -55,7 +52,6 @@ class MongoUtils(object):
                 'deaths_count': {
                     "$ne": [0]
                 },
-                "division": params['division'],
                 'violence_type': {
                     "$in": [
                         str(params['violence_type'])
@@ -75,7 +71,6 @@ class MongoUtils(object):
                 'injuries_count': {
                     "$ne": [0]
                 },
-                "division": params['division'],
                 'violence_type': {
                     "$in": [
                         str(params['violence_type'])
@@ -92,6 +87,9 @@ class MongoUtils(object):
                 },
                 'total': {
                     '$sum': '$deaths_count'
+                },
+                'incidents':{
+                    '$sum': 1
                 }
             }
         }
@@ -102,6 +100,9 @@ class MongoUtils(object):
                 },
                 'total': {
                     '$sum': '$property_destroyed_count'
+                },
+                'incidents':{
+                    '$sum': 1
                 }
             }
         }
@@ -112,6 +113,9 @@ class MongoUtils(object):
                 },
                 'total': {
                     '$sum': '$injuries_count'
+                },
+                'incidents':{
+                    '$sum': 1
                 }
             }
         }
@@ -127,6 +131,7 @@ class MongoUtils(object):
                 "_id": 0,
                 'name': "$_id." + field_match,
                 "total": "$total",
+                "incidents": "$incidents"
             }
         }
         aggregation_by_death = [match_by_death, group_by_death, sort, project]
@@ -170,8 +175,6 @@ class MongoUtils(object):
                 'property_destroyed_count': {
                     "$ne": [0]
                 },
-                "division": params['division'],
-                "district": params['district'],
                 'violence_type': {
                     "$in": [
                         str(params['violence_type'])
@@ -190,8 +193,6 @@ class MongoUtils(object):
                 'deaths_count': {
                     "$ne": [0]
                 },
-                "division": params['division'],
-                "district": params['district'],
                 'violence_type': {
                     "$in": [
                         str(params['violence_type'])
@@ -212,8 +213,6 @@ class MongoUtils(object):
                 'injuries_count': {
                     "$ne": [0]
                 },
-                "division": params['division'],
-                "district": params['district'],
                 'violence_type': {
                     "$in": [
                         str(params['violence_type'])
@@ -230,6 +229,9 @@ class MongoUtils(object):
                 },
                 'total': {
                     '$sum': '$deaths_count'
+                },
+                'incidents':{
+                    '$sum': 1
                 }
             }
         }
@@ -240,6 +242,9 @@ class MongoUtils(object):
                 },
                 'total': {
                     '$sum': '$property_destroyed_count'
+                },
+                'incidents':{
+                    '$sum': 1
                 }
             }
         }
@@ -250,6 +255,9 @@ class MongoUtils(object):
                 },
                 'total': {
                     '$sum': '$injuries_count'
+                },
+                'incidents':{
+                    '$sum': 1
                 }
             }
         }
@@ -264,7 +272,8 @@ class MongoUtils(object):
             "$project": {
                 "_id": 0,
                 'name': "$_id." + field_match,
-                "total": "$total"
+                "total": "$total",
+                "incidents": "$incidents"
             }
         }
 
@@ -369,6 +378,9 @@ class MongoUtils(object):
                 },
                 'total': {
                     '$sum': '$deaths_count'
+                },
+                'incidents':{
+                    '$sum': 1
                 }
             }
         }
@@ -379,6 +391,9 @@ class MongoUtils(object):
                 },
                 'total': {
                     '$sum': '$property_destroyed_count'
+                },
+                'incidents':{
+                    '$sum': 1
                 }
             }
         }
@@ -389,6 +404,9 @@ class MongoUtils(object):
                 },
                 'total': {
                     '$sum': '$injuries_count'
+                },
+                'incidents':{
+                    '$sum': 1
                 }
             }
         }
@@ -404,6 +422,7 @@ class MongoUtils(object):
                 "_id": 0,
                 'name': "$_id." + field_match,
                 "total": "$total",
+                "incidents": "$incidents"
             }
         }
         aggregation_by_death = [match_by_death, group_by_death, sort, project]
