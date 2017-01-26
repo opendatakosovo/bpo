@@ -131,9 +131,9 @@ header .intro-text .intro-heading {
 }
 
 .enter-landing {
-    color: #FDA200;
+    color: #FFAA12 !important;
     background-color: #007CA4;
-    border: 2px solid #FDA200;
+    border: 2px solid #FFAA12 !important;
     border-style: solid;
     font-family: Lato;
     text-transform: uppercase;
