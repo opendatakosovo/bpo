@@ -36,6 +36,7 @@ def parse():
                 new_json['violence_actor'] = elem['_source']['actors']['instigators']
                 new_json['violence_type'] = elem['_source']['summary']['incident_type']
                 new_json['responders'] = elem['_source']['actors']['responders']
+                new_json['causes'] = elem['_source']['causes_of_incident']['causes']
                 new_json['property_destroyed_type'] = []
                 new_json['injuries_count'] = 0
                 new_json['deaths_count'] = 0

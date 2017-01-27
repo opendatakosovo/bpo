@@ -890,10 +890,49 @@ class MongoUtils(object):
                 "$limit": 3
             }]
         )['result']
+        unwind_by = ""
+        if params['dataset'] == 'idams':
+            unwind_by = "causes"
+        else:
+            unwind_by = "causes"
+        motivations = self.mongo.db[params['dataset']].aggregate([ \
+            {
+                "$unwind": "$"+unwind_by
+            },
+            match,
+            {
+                "$group": {
+                    "_id": {
+                        'motivations': "$"+unwind_by
+                    },
+                    "motivations_count": {
+                        "$sum": 1
+                    }
+
+                }
+            },
+            {
+                "$sort": {
+                    "motivations_count": -1,
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "motivations": "$_id.motivations",
+                    "count": "$perpetrator_count"
+
+                }
+            },
+            {
+                "$limit": 3
+            }]
+        )['result']
         result = {
             "casualties": casualties,
             "property": property,
-            "perpetrator": perpetrator
+            "perpetrator": perpetrator,
+            "motivations": motivations
         }
 
         return result

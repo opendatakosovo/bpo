@@ -1188,6 +1188,7 @@ def parse():
             v_year = None
             new_json['violence_actor'] = []
             new_json['violence_type'] = []
+            new_json['causes'] = []
             new_json['responders'] = []
             new_json['property_destroyed_type'] = []
             new_json['injuries_count'] = 0
@@ -1247,15 +1248,15 @@ def parse():
                             new_json['violence_type'].append(violence_type[str(elem[key])])
                     elif key == "VTRIG1" or key == "VTRIG2":
                         if elem[key] == '240':
-                            new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str("230"))]
+                            new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str("230"))])
                         elif elem[key] == "111" or elem[key] == 111:
-                            new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str("110"))]
+                            new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str("110"))])
                         elif elem[key] == "199":
-                            new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str("190"))]
+                            new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str("190"))])
                         elif elem[key] == None or elem[key] == "" or elem[key] == 995:
-                            new_json[json_structure[key]] = "Unknown/Unidentified"
+                            new_json['causes'].append("Unknown/Unidentified")
                         else:
-                            new_json[json_structure[key]] = violence_trigger_1[re.sub("\D", "", str(elem[key]))]
+                            new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str(elem[key]))])
                     elif key == "LDIS":
                         if re.sub("\D", "", str(elem[key])) == "417":
                             new_json[json_structure[key]] = event_location_district["317"]

@@ -245,7 +245,7 @@
                 <span class="section-title-top">Top 3 Motivations:</span>
                 <ol id="motivations-list">
                 </ol>
-                <span class="property-list-not-enogh-data">
+                <span class="motivations-list-not-enogh-data">
                     Not enough data.
                 </span>
             </div>
@@ -1745,6 +1745,21 @@
         } else {
             $('#property-list').css('display', 'none');
             $('.property-list-not-enogh-data').css('display', 'block');
+        }
+        if (data.motivations.length != 0) {
+            $('#motivations-list').css('display', '');
+            $('.motivations-list-not-enogh-data').css('display', 'none');
+            var property = [];
+            $.each(data.motivations, function (i, item) {
+                property.push('<li>' + item['motivations'] + '</li>');
+            });  // close each()
+
+            // Clear list and populate
+            $('#motivations-list li').remove();
+            $('#motivations-list').append(property.join(''));
+        } else {
+            $('#motivations-list').css('display', 'none');
+            $('.motivations-list-not-enogh-data').css('display', 'block');
         }
     }
 
