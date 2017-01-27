@@ -169,9 +169,13 @@ hr {
 }
 .bg-light-gray {
     background-color: white;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .bg-light-blue {
+    padding-bottom: 60px;
+    padding-top: 60px;
     background-color: #007CA4;
 }
 
@@ -1276,6 +1280,8 @@ i.fa:before {
 
 #section-about-description {
     background-color: #00506B;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 #advisory-board img {
