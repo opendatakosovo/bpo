@@ -429,9 +429,8 @@
         var availableTags = [];
 
         $.each(grouped_locations_list, function (i, item) {
-            availableTags.push(item.division)
-            availableTags.push(item.division + ', ' + item.district)
-            availableTags.push(item.division + ', ' + item.district + ', ' + item.upazila)
+            availableTags.push(item.division);
+            availableTags.push(item.division + ', ' + item.district);
         });
         var uniqueNames = [];
         $.each(availableTags, function (i, el) {
@@ -1225,27 +1224,39 @@
                     color: "#a3dbb9"
                 }, {
                     from: 11,
-                    to: 50,
+                    to: 20,
                     color: "#fbfa20"
                 }, {
-                    from: 51,
-                    to: 100,
+                    from: 21,
+                    to: 40,
                     color: "#f8c733"
                 }, {
-                    from: 101,
-                    to: 200,
+                    from: 41,
+                    to: 60,
                     color: "#feb126"
                 }, {
-                    from: 201,
-                    to: 500,
+                    from: 61,
+                    to: 100,
                     color: "#f7802d"
+                }, {
+                    from: 101,
+                    to: 150,
+                    color: "#c56624"
+                }, {
+                    from: 151,
+                    to: 200,
+                    color: "#c56626"
+                }, {
+                    from: 201,
+                    to: 300,
+                    color: "#ac591f"
+                }, {
+                    from: 301,
+                    to: 500,
+                    color: "#944c1b"
                 }, {
                     from: 501,
-                    to: 1000,
-                    color: "#f7802d"
-                }, {
-                    from: 1001,
-                    color: "#fe363c"
+                    color: "#7b4016"
                 }]
             },
 
@@ -1801,31 +1812,35 @@
     }
 
     function mapColor(val) {
-        if (val < 10 && val != 0) {
+        if (val <= 10 && val != 0) {
             return "#a3dbb9"
         }
-
-
-        if (val > 10 && val < 50) {
+        if (val > 10 && val <= 20) {
             return "#fbfa20"
         }
-        if (val > 50 && val < 100) {
+        if (val > 20 && val <= 40) {
+            return "#f8c733"
+        }
+        if (val > 40 && val <= 60) {
             return "#feb126"
         }
-
-
-        if (val > 100 && val < 200) {
+        if (val > 60 && val <= 100) {
             return "#f7802d"
         }
-
-        if (val > 201 && val < 500) {
-            return "#f7802d"
+        if (val > 100 && val <= 150) {
+            return "#c56624"
         }
-        if (val > 501 && val < 1000) {
-            return "#f7802d"
+        if (val > 150 && val <= 200) {
+            return "#c56626"
         }
-        if (val > 1000) {
-            return "#fe363c"
+        if (val > 200 && val <= 300) {
+            return "#ac591f"
+        }
+        if (val > 300 && val <= 500) {
+            return "#944c1b"
+        }
+        if (val > 500) {
+            return "#7b4016"
         }
 
 
