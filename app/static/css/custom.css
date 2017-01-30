@@ -1281,7 +1281,6 @@ i.fa:before {
 #section-about-description {
     background-color: #00506B;
     padding-top: 60px;
-    padding-bottom: 60px;
 }
 
 #advisory-board img {
@@ -1293,7 +1292,7 @@ i.fa:before {
 }
 
 #advisory-board {
-    margin-bottom: 100px;
+    /*margin-bottom: 100px;*/
     margin-top: 50px;
 }
 
