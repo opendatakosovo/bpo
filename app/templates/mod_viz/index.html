@@ -95,21 +95,21 @@
                             <img class="viz-icon"
                                  src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
                             <span class="division-death-rank-nth">n/a</span>
-                            <img class="viz-icon-arrow"
-                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
+                            <!--<img class="viz-icon-arrow"-->
+                                 <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
                         </div>
                         <div class="col-md-4">
                             <img class="viz-icon"
                                  src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
                             <span class="division-injury-rank-nth">n/a</span>
-                            <img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                            <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
                         </div>
                         <div class="col-md-4">
                             <img class="viz-icon"
                                  src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
                             <span class="division-property-rank-nth">n/a</span>
-                            <img class="viz-icon-arrow"
-                                 src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>
+                            <!--<img class="viz-icon-arrow"-->
+                                 <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
                             <span class="caret"></span>
                         </div>
 
@@ -165,7 +165,7 @@
                         <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
                     </div>
 
-                    <span class="rate-1"></span><span class="rate-text"> has the </span> <span class="rate-1-text">highest fatality rate. </span>
+                    <span class="rate-1"></span><span class="rate-text"></span> <span class="rate-1-text">has the highest fatality rate. </span>
                     <img class="rate-1-arrow viz-icon-arrow"
                          src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
 
@@ -182,7 +182,7 @@
                     <div class="icon-container">
                         <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
                     </div>
-                    <span class="rate-2"></span><span class="rate-text"> has the </span> <span class="rate-2-text">highest injury count.</span>
+                    <span class="rate-2"></span><span class="rate-text"> </span> <span class="rate-2-text">has the highest injury count.</span>
                     <img class="rate-2-arrow viz-icon-arrow"
                          src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
@@ -198,7 +198,7 @@
                     <div class="icon-container">
                         <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
                     </div>
-                    <span class="rate-3"></span><span class="rate-text"> has the </span> <span class="rate-3-text">highest property damage count.</span>
+                    <span class="rate-3"></span><span class="rate-text"></span> <span class="rate-3-text">has the highest property damage count.</span>
                     <img class="rate-3-arrow viz-icon-arrow"
                          src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
                     <span class="caret"></span>
@@ -361,9 +361,9 @@
             buildViolenceTypeDropDown();
             allData = getData(false);
         });
-        $('.line-chart-item').bind('click', function () {
-            console.log($(this));
-        })
+//        $('.line-chart-item').bind('click', function () {
+//            console.log($(this));
+//        })
 
     });
 
@@ -774,7 +774,6 @@
         if (rank_data['death'] != undefined) {
             $.each(rank_data['death'], function (i, item) {
                 if (item.name == match_name) {
-                    console.log(item);
                     $('.division-death-rank-nth').text(item['rank'] + 'th');
                     $('.division-desc-death-rank-name').text(item['name']);
                     $('.division-desc-death-rank').text(item['rank']);
@@ -787,7 +786,6 @@
         if (rank_data['injury'] != undefined) {
             $.each(rank_data['injury'], function (i, item) {
                 if (item.name == match_name) {
-                    console.log(item);
                     $('.division-injury-rank-nth').text(item['rank'] + 'th');
                     $('.division-desc-injury-rank-name').text(item['name']);
                     $('.division-desc-injury-rank').text(item['rank']);
@@ -799,7 +797,6 @@
         if (rank_data['property'] != undefined) {
             $.each(rank_data['property'], function (i, item) {
                 if (item.name == match_name) {
-                    console.log(item);
                     $('.division-property-rank-nth').text(item['rank'] + 'th');
                     $('.division-desc-property-rank-name').text(item['name']);
                     $('.division-desc-property-rank').text(item['rank']);
@@ -988,7 +985,6 @@
             }else{
                 $(this).children().prop('checked', true);
             }
-            console.log($(this).children().is(':checked'));
         });
         $('.line-chart-checkbox').click(function(){
             if($(this).is(':checked') == true){
@@ -1155,7 +1151,6 @@
                         this.setTitle(null, {text: e.point.name});
                     },
                     drillup: function (e) {
-                        console.log("Drilled up.");
                         global_division = "";
                         global_district = "";
                         global_upazila = "";
@@ -1346,7 +1341,7 @@
         // If we are in the country version we should build national data visualizer
 
         updateTextValues();
-        updateCharts()
+        updateCharts();
         updateMapValues();
         updateLineChart();
         updateRankSections();
@@ -1390,45 +1385,42 @@
         death_top_rank_data = getTopN(rank_data, 'death', 1);
         var top_death_location = "";
         if (death_top_rank_data.length != 0) {
-            $('.rate-1-text').html('highest fatality rate.')
-            $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
+            $('.rate-1-text').html('has the highest fatality rate.')
+            $('.rate-1').parent().removeClass("ui-state-disabled");
             top_death_location = death_top_rank_data[0].name;
             $('.rate-1').html(top_death_location);
         } else {
             $('.rate-1').html("");
-            $('#' + $('#accordion .rate-1').parent().id).collapse();
             $('.rate-1-text').html('Not enough data');
-            $('#accordion .rate-1').parent().addClass("ui-state-disabled");
+            $('.rate-1').parent().addClass("ui-state-disabled");
         }
 
         // Get top injury location name
         injury_top_rank_data = getTopN(rank_data, 'injury', 1)
         var top_injury_location = "";
         if (injury_top_rank_data.length != 0) {
-            $('.rate-2-text').html('highest injury count.');
-            $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
+            $('.rate-2-text').html('has the highest injury count.');
+            $('.rate-2').parent().removeClass("ui-state-disabled");
             top_injury_location = injury_top_rank_data[0].name;
             $('.rate-2').html(top_injury_location);
         } else {
             $('.rate-2').html("");
-            $('#accordion .rate-2').parent().attr("aria-expanded", false);
             $('.rate-2-text').html('Not enough data');
-            $('#accordion .rate-2').parent().addClass("ui-state-disabled");
+            $('.rate-2').parent().addClass("ui-state-disabled");
         }
 
         // Get top property damage location name
         property_top_rank_data = getTopN(rank_data, 'property', 1);
         var top_property_damage_location = "";
         if (property_top_rank_data.length != 0) {
-            $('.rate-3-text').html('highest property damage count.');
-            $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
+            $('.rate-3-text').html('has the highest property damage count.');
+            $('.rate-3').parent().removeClass("ui-state-disabled");
             top_property_damage_location = property_top_rank_data[0].name;
             $('.rate-3').html(top_property_damage_location);
         } else {
             $('.rate-3').html("");
-            $('#accordion .rate-3').parent().attr("aria-expanded", false);
+            $('.rate-3').parent().addClass("ui-state-disabled");
             $('.rate-3-text').html('Not enough data');
-            $('#accordion .rate-3').parent().addClass("ui-state-disabled");
         }
 
 
@@ -1482,17 +1474,16 @@
 
                     // Populate data series array and show the message if there is no data
                     if (data_series_array.reduce(add, 0) != 0) {
-                        $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
+                        $('.rate-1').parent().removeClass("ui-state-disabled");
                         Highcharts.charts[item].series[0].setData(data_series_array);
                         Highcharts.charts[item].xAxis[0].setCategories(categories);
                         updateTrendArrows(data_series_array, 1);
                         Highcharts.charts[item].hideLoading();
                     } else {
-                        $('#accordion .rate-1').parent().addClass("ui-state-disabled");
+                        $('.rate-1').parent().addClass("ui-state-disabled");
                         data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
                         Highcharts.charts[item].series[0].setData(data_series_array);
                         Highcharts.charts[item].showLoading('No data to display');
-
                     }
 
                     // Reset data series array
@@ -1507,13 +1498,13 @@
 
                     // Populate data series array and show the message if there is no data
                     if (data_series_array.reduce(add, 0) != 0) {
-                        $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
+                        $('.rate-2').parent().removeClass("ui-state-disabled");
                         Highcharts.charts[item].series[0].setData(data_series_array);
                         Highcharts.charts[item].xAxis[0].setCategories(categories);
                         updateTrendArrows(data_series_array, 2);
                         Highcharts.charts[item].hideLoading();
                     } else {
-                        $('#accordion .rate-2').parent().addClass("ui-state-disabled");
+                        $('.rate-2').parent().addClass("ui-state-disabled");
                         // Reset data series array
                         data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
                         Highcharts.charts[item].series[0].setData(data_series_array);
@@ -1531,14 +1522,14 @@
 
                     // Populate data series array and show the message if there is no data
                     if (data_series_array.reduce(add, 0) != 0) {
-                        $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
+                        $('.rate-3').parent().removeClass("ui-state-disabled");
                         Highcharts.charts[item].series[0].setData(data_series_array);
                         Highcharts.charts[item].xAxis[0].setCategories(categories);
                         updateTrendArrows(data_series_array, 3);
                         $('.rate-3-text .not-enough-data-for-chart-rate-3').remove();
                         Highcharts.charts[item].hideLoading();
                     } else {
-                        $('#accordion .rate-3').parent().addClass("ui-state-disabled");
+                        $('.rate-3').parent().addClass("ui-state-disabled");
                         data_series_array = Array.apply(null, Array(12)).map(Number.prototype.valueOf, 0);
                         Highcharts.charts[item].series[0].setData(data_series_array);
                         Highcharts.charts[item].showLoading('No data to display');
@@ -1584,7 +1575,7 @@
 
                     // Let's check if we have data and remove the red warning messages
                     if (data_series_array_chart.reduce(add, 0) != 0) {
-                        $('#accordion .rate-1').parent().removeClass("ui-state-disabled");
+                        $('.rate-1').parent().removeClass("ui-state-disabled");
                         Highcharts.charts[item].series[0].setData(data_series_array_chart);
                         Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
                         $('.not-enough-data-for-chart-rate-1').css('display', 'none');
@@ -1592,7 +1583,7 @@
                         Highcharts.charts[item].hideLoading();
                     }
                     else {
-                        $('#accordion .rate-1').parent().addClass("ui-state-disabled");
+                        $('.rate-1').parent().addClass("ui-state-disabled");
                         // Reset data series array
                         data_series_array_chart = [];
                         $.each(years, function (item) {
@@ -1619,14 +1610,14 @@
 
                     // Let's check if we have data and remove the red warning messages
                     if (data_series_array_chart.reduce(add, 0) != 0) {
-                        $('#accordion .rate-2').parent().removeClass("ui-state-disabled");
+                        $('.rate-2').parent().removeClass("ui-state-disabled");
                         Highcharts.charts[item].series[0].setData(data_series_array_chart);
                         Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
                         updateTrendArrows(data_series_array_chart, 2);
                         Highcharts.charts[item].hideLoading();
                     }
                     else {
-                        $('#accordion .rate-2').parent().addClass("ui-state-disabled");
+                        $('.rate-2').parent().addClass("ui-state-disabled");
                         data_series_array_chart = [];
                         $.each(years, function (item) {
                             data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
@@ -1652,14 +1643,14 @@
 
                     // Let's check if we have data and remove the red warning messages
                     if (data_series_array_chart.reduce(add, 0) != 0) {
-                        $('#accordion .rate-3').parent().removeClass("ui-state-disabled");
+                        $('.rate-3').parent().parent().removeClass("ui-state-disabled");
                         Highcharts.charts[item].series[0].setData(data_series_array_chart);
                         updateTrendArrows(data_series_array_chart, 3);
                         Highcharts.charts[item].xAxis[0].setCategories(data_series_array_categories);
                         Highcharts.charts[item].hideLoading();
                     }
                     else {
-                        $('#accordion .rate-3').parent().addClass("ui-state-disabled");
+                        $('.rate-3').parent().parent().addClass("ui-state-disabled");
                         data_series_array_chart = [];
                         $.each(years, function (item) {
                             data_series_array_chart.push.apply(data_series_array_chart, [0, 0, 0, 0]);
