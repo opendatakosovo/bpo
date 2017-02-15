@@ -9,16 +9,7 @@
         display: none;
     }
 </style>
-<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-<script src="../static/js/highcharts/highstock.min.js"></script>
-<script src="../static/js/highcharts/map-module.min.js"></script>
-<script src="../static/js/highcharts/exporting-module.min.js"></script>
-<script src="../static/js/highcharts/bd-all.min.js"></script>
-<script src="../static/js/highcharts/stock-exporting-module.min.js"></script>
-<script src="../static/js/highcharts/map-drilldown-module.min.js"></script>
-<script src="http://highcharts.github.io/export-csv/export-csv.js"></script>
-<script src="../static/js/geo-files/divisions.js"></script>
-<script src="../static/js/geo-files/upazillas.js"></script>
+
 
 <div class="row">
 
@@ -80,7 +71,8 @@
             </div>
 
             <div class="col-md-2">
-                <button id="Story_Frame_Data_Download"><i class="fa fa-file-pdf-o download-icon" aria-hidden="true"></i><span
+                <button class="download" data-toggle="modal" data-target="#myModal"><i
+                        class="fa fa-file-pdf-o download-icon" aria-hidden="true"></i><span
                         id="Story_Frame_Data_Download_Text">Download</span></button>
             </div>
 
@@ -96,7 +88,7 @@
                                  src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
                             <span class="division-death-rank-nth">n/a</span>
                             <!--<img class="viz-icon-arrow"-->
-                                 <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
+                            <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
                         </div>
                         <div class="col-md-4">
                             <img class="viz-icon"
@@ -109,7 +101,7 @@
                                  src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
                             <span class="division-property-rank-nth">n/a</span>
                             <!--<img class="viz-icon-arrow"-->
-                                 <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
+                            <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
                             <span class="caret"></span>
                         </div>
 
@@ -638,9 +630,8 @@
                 }
             }
         });
-
         $('#Story_Frame_Data_Download').click(function () {
-            download('Story_Frame_Data.csv',chart1.getCSV() +"\r\n"+ chart2.getCSV()+"\r\n"+chart3.getCSV());
+            download('Story_Frame_Data.csv', chart1.getCSV() + "\r\n" + chart2.getCSV() + "\r\n" + chart3.getCSV());
         });
 
 
@@ -835,7 +826,7 @@
             y: -25,
             useHTML: true,
             labelFormatter: function () {
-                return '<div class="line-chart-item" style="height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox '+ this.name +'" type="checkbox" checked> <span style="font-family: Roboto;font-size: 11px;line-height: 13px;color: #FFFFFF;">' + this.name + '</span></div>';
+                return '<div class="line-chart-item" style="height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox ' + this.name + '" type="checkbox" checked> <span style="font-family: Roboto;font-size: 11px;line-height: 13px;color: #FFFFFF;">' + this.name + '</span></div>';
             },
             title: {
                 text: "Filter data:",
@@ -854,19 +845,20 @@
             y: 20,
             useHTML: true,
             labelFormatter: function () {
-                return '<div class="line-chart-item" style="width:138px; height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox '+ this.name +'" type="checkbox" style="border-radius: 6px; " checked> ' + this.name + ' </div>';
+                return '<div class="line-chart-item" style="width:138px; height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox ' + this.name + '" type="checkbox" style="border-radius: 6px; " checked> ' + this.name + ' </div>';
             }
         };
 
 
         function createChart(seriesOptions) {
 
-            var chart = Highcharts.stockChart('line-chart-container', {
+            var chart = Highcharts.stockChart({
                 chart: {
                     events: {
                         load: titleMove,
                         redraw: titleMove
-                    }
+                    },
+                    renderTo: 'line-chart-container'
                 }
                 ,
                 rangeSelector: {
@@ -979,17 +971,17 @@
                 createChart(seriesOptions);
             }
         });
-        $('.line-chart-item').click(function(){
-            if($(this).children().is(':checked') == true){
+        $('.line-chart-item').click(function () {
+            if ($(this).children().is(':checked') == true) {
                 $(this).children().removeAttr("checked");
-            }else{
+            } else {
                 $(this).children().prop('checked', true);
             }
         });
-        $('.line-chart-checkbox').click(function(){
-            if($(this).is(':checked') == true){
+        $('.line-chart-checkbox').click(function () {
+            if ($(this).is(':checked') == true) {
                 $(this).removeAttr("checked");
-            }else{
+            } else {
                 $(this).prop('checked', true);
             }
         })
@@ -1883,4 +1875,359 @@
 <div id='loadingmessage'>
     <img src='{{ url_for("static", filename="assets/loading.gif")}}'/>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title location-main-text" id="myModalLabel">Reported violence in <span
+                        class="location-name">the Country</span> </span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                        </div>
+                        <span class="division-desc-death-rank-name"></span> ranked <span
+                            class="division-desc-death-rank"></span> in
+                        deaths with <span class="division-desc-death-rank-total"></span> deaths.
+                    </div>
+                    <div id="main-modal-chart">
+
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                        </div>
+                        <span class="division-desc-death-rank-name"></span> ranked <span
+                            class="division-desc-death-rank"></span> in
+                        deaths with <span class="division-desc-death-rank-total"></span> deaths.
+                    </div>
+                    <div id="first-modal-chart">
+
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                        </div>
+                        <span class="division-desc-injury-rank-name"></span> ranked <span
+                            class="division-desc-injury-rank"></span> in
+                        injuries with <span
+                            class="division-desc-injury-rank-total"></span> injuries.
+                    </div>
+                    <div id="second-modal-chart">
+
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <div class='rank-text-row'>
+                        <div class="icon-container">
+                            <img class="viz-icon"
+                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                        </div>
+                        <span class="division-desc-property-rank-name"></span> ranked <span
+                            class="division-desc-property-rank"></span> in
+                        property damage with <span
+                            class="division-desc-property-rank-total"></span> property damages.
+                        <i class="fa fa-caret-up rotate collapse-division-stats" aria-hidden="true"></i>
+                    </div>
+                    <div id="third-modal-chart">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="Story_Frame_Data_Download" class="btn download-close" data-dismiss="modal"><i
+                        class="fa fa-file-pdf-o download-icon" aria-hidden="true"></i>Download
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+        national_death_states = [];
+        national_death_data_series_array = [];
+
+        national_injury_states = [];
+        national_injury_data_series_array = [];
+
+        national_property_damage_states = [];
+        national_property_damage_data_series_array = [];
+
+//            $.each(allData['stats']['death'], function (item) {
+//               national_death_states.push(allData['stats']['death'][item]['name']);
+//               national_death_data_series_array.push(allData['stats']['death'][item]['incidents']);
+//            });
+//
+//            $.each(allData['stats']['injury'], function (item) {
+//               national_injury_states.push(allData['stats']['injury'][item]['name']);
+//               national_injury_data_series_array.push(allData['stats']['injury'][item]['incidents']);
+//            });
+//
+//            $.each(allData['stats']['property'], function (item) {
+//               national_property_damage_states.push(allData['stats']['property'][item]['name']);
+//               national_property_damage_data_series_array.push(allData['stats']['property'][item]['incidents']);
+//            });
+
+        var main_modal_chart = Highcharts.chart('main-modal-chart', {
+
+            chart: {
+                type: 'bar'
+            },
+
+            title: {
+                text: "",
+                align: 'left'
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            xAxis: {
+                categories: [],
+            },
+
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: null
+                },
+                min: 0,
+                opposite: true
+            },
+
+
+            legend: {
+                enabled: false
+            },
+
+            series: [{
+                name: '',
+                data: []
+            }]
+
+        });
+        var first_modal_chart = Highcharts.chart('first-modal-chart', {
+
+            chart: {
+                type: 'bar'
+            },
+
+            title: {
+                text: "",
+                align: 'left'
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            xAxis: {
+                categories: [],
+            },
+
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: null
+                },
+                min: 0,
+                opposite: true
+            },
+
+
+            legend: {
+                enabled: false
+            },
+
+            series: [{
+                name: '',
+                data: []
+            }]
+
+        });
+        var second_modal_chart = Highcharts.chart('second-modal-chart', {
+
+            chart: {
+                type: 'bar'
+            },
+
+            title: {
+                text: "",
+                align: 'left'
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            xAxis: {
+                categories: ['Apples', 'Pears', 'Oranges', 'Bananas', 'Carrots'],
+            },
+
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: null
+                },
+                min: 0,
+                opposite: true
+            },
+
+
+            legend: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Erik',
+                data: [3, 6, 1, 2, 6]
+            }]
+
+        });
+        var third_modal_chart = Highcharts.chart('third-modal-chart', {
+
+            chart: {
+                type: 'bar'
+            },
+
+            title: {
+                text: "",
+                align: 'left'
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            xAxis: {
+                categories: ['Apples', 'Pears', 'Oranges', 'Bananas', 'Carrots'],
+            },
+
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: null
+                },
+                min: 0,
+                opposite: true
+            },
+
+
+            legend: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Erik',
+                data: [3, 6, 1, 2, 6]
+            }]
+
+        });
+
+        $('.download').click(function () {
+            var show_specific_charts = false;
+            if (allData != undefined && allData['stats'] != undefined) {
+                var show_specific_charts = true;
+            }
+
+
+            if (show_specific_charts == true) {
+                first_modal_chart = undefined;
+                second_modal_chart = undefined;
+                third_modal_chart = undefined;
+            }
+
+            general_stats = [];
+            general_categories = [];
+
+            death_states = [];
+            death_data_series_array = [];
+
+            injury_states = [];
+            injury_data_series_array = [];
+
+            property_damage_states = [];
+            property_damage_data_series_array = [];
+
+            if (allData['incident-stats'].length > 0) {
+                $.each(allData['incident-stats'], function (item) {
+                    general_stats.push(allData['incident-stats'][item]['incidents']);
+                    general_categories.push(allData['incident-stats'][item]['name']);
+                });
+            }
+            if (allData['stats']['death'] != undefined) {
+                $.each(allData['stats']['death'], function (item) {
+                    death_states.push(allData['stats']['death'][item]['name']);
+                    death_data_series_array.push(allData['stats']['death'][item]['total']);
+                });
+            }
+
+            if (allData['stats']['injury'] != undefined) {
+                $.each(allData['stats']['injury'], function (item) {
+                    injury_states.push(allData['stats']['injury'][item]['name']);
+                    injury_data_series_array.push(allData['stats']['injury'][item]['total']);
+                });
+
+            }
+
+            if (allData['stats']['property'] != undefined) {
+                $.each(allData['stats']['property'], function (item) {
+                    property_damage_states.push(allData['stats']['property'][item]['name']);
+                    property_damage_data_series_array.push(allData['stats']['property'][item]['total']);
+                });
+            }
+            $.each(Highcharts.charts, function (item) {
+                if (Highcharts.charts[item].renderTo.id == 'main-modal-chart') {
+                    $.each(Highcharts.charts[item].series, function (index) {
+                        var name = Highcharts.charts[item].series[index].name;
+                        Highcharts.charts[item].series[0].setData(general_stats);
+                        Highcharts.charts[item].xAxis[0].setCategories(general_categories);
+                    });
+                    Highcharts.charts[item].redraw();
+                } else if (Highcharts.charts[item].renderTo.id == 'first-modal-chart') {
+                    $.each(Highcharts.charts[item].series, function (index) {
+                        var name = Highcharts.charts[item].series[index].name;
+                        Highcharts.charts[item].series[0].setData(death_data_series_array);
+                        Highcharts.charts[item].xAxis[0].setCategories(death_states);
+                    });
+                    Highcharts.charts[item].redraw();
+                } else if (Highcharts.charts[item].renderTo.id == 'second-modal-chart') {
+                    $.each(Highcharts.charts[item].series, function (index) {
+                        var name = Highcharts.charts[item].series[index].name;
+                        Highcharts.charts[item].series[0].setData(injury_data_series_array);
+                        Highcharts.charts[item].xAxis[0].setCategories(injury_states);
+                    });
+                    Highcharts.charts[item].redraw();
+                } else if (Highcharts.charts[item].renderTo.id == 'third-modal-chart') {
+                    $.each(Highcharts.charts[item].series, function (index) {
+                        var name = Highcharts.charts[item].series[index].name;
+                        Highcharts.charts[item].series[0].setData(property_damage_data_series_array);
+                        Highcharts.charts[item].xAxis[0].setCategories(property_damage_states);
+                    });
+                    Highcharts.charts[item].redraw();
+                }
+            });
+        });
+
+    });
+
+</script>
 {% endblock %}

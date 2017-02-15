@@ -697,17 +697,88 @@ g.highcharts-legend-item.highcharts-line-series {
     .viz-title-about {
         float: right;
         font-size: 14px;
-        padding-top:0px;
+        padding-top: 0px;
     }
 
     .viz-title {
         font-size: 18px;
         flot: left;
-        line-height:0px;
+        line-height: 0px;
     }
 
     .viz-title-container {
         padding-right: 10px;
         padding-top: 10px;
     }
+}
+
+.modal-header {
+    width: 650px;
+    height: 106px;
+    background-color: #007CA4;
+}
+
+.modal-body {
+    width: 650px;
+    background-color: #ffffff;
+}
+
+.modal-footer {
+    width: 650px;
+    height: 80px;
+    background-color: #007CA4;
+}
+
+.download-close {
+    width: 109px;
+    height: 32px;
+    background-color: #FFA400;
+    border: 1px solid #E79400;
+    border-radius: 2px;
+    margin-top: 6px;
+}
+
+.modal-title {
+    width: 362px;
+    height: 66px;
+    font-family: "Noto Serif";
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 33px;
+    color: #FFFFFF;
+}
+
+.download {
+    width: 109px;
+    height: 32px;
+    background-color: #FFA400;
+    border: 1px solid #E79400;
+    border-radius: 2px;
+    margin-top: 6px;
+}
+
+#main-modal-chart {
+    width: 625px;
+    height: 262px;
+    background-color: #E3EBED;
+}
+
+#first-modal-chart {
+    width: 625px;
+    height: 262px;
+}
+
+#second-modal-chart {
+    width: 625px;
+    height: 262px;
+}
+
+.modal-section {
+    padding-top: 25px;
+}
+
+#third-modal-chart {
+    width: 625px;
+    height: 262px;
 }
