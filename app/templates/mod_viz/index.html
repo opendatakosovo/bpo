@@ -1888,13 +1888,8 @@
             <div class="modal-body">
                 <div class="modal-section">
                     <div class='rank-text-row'>
-                        <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
-                        </div>
-                        <span class="division-desc-death-rank-name"></span> ranked <span
-                            class="division-desc-death-rank"></span> in
-                        deaths with <span class="division-desc-death-rank-total"></span> deaths.
+                        <span class="first-violence-place"></span> ranked <span> 1st </span> in
+                        violent crimes with <span class="division-desc-death-rank-total"></span> incidents.
                     </div>
                     <div id="main-modal-chart">
 
@@ -2079,7 +2074,7 @@
             },
 
             xAxis: {
-                categories: ['Apples', 'Pears', 'Oranges', 'Bananas', 'Carrots'],
+                categories: [],
             },
 
             yAxis: {
@@ -2118,7 +2113,7 @@
             },
 
             xAxis: {
-                categories: ['Apples', 'Pears', 'Oranges', 'Bananas', 'Carrots'],
+                categories: [],
             },
 
             yAxis: {
@@ -2136,13 +2131,15 @@
             },
 
             series: [{
-                name: 'Erik',
-                data: [3, 6, 1, 2, 6]
+                name: '',
+                data: []
             }]
 
         });
 
         $('.download').click(function () {
+
+            $('.first-violence-place').text(allData['incident-stats'][0]['name']);
             var show_specific_charts = false;
             if (allData != undefined && allData['stats'] != undefined) {
                 var show_specific_charts = true;
