@@ -37,7 +37,7 @@ def parse():
                                 elem['_source']['smart_tags']['smart_tags'][0] != '' and elem['_source']['smart_tags']['smart_tags'][0] =='Terrorism':
                     new_json['incident_date'] = datetime.strptime(elem['_source']['summary']['date'], '%Y-%m-%d')
                     new_json['violence_actor'] = elem['_source']['actors']['instigators']
-                    new_json['violence_type'] = 'Terrorism and radicalism'
+                    new_json['violence_type'] = 'Violent Extremism'
                     new_json['responders'] = elem['_source']['actors']['responders']
                     new_json['causes'] = elem['_source']['causes_of_incident']['causes']
                     new_json['property_destroyed_type'] = []

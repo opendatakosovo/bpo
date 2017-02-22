@@ -1497,7 +1497,7 @@ function buildViolenceTypeDropDown() {
             violence_options.append($("<option />").val(data[item]).text(data[item]));
         });
         if($('#data-source-select').val()=='idams'){
-            $("#violence-type-select").val('Terrorism and radicalism');
+            $("#violence-type-select").val('Violent Extremism');
             allData = getData(false);
         }
     });
