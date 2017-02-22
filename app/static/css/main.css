@@ -730,12 +730,13 @@ g.highcharts-legend-item.highcharts-line-series {
 }
 
 .download-close {
-    width: 109px;
+    width: 140px;
     height: 32px;
     background-color: #FFA400;
     border: 1px solid #E79400;
     border-radius: 2px;
     margin-top: 6px;
+    font-size:
 }
 
 .modal-title {

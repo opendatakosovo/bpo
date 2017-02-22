@@ -8,6 +8,51 @@ class MongoUtils(object):
     def __init__(self, mongo):
         self.mongo = mongo
 
+    def get_raw_incidents(self, params):
+        match = self.build_match(params)
+        group = {
+            '$group': {
+                '_id': {
+                    'date': '$date',
+                    'division': '$division',
+                    'upazila': '$upazila',
+                    'district': '$district'
+                },
+                'total_injury': {
+                    '$sum': '$injuries_count'
+                },
+                'total_property': {
+                    '$sum': '$property_destroyed_count'
+                },
+                'total_death': {
+                    '$sum': '$deaths_count'
+                },
+                'incidents': {
+                    '$sum': 1
+                }
+            }
+        }
+        project = {
+            '$project': {
+                '_id': 0,
+                'date': '$_id.date',
+                'division': '$_id.division',
+                'district': '$_id.district',
+                'upazila': '$_id.upazila',
+                'death': '$total_death',
+                'incidents': '$incidents',
+                'property': '$total_property',
+                'injuries': '$total_injury'
+            }
+        }
+        sort = {
+            '$sort': {
+                'date': 1
+            }
+        }
+        data = self.mongo.db[params['dataset']].aggregate([match, group, project, sort])
+        rendered_result = data['result']
+        return rendered_result
     def get_stats(self, params):
         field_match = ''
         value_match = ''

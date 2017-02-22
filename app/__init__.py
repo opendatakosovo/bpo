@@ -4,7 +4,13 @@ import ConfigParser
 from logging.handlers import RotatingFileHandler
 from flask.ext.pymongo import PyMongo
 from app.utils.mongo.mongo_utils import MongoUtils
+from apscheduler.schedulers.background import BackgroundScheduler
+from app.utils.scheduler.schedule import ImporterScheduler
+import logging
 
+scheduler = BackgroundScheduler()
+
+# schedule = ImporterScheduler(scheduler)
 
 # Create MongoDB database object.
 mongo = PyMongo()
@@ -26,6 +32,10 @@ def create_app():
 
     # Initialize the app to work with MongoDB
     mongo.init_app(app, config_prefix='MONGO')
+
+    # Init scheduler
+    # schedule.start()
+    # logging.basicConfig()
 
     return app
 

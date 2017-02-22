@@ -39,6 +39,7 @@ def search():
     result['top-3'] = utils.get_top_3_stats(params)
     result['map-victims-count'] = utils.get_map_victims_count(params)
     result['census'] = utils.get_census_info(params)
+    result['raw-incident-stats'] = utils.get_raw_incidents(params)
 
     resp = Response(
         response=json_util.dumps(result),
@@ -46,11 +47,9 @@ def search():
     return resp
 
 
-
-
-# @mod_api.route('/bd/victims/<string:type>', methods=['GET'])
 @mod_api.route('/get_total_victims_number/<string:type>/<string:date>/<string:violence_type>/<string:name>', methods=['GET'])
 def get_victims(type, date=None, violence_type=None, name=None):
+    " Get incidents number based on given params."
     if violence_type:
         violence_type = violence_type.replace('-', '/')
     if date:
@@ -136,6 +135,7 @@ def get_victims(type, date=None, violence_type=None, name=None):
 
 @mod_api.route('/<string:dataset>/get/violence-types', methods=['GET', 'POST'])
 def get_violence_types(dataset):
+    "Get all the violence types based on the given dataset."
     violence_types = mongo.db[dataset].distinct('violence_type')
     resp = Response(
         response=json_util.dumps(violence_types),
@@ -144,6 +144,7 @@ def get_violence_types(dataset):
 
 @mod_api.route('/census/<string:name>/<int:level>', methods=['GET', 'POST'])
 def get_census_info(name, level):
+    "Get census info based on the given Division, District, Upazila."
     census_info = None
     if level == 0:
         census_info = mongo.db.census.find_one({"division": name})

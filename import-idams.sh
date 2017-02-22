@@ -1,2 +1,2 @@
 source ./venv/bin/activate
-python utils/importer/import-idams.py
+python utils/importer/import_idams.py
