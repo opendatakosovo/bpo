@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var mgr_disclaimer =
+    var idams_disclaimer =
         `The Online Media Review is a geospatial and actor-based database that contains incident information pertaining to the level of political violence, terrorism, safety and security, and natural and human-induced hazards in Bangladesh. The database is populated daily using openly  available information published by the online media both in English and Bangla. The pilot dataset presented in the Bangladesh Peace Observatory Platform covers the time period of June 2015 - August 2016. 
 
 The database consists of a number of layers of information pertaining to each incident reported in the online media;  types, triggers or motivations, consequences for each incident (such as death, injury and property damages), actors, and sources. The publication of the data is for pilot purposes, and there may be errors in data collection, validation and/or reporting by the media. 
@@ -31,7 +31,7 @@ Within these domains, the BPO presents the following incident categories under t
         
     `
 
-    var mgr_disclaimer_page_2 = `
+    var idams_disclaimer_page_2 = `
     4.  Arson Attack: is the crime of intentionally and maliciously setting fire to buildings, wildland 
         areas, dumpsters, vehicles or other property with the intent to cause damage.
     
@@ -48,80 +48,68 @@ Within these domains, the BPO presents the following incident categories under t
     `
 
 
-    var idams_disclaimer =
-        `                                              Disclaimer: The Print Media Review Database
+    var mgr_disclaimer =
+        `
+    The Print Media Review Database (PMRD) identifies and codes events of political violence in Bangladesh from print media content analysis. The aim of the PMRD database is to capture to the best possible extent of as many instances and reliable information pertaining to political violence incidents in the country. The PMRD is managed by the Microgovernance Research Institute (MGR) at University of Dhaka, and covers political violence incidents for the period of 2014 – 2016.
      
-The Print Media Review Database (PMRD) identifies and codes events of political violence in Bangladesh 
-from print media content analysis. The aim of the PMRD database is to capture to the best possible extent
-of as many instances and reliable information pertaining to political violence incidents in the country. 
-The PMRD is managed by the Microgovernance Research Institute (MGR) at University of Dhaka, and covers 
-political violence incidents for the period of 2014 – 2016.
- 
-Events have been coded from four different national printed newspapers: Daily Star, Inqilab, Ittefaq and 
-Prothom Alo. 
-They have been chosen for a combination of circulation, reputation, ideological position, network of 
-correspondents and language. All newspapers have regional correspondents, often up to the Upazila, 
-or Union level, enabling them to cover a wide range of local events. To be included in the database 
-a coded event must be 
-1) violent: resulting in at least one injured/ death/raped/abducted/held hostage or in property 
-destruction and 
-2) explicitly political: involving members of at least one clearly delineated political group: political party 
-and all its allied organizations, Islamist organization, or rebel group. A violent event is coded 
-as a single event if: 
-1) It takes place on the same day 
-2) It takes place at the same place, 
-3) It involves the same actor (if only one actor is involved) or at least two of the same actors throughout.
- 
-Coding, variables and post processing
-Coding in the PMRD is based on a detailed codebook, listing the different variables, and codes to denote
-specific places up to sub-districts, diverse actors, types of violence, range of violence trigger, 
-human impact, property destructions,, etc.  The codebook aimed at minimizing interpretation of reports 
-by the data analysts. The DAs have been recruited from Dhaka University students focusing on their 
-capacity building. 
-They have gone through several intensive training workshops, exercise session and piloting before 
-they finally start the reading and entries.  DAs are assigned a specific newspaper and a specific time 
-period, rotating between newspapers after every three-month period. 
-The PMRD is a compressive database covering diverse range of actors, violence categories, determinants, 
-triggers and consequences. However, Bangladesh Peace Observatory (BPO) platform covers following 
-political violence categories.  
+    Events have been coded from four different national printed newspapers: Daily Star, Inqilab, Ittefaq and Prothom Alo. 
+    They have been chosen for a combination of circulation, reputation, ideological position, network of correspondents and language. All newspapers have regional correspondents, often up to the Upazila, or Union level, enabling them to cover a wide range of local events. To be included in the database a coded event must be 
+    1) violent: resulting in at least one injured/ death/raped/abducted/held hostage or in property destruction and 
+    2) explicitly political: involving members of at least one clearly delineated political group: political party and all its allied organizations, Islamist organization, or rebel group. A violent event is coded as a single event if: 
+        1) It takes place on the same day 
+        2) It takes place at the same place, 
+        3) It involves the same actor (if only one actor is involved) or at least two of the same actors throughout.
      
-1. Political clash/attack: Violent clashes/battle and attack in which actors from general political 
-parties, affiliated organizations, identity groups and alliances are directly involved and define the 
-fighting and violence. It covers both intra-party clashes and inter-party attacks. 
-[For easy reading, please combine/calculate data for both clash and attack].
-2. Violent extremism (Islamist): Political violence perpetrated by the Islamists radical outfits around 
-the country with political and religious aims. It includes incidences of attack and killing online 
-activists, bloggers, foreigners, atheists, and sufists around the country.  
-3. Violent extremism (Rebel): Political violence perpetrated by ultra-left ideological groups and ethnic 
-rebels around the country. 
-4.Electoral violence: Political violence between different actors related to elections at local, 
-regional and national levels. It includes elections as the direct trigger or direct cause of the 
-violent event. 
-5. Hartal violence: Political violence incidences as part of a clearly mentioned hartal day(s). 
-6. Destruction of property (Excluding arson attack): Destruction of property, including moveable goods, 
-excluding burning.
-7. Arson attack: Destruction of property, including moveable goods by burning/throwing petrol bomb.
-8. High and low impact bombing: Setting off an explosive device (e.g. cocktail, car bomb) causing 
-or aimed to cause small to large-scale destruction or casualties.
-9. Abduction, kidnap, hostage and rape: Kidnapping, abduction and hostage indicates that the captive is 
-held at the same or unknown locations. Rape is conducting any sexual activities against at least one of 
-the participants’ will.
-10. Other types of political violence: This category includes incidences in which actors or perpetrators 
-are unspecified or not mentioned.
- 
+                                 Coding, variables and post processing
+    Coding in the PMRD is based on a detailed codebook, listing the different variables, and codes to denote
+    specific places up to sub-districts, diverse actors, types of violence, range of violence trigger, 
+    human impact, property destructions,, etc.  The codebook aimed at minimizing interpretation of reports 
+    by the data analysts. The DAs have been recruited from Dhaka University students focusing on their 
+    capacity building. 
+    They have gone through several intensive training workshops, exercise session and piloting before 
+    they finally start the reading and entries.  DAs are assigned a specific newspaper and a specific time 
+    period, rotating between newspapers after every three-month period. 
+    The PMRD is a compressive database covering diverse range of actors, violence categories, determinants, 
+    triggers and consequences. However, Bangladesh Peace Observatory (BPO) platform covers following 
+    political violence categories.  
+     
+    1.  Political clash/attack: Violent clashes/battle and attack in which actors from general political 
+        parties, affiliated organizations, identity groups and alliances are directly involved and define the 
+        fighting and violence. It covers both intra-party clashes and inter-party attacks. 
+`
+    var mgr_disclaimer_page_2 = `
+    2.  Violent extremism (Islamist): Political violence perpetrated by the Islamists radical outfits around 
+        the country with political and religious aims. It includes incidences of attack and killing online 
+        activists, bloggers, foreigners, atheists, and sufists around the country.  
+    3.  Violent extremism (Rebel): Political violence perpetrated by ultra-left ideological groups and ethnic 
+        rebels around the country. 
+    4.  Electoral violence: Political violence between different actors related to elections at local, 
+        regional and national levels. It includes elections as the direct trigger or direct cause of the 
+        violent event. 
+    5.  Hartal violence: Political violence incidences as part of a clearly mentioned hartal day(s). 
+    6.  Destruction of property (Excluding arson attack): Destruction of property, including moveable goods, 
+        excluding burning.
+    7.  Arson attack: Destruction of property, including moveable goods by burning/throwing petrol bomb.
+    8.  High and low impact bombing: Setting off an explosive device (e.g. cocktail, car bomb) causing 
+        or aimed to cause small to large-scale destruction or casualties.
+    9.  Abduction, kidnap, hostage and rape: Kidnapping, abduction and hostage indicates that the captive is 
+        held at the same or unknown locations. Rape is conducting any sexual activities against at least one of 
+        the participants’ will.
+    10. Other types of political violence: This category includes incidences in which actors or perpetrators 
+        are unspecified or not mentioned.
+        
+    Using newspapers as a data source is potentially controversial. Yet there are limited other data sources providing 
+    wide ranging coverage of events. While watchdog institutions like Freedom House are critical of press freedom in 
+    Bangladesh, they also state that print media is given relatively more scope to publish freely (Freedom House 2015). 
+    A number of caveats and safeguards apply to accurately interpret the results under PMRD database. 
+    First, quite narrow definition of political violence was taken, focusing on ‘organisational’ violence. This is to 
+    minimize the interpretation of what connotes ‘political’. 
+    Second, our estimates for lethal casualties and wounded are expected to be conservative. The coding protocol 
+    specifies that, in the case of uncertainty, the lowest possible number should be recorded.
+    Third, we have a regional bias by using the Dhaka editions of our four newspapers. Three of the newspapers have 
+    regional editions that include additional news about a specific region. 
+`
 
-    `;
-    var idams_disclaimer_2 = `Using newspapers as a data source is potentially controversial. Yet there are limited other data sources 
-providing wide ranging coverage of events. While watchdog institutions like Freedom House are critical of 
-press freedom in Bangladesh, they also state that print media is given relatively more scope to publish 
-freely (Freedom House 2015). A number of caveats and safeguards apply to accurately interpret the results 
-under PMRD database. 
-First, quite narrow definition of political violence was taken, focusing on ‘organisational’ violence. 
-This is to minimize the interpretation of what connotes ‘political’. 
-Second, our estimates for lethal casualties and wounded are expected to be conservative. The coding protocol 
-specifies that, in the case of uncertainty, the lowest possible number should be recorded.
-Third, we have a regional bias by using the Dhaka editions of our four newspapers. Three of the newspapers 
-have regional editions that include additional news about a specific region. `
     national_death_states = [];
     national_death_data_series_array = [];
 
@@ -499,7 +487,7 @@ have regional editions that include additional news about a specific region. `
             var dd = today.getDate();
             var mm = today.getMonth() + 1; //January is 0!
             var yyyy = today.getFullYear();
-            var date = month[mm] + " " + dd + "," + yyyy;
+            var date = month[mm-1] + " " + dd + ", " + yyyy;
             // Generate PDF
             options = {
                 orientation: "p",
@@ -530,13 +518,19 @@ have regional editions that include additional news about a specific region. `
             doc.setFont("Roboto Slab", 'normal');
             doc.setLineWidth(document_width);
 
-
-            // Add disclaimer title (above the line)
-            doc.setFontSize(14);
-            var disclaimer_title = 'Disclaimer: The Online Media Review Database';
-            var disclaimerXOffset = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(disclaimer_title) * doc.internal.getFontSize() / 2);
-            doc.text(disclaimerXOffset, 50, disclaimer_title);
-
+            if (dataset == 'idams') {
+                // Add disclaimer title (above the line)
+                doc.setFontSize(14);
+                var disclaimer_title = 'Disclaimer: The Online Media Review Database';
+                var disclaimerXOffset = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(disclaimer_title) * doc.internal.getFontSize() / 2);
+                doc.text(disclaimerXOffset, 50, disclaimer_title);
+            } else {
+                // Add disclaimer title (above the line)
+                doc.setFontSize(14);
+                var disclaimer_title = 'Disclaimer: The Print Media Review Database';
+                var disclaimerXOffset = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(disclaimer_title) * doc.internal.getFontSize() / 2);
+                doc.text(disclaimerXOffset, 50, disclaimer_title);
+            }
             // Add line
             doc.setLineWidth(0.5);
             doc.line(50, 60, document_width - 50, 60);
@@ -571,7 +565,7 @@ have regional editions that include additional news about a specific region. `
                 doc.text(lMargin, 190, lines);
                 doc.addPage();
 
-                var lines = doc.splitTextToSize(idams_disclaimer_2, (pdfInMM - lMargin - rMargin));
+                var lines = doc.splitTextToSize(idams_disclaimer_page_2, (pdfInMM - lMargin - rMargin));
                 doc.setFontSize(11);
                 doc.text(lMargin, 50, lines);
                 doc.addPage();
@@ -609,11 +603,9 @@ have regional editions that include additional news about a specific region. `
                     rows.push(item.split(','));
                 }
             })
-            doc.autoTable(columns, rows);
             doc.save('BPO Analysis.pdf');
         });
         function convertSVGtoPDF(svg, id, document_width) {
-            console.log(id);
             var width = $('#' + id).children().children()[0].getBBox().width;
             var height = $('#' + id).children().children()[0].getBBox().height;
             // create canvas

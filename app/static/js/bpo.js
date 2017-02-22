@@ -30,7 +30,6 @@ $(document).ready(function () {
             var drp = $("input[name=daterange]").data('daterangepicker');
             drp.setStartDate('01-01-2015');
             drp.setEndDate('01-01-2016');
-            console.log($('#violence-type-select').val());
         }else{
             // Trigger disclaimer modal.
             $("#mgrDisclaimer").modal()
