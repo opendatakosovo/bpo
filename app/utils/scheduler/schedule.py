@@ -2,7 +2,7 @@ from datetime import datetime
 import urllib
 import subprocess
 import os.path
-from utils.importer.import_idams import parse
+# from utils.importer.import_idams import parse
 
 class ImporterScheduler(object):
     def __init__(self, scheduler):
@@ -20,8 +20,8 @@ class ImporterScheduler(object):
 
     def some_job(self):
         print "File downloaded & importer started..."
-        path = os.getcwd().split('/')
-        path_to_output_file = '/'.join(path) + '/utils/importer/idams/incidents.json'
-        urllib.urlretrieve("http://0.0.0.0:5050/api/get-latest-incidents/2016-11-01", path_to_output_file)
-        parse()
+        # path = os.getcwd().split('/')
+        # path_to_output_file = '/'.join(path) + '/utils/importer/idams/incidents.json'
+        # urllib.urlretrieve("http://0.0.0.0:5050/api/get-latest-incidents/2016-11-01", path_to_output_file)
+        # parse()
         print "Got my job done..."
