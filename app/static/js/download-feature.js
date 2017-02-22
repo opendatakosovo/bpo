@@ -328,7 +328,21 @@ Within these domains, the BPO presents the following incident categories under t
 
     $('.download').click(function () {
 
-        $('.first-violence-place').text(allData['incident-stats'][0]['name']);
+
+
+        if (global_division == "") {
+            $('.location-type-in').html(" Bangladesh");
+            $('.first-violence-place').text(allData['incident-stats'][0]['name'] + ' Division');
+        } else if (global_division != "" && global_district == "") {
+             $('.location-type').html(global_division + ' Division');
+            $('.location-type-in').html(" Bangladesh");
+            $('.first-violence-place').text(allData['incident-stats'][0]['name'] + ' District');
+        } else if (global_district != "") {
+            $('.location-type').html(global_district + " District");
+             $('.location-type-in').html(global_division + ' Division');
+        } else if (global_division != "" && global_district != "" && global_upazila != "") {
+             $('.location-type-in').html(global_division + " Division, " + global_district + ' District, ' + global_upazila + ' Upazila');
+        }
         var show_specific_charts = false;
         if (allData != undefined && allData['stats'] != undefined) {
             var show_specific_charts = true;
@@ -487,7 +501,7 @@ Within these domains, the BPO presents the following incident categories under t
             var dd = today.getDate();
             var mm = today.getMonth() + 1; //January is 0!
             var yyyy = today.getFullYear();
-            var date = month[mm-1] + " " + dd + ", " + yyyy;
+            var date = month[mm - 1] + " " + dd + ", " + yyyy;
             // Generate PDF
             options = {
                 orientation: "p",

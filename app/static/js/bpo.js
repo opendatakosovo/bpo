@@ -436,11 +436,11 @@ function getData(init) {
             if (division == "") {
                 $('.location-name').html(" Bangladesh");
             } else if (global_division != "" && global_district == "") {
-                $('.location-name').html(global_division);
+                $('.location-name').html(global_division + ' Division');
             } else if (division != "" && global_district != "") {
-                $('.location-name').html(global_division + ", " + global_district);
+                $('.location-name').html(global_division + " Division, " + global_district +' District');
             } else if (global_division != "" && global_district != "" && global_upazila != "") {
-                $('.location-name').html(global_division + ", " + global_district + ", " + global_upazila);
+                $('.location-name').html(global_division + " Division, " + global_district + ' District, ' + global_upazila + ' Upazila');
             }
             return data;
         }
