@@ -163,6 +163,19 @@ Within these domains, the BPO presents the following incident categories under t
         series: [{
             name: 'Incidents',
             data: []
+
+        }, {
+            name: 'Deaths',
+            data: []
+
+        }, {
+            name: 'Injuries',
+            data: []
+
+        }, {
+            name: 'Property damage',
+            data: []
+
         }],
         exporting: {
             csv: {
@@ -329,19 +342,18 @@ Within these domains, the BPO presents the following incident categories under t
     $('.download').click(function () {
 
 
-
         if (global_division == "") {
             $('.location-type-in').html(" Bangladesh");
             $('.first-violence-place').text(allData['incident-stats'][0]['name'] + ' Division');
         } else if (global_division != "" && global_district == "") {
-             $('.location-type').html(global_division + ' Division');
+            $('.location-type').html(global_division + ' Division');
             $('.location-type-in').html(" Bangladesh");
             $('.first-violence-place').text(allData['incident-stats'][0]['name'] + ' District');
         } else if (global_district != "") {
             $('.location-type').html(global_district + " District");
-             $('.location-type-in').html(global_division + ' Division');
+            $('.location-type-in').html(global_division + ' Division');
         } else if (global_division != "" && global_district != "" && global_upazila != "") {
-             $('.location-type-in').html(global_division + " Division, " + global_district + ' District, ' + global_upazila + ' Upazila');
+            $('.location-type-in').html(global_division + " Division, " + global_district + ' District, ' + global_upazila + ' Upazila');
         }
         var show_specific_charts = false;
         if (allData != undefined && allData['stats'] != undefined) {
@@ -354,8 +366,16 @@ Within these domains, the BPO presents the following incident categories under t
             second_modal_chart = undefined;
             third_modal_chart = undefined;
         }
-
+        if(global_division == ""){
+            $('.other-modal-section').css('display','none');
+        }else{
+            $('.other-modal-section').css('display','');
+        }
         general_stats = [];
+        general_stats_deaths = [];
+        general_stats_injuries = [];
+        general_stats_property_damages = [];
+
         general_categories = [];
 
         death_states = [];
@@ -367,10 +387,13 @@ Within these domains, the BPO presents the following incident categories under t
         property_damage_states = [];
         property_damage_data_series_array = [];
 
-        if (allData['incident-stats'].length > 0) {
-            $.each(allData['incident-stats'], function (item) {
-                general_stats.push(allData['incident-stats'][item]['incidents']);
-                general_categories.push(allData['incident-stats'][item]['name']);
+        if (allData['rank-stats'].length > 0) {
+            $.each(allData['rank-stats'], function (index, item) {
+                general_stats.push(item.incidents);
+                general_stats_deaths.push(item.deaths)
+                general_stats_injuries.push(item.injuries)
+                general_stats_property_damages.push(item.property)
+                general_categories.push(item.name);
             });
         }
         if (allData['stats']['death'] != undefined) {
@@ -399,6 +422,9 @@ Within these domains, the BPO presents the following incident categories under t
                 $.each(Highcharts.charts[item].series, function (index) {
                     var name = Highcharts.charts[item].series[index].name;
                     Highcharts.charts[item].series[0].setData(general_stats);
+                    Highcharts.charts[item].series[1].setData(general_stats_deaths);
+                    Highcharts.charts[item].series[2].setData(general_stats_injuries);
+                    Highcharts.charts[item].series[3].setData(general_stats_property_damages);
                     Highcharts.charts[item].xAxis[0].setCategories(general_categories);
                 });
                 Highcharts.charts[item].redraw();
@@ -478,7 +504,7 @@ Within these domains, the BPO presents the following incident categories under t
         });
 
         $('#Story_Frame_Raw_Download').click(function () {
-
+            console.log(allData['raw-incident-stats']);
             data_array = Papa.unparse(allData['raw-incident-stats']);
             download('Story_Frame_Data.csv', data_array);
         });
