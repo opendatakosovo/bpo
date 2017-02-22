@@ -504,7 +504,6 @@ Within these domains, the BPO presents the following incident categories under t
         });
 
         $('#Story_Frame_Raw_Download').click(function () {
-            console.log(allData['raw-incident-stats']);
             data_array = Papa.unparse(allData['raw-incident-stats']);
             download('Story_Frame_Data.csv', data_array);
         });
@@ -614,9 +613,8 @@ Within these domains, the BPO presents the following incident categories under t
 
             $.each(Highcharts.charts, function (item) {
 
-                if (Highcharts.charts[item] != undefined) {
+                if (Highcharts.charts[item] != undefined && Highcharts.charts[item].series[0].data.length>0) {
                     var id = Highcharts.charts[item].renderTo.id;
-
                     var imgData = convertSVGtoPDF(Highcharts.charts[item].getSVG(), id, document_width);
 
                     var width = $('#' + id).children().children()[0].getBBox().width;
