@@ -783,3 +783,7 @@ g.highcharts-legend-item.highcharts-line-series {
     width: 625px;
     height: 262px;
 }
+p.disclaimer-point {
+    font-weight: bold;
+    padding-left: 30px;
+}
