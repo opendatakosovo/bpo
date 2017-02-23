@@ -150,8 +150,13 @@ Within these domains, the BPO presents the following incident categories under t
             min: 0,
             opposite: true
         },
-
-
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
         legend: {
             enabled: false
         },
@@ -366,10 +371,10 @@ Within these domains, the BPO presents the following incident categories under t
             second_modal_chart = undefined;
             third_modal_chart = undefined;
         }
-        if(global_division == ""){
-            $('.other-modal-section').css('display','none');
-        }else{
-            $('.other-modal-section').css('display','');
+        if (global_division == "") {
+            $('.other-modal-section').css('display', 'none');
+        } else {
+            $('.other-modal-section').css('display', '');
         }
         general_stats = [];
         general_stats_deaths = [];
@@ -613,22 +618,28 @@ Within these domains, the BPO presents the following incident categories under t
 
             $.each(Highcharts.charts, function (item) {
 
-                if (Highcharts.charts[item] != undefined && Highcharts.charts[item].series[0].data.length>0) {
+                if (Highcharts.charts[item] != undefined && Highcharts.charts[item].series[0].data.length > 0) {
                     var id = Highcharts.charts[item].renderTo.id;
                     var imgData = convertSVGtoPDF(Highcharts.charts[item].getSVG(), id, document_width);
 
                     var width = $('#' + id).children().children()[0].getBBox().width;
                     var height = $('#' + id).children().children()[0].getBBox().height;
 
+                    if (id == 'line-chart-container') {
+                        doc.addImage(imgData, 'JPEG', 80, 90, document_width * 3, height - 50);
+                        doc.text(document_width / 6, document_height - 50, 'Description: ' + Highcharts.charts[item].options.chart.description);
 
-                    doc.addImage(imgData, 'JPEG', 80, 90, width - 90, height - 50);
+                    } else if (id != 'third-section-first-chart' && id != 'third-section-second-chart' && id != 'third-section-third-chart') {
+                        doc.addImage(imgData, 'JPEG', 80, 90, width - 90, height - 50);
+                        doc.text(document_width / 6, document_height - 50, 'Description: ' + Highcharts.charts[item].options.chart.description);
+                        doc.addPage();
+                    }
 
                     if ($('.' + id).length > 0) {
                         var text = $('.' + id).text().trim().replace(/ {2,}/, ' ').replace('\n', ' ');
                         doc.text(document_width / 5, 70, text);
                     }
-                    doc.text(document_width / 6, document_height - 50, 'Description: ' + Highcharts.charts[item].options.chart.description);
-                    doc.addPage();
+
                 }
 
             });
@@ -649,7 +660,7 @@ Within these domains, the BPO presents the following incident categories under t
             // create canvas
             var canvas = document.createElement("canvas");
             if (height > 0) {
-                canvas.height = height;
+                canvas.height = height - 50;
             } else {
                 canvas.height = 180;
             }
