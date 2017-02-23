@@ -16,7 +16,10 @@ class MongoUtils(object):
                     'date': '$date',
                     'division': '$division',
                     'upazila': '$upazila',
-                    'district': '$district'
+                    'district': '$district',
+                    'description':'$description',
+                    'lat': "$lat",
+                    'lon': "$lon"
                 },
                 'total_injury': {
                     '$sum': '$injuries_count'
@@ -42,7 +45,10 @@ class MongoUtils(object):
                 'death': '$total_death',
                 'incidents': '$incidents',
                 'property': '$total_property',
-                'injuries': '$total_injury'
+                'injuries': '$total_injury',
+                'description': '$_id.description',
+                'lat': '$_id.lat',
+                'lon': '$_id.lon'
             }
         }
         sort = {

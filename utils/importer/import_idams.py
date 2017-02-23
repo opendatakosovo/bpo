@@ -33,10 +33,14 @@ def parse():
 
 
             if 'actors' in elem['_source']:
+                print elem['_source']['location_and_source']['latitude']
                 if len(elem['_source']['smart_tags']['smart_tags']) > 0 and \
                                 elem['_source']['smart_tags']['smart_tags'][0] != '' and elem['_source']['smart_tags']['smart_tags'][0] =='Terrorism':
                     new_json['incident_date'] = datetime.strptime(elem['_source']['summary']['date'], '%Y-%m-%d')
                     new_json['violence_actor'] = elem['_source']['actors']['responders']
+                    new_json['description'] = elem['_source']['summary']['description']
+                    new_json['lat'] = elem['_source']['location_and_source']['latitude']
+                    new_json['lon'] = elem['_source']['location_and_source']['longitude']
                     new_json['violence_type'] = 'Violent Extremism'
                     new_json['responders'] = elem['_source']['actors']['instigators']
                     new_json['causes'] = elem['_source']['causes_of_incident']['causes']
@@ -66,6 +70,9 @@ def parse():
                 elif elem['_source']['summary']['incident_type'] in ['Political dispute', 'Border incident', 'IED Attack', 'Arson attack', 'Mob Violence', 'Violent crime']:
                     new_json['incident_date'] = datetime.strptime(elem['_source']['summary']['date'], '%Y-%m-%d')
                     new_json['violence_actor'] = elem['_source']['actors']['responders']
+                    new_json['description'] = elem['_source']['summary']['description']
+                    new_json['lat'] = elem['_source']['location_and_source']['latitude']
+                    new_json['lon'] = elem['_source']['location_and_source']['longitude']
                     if elem['_source']['summary']['incident_type'] == 'Violent crime':
                         new_json['violence_type'] = 'Violent Crime - Homicides'
                     else:
