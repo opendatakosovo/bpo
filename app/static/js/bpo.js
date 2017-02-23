@@ -14,28 +14,28 @@ $(document).ready(function () {
     // Populate the global allData variable
     allData = getData(true);
 
-    $('.highcharts-drillup-button').on('change', function () {
-
-    });
-
     $('.update-chart').change(function () {
         allData = getData(false);
     });
+
+    // Show the disclaimer
+    $("#mgrDisclaimer").modal();
+
     $('#data-source-select').change(function () {
         buildViolenceTypeDropDown();
         var dataset = $(this).val();
+        var drp = $("input[name=daterange]").data('daterangepicker');
         if(dataset == 'idams'){
             // Trigger disclaimer modal.
             $("#idamsDisclaimer").modal();
-            var drp = $("input[name=daterange]").data('daterangepicker');
             drp.setStartDate('01-01-2015');
             drp.setEndDate('01-01-2016');
         }else{
             // Trigger disclaimer modal.
-            $("#mgrDisclaimer").modal()
+            $("#mgrDisclaimer").modal();
+            drp.setStartDate('01-01-2015');
+            drp.setEndDate('01-01-2016');
         }
-
-        allData = getData(false);
     });
 
 });
@@ -1498,6 +1498,9 @@ function buildViolenceTypeDropDown() {
         });
         if($('#data-source-select').val()=='idams'){
             $("#violence-type-select").val('Violent Extremism');
+            allData = getData(false);
+        }else{
+            $("#violence-type-select").val('Destruction of property');
             allData = getData(false);
         }
     });
