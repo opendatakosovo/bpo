@@ -36,9 +36,9 @@ def parse():
                 if len(elem['_source']['smart_tags']['smart_tags']) > 0 and \
                                 elem['_source']['smart_tags']['smart_tags'][0] != '' and elem['_source']['smart_tags']['smart_tags'][0] =='Terrorism':
                     new_json['incident_date'] = datetime.strptime(elem['_source']['summary']['date'], '%Y-%m-%d')
-                    new_json['violence_actor'] = elem['_source']['actors']['instigators']
+                    new_json['violence_actor'] = elem['_source']['actors']['responders']
                     new_json['violence_type'] = 'Violent Extremism'
-                    new_json['responders'] = elem['_source']['actors']['responders']
+                    new_json['responders'] = elem['_source']['actors']['instigators']
                     new_json['causes'] = elem['_source']['causes_of_incident']['causes']
                     new_json['property_destroyed_type'] = []
                     new_json['injuries_count'] = 0
@@ -65,12 +65,12 @@ def parse():
                     count = count + 1
                 elif elem['_source']['summary']['incident_type'] in ['Political dispute', 'Border incident', 'IED Attack', 'Arson attack', 'Mob Violence', 'Violent crime']:
                     new_json['incident_date'] = datetime.strptime(elem['_source']['summary']['date'], '%Y-%m-%d')
-                    new_json['violence_actor'] = elem['_source']['actors']['instigators']
+                    new_json['violence_actor'] = elem['_source']['actors']['responders']
                     if elem['_source']['summary']['incident_type'] == 'Violent crime':
                         new_json['violence_type'] = 'Violent Crime - Homicides'
                     else:
                         new_json['violence_type'] = elem['_source']['summary']['incident_type']
-                    new_json['responders'] = elem['_source']['actors']['responders']
+                    new_json['responders'] = elem['_source']['actors']['instigators']
                     new_json['causes'] = elem['_source']['causes_of_incident']['causes']
                     new_json['property_destroyed_type'] = []
                     new_json['injuries_count'] = 0
