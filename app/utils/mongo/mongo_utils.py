@@ -13,13 +13,14 @@ class MongoUtils(object):
         group = {
             '$group': {
                 '_id': {
-                    'date': '$date',
+                    'date': '$incident_date',
                     'division': '$division',
                     'upazila': '$upazila',
                     'district': '$district',
                     'description':'$description',
                     'lat': "$lat",
-                    'lon': "$lon"
+                    'lon': "$lon",
+                    'source':'$source'
                 },
                 'total_injury': {
                     '$sum': '$injuries_count'
@@ -38,7 +39,7 @@ class MongoUtils(object):
         project = {
             '$project': {
                 '_id': 0,
-                'date': '$_id.date',
+                'date':  { '$dateToString': { 'format': "%Y-%m-%d", 'date': "$_id.date" } },
                 'division': '$_id.division',
                 'district': '$_id.district',
                 'upazila': '$_id.upazila',
@@ -48,7 +49,8 @@ class MongoUtils(object):
                 'injuries': '$total_injury',
                 'description': '$_id.description',
                 'lat': '$_id.lat',
-                'lon': '$_id.lon'
+                'lon': '$_id.lon',
+                'source':"$_id.source"
             }
         }
         sort = {

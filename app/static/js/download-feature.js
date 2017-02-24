@@ -497,7 +497,7 @@ Within these domains, the BPO presents the following incident categories under t
 
         $('#Story_Frame_Raw_Download').click(function () {
             var data_array = Papa.unparse({
-                fields: ['division','district' , 'upazila', 'death','incidents',  'property', 'injuries','description','lat','lon'],
+                fields: ['id', 'division', 'district', 'upazila','date', 'death','incidents',  'property', 'injuries','description','lat','lon','source'],
                 data: allData['raw-incident-stats'],
                 quotes: false,
                 quoteChar: '"',
