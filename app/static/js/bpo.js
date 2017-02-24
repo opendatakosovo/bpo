@@ -1039,7 +1039,7 @@ function buildMap() {
                 relativeTo: 'spacingBox',
                 position: 'left',
                 theme: {
-                    fill: '#007CA4',
+                    fill: '#FFA400',
                     'stroke-width': 1,
                     stroke: 'white',
                     r: 14,
