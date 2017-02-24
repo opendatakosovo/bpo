@@ -3,7 +3,6 @@
 
 ###### Advancing understanding of peace and tolerance through data insights
 #
-#
 # Project description
 >The Bangladesh Peace Observatory is a virtual platform equipped with mapping and data analytics technology that informs users on the state of violence – political, ethnic, communal, criminal, gender-based, as well as extremist – and other forms of discord in terms of time, space and themes.
 
