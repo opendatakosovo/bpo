@@ -114,17 +114,24 @@ body::-webkit-scrollbar {
 /*height: 300px !important;*/
 /*}*/
 div#ui-id-2 {
-    height: 181px !important;
+    height: 263px !important;
     box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2);
     border-radius: 4px;
+    overflow: hidden;
 }
 
 div#ui-id-4 {
-    height: 181px !important;
+    height: 263px !important;
     box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2);
     border-radius: 4px;
+    overflow: hidden;
 }
-
+div#ui-id-6 {
+    height: 263px !important;
+    box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
 .viz-icon {
     width: 15px;
     height: 20px;
@@ -783,6 +790,17 @@ g.highcharts-legend-item.highcharts-line-series {
     width: 625px;
     height: 262px;
 }
+
 p.disclaimer-point {
     padding-left: 30px;
 }
+
+.ui-datepicker .ui-datepicker-header {
+    position: relative;
+    padding: .2em 0;
+    background-color: white !important;
+}
+
+/*.ui-state-default, .ui-widget-content .ui-state-default{*/
+/*background-color: white !important;*/
+/*}*/

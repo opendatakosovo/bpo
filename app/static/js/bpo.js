@@ -24,17 +24,17 @@ $(document).ready(function () {
     $('#data-source-select').change(function () {
         buildViolenceTypeDropDown();
         var dataset = $(this).val();
-        var drp = $("input[name=daterange]").data('daterangepicker');
-        if(dataset == 'idams'){
+
+        if (dataset == 'idams') {
             // Trigger disclaimer modal.
             $("#idamsDisclaimer").modal();
-            drp.setStartDate('01-01-2015');
-            drp.setEndDate('01-01-2016');
-        }else{
+            $("#dt1").datepicker('setDate', '01/06/2015');
+            $("#dt2").datepicker('setDate', '29/06/2016');
+        } else {
             // Trigger disclaimer modal.
             $("#mgrDisclaimer").modal();
-            drp.setStartDate('01-01-2015');
-            drp.setEndDate('01-01-2016');
+            $('#dt1').datepicker('setDate', '01/01/2015');
+            $('#dt2').datepicker('setDate', '01/01/2016');
         }
     });
 
@@ -377,6 +377,15 @@ function buildNationalData() {
     updateRankSections();
     updateCensusInfo();
 }
+function getDate() {
+    // Get date
+    var date_1 = $('#dt1').val().split('/');
+    date_1 = date_1[1] + '-' + date_1[0] + '-' + date_1[2];
+    var date_2 = $('#dt2').val().split('/');
+    date_2 = date_2[1] + '-' + date_2[0] + '-' + date_2[2];
+    var date = (date_1 + '---' + date_2);
+    return date;
+}
 function getData(init) {
 
     var dataResults = undefined;
@@ -391,8 +400,8 @@ function getData(init) {
     // Get selected violence type dropdown
     var violence_type = $("#violence-type-select").val().replace('/', '-');
 
-    // Get date
-    var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
+    // Get selected daterange
+    var date = getDate();
 
     if (init == false) {
         if ($('#map').highcharts().drilldownLevels != undefined) {
@@ -438,7 +447,7 @@ function getData(init) {
             } else if (global_division != "" && global_district == "") {
                 $('.location-name').html(global_division + ' Division');
             } else if (division != "" && global_district != "") {
-                $('.location-name').html(global_division + " Division, " + global_district +' District');
+                $('.location-name').html(global_division + " Division, " + global_district + ' District');
             } else if (global_division != "" && global_district != "" && global_upazila != "") {
                 $('.location-name').html(global_division + " Division, " + global_district + ' District, ' + global_upazila + ' Upazila');
             }
@@ -591,7 +600,7 @@ function createLineChart() {
                     redraw: titleMove
                 },
                 renderTo: 'line-chart-container',
-                height:400,
+                height: 400,
                 description: "Time based linechart.",
             },
             rangeSelector: {
@@ -636,7 +645,6 @@ function createLineChart() {
                 }
             },
             series: seriesOptions,
-
 
 
         });
@@ -752,15 +760,17 @@ function updateLineChart() {
 }
 function buildDateRangeInput() {
     // Add daterange jquery functionality
-    $('input[name="daterange"]').daterangepicker({
-        locale: {
-            format: 'MM-DD-YYYY'
-        },
-        startDate: "06-01-2014",
-        endDate: "06-29-2015"
+    var startDate, endDate, dateRange = [];
+    $("#dt1").datepicker({
+        dateFormat: 'dd/mm/yy'
     });
-    $('.left').prepend('<p>From:</p>');
-    $('.right').prepend('<p>To:</p>');
+    $("#dt2").datepicker({
+        dateFormat: 'dd/mm/yy'
+    });
+
+    $("#dt1").datepicker('setDate', "01/06/2014");
+    $("#dt2").datepicker('setDate', "29/06/2015");
+
 }
 function buildMap() {
     var map_data = buildDataSeries();
@@ -1152,7 +1162,7 @@ function updateTextValues() {
 // Update charts in the accordions reflecting the selections
 function updateCharts() {
     // Get date
-    var date = $('input[name=daterange]').val().replace(/\//g, '-').replace(/\ /g, '-');
+    var date = getDate();
     var new_date = date.split('---');
     var timeDiff = Math.abs((new Date(new_date[0])).getTime() - (new Date(new_date[1])).getTime())
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
@@ -1496,10 +1506,10 @@ function buildViolenceTypeDropDown() {
         $.each(data, function (item) {
             violence_options.append($("<option />").val(data[item]).text(data[item]));
         });
-        if($('#data-source-select').val()=='idams'){
+        if ($('#data-source-select').val() == 'idams') {
             $("#violence-type-select").val('Violent Extremism');
             allData = getData(false);
-        }else{
+        } else {
             $("#violence-type-select").val('Destruction of property');
             allData = getData(false);
         }
