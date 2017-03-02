@@ -542,7 +542,9 @@ select#data-source-select, select#violence-type-select, .update-chart {
     border-radius: 2px;
     height: 35px;
 }
-
+#data-source-select-label{
+    white-space: nowrap;
+}
 .search-icon {
     position: absolute;
     top: 32px;
@@ -552,6 +554,10 @@ select#data-source-select, select#violence-type-select, .update-chart {
     color: #FFA400;
     float: right;
     margin-left: -20px;
+}
+#division-select{
+    padding-right: 24px;
+    margin-top: 4px;
 }
 
 input.empty::-webkit-input-placeholder {
