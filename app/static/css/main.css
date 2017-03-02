@@ -51,7 +51,7 @@ dl {
     border: 1px solid gray;
     height: 550px;
     overflow: scroll;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     padding-bottom: 10px;
     font-family: "Noto Serif";
     /*margin-right:10px;*/
@@ -680,7 +680,12 @@ g.highcharts-legend-item.highcharts-line-series {
     color: #FFFFFF;
     text-shadow: 0 1px 0 0 #DA740C;
 }
-
+.download-button-viz{
+    float: right;
+}
+.download-container{
+    padding-right: 4px;
+}
 #Story_Frame_Data_Download {
     width: 109px;
     height: 32px;
