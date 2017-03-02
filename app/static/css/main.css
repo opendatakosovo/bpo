@@ -554,6 +554,7 @@ select#data-source-select, select#violence-type-select, .update-chart {
     color: #FFA400;
     float: right;
     margin-left: -20px;
+    margin-top: 3px;
 }
 #division-select{
     padding-right: 24px;
