@@ -562,7 +562,7 @@ select#data-source-select, select#violence-type-select, .update-chart {
 @-moz-document url-prefix() {
     #division-select{
         padding-right: 24px;
-        padding-top: 8px;
+        padding-top: 9px;
     }
 }
 
