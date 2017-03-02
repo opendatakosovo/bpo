@@ -348,6 +348,8 @@ hr {
     font-weight: bold;
     line-height: 22px;
     color: #EEEEEE;
+    /*float: left;*/
+    white-space: nowrap;
 }
 
 .footer1 {
