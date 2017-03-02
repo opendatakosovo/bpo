@@ -557,7 +557,7 @@ select#data-source-select, select#violence-type-select, .update-chart {
 }
 #division-select{
     padding-right: 24px;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 @-moz-document url-prefix() {
     #division-select{
