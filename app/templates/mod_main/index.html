@@ -1,9 +1,8 @@
-{% extends 'layout.html' %}
-{% block body %}
+{% extends 'layout.html' %} {% block body %}
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         // we're checking to see if the arrow is up or down, then adding or removing the "lift" class accordingly
-        var arrowBounce = function () {
+        var arrowBounce = function() {
             var arrow = $(".arrow");
 
             if (arrow.hasClass("lift")) {
@@ -13,7 +12,7 @@
             }
         };
 
-// run the arrowBounce function every 800ms
+        // run the arrowBounce function every 800ms
         setInterval(arrowBounce, 800);
     });
 </script>
@@ -31,12 +30,9 @@
                     <img src="static/assets/about_graphic01.png" alt="Mountain View" class="img-responsive">
                 </div>
                 <div class="col-md-8">
-                    <p class="lead2">Designing effective responses to public policy challenges is heavily dependent on
-                        evidence. Evidence is dependent on good data. In the present day “Open Data” is the future. More
-                        data has been produced globally in the last two years than in the previous 3000 years of human
-                        activity. Most of this data is openly accessible. Therefore, the future challenge for
-                        decision-makers is not finding data: the challenge is efficiently managing and digesting the
-                        explosion of public data.
+                    <p class="lead2">Designing effective responses to public policy challenges is heavily dependent on evidence. Evidence is dependent on good data. In the present day “Open Data” is the future. More data has been produced globally in the last two years
+                        than in the previous 3000 years of human activity. Most of this data is openly accessible. Therefore, the future challenge for decision-makers is not finding data: the challenge is efficiently managing and digesting the explosion
+                        of public data.
                     </p>
                     <br>
                 </div>
@@ -53,14 +49,9 @@
                     <img src="static/assets/about_graphic02.png" alt="Mountain View" class="section-img img-responsive">
                 </div>
                 <div class="col-md-8">
-                    <p class="lead3">The Bangladesh Peace Observatory (BPO) is a response to the challenge. The BPO is a
-                        research facility housed at the Center for Genocide Studies at the University of Dhaka, which
-                        seeks to harness the power of Open Data to advance knowledge and understanding of peace and
-                        development in the country. The BPO will focus on the pressing and interconnected issues of the
-                        youth bulge, violence prevention, and social cohesion. The Bangladesh Peace Observatory brings
-                        together different streams of publicly available data on violence, analyses and visualizes them
-                        in a useful and interactive way for decision makers, civil society and media to understand,
-                        consume, and debate.
+                    <p class="lead3">The Bangladesh Peace Observatory (BPO) is a response to the challenge. The BPO is a research facility housed at the Center for Genocide Studies at the University of Dhaka, which seeks to harness the power of Open Data to advance knowledge
+                        and understanding of peace and development in the country. The BPO will focus on the pressing and interconnected issues of the youth bulge, violence prevention, and social cohesion. The Bangladesh Peace Observatory brings together
+                        different streams of publicly available data on violence, analyses and visualizes them in a useful and interactive way for decision makers, civil society and media to understand, consume, and debate.
                     </p>
                     <br/><br/><br/>
                 </div>
@@ -70,8 +61,8 @@
 </div>
 <!-- The Bangladesh Peace Observatory Platform -->
 <div id="section-about-description">
-    <div class="row">
-        <div class="col-md-11 col-md-offset-1">
+    <div class="container">
+        <div class="col-md-12">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
                     <h1 class="section-heading-about text-center">The Bangladesh
@@ -79,59 +70,43 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 ">
-                    <hr class="lead-hr">
-                    <div class="col-lg-9  col-md-8 col-xs-7">
-                        <p class="lead-desc-1">The Bangladesh Peace Observatory is a virtual platform equipped with
-                            mapping
-                            and data analytics technology that informs users on the state of violence – political,
-                            ethnic, communal, criminal, gender-based, as well as extremist – and other forms of
-                            discord
-                            in terms of time, space and themes.
+                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="col-lg-9  col-md-10 col-xs-7">
+                        <hr class="lead-hr">
+                        <p class="lead-desc-1">The Bangladesh Peace Observatory is a virtual platform equipped with mapping and data analytics technology that informs users on the state of violence – political, ethnic, communal, criminal, gender-based, as well as extremist
+                            – and other forms of discord in terms of time, space and themes.
                         </p>
                         <br><br><br>
                     </div>
                     <div class="col-lg-2 col-md-2 col-xs-4">
                         <br>
                         <div class="clearfix"></div>
-                        <img class="section-img img-responsive" src="static/assets/about_graphic03.png"
-                             alt="Mountain View">
+                        <img class="section-img img-responsive" src="static/assets/about_graphic03.png" alt="Mountain View">
                     </div>
                 </div>
             </div>
-
-
             <div class="row">
-                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 ">
+                <div class="col-md-12 col-sm-12 col-xs-12 ">
                     <div class="col-md-2 col-xs-4">
                         <br>
                         <div class="clearfix"></div>
                         <img class="img-responsive" height="142" width="164" src="static/assets/about_graphic04.png">
                     </div>
-                    <div class="section-2-part-4 col-md-6 col-md-offset-1 col-lg-9 col-xs-8">
+                    <div class="section-2-part-4 col-md-10 col-lg-9 col-xs-8">
                         <hr class="lead-hr">
-                        <p class="lead4">The Bangladesh Peace Observatory brings together different
-                            streams
-                            of publically available data, analyses and visualizes them in a useful and interactive
-                            way
-                            for decision makers, civil society and media to understand, consume, and debate.
+                        <p class="lead4">The Bangladesh Peace Observatory brings together different streams of publically available data, analyses and visualizes them in a useful and interactive way for decision makers, civil society and media to understand, consume,
+                            and debate.
                         </p>
                         <br><br><br>
                     </div>
                 </div>
             </div>
-
-
             <div class="row">
-                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
-
-                    <div class="section-2-part-5   col-lg-9  col-md-8 col-xs-7">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                    <div class="section-2-part-5 col-lg-9 col-md-10 col-xs-7">
                         <hr class="lead-hr">
-                        <p class="lead4">The Bangladesh Peace Observatory seeks to support a wide range of actors in
-                            making better public policy decisions, tailored interventions and programming, enhanced
-                            research, and effective advocacy campaigning for social cohesion and peace development
-                            based
-                            on evidence and data.
+                        <p class="lead4">The Bangladesh Peace Observatory seeks to support a wide range of actors in making better public policy decisions, tailored interventions and programming, enhanced research, and effective advocacy campaigning for social cohesion
+                            and peace development based on evidence and data.
                         </p>
                         <br><br><br>
                     </div>
@@ -139,119 +114,78 @@
                         <br>
                         <div class="clearfix"></div>
 
-                        <img class="section-img img-responsive" src="static/assets/about_graphic05.png"
-                             alt="Mountain View">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 ">
-                        <div class="col-md-2 col-xs-4">
-                            <br>
-                            <div class="clearfix"></div>
-                            <img class="img-responsive" height="142" width="164"
-                                 src="static/assets/about_graphic04.png">
-                        </div>
-                        <div class="section-2-part-4 col-md-6 col-md-offset-1 col-lg-9 col-xs-8">
-                            <hr class="lead-hr">
-                            <p class="lead4">The BPO understands "violence" as defined by the World Health Organization
-                                (WHO) in its World report on violence and health (WRVH): "the intentional use of
-                                physical force or power, threatened or actual, against oneself, another person, or
-                                against a group or community, that either results in or has a high likelihood of
-                                resulting in injury, death, psychological harm, maldevelopment, or deprivation."
-                            </p>
-                            <br><br><br>
-                        </div>
+                        <img class="section-img img-responsive" src="static/assets/about_graphic05.png" alt="Mountain View">
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
-    <!-- Advisory Board -->
-
-    <div id="advisory-board" class="bg-light-gray">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <h2 class="advisory-board-title">Advisory Group</h2>
-            </div>
+</div>
+<!-- Advisory Board -->
+<div id="advisory-board" class="bg-light-gray">
+    <div class="advisory-board-row row">
+        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+            <h2 class="advisory-board-title">Advisory Group</h2>
         </div>
-        <div class="row">
-            <div class="col-lg-12 col-lg-offset-2 col-md-12 col-md-offset-2 col-sm-12 col-xs-12">
-                <div class="col-md-2 col-sm-3 col-xs-3">
-                    <a href="http://stopviolencebd.org/" target="_blank">
-                        <img class="img-responsive" src="static/assets/logo_SVC.png"
-                             alt="Logo_SVC">
-                    </a>
-                </div>
-                <div class="col-md-2 col-sm-3 col-xs-3">
-                    <a href="http://www.police.gov.bd/" target="_blank">
-                        <img class="img-responsive" src="static/assets/logo_police.png"
-                             alt="Logo_Police">
-                    </a>
-                </div>
-                <div class="col-md-2 col-sm-3 col-xs-3">
-                    <a href="https://www.facebook.com/microgovernance/" target="_blank">
-                        <img class="img-responsive" src="static/assets/logo_mgr.png"
-                             alt="Logo_mgr">
-                    </a>
-                </div>
-                <div class="col-md-2 col-sm-3 col-xs-3">
-                    <a href="http://www.ndc.gov.bd/" target="_blank">
-                        <img class="img-responsive pull-right" src="static/assets/logo_lamp.png"
-                             alt="LOgo_lamp">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row" style="    padding-top: 30px;
-    padding-bottom: 30px;">
-            <div class="col-lg-12 col-lg-offset-2 col-md-12 col-md-offset-2 col-sm-12 col-xs-12">
-                <div class="col-md-5 col-xs-5 col-sm-6">
-                    <a href="http://www.actionaid.org/bangladesh" target="_blank">
-                        <img class="img-responsive" src="static/assets/logo_actionaid.png"
-                             alt="Logo_actionaid">
-                    </a>
-
-                </div>
-                <div class="col-md-5 col-xs-5 col-sm-5">
-                    <a href="http://www.thedailystar.net/" target="_blank">
-                        <img class="img-responsive" src="static/assets/logo_star.png"
-                             alt="Logo_star">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-lg-offset-2 col-md-12 col-md-offset-2 col-sm-12 col-xs-12">
-                <div class="col-md-2 col-md-offset-1 col-sm-4 col-xs-3">
-                    <a href="http://cgsdu.org/" target="_blank">
-                        <img class="img-responsive" src="static/assets/logo_CGS.png"
-                             alt="Logo_CGS">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-3">
-                    <a href="http://www.sehd.org/" target="_blank">
-                        <img class="img-responsive" src="static/assets/logo_SEHD.png"
-                             alt="Logo_SEHD" style="
-
-    position: absolute;
-
-    left: 0;
-
-    vertical-align: middle;
-
-    padding-top: 10%;">
-                    </a>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-3">
-                    <a href="http://www.univdhaka.edu/" target="_blank">
-                        <img class="img-responsive" src="static/assets/logo_DhakaUni.png"
-                             alt="logo_DhakaUni">
-                    </a>
-                </div>
-            </div>
-        </div>
-
     </div>
-    {% endblock %}
+    <div class="advisory-board-row row">
+        <div class="col-lg-12 col-lg-offset-2 col-md-12 col-md-offset-2 col-sm-12 col-xs-12">
+            <div class="col-md-2 col-sm-3 col-xs-3">
+                <a href="http://stopviolencebd.org/" target="_blank">
+                    <img class="img-responsive" src="static/assets/logo_SVC.png" alt="Logo_SVC">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-xs-3">
+                <a href="http://www.police.gov.bd/" target="_blank">
+                    <img class="img-responsive" src="static/assets/logo_police.png" alt="Logo_Police">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-xs-3">
+                <a href="https://www.facebook.com/microgovernance/" target="_blank">
+                    <img class="img-responsive" src="static/assets/logo_mgr.png" alt="Logo_mgr">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-xs-3">
+                <a href="http://www.ndc.gov.bd/" target="_blank">
+                    <img class="img-responsive pull-right" src="static/assets/logo_lamp.png" alt="LOgo_lamp">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="advisory-board-row row" style="padding-top: 30px;padding-bottom: 30px;">
+        <div class="col-lg-12 col-lg-offset-2 col-md-12 col-md-offset-2 col-sm-12 col-xs-12">
+            <div class="col-md-5 col-xs-5 col-sm-6">
+                <a href="http://www.actionaid.org/bangladesh" target="_blank">
+                    <img class="img-responsive" src="static/assets/logo_actionaid.png" alt="Logo_actionaid">
+                </a>
+
+            </div>
+            <div class="col-md-5 col-xs-5 col-sm-5">
+                <a href="http://www.thedailystar.net/" target="_blank">
+                    <img class="img-responsive" src="static/assets/logo_star.png" alt="Logo_star">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="advisory-board-row row">
+        <div class="col-lg-12 col-lg-offset-2 col-md-12 col-md-offset-2 col-sm-12 col-xs-12">
+            <div class="col-md-2 col-md-offset-1 col-sm-4 col-xs-3">
+                <a href="http://cgsdu.org/" target="_blank">
+                    <img class="img-responsive" src="static/assets/logo_CGS.png" alt="Logo_CGS">
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-3">
+                <a href="http://www.sehd.org/" target="_blank">
+                    <img class="img-responsive" src="static/assets/logo_SEHD.png" alt="Logo_SEHD" style="position: absolute;left: 0;vertical-align: middle;padding-top: 10%;">
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-3">
+                <a href="http://www.univdhaka.edu/" target="_blank">
+                    <img class="img-responsive" src="static/assets/logo_DhakaUni.png" alt="logo_DhakaUni">
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

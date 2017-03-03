@@ -142,12 +142,14 @@ header .intro-text .intro-heading {
     font-size: 20px;
     padding: 17px;
     float: right;
-    margin-right: 50px;
+    margin-right: 65px;
     height: 62px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
-
+.advisory-board-row{
+    width: 100%;
+}
 .btn-xl1:hover {
     color: white;
     background-color: #FDA200;
@@ -188,6 +190,8 @@ hr {
     font-size: 18px;
     line-height: 31px;
     color: #FFFFFF;
+    padding-left: 20px !important;
+    padding-top: 10px;
 }
 
 .lead2 {
@@ -1252,7 +1256,7 @@ body {
 
 
 .section-2-part-4 {
-    padding-top: 53px;
+    padding-top: 25px;
 }
 
 .section-2-part-5 {
