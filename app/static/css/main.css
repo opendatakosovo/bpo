@@ -105,6 +105,7 @@ dl {
     font-family: FontAwesome;
     font-size: 18px;
     line-height: 18px;
+    display: none;
 }
 
 #3d-map {
