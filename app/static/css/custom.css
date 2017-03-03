@@ -1,11 +1,11 @@
 .intro-lead-in {
     font-family: "Playfair Display";
-    font-size: 64px;
+    font-size: 45px;
     font-weight: bold;
     text-align: center;
-    line-height: 85px;
+    /*line-height: 85px;*/
     color: #FFFFFF;
-    padding-top: 27%;
+    padding-top: 40%;
 }
 
 header .intro-text .intro-heading {
@@ -142,7 +142,7 @@ header .intro-text .intro-heading {
     font-size: 20px;
     padding: 17px;
     float: right;
-    margin-right: 65px;
+    margin-right: 50px;
     height: 62px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -1307,9 +1307,9 @@ i.fa:before {
     padding-bottom: 40px;
 }
 
-#header {
+/*#header {
     background: linear-gradient(0deg, #003D52 0%, #007CA4 100%);
-}
+}*/
 .arrow {
   white-space: nowrap;
   font-size: 8rem;
