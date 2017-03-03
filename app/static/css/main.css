@@ -149,7 +149,6 @@ div#ui-id-6 {
 }
 
 div#filtering {
-    padding-left: 30px;
     /*background-color: #1B6D85;*/
     background-color: #007CA4;
     font-family: "Noto Serif";
@@ -697,6 +696,7 @@ g.highcharts-legend-item.highcharts-line-series {
     border: 1px solid #E79400;
     border-radius: 2px;
     margin-top: 6px;
+    margin-right: 12px;
 }
 
 #Story_Frame_Data_Download_Text {
