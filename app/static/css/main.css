@@ -683,12 +683,43 @@ g.highcharts-legend-item.highcharts-line-series {
     color: #FFFFFF;
     text-shadow: 0 1px 0 0 #DA740C;
 }
+
+/* Download Buttons */
 .download-button-viz{
     float: right;
 }
+
 .download-container{
-    padding-right: 4px;
+    position: absolute;
+    right: 15px;
 }
+.download-container-2{
+    position: absolute;
+    right: 30px;
+}
+
+@media (max-width:768px) {
+    .human-economic-title{
+        height: 100px;
+    }
+    .reported-violence-title{
+        height: 100px;
+    }
+    .download-container{
+        position: absolute;
+        right: 15px;
+        top: 60px;
+    }
+    .download-container-2{
+        position: absolute;
+        right: 30px;
+        top: 60px;
+    }
+}
+/* END --Download Buttons */
+
+
+
 #Story_Frame_Data_Download {
     width: 109px;
     height: 32px;
