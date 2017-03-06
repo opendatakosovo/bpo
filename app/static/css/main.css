@@ -715,6 +715,9 @@ g.highcharts-legend-item.highcharts-line-series {
         right: 30px;
         top: 120px;
     }
+    #line-chart{
+        height: 610px;
+    }
 }
 /* Download Buttons */
 
