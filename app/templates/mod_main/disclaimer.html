@@ -1,0 +1,217 @@
+{% extends 'layout.html' %}
+{% block body %}
+<style>
+    .intro-text {
+        display: none;
+    }
+
+    .container {
+        margin-top: 100px;
+    }
+</style>
+<!-- The Bangladesh Peace Observatory Platform -->
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-left">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                    <h3> Disclaimer: The Online Media Review </h3>
+                </div>
+                <p>The Online Media Review is a geospatial and actor-based database that contains incident
+                    information
+                    pertaining to the level of political violence, terrorism, safety and security, and natural
+                    and
+                    human-induced hazards in Bangladesh. The database is populated daily using openly available
+                    information
+                    published by the online media both in English and Bangla. The pilot dataset presented in the
+                    Bangladesh
+                    Peace Observatory Platform covers the time period of June 2015 - August 2016.</p>
+
+                <p>The database consists of a number of layers of information pertaining to each incident
+                    reported in the
+                    online media; types, triggers or motivations, consequences for each incident (such as death,
+                    injury and
+                    property damages), actors, and sources. The publication of the data is for pilot purposes,
+                    and there may
+                    be errors in data collection, validation and/or reporting by the media.</p>
+
+                <p>For the purpose of this pilot database project, the following online media have been
+                    reviewed:
+                    thedailystar.net; Banglanews24.com; bdnews24.com; Daily-sun.com; dhakatribune.com;
+                    thefinancialexpress-bd.com.Other online media reviewed with less frequency are
+                    en.prothom-alo.com;
+                    thereport24.com; risingbd.com; and unb.com.bd.</p>
+
+                <p><strong><i>The database relies on the following definitions:</i></strong></p>
+                <p class="disclaimer-point"><strong>1. Political Violence:</strong> 1) violence: includes an
+                    incident that results in at least one death, or
+                    property destruction, 2) political – involving members of at least one clearly defined
+                    political group, public institution and/or civil society, interest groups, Islamist
+                    organizations, rebel and militant groups (Suykens and Islami, 2015). Political groups
+                    include political parties and all their allied organizations such as volunteer, youth and
+                    worker groups.</p>
+                <p class="disclaimer-point"><strong>2. Terrorism and radicalism:</strong> includes incidents
+                    involving Islamist organizations, rebel and militant
+                    groups (non-political party) who use violence and intimidation for political or religious
+                    aims,
+                    and in many cases are proscribed by the government as terrorist groups.</p>
+
+                <p class="disclaimer-point"><strong>3. Safety and security</strong> – incidents related to 1)
+                    security and crime, or other forms of homicide which
+                    includes non-politically motivated crimes such as robbery and theft, vandalism, etc.</p>
+
+
+                <p class="disclaimer-point"><strong><i>Within these domains, the BPO presents the following
+                    incident categories under the Online Media Review :</strong></i></p>
+
+                <p class="disclaimer-point"><strong>1. Political Dispute:</strong> Any violent confrontation
+                    involving members of same or different political
+                    party/groups.</p>
+
+                <p class="disclaimer-point"><strong>2. Violent Extremism:</strong> includes incidents involving
+                    Islamist organizations, rebel and militant
+                    groups (non-political party) who use violence and intimidation for political or religious
+                    aims, and
+                    in many cases are proscribed by the government as terrorist groups.</p>
+
+                <p class="disclaimer-point"><strong>3. Border Incidents:</strong> Actions taken by law
+                    enforcement or armed forces entities (of India, Myanmar or
+                    Bangladesh) which may lead to arrests.</p>
+
+                <p class="disclaimer-point"><strong>4. Arson Attack:</strong> is the crime of intentionally and
+                    maliciously setting fire to buildings, wildland
+                    areas, dumpsters, vehicles or other property with the intent to cause damage.</p>
+
+                <p class="disclaimer-point"><strong>5. IED Attack:</strong> involves attacks with any
+                    non-conventional made explosives like petrol bomb, suicide
+                    vest bombing, cotail and grenade attacks, etc.</p>
+
+                <p class="disclaimer-point"><strong>6. Mob Violence:</strong> Indicates when more than two or
+                    more community members take the law on their hands
+                    and punish people for wrongdoing. Mob violence in Bangladesh often leads to violent death of
+                    people who were caught doing misdeeds in the community (theft, etc).</p>
+
+                <p class="disclaimer-point"><strong>7. Violent Crime/Homicides:</strong> A violent action that
+                    leads to the death or injury of a person or in
+                    which lethal weapons. The incidents that are associated with murder, honour Killing, mob
+                    violence,
+                    armed robbery, clashes among gangs, etc.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-left">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                    <h3>Disclaimer: The Print Media Review</h3>
+                </div>
+                <p>The Print Media Review Database (PMRD) identifies and codes events of political violence in
+                    Bangladesh
+                    from print media content analysis. The aim of the PMRD database is to capture to the best possible
+                    extent of as many instances and reliable information pertaining to political violence incidents in
+                    the country.
+                    The PMRD is managed by the Microgovernance Research Institute (MGR) at University of Dhaka, and
+                    covers
+                    political violence incidents for the period of 2014 – 2016.</p>
+
+
+                <p>Events have been coded from four different national printed newspapers: Daily Star, Inqilab, Ittefaq
+                    and
+                    Prothom Alo. They have been chosen for a combination of circulation, reputation, ideological
+                    position, network of
+                    correspondents and language. All newspapers have regional correspondents, often up to the Upazila,
+                    or Union level, enabling them to cover a wide range of local events. To be included in the database
+                    a coded event must be</p>
+                <p class="disclaimer-point"><strong>1) violent:</strong> resulting in at least one injured/
+                    death/raped/abducted/held hostage or in property
+                    destruction and</p>
+                <p class="disclaimer-point"><strong>2) explicitly political: </strong> involving members of at least one
+                    clearly delineated political group: political
+                    party and all its allied organizations, Islamist organization, or rebel group.</p>
+                <p>A violent event is coded as a single event if:</p>
+                <p class="disclaimer-point">1) It takes place on the same day</p>
+                <p class="disclaimer-point">2) It takes place at the same place,</p>
+                <p class="disclaimer-point"> 3) It involves the same actor (if only one actor is involved) or at least
+                    two of the same actors
+                    throughout.</p>
+
+                <p><strong><i>Coding, variables and post processing</i></strong></p>
+                Coding in the PMRD is based on a detailed codebook, listing the different variables, and codes to denote
+                specific places up to sub-districts, diverse actors, types of violence, range of violence trigger,
+                human impact, property destructions,, etc. The codebook aimed at minimizing interpretation of reports
+                by the data analysts. The DAs have been recruited from Dhaka University students focusing on their
+                capacity building.
+                <p>They have gone through several intensive training workshops, exercise session and piloting before
+                    they finally start the reading and entries. DAs are assigned a specific newspaper and a specific
+                    time
+                    period, rotating between newspapers after every three-month period.
+                    The PMRD is a compressive database covering diverse range of actors, violence categories,
+                    determinants,
+                    triggers and consequences. However, Bangladesh Peace Observatory (BPO) platform covers following
+                    political violence categories.</p>
+
+                <p class="disclaimer-point">1. Political clash/attack: Violent clashes/battle and attack in which actors
+                    from general political
+                    parties, affiliated organizations, identity groups and alliances are directly involved and define
+                    the
+                    fighting and violence. It covers both intra-party clashes and inter-party attacks.</p>
+
+
+                <p class="disclaimer-point">2. Violent extremism (Islamist): Political violence perpetrated by the
+                    Islamists radical outfits around
+                    the country with political and religious aims. It includes incidences of attack and killing online
+                    activists, bloggers, foreigners, atheists, and sufists around the country.</p>
+
+                <p class="disclaimer-point">3. Violent extremism (Rebel): Political violence perpetrated by ultra-left
+                    ideological groups and ethnic
+                    rebels around the country.</p>
+
+                <p class="disclaimer-point">4.Electoral violence: Political violence between different actors related to
+                    elections at local,
+                    regional and national levels. It includes elections as the direct trigger or direct cause of the
+                    violent event.</p>
+
+                <p class="disclaimer-point">5. Hartal violence: Political violence incidences as part of a clearly
+                    mentioned hartal day(s).</p>
+
+                <p class="disclaimer-point">6. Destruction of property (Excluding arson attack): Destruction of
+                    property, including moveable goods,
+                    excluding burning.</p>
+
+                <p class="disclaimer-point">7. Arson attack: Destruction of property, including moveable goods by
+                    burning/throwing petrol bomb.</p>
+
+                <p class="disclaimer-point">8. High and low impact bombing: Setting off an explosive device (e.g.
+                    cocktail, car bomb) causing
+                    or aimed to cause small to large-scale destruction or casualties.</p>
+
+                <p class="disclaimer-point">9. Abduction, kidnap, hostage and rape: Kidnapping, abduction and hostage
+                    indicates that the captive is
+                    held at the same or unknown locations. Rape is conducting any sexual activities against at least one
+                    of
+                    the participants’ will.</p>
+
+                <p class="disclaimer-point">10. Other types of political violence: This category includes incidences in
+                    which actors or perpetrators
+                    are unspecified or not mentioned.</p>
+
+                <p>Using newspapers as a data source is potentially controversial. Yet there are limited other data
+                    sources
+                    providing wide ranging coverage of events. While watchdog institutions like Freedom House are
+                    critical
+                    of press freedom in Bangladesh, they also state that print media is given relatively more scope to
+                    publish
+                    freely (Freedom House 2015). A number of caveats and safeguards apply to accurately interpret the
+                    results under PMRD database.</p>
+                <p>First, quite narrow definition of political violence was taken, focusing on ‘organisational’
+                    violence.
+                    This is to minimize the interpretation of what connotes ‘political’.</p>
+                <p>Second, our estimates for lethal casualties and wounded are expected to be conservative. The coding
+                    protocol</p>
+                specifies that, in the case of uncertainty, the lowest possible number should be recorded.
+                <p>Third, we have a regional bias by using the Dhaka editions of our four newspapers. Three of the
+                    newspapers have regional editions that include additional news about a specific region.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
