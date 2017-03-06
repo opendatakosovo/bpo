@@ -4,7 +4,6 @@ var global_district = '';
 var global_upazila = '';
 
 $(document).ready(function () {
-
     // Get selected violence type dropdown
     buildViolenceTypeDropDown();
 

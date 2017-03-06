@@ -1,11 +1,27 @@
 .intro-lead-in {
     font-family: "Playfair Display";
-    font-size: 45px;
+    font-size: 60px;
     font-weight: bold;
     text-align: center;
     /*line-height: 85px;*/
     color: #FFFFFF;
-    padding-top: 40%;
+    padding-top: 200px;
+}
+
+@media (max-width:400px) {
+    .intro-lead-in {
+        font-size: 45px;
+    }
+}
+@media (min-width:401px) and (max-width:768px){
+    .intro-lead-in {
+        font-size: 55px;
+    }
+}
+@media (min-width:768px) and (max-width:975px){
+    .social-container {
+        margin-left: -25px;
+    }
 }
 
 header .intro-text .intro-heading {
@@ -130,15 +146,15 @@ header .intro-text .intro-heading {
     padding: 20px;
     text-align: center;
 }
-
+/* TODO:  ask arta if this is corretxt */
 .enter-landing {
-    color: #FFAA12 !important;
+    color: #fff !important;
     background-color: #007CA4;
     border: 2px solid #FFAA12 !important;
     border-style: solid;
     font-family: Lato;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     border-radius: 4px;
     font-size: 20px;
     padding: 17px;
@@ -157,11 +173,10 @@ header .intro-text .intro-heading {
     border-color: #FDA200;
 }
 
+/* TODO: ask arta if it should be like this according to wireframe */
 hr {
     box-sizing: border-box;
-    width: 348px;
-    height: 3px;
-    border: 6px solid #FFAA12;
+    border: 3px solid #FFAA12;
 }
 
 .header {
@@ -241,7 +256,7 @@ hr {
     text-align: center;
     line-height: 20px;
     color: #FFFFFF;
-    padding-bottom: 5%;
+    padding-bottom: 200px;
 }
 
 .in-partnership-title {
