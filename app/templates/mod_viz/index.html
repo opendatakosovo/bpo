@@ -1,5 +1,4 @@
-{% extends 'layout.html' %}
-{% block body %}
+{% extends 'layout.html' %} {% block body %}
 <style>
     .intro-text {
         display: none;
@@ -31,8 +30,7 @@
             <div class="col-md-4 col-xs-12">
                 <div class="col-md-12">
                     <br/>
-                    <input name='division-select' class="form-control update-chart empty" id="division-select" value=''
-                           placeholder="Search insights for divisions, districts, upazilas">
+                    <input name='division-select' class="form-control update-chart empty" id="division-select" value='' placeholder="Search insights for divisions, districts, upazilas">
                     <span class="fa fa-search search-icon"></span>
                 </div>
             </div>
@@ -58,11 +56,11 @@
             <div class="col-md-4 col-xs-12">
                 <div class="col-md-6">
                     <label class="filter-label" for="dt1">Start date:</label>
-                    <input id="dt1" class="form-control update-chart"/><br/>
+                    <input id="dt1" class="form-control update-chart" /><br/>
                 </div>
                 <div class="col-md-6">
                     <label class="filter-label" for="dt1">End date:</label>
-                    <input id="dt2" class="form-control update-chart"/>
+                    <input id="dt2" class="form-control update-chart" />
                 </div>
             </div>
         </div>
@@ -93,21 +91,18 @@
                 <div class="division-overview-tab">
                     <div class="row rank-stats">
                         <div class="col-md-4">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                            <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}" />
                             <span class="division-death-rank-nth">n/a</span>
                             <!--<img class="viz-icon-arrow"-->
                             <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
                         </div>
                         <div class="col-md-4">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                            <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}" />
                             <span class="division-injury-rank-nth">n/a</span>
                             <!--<img class="viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>-->
                         </div>
                         <div class="col-md-4">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                            <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}" />
                             <span class="division-property-rank-nth">n/a</span>
                             <!--<img class="viz-icon-arrow"-->
                             <!--src="{{ url_for('static', filename='assets/down_arrow.png') }}"/>-->
@@ -121,34 +116,23 @@
                 <div class="rank-text">
                     <div class='rank-text-row'>
                         <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                            <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}" />
                         </div>
-                        <span class="division-desc-death-rank-name"></span> ranked <span
-                            class="division-desc-death-rank"></span> in
-                        deaths with <span class="division-desc-death-rank-total"></span> deaths.
+                        <span class="division-desc-death-rank-name"></span> ranked <span class="division-desc-death-rank"></span> in deaths with <span class="division-desc-death-rank-total"></span> deaths.
                     </div>
                     <br/>
                     <div class='rank-text-row'>
                         <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                            <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}" />
                         </div>
-                        <span class="division-desc-injury-rank-name"></span> ranked <span
-                            class="division-desc-injury-rank"></span> in
-                        injuries with <span
-                            class="division-desc-injury-rank-total"></span> injuries.
+                        <span class="division-desc-injury-rank-name"></span> ranked <span class="division-desc-injury-rank"></span> in injuries with <span class="division-desc-injury-rank-total"></span> injuries.
                     </div>
                     <br/>
                     <div class='rank-text-row'>
                         <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                            <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}" />
                         </div>
-                        <span class="division-desc-property-rank-name"></span> ranked <span
-                            class="division-desc-property-rank"></span> in
-                        property damage with <span
-                            class="division-desc-property-rank-total"></span> property damages.
+                        <span class="division-desc-property-rank-name"></span> ranked <span class="division-desc-property-rank"></span> in property damage with <span class="division-desc-property-rank-total"></span> property damages.
                         <i class="fa fa-caret-up rotate collapse-division-stats" aria-hidden="true"></i>
                     </div>
                     <br/>
@@ -163,12 +147,11 @@
             <div id="national-accordion">
                 <div class="division-overview-tab">
                     <div class="icon-container">
-                        <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                        <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}" />
                     </div>
 
                     <span class="rate-1"></span><span class="rate-text"></span> <span class="rate-1-text">has the highest fatality rate. </span>
-                    <img class="rate-1-arrow viz-icon-arrow"
-                         src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <img class="rate-1-arrow viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}" />
 
                     <span class="caret"></span>
                 </div>
@@ -181,11 +164,10 @@
                 </div>
                 <div class="division-overview-tab">
                     <div class="icon-container">
-                        <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                        <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}" />
                     </div>
                     <span class="rate-2"></span><span class="rate-text"> </span> <span class="rate-2-text">has the highest injury count.</span>
-                    <img class="rate-2-arrow viz-icon-arrow"
-                         src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <img class="rate-2-arrow viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}" />
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -197,11 +179,10 @@
                 </div>
                 <div class="division-overview-tab">
                     <div class="icon-container">
-                        <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                        <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}" />
                     </div>
                     <span class="rate-3"></span><span class="rate-text"></span> <span class="rate-3-text">has the highest property damage count.</span>
-                    <img class="rate-3-arrow viz-icon-arrow"
-                         src="{{ url_for('static', filename='assets/up_arrow.png') }}"/>
+                    <img class="rate-3-arrow viz-icon-arrow" src="{{ url_for('static', filename='assets/up_arrow.png') }}" />
                     <span class="caret"></span>
                 </div>
                 <div>
@@ -215,7 +196,6 @@
         </div>
 
         <script>
-
         </script>
         <div id="top" class="col-md-12 col-sm-12 col-xs-12">
             <div class="col-md-6 top-3">
@@ -328,7 +308,7 @@
 <script type="text/javascript" src="{{ url_for('static', filename='json/locations.js') }}"></script>
 
 <div id='loadingmessage'>
-    <img src='{{ url_for("static", filename="assets/loading.gif")}}'/>
+    <img src='{{ url_for("static", filename="assets/loading.gif")}}' />
 </div>
 
 <!-- Modal -->
@@ -343,9 +323,7 @@
             <div class="modal-body">
                 <div class="modal-section main-modal-section">
                     <div class='rank-text-row'>
-                        <span class="first-violence-place"></span> ranked <span> 1st </span> in <span
-                            class="location-type-in"></span> in
-                        violent crimes with <span class="division-desc-death-rank-total"></span> incidents.
+                        <span class="first-violence-place"></span> ranked <span> 1st </span> in <span class="location-type-in"></span> in violent crimes with <span class="division-desc-death-rank-total"></span> incidents.
                     </div>
                     <div id="main-modal-chart">
 
@@ -355,13 +333,10 @@
                 <div class="modal-section other-modal-section">
                     <div class='rank-text-row'>
                         <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/deaths_black_big.png') }}"/>
+                            <img class="viz-icon" src="{{ url_for('static', filename='assets/deaths_black_big.png') }}" />
                         </div>
                         <span class="first-modal-chart">
-                            <span class="location-type"></span> ranked <span
-                                class="division-desc-death-rank"></span> in <span class="location-type-in"></span>
-                             with <span class="division-desc-death-rank-total"></span> deaths.
+                            <span class="location-type"></span> ranked <span class="division-desc-death-rank"></span> in <span class="location-type-in"></span> with <span class="division-desc-death-rank-total"></span> deaths.
                         </span>
                     </div>
                     <div id="first-modal-chart">
@@ -371,14 +346,11 @@
                 <div class="modal-section  other-modal-section">
                     <div class='rank-text-row'>
                         <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/injury_black_big.png') }}"/>
+                            <img class="viz-icon" src="{{ url_for('static', filename='assets/injury_black_big.png') }}" />
                         </div>
                         <span class="second-modal-chart">
-                            <span class="location-type"></span> ranked <span
-                                class="division-desc-injury-rank"></span> in <span class="location-type-in"></span>
-                             with <span class="division-desc-injury-rank-total"></span> injuries.
-                            </span>
+                            <span class="location-type"></span> ranked <span class="division-desc-injury-rank"></span> in <span class="location-type-in"></span> with <span class="division-desc-injury-rank-total"></span> injuries.
+                        </span>
                     </div>
                     <div id="second-modal-chart">
 
@@ -388,14 +360,11 @@
                 <div class="modal-section  other-modal-section">
                     <div class='rank-text-row'>
                         <div class="icon-container">
-                            <img class="viz-icon"
-                                 src="{{ url_for('static', filename='assets/property_black_big.png') }}"/>
+                            <img class="viz-icon" src="{{ url_for('static', filename='assets/property_black_big.png') }}" />
                         </div>
                         <span class="third-modal-chart">
-                            <span class="location-type"></span> ranked <span class="division-desc-property-rank"></span> in <span
-                                class="location-type-in"></span>
-                            with <span
-                                class="division-desc-property-rank-total"></span> property damages.
+                            <span class="location-type"></span> ranked <span class="division-desc-property-rank"></span> in <span class="location-type-in"></span> with <span class="division-desc-property-rank-total"></span> property
+                        damages.
                         </span>
                     </div>
                     <div id="third-modal-chart">
@@ -403,20 +372,17 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <div class="row" >
-                    <div class="col-md-4 col-md-offset-2" style="font-size: 18px; color:white; padding-top:5px;" >
-                        <span >Download:</span>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-2" style="font-size: 18px; color:white; padding-top:5px;">
+                        <span>Download:</span>
                     </div>
                     <div class="col-md-2">
-                        <button type="button" id="Story_Frame_PDF_Download" class="btn download-close"><i
-                                class="fa fa-file-pdf-o download-icon" aria-hidden="true"></i>PDF
+                        <button type="button" id="Story_Frame_PDF_Download" class="btn download-close"><i class="fa fa-file-pdf-o download-icon" aria-hidden="true"></i>PDF
                         </button>
                     </div>
                     <div class="col-md-2 col-md-offset-1">
-                        <button type="button" id="Story_Frame_Raw_Download" class="btn download-close"
-                                data-dismiss="modal">
-                            <i
-                                    class="fa fa-file-pdf-o download-icon" aria-hidden="true"></i>Raw Data
+                        <button type="button" id="Story_Frame_Raw_Download" class="btn download-close" data-dismiss="modal">
+                            <iclass="fa fa-file-pdf-o download-icon" aria-hidden="true"></i>Raw Data
                         </button>
                     </div>
                 </div>
