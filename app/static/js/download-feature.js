@@ -365,9 +365,6 @@ Within these domains, the BPO presents the following incident categories under t
             $('.other-modal-section').css('display', '');
         }
         general_stats = [];
-        // general_stats_deaths = [];
-        // general_stats_injuries = [];
-        // general_stats_property_damages = [];
 
         general_categories = [];
 
@@ -383,9 +380,6 @@ Within these domains, the BPO presents the following incident categories under t
         if (allData['rank-stats'].length > 0) {
             $.each(allData['rank-stats'], function (index, item) {
                 general_stats.push(item.incidents);
-                // general_stats_deaths.push(item.deaths)
-                // general_stats_injuries.push(item.injuries)
-                // general_stats_property_damages.push(item.property)
                 general_categories.push(item.name);
             });
         }
@@ -414,9 +408,6 @@ Within these domains, the BPO presents the following incident categories under t
                 $.each(Highcharts.charts[item].series, function (index) {
                     var name = Highcharts.charts[item].series[index].name;
                     Highcharts.charts[item].series[0].setData(general_stats);
-                    // Highcharts.charts[item].series[1].setData(general_stats_deaths);
-                    // Highcharts.charts[item].series[2].setData(general_stats_injuries);
-                    // Highcharts.charts[item].series[3].setData(general_stats_property_damages);
                     Highcharts.charts[item].xAxis[0].setCategories(general_categories);
                 });
                 Highcharts.charts[item].redraw();
@@ -444,271 +435,281 @@ Within these domains, the BPO presents the following incident categories under t
             }
         });
 
-        $('#Story_Frame_Aggregated_Data_Download').click(function () {
-            var csv_data = [];
-            var csv_data1 = [];
-            var csv_data2 = [];
-            var csv_data3 = [];
 
-            $.each(Highcharts.charts, function (item) {
-                if (Highcharts.charts[item].renderTo.id == 'main-modal-chart') {
-                    csv_data = Highcharts.charts[item].getCSV().split(/\r?\n/);
-                } else if (Highcharts.charts[item].renderTo.id == 'first-modal-chart') {
-                    csv_data1 = Highcharts.charts[item].getCSV().split(/\r?\n/);
+    });
+    $('#Story_Frame_Aggregated_Data_Download').click(function () {
+        var csv_data = [];
+        var csv_data1 = [];
+        var csv_data2 = [];
+        var csv_data3 = [];
 
-                } else if (Highcharts.charts[item].renderTo.id == 'second-modal-chart') {
-                    csv_data2 = Highcharts.charts[item].getCSV().split(/\r?\n/);
-                } else if (Highcharts.charts[item].renderTo.id == 'third-modal-chart') {
-                    csv_data3 = Highcharts.charts[item].getCSV().split(/\r?\n/);
-                }
-            });
-            var data_array = [];
-            $.each(csv_data1, function (index, item) {
-                if (index == 0) {
-                    var line = item.split(',');
-                    var name = "Location";
-                    line.unshift(name);
-                    data_array.push(line);
-                } else {
-                    var line = item.split(',');
-                    var name = getName();
-                    line.unshift(name);
-                    data_array.push(line);
-                }
+        $.each(Highcharts.charts, function (item) {
+            if (Highcharts.charts[item].renderTo.id == 'main-modal-chart') {
+                csv_data = Highcharts.charts[item].getCSV().split(/\r?\n/);
+            } else if (Highcharts.charts[item].renderTo.id == 'first-modal-chart') {
+                csv_data1 = Highcharts.charts[item].getCSV().split(/\r?\n/);
 
-            })
-
-
-            $.each(csv_data2, function (index, item) {
-                var line = item.split(',');
-                data_array[index].push(line[1])
-
-            })
-
-            $.each(csv_data3, function (index, item) {
-                var line = item.split(',');
-                data_array[index].push(line[1] + "\r")
-            })
-            data_array = data_array.map(function (d) {
-                return d.join();
-            }).join('\n');
-            download('Story_Frame_Data.csv', data_array);
-        });
-
-        $('#Story_Frame_Raw_Download').click(function () {
-            var data_array = Papa.unparse({
-                fields: ['id', 'division', 'district', 'upazila','date', 'death','incidents',  'property', 'injuries','description','lat','lon','source'],
-                data: allData['raw-incident-stats'],
-                quotes: false,
-                quoteChar: '"',
-                delimiter: ",",
-                header: true,
-                newline: "\r\n"
-            });
-            download('Story_Frame_Data.csv', data_array);
-        });
-
-        $('#Story_Frame_PDF_Download').click(function () {
-            var today = new Date();
-            var month = new Array();
-            month[0] = "January";
-            month[1] = "February";
-            month[2] = "March";
-            month[3] = "April";
-            month[4] = "May";
-            month[5] = "June";
-            month[6] = "July";
-            month[7] = "August";
-            month[8] = "September";
-            month[9] = "October";
-            month[10] = "November";
-            month[11] = "December";
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1; //January is 0!
-            var yyyy = today.getFullYear();
-            var date = month[mm - 1] + " " + dd + ", " + yyyy;
-            // Generate PDF
-            options = {
-                orientation: "p",
-                unit: "pt",
-                format: "a4",
-                lineHeight: 1.5
-            };
-            var dataset = $('#data-source-select').val();
-
-            var lMargin = 50; //left margin in mm
-            var rMargin = 0; //right margin in mm
-            var pdfInMM = 660;  // width of A4 in mm
-            var doc = new jsPDF(options);
-            // Optional - set properties on the document
-            doc.setProperties({
-                title: 'BPO Analytics',
-                subject: 'BPO Analytics',
-                author: '',
-                keywords: '',
-                creator: 'Partin Imeri'
-            });
-            var x = 40;
-
-
-            var document_width = doc.internal.pageSize.width;
-            var document_height = doc.internal.pageSize.height;
-            doc.addFont("Roboto Slab", "Roboto Slab", "normal");
-            doc.setFont("Roboto Slab", 'normal');
-            doc.setLineWidth(document_width);
-
-            if (dataset == 'idams') {
-                // Add disclaimer title (above the line)
-                doc.setFontSize(14);
-                var disclaimer_title = 'Disclaimer: The Online Media Review Database';
-                var disclaimerXOffset = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(disclaimer_title) * doc.internal.getFontSize() / 2);
-                doc.text(disclaimerXOffset, 50, disclaimer_title);
-            } else {
-                // Add disclaimer title (above the line)
-                doc.setFontSize(14);
-                var disclaimer_title = 'Disclaimer: The Print Media Review Database';
-                var disclaimerXOffset = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(disclaimer_title) * doc.internal.getFontSize() / 2);
-                doc.text(disclaimerXOffset, 50, disclaimer_title);
+            } else if (Highcharts.charts[item].renderTo.id == 'second-modal-chart') {
+                csv_data2 = Highcharts.charts[item].getCSV().split(/\r?\n/);
+            } else if (Highcharts.charts[item].renderTo.id == 'third-modal-chart') {
+                csv_data3 = Highcharts.charts[item].getCSV().split(/\r?\n/);
             }
-            // Add line
-            doc.setLineWidth(0.5);
-            doc.line(50, 60, document_width - 50, 60);
+        });
+        var data_array = [];
+        $.each(csv_data1, function (index, item) {
+            if (index == 0) {
+                var line = item.split(',');
+                var name = "Location";
+                line.unshift(name);
+                data_array.push(line);
+            } else {
+                var line = item.split(',');
+                var name = getName();
+                line.unshift(name);
+                data_array.push(line);
+            }
 
-            // Add document title
-            doc.setFontSize(22);
-            var document_title = 'The Bangladesh Peace Observatory';
-            var titleOffset = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(document_title) * doc.internal.getFontSize() / 2);
-            doc.text(titleOffset, 120, document_title);
+        })
 
-            // Add date
+
+        $.each(csv_data2, function (index, item) {
+            var line = item.split(',');
+            data_array[index].push(line[1])
+
+        })
+
+        $.each(csv_data3, function (index, item) {
+            var line = item.split(',');
+            data_array[index].push(line[1] + "\r")
+        })
+        data_array = data_array.map(function (d) {
+            return d.join();
+        }).join('\n');
+        // Get date
+        var date_1 = $('#dt1').val().split('/');
+        date_1 = date_1[1] + '-' + date_1[0] + '-' + date_1[2];
+        var date_2 = $('#dt2').val().split('/');
+        date_2 = date_2[1] + '-' + date_2[0] + '-' + date_2[2];
+        var date = (date_1 + '-' + date_2);
+        download('Aggregated_Data_Data-'+date + '.csv', data_array);
+    });
+    $('#Story_Frame_Raw_Download').click(function () {
+        var data_array = Papa.unparse({
+            fields: ['id', 'division', 'district', 'upazila', 'date', 'death', 'incidents', 'property', 'injuries', 'description', 'lat', 'lon', 'source'],
+            data: allData['raw-incident-stats'],
+            quotes: false,
+            quoteChar: '"',
+            delimiter: ",",
+            header: true,
+            newline: "\r\n"
+        });
+        var date_1 = $('#dt1').val().split('/');
+        date_1 = date_1[1] + '-' + date_1[0] + '-' + date_1[2];
+        var date_2 = $('#dt2').val().split('/');
+        date_2 = date_2[1] + '-' + date_2[0] + '-' + date_2[2];
+        var date = (date_1 + '-' + date_2);
+        download('Raw_Data-'+date + '.csv', data_array);
+    });
+    $('#Story_Frame_PDF_Download').click(function () {
+        var today = new Date();
+        var month = new Array();
+        month[0] = "January";
+        month[1] = "February";
+        month[2] = "March";
+        month[3] = "April";
+        month[4] = "May";
+        month[5] = "June";
+        month[6] = "July";
+        month[7] = "August";
+        month[8] = "September";
+        month[9] = "October";
+        month[10] = "November";
+        month[11] = "December";
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        var date = month[mm - 1] + " " + dd + ", " + yyyy;
+        // Generate PDF
+        options = {
+            orientation: "p",
+            unit: "pt",
+            format: "a4",
+            lineHeight: 1.5
+        };
+        var dataset = $('#data-source-select').val();
+
+        var lMargin = 50; //left margin in mm
+        var rMargin = 0; //right margin in mm
+        var pdfInMM = 660;  // width of A4 in mm
+        var doc = new jsPDF(options);
+        // Optional - set properties on the document
+        doc.setProperties({
+            title: 'BPO Analytics',
+            subject: 'BPO Analytics',
+            author: '',
+            keywords: '',
+            creator: 'Partin Imeri'
+        });
+        var x = 40;
+
+
+        var document_width = doc.internal.pageSize.width;
+        var document_height = doc.internal.pageSize.height;
+        doc.addFont("Roboto Slab", "Roboto Slab", "normal");
+        doc.setFont("Roboto Slab", 'normal');
+        doc.setLineWidth(document_width);
+
+        if (dataset == 'idams') {
+            // Add disclaimer title (above the line)
             doc.setFontSize(14);
-            var datexOffset = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(date) * doc.internal.getFontSize() / 2);
-            doc.text(datexOffset, 170, date);
+            var disclaimer_title = 'Disclaimer: The Online Media Review Database';
+            var disclaimerXOffset = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(disclaimer_title) * doc.internal.getFontSize() / 2);
+            doc.text(disclaimerXOffset, 50, disclaimer_title);
+        } else {
+            // Add disclaimer title (above the line)
+            doc.setFontSize(14);
+            var disclaimer_title = 'Disclaimer: The Print Media Review Database';
+            var disclaimerXOffset = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(disclaimer_title) * doc.internal.getFontSize() / 2);
+            doc.text(disclaimerXOffset, 50, disclaimer_title);
+        }
+        // Add line
+        doc.setLineWidth(0.5);
+        doc.line(50, 60, document_width - 50, 60);
 
-            if (dataset == 'mgr') {
-                // Add MGR Disclaimer text
-                var lines = doc.splitTextToSize(mgr_disclaimer, (pdfInMM - lMargin - rMargin));
-                doc.setFontSize(11);
-                doc.text(lMargin, 190, lines);
-                doc.addPage();
+        // Add document title
+        doc.setFontSize(22);
+        var document_title = 'The Bangladesh Peace Observatory';
+        var titleOffset = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(document_title) * doc.internal.getFontSize() / 2);
+        doc.text(titleOffset, 120, document_title);
 
-                // Add MGR second page.
-                var lines = doc.splitTextToSize(mgr_disclaimer_page_2, (pdfInMM - lMargin - rMargin));
-                doc.setFontSize(11);
-                doc.text(lMargin, 50, lines);
-                doc.addPage();
-            } else {
-                // Add IDAMS Disclaimer text
-                var lines = doc.splitTextToSize(idams_disclaimer, (pdfInMM - lMargin - rMargin));
-                doc.setFontSize(11);
-                doc.text(lMargin, 190, lines);
-                doc.addPage();
+        // Add date
+        doc.setFontSize(14);
+        var datexOffset = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(date) * doc.internal.getFontSize() / 2);
+        doc.text(datexOffset, 170, date);
 
-                var lines = doc.splitTextToSize(idams_disclaimer_page_2, (pdfInMM - lMargin - rMargin));
-                doc.setFontSize(11);
-                doc.text(lMargin, 50, lines);
-                doc.addPage();
-            }
-
-
-            $.each(Highcharts.charts, function (item) {
-
-                if (Highcharts.charts[item] != undefined && Highcharts.charts[item].series[0].data.length > 0) {
-                    var id = Highcharts.charts[item].renderTo.id;
-                    var imgData = convertSVGtoPDF(Highcharts.charts[item].getSVG(), id, document_width);
-
-                    var width = $('#' + id).children().children()[0].getBBox().width;
-                    var height = $('#' + id).children().children()[0].getBBox().height;
-
-                    if (id == 'line-chart-container') {
-                        doc.addImage(imgData, 'JPEG', 80, 90, document_width , height - 50);
-                        doc.text(document_width / 6, document_height - 50, 'Description: ' + Highcharts.charts[item].options.chart.description);
-
-                    } else if (id != 'third-section-first-chart' && id != 'third-section-second-chart' && id != 'third-section-third-chart') {
-                        doc.addImage(imgData, 'JPEG', 80, 90, width - 90, height - 50);
-                        doc.text(document_width / 6, document_height - 50, 'Description: ' + Highcharts.charts[item].options.chart.description);
-                        doc.addPage();
-                    }
-
-                    if ($('.' + id).length > 0) {
-                        var text = $('.' + id).text().trim().replace(/ {2,}/, ' ').replace('\n', ' ');
-                        doc.text(document_width / 5, 70, text);
-                    }
-
-                }
-
-            });
-            var data_array = Papa.unparse({
-                fields: ['division','district' , 'upazila', 'death','incidents',  'property', 'injuries'],
-                data: allData['raw-incident-stats'],
-                quotes: false,
-                quoteChar: '"',
-                delimiter: ",",
-                header: true,
-                newline: "\r\n"
-            });
-            console.log(data_array)
-            var data_table_array = data_array.split('\n');
-            var columns = data_table_array[0].split(',');
-            var rows = [];
-            $.each(data_table_array, function (index, item) {
-                if (index > 0) {
-                    rows.push(item.split(','));
-                }
-            })
+        if (dataset == 'mgr') {
+            // Add MGR Disclaimer text
+            var lines = doc.splitTextToSize(mgr_disclaimer, (pdfInMM - lMargin - rMargin));
+            doc.setFontSize(11);
+            doc.text(lMargin, 190, lines);
             doc.addPage();
-            doc.autoTable(columns, rows);
-            doc.save('BPO Analysis.pdf');
-        });
-        function convertSVGtoPDF(svg, id, document_width) {
-            var width = $('#' + id).children().children()[0].getBBox().width;
-            var height = $('#' + id).children().children()[0].getBBox().height;
-            // create canvas
-            var canvas = document.createElement("canvas");
-            if (height > 0) {
-                canvas.height = height - 50;
-            } else {
-                canvas.height = 180;
-            }
-            if (width > 0 || width > 1000) {
-                canvas.width = width + 100;
-            } else {
-                canvas.width = document_width + 50;
-            }
-            canvas.background = "#fff"
-            // make it base64
-            var svg64 = btoa(unescape(encodeURIComponent(svg)));
-            var b64Start = 'data:image/svg+xml;base64,';
 
-            // prepend a "header"
-            var image64 = b64Start + svg64;
-            var img = new Image();
-            img.src = image64;
-            img.style = "background-color:white;"
+            // Add MGR second page.
+            var lines = doc.splitTextToSize(mgr_disclaimer_page_2, (pdfInMM - lMargin - rMargin));
+            doc.setFontSize(11);
+            doc.text(lMargin, 50, lines);
+            doc.addPage();
+        } else {
+            // Add IDAMS Disclaimer text
+            var lines = doc.splitTextToSize(idams_disclaimer, (pdfInMM - lMargin - rMargin));
+            doc.setFontSize(11);
+            doc.text(lMargin, 190, lines);
+            doc.addPage();
 
-            // draw the image onto the canvas
-            var ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-            // change non-opaque pixels to white
-            var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            var data = imgData.data;
-            for (var i = 0; i < data.length; i += 4) {
-                if (data[i + 3] < 255) {
-                    data[i] = 255;
-                    data[i + 1] = 255;
-                    data[i + 2] = 255;
-                    data[i + 3] = 255;
-                }
-            }
-            ctx.putImageData(imgData, 0, 0);
-
-            var imgData_ = canvas.toDataURL('image/jpeg');
-            return imgData_;
-
+            var lines = doc.splitTextToSize(idams_disclaimer_page_2, (pdfInMM - lMargin - rMargin));
+            doc.setFontSize(11);
+            doc.text(lMargin, 50, lines);
+            doc.addPage();
         }
 
 
+        $.each(Highcharts.charts, function (item) {
+
+            if (Highcharts.charts[item] != undefined && Highcharts.charts[item].series[0].data.length > 0) {
+                var id = Highcharts.charts[item].renderTo.id;
+                var imgData = convertSVGtoPDF(Highcharts.charts[item].getSVG(), id, document_width);
+
+                var width = $('#' + id).children().children()[0].getBBox().width;
+                var height = $('#' + id).children().children()[0].getBBox().height;
+
+                if (id == 'line-chart-container') {
+                    doc.addImage(imgData, 'JPEG', 80, 90, document_width, height - 50);
+                    doc.text(document_width / 6, document_height - 50, 'Description: ' + Highcharts.charts[item].options.chart.description);
+
+                } else if (id != 'third-section-first-chart' && id != 'third-section-second-chart' && id != 'third-section-third-chart') {
+                    doc.addImage(imgData, 'JPEG', 80, 90, width - 90, height - 50);
+                    doc.text(document_width / 6, document_height - 50, 'Description: ' + Highcharts.charts[item].options.chart.description);
+                    doc.addPage();
+                }
+
+                if ($('.' + id).length > 0) {
+                    var text = $('.' + id).text().trim().replace(/ {2,}/, ' ').replace('\n', ' ');
+                    doc.text(document_width / 5, 70, text);
+                }
+
+            }
+
+        });
+        var data_array = Papa.unparse({
+            fields: ['division', 'district', 'upazila', 'death', 'incidents', 'property', 'injuries'],
+            data: allData['raw-incident-stats'],
+            quotes: false,
+            quoteChar: '"',
+            delimiter: ",",
+            header: true,
+            newline: "\r\n"
+        });
+        var data_table_array = data_array.split('\n');
+        var columns = data_table_array[0].split(',');
+        var rows = [];
+        $.each(data_table_array, function (index, item) {
+            if (index > 0) {
+                rows.push(item.split(','));
+            }
+        })
+        doc.addPage();
+        doc.autoTable(columns, rows);
+        var date_1 = $('#dt1').val().split('/');
+        date_1 = date_1[1] + '-' + date_1[0] + '-' + date_1[2];
+        var date_2 = $('#dt2').val().split('/');
+        date_2 = date_2[1] + '-' + date_2[0] + '-' + date_2[2];
+        var date = (date_1 + '-' + date_2);
+        doc.save('BPO Analysis - '+date+'.pdf');
     });
-
-
 });
+function convertSVGtoPDF(svg, id, document_width) {
+    var width = $('#' + id).children().children()[0].getBBox().width;
+    var height = $('#' + id).children().children()[0].getBBox().height;
+    // create canvas
+    var canvas = document.createElement("canvas");
+    if (height > 0) {
+        canvas.height = height - 50;
+    } else {
+        canvas.height = 180;
+    }
+    if (width > 0 || width > 1000) {
+        canvas.width = width + 100;
+    } else {
+        canvas.width = document_width + 50;
+    }
+    canvas.background = "#fff"
+    // make it base64
+    var svg64 = btoa(unescape(encodeURIComponent(svg)));
+    var b64Start = 'data:image/svg+xml;base64,';
+
+    // prepend a "header"
+    var image64 = b64Start + svg64;
+    var img = new Image();
+    img.src = image64;
+    img.style = "background-color:white;"
+
+    // draw the image onto the canvas
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    // change non-opaque pixels to white
+    var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    var data = imgData.data;
+    for (var i = 0; i < data.length; i += 4) {
+        if (data[i + 3] < 255) {
+            data[i] = 255;
+            data[i + 1] = 255;
+            data[i + 2] = 255;
+            data[i + 3] = 255;
+        }
+    }
+    ctx.putImageData(imgData, 0, 0);
+
+    var imgData_ = canvas.toDataURL('image/jpeg');
+    return imgData_;
+
+}
