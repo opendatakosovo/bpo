@@ -437,62 +437,6 @@ Within these domains, the BPO presents the following incident categories under t
 
 
     });
-    $('#Story_Frame_Aggregated_Data_Download').click(function () {
-        var csv_data = [];
-        var csv_data1 = [];
-        var csv_data2 = [];
-        var csv_data3 = [];
-
-        $.each(Highcharts.charts, function (item) {
-            if (Highcharts.charts[item].renderTo.id == 'main-modal-chart') {
-                csv_data = Highcharts.charts[item].getCSV().split(/\r?\n/);
-            } else if (Highcharts.charts[item].renderTo.id == 'first-modal-chart') {
-                csv_data1 = Highcharts.charts[item].getCSV().split(/\r?\n/);
-
-            } else if (Highcharts.charts[item].renderTo.id == 'second-modal-chart') {
-                csv_data2 = Highcharts.charts[item].getCSV().split(/\r?\n/);
-            } else if (Highcharts.charts[item].renderTo.id == 'third-modal-chart') {
-                csv_data3 = Highcharts.charts[item].getCSV().split(/\r?\n/);
-            }
-        });
-        var data_array = [];
-        $.each(csv_data1, function (index, item) {
-            if (index == 0) {
-                var line = item.split(',');
-                var name = "Location";
-                line.unshift(name);
-                data_array.push(line);
-            } else {
-                var line = item.split(',');
-                var name = getName();
-                line.unshift(name);
-                data_array.push(line);
-            }
-
-        })
-
-
-        $.each(csv_data2, function (index, item) {
-            var line = item.split(',');
-            data_array[index].push(line[1])
-
-        })
-
-        $.each(csv_data3, function (index, item) {
-            var line = item.split(',');
-            data_array[index].push(line[1] + "\r")
-        })
-        data_array = data_array.map(function (d) {
-            return d.join();
-        }).join('\n');
-        // Get date
-        var date_1 = $('#dt1').val().split('/');
-        date_1 = date_1[1] + '-' + date_1[0] + '-' + date_1[2];
-        var date_2 = $('#dt2').val().split('/');
-        date_2 = date_2[1] + '-' + date_2[0] + '-' + date_2[2];
-        var date = (date_1 + '-' + date_2);
-        download('Aggregated_Data_Data-'+date + '.csv', data_array);
-    });
     $('#Story_Frame_Raw_Download').click(function () {
         var data_array = Papa.unparse({
             fields: ['id', 'division', 'district', 'upazila', 'date', 'death', 'incidents', 'property', 'injuries', 'description', 'lat', 'lon', 'source'],

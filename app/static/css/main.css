@@ -858,6 +858,14 @@ p.disclaimer-point {
     float: right;
     padding-top: 21px;
 }
+i.fa.fa-home:before {
+    font-size: 24px;
+    color: #FFC84A !important;
+}
+i.fa.fa-exclamation-triangle:before{
+    font-size: 24px;
+    color: #FFC84A !important;
+}
 /*.ui-state-default, .ui-widget-content .ui-state-default{*/
 /*background-color: white !important;*/
 /*}*/
