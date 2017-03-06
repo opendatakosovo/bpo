@@ -438,15 +438,30 @@ Within these domains, the BPO presents the following incident categories under t
 
     });
     $('#Story_Frame_Raw_Download').click(function () {
-        var data_array = Papa.unparse({
-            fields: ['id', 'division', 'district', 'upazila', 'date', 'death', 'incidents', 'property', 'injuries', 'description', 'lat', 'lon', 'source'],
-            data: allData['raw-incident-stats'],
-            quotes: false,
-            quoteChar: '"',
-            delimiter: ",",
-            header: true,
-            newline: "\r\n"
-        });
+        var data_array = undefined;
+        var dataset = $('#data-source-select').val();
+        if(dataset == 'mgr'){
+            data_array = Papa.unparse({
+                fields: ['division', 'district', 'upazila', 'date', 'death', 'incidents', 'property', 'injuries'],
+                data: allData['raw-incident-stats'],
+                quotes: false,
+                quoteChar: '"',
+                delimiter: ",",
+                header: true,
+                newline: "\r\n"
+            });
+        }else{
+            data_array = Papa.unparse({
+                fields: ['division', 'district', 'upazila', 'date', 'death', 'incidents', 'property', 'injuries', 'description', 'lat', 'lon', 'source'],
+                data: allData['raw-incident-stats'],
+                quotes: false,
+                quoteChar: '"',
+                delimiter: ",",
+                header: true,
+                newline: "\r\n"
+            });
+        }
+
         var date_1 = $('#dt1').val().split('/');
         date_1 = date_1[1] + '-' + date_1[0] + '-' + date_1[2];
         var date_2 = $('#dt2').val().split('/');

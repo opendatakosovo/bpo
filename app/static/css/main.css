@@ -869,6 +869,8 @@ i.fa.fa-exclamation-triangle:before{
     font-size: 24px;
     color: #FFC84A !important;
 }
-/*.ui-state-default, .ui-widget-content .ui-state-default{*/
-/*background-color: white !important;*/
-/*}*/
+.modal-header .close {
+    margin-top: -2px;
+    color: #FFC84A;
+    opacity:1;
+}
