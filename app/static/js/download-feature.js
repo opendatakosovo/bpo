@@ -440,7 +440,7 @@ Within these domains, the BPO presents the following incident categories under t
     $('#Story_Frame_Raw_Download').click(function () {
         var data_array = undefined;
         var dataset = $('#data-source-select').val();
-        if(dataset == 'mgr'){
+        if (dataset == 'mgr') {
             data_array = Papa.unparse({
                 fields: ['division', 'district', 'upazila', 'date', 'death', 'incidents', 'property', 'injuries'],
                 data: allData['raw-incident-stats'],
@@ -450,7 +450,7 @@ Within these domains, the BPO presents the following incident categories under t
                 header: true,
                 newline: "\r\n"
             });
-        }else{
+        } else {
             data_array = Papa.unparse({
                 fields: ['division', 'district', 'upazila', 'date', 'death', 'incidents', 'property', 'injuries', 'description', 'lat', 'lon', 'source'],
                 data: allData['raw-incident-stats'],
@@ -467,7 +467,7 @@ Within these domains, the BPO presents the following incident categories under t
         var date_2 = $('#dt2').val().split('/');
         date_2 = date_2[1] + '-' + date_2[0] + '-' + date_2[2];
         var date = (date_1 + '-' + date_2);
-        download('Raw_Data-'+date + '.csv', data_array);
+        download('Raw_Data-' + date + '.csv', data_array);
     });
     $('#Story_Frame_PDF_Download').click(function () {
         var today = new Date();
@@ -574,20 +574,40 @@ Within these domains, the BPO presents the following incident categories under t
 
         $.each(Highcharts.charts, function (item) {
 
-            if (Highcharts.charts[item] != undefined && Highcharts.charts[item].series[0].data.length > 0 && $('#'+Highcharts.charts[item].renderTo.id).parent().css('display') != 'none') {
-
+            if (Highcharts.charts[item] != undefined && Highcharts.charts[item].series[0].data.length > 0 && $('#' + Highcharts.charts[item].renderTo.id).parent().css('display') != 'none') {
+                document_width = doc.internal.pageSize.width;
+                document_height = doc.internal.pageSize.height;
                 var id = Highcharts.charts[item].renderTo.id;
-                var imgData = convertSVGtoPDF(Highcharts.charts[item].getSVG(), id, document_width);
-
+                var svg = Highcharts.charts[item].getSVG({
+                    chart: {
+                        width: 470,
+                        height: 700
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    labels: {
+                        enabled: false
+                    },
+                    rangeSelector: {
+                        enabled: false
+                    }
+                });
+                var imgData = convertSVGtoPDF(svg, id, document_height, document_width - 30);
                 var width = $('#' + id).children().children()[0].getBBox().width;
                 var height = $('#' + id).children().children()[0].getBBox().height;
 
+
                 if (id == 'line-chart-container') {
-                    doc.addImage(imgData, 'JPEG', 80, 90, document_width, height - 50);
+                    console.log("Document width:" + document_width);
+                    console.log("Document height:" + document_height);
+                    console.log("Image width:" + width);
+                    console.log("Image height:" + height);
+                    doc.addImage(imgData, 'JPEG', 80, 90, document_width - 50, document_height - 100);
                     doc.text(document_width / 6, document_height - 50, 'Description: ' + Highcharts.charts[item].options.chart.description);
 
                 } else if (id != 'third-section-first-chart' && id != 'third-section-second-chart' && id != 'third-section-third-chart') {
-                    doc.addImage(imgData, 'JPEG', 80, 90, width - 90, height - 50);
+                    doc.addImage(imgData, 'JPEG', 80, 90, document_width - 50, document_height - 50);
                     doc.text(document_width / 6, document_height - 50, 'Description: ' + Highcharts.charts[item].options.chart.description);
                     doc.addPage();
                 }
@@ -624,23 +644,21 @@ Within these domains, the BPO presents the following incident categories under t
         var date_2 = $('#dt2').val().split('/');
         date_2 = date_2[1] + '-' + date_2[0] + '-' + date_2[2];
         var date = (date_1 + '-' + date_2);
-        doc.save('BPO Analysis - '+date+'.pdf');
+        doc.save('BPO Analysis - ' + date + '.pdf');
     });
 });
-function convertSVGtoPDF(svg, id, document_width) {
-    // var width = $('#' + id).children().children()[0].getBBox().width;
-    // var height = $('#' + id).children().children()[0].getBBox().height;
-    var width = 500;
-    var height = 600;
+function convertSVGtoPDF(svg, id, document_height, document_width) {
+    var width = $('#' + id).children().children()[0].getBBox().width;
+    var height = $('#' + id).children().children()[0].getBBox().height;
     // create canvas
     var canvas = document.createElement("canvas");
     if (height > 0) {
-        canvas.height = height - 50;
+        canvas.height = document_height - 50;
     } else {
-        canvas.height = 180;
+        canvas.height = document_height;
     }
     if (width > 0 || width > 1000) {
-        canvas.width = width + 100;
+        canvas.width = document_width;
     } else {
         canvas.width = document_width + 50;
     }
