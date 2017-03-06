@@ -164,9 +164,19 @@ header .intro-text .intro-heading {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.advisory-board-row{
-    width: 100%;
+
+
+.advisory-imgs{
+    display: flex;
 }
+.advisory-imgs a{
+    margin:auto;
+}
+
+/* TODO: uncomment if necessa */
+/*.advisory-board-row{
+    width: 100%;
+}*/
 .btn-xl1:hover {
     color: white;
     background-color: #FDA200;
