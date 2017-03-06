@@ -854,7 +854,10 @@ p.disclaimer-point {
     padding: .2em 0;
     background-color: white !important;
 }
-
+.viz-title-menu-container {
+    float: right;
+    padding-top: 21px;
+}
 /*.ui-state-default, .ui-widget-content .ui-state-default{*/
 /*background-color: white !important;*/
 /*}*/

@@ -15,12 +15,13 @@
 
     <div class="col-md-12" id="filtering">
         <div class="row">
-            <div class="viz-title-container col-md-6 col-xs-9">
+            <div class="viz-title-container col-md-6 col-sm-12 col-xs-12">
                 <span class="viz-title">The Bangladesh Peace Observatory</span>
             </div>
-            <div class="col-md-3 col-xs-12 pull-right">
-                <a class="viz-title-about pull-right" href="{{ url_for('main.data_disclaimer') }}" >Data Disclaimer </a>
-                <a class="viz-title-about pull-right" href="{{ url_for('main.index') }}">Home</a>
+            <div class="col-md-4 col-sm-12 col-xs-12 text-right viz-title-menu-container">
+                <a class="viz-title-about" href="{{ url_for('main.index') }}">Home</a>
+                <span class="viz-title-about">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <a class="viz-title-about" href="{{ url_for('main.data_disclaimer') }}" >Data Disclaimer</a>
             </div>
         </div>
         <br/>
