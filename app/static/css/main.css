@@ -700,23 +700,23 @@ g.highcharts-legend-item.highcharts-line-series {
 
 @media (max-width:768px) {
     .human-economic-title{
-        height: 100px;
+        margin-bottom: 100px;
     }
     .reported-violence-title{
-        height: 100px;
+        margin-bottom: 100px;
     }
     .download-container{
         position: absolute;
         right: 15px;
-        top: 60px;
+        top: 110px;
     }
     .download-container-2{
         position: absolute;
         right: 30px;
-        top: 60px;
+        top: 120px;
     }
 }
-/* END Download Buttons */
+/* Download Buttons */
 
 
 
