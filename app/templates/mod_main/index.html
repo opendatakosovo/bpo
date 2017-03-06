@@ -1,6 +1,20 @@
 {% extends 'layout.html' %} {% block body %}
 <script>
     $(document).ready(function() {
+        //
+        // $(window).scroll(function () {
+        //     //if you hard code, then use console
+        //     //.log to determine when you want the
+        //     //nav bar to stick.
+        //     console.log($(window).scrollTop())
+        //   if ($(window).scrollTop() > 200) {
+        //     $('.intro-lead-in').animate({ "left": "-50px" }, "slow" );
+        //   }
+        //   if ($(window).scrollTop() < 201) {
+        //       $('.intro-lead-in').animate({ "left": "50px" }, "slow" );
+        //   }
+        // });
+
         // we're checking to see if the arrow is up or down, then adding or removing the "lift" class accordingly
         var arrowBounce = function() {
             var arrow = $(".arrow");
@@ -178,12 +192,12 @@
                     <img class="img-responsive" src="static/assets/logo_CGS.png" alt="Logo_CGS">
                 </a>
             </div>
-            <div class="col-md-2 col-sm-3 col-xs-3 advisory-imgs">
+            <div class="col-md-2 col-md-offset-1 col-sm-3 col-xs-3 advisory-imgs">
                 <a href="http://www.sehd.org/" target="_blank">
-                    <img class="img-responsive" src="static/assets/logo_SEHD.png" alt="Logo_SEHD" style="position: absolute;vertical-align: middle;padding-top: 10%;">
+                    <img class="img-responsive" src="static/assets/logo_SEHD.png" alt="Logo_SEHD" style="position: absolute;vertical-align: middle;padding-top: 10%;left:0px;">
                 </a>
             </div>
-            <div class="col-md-2 col-md-offset-2 col-sm-3 col-sm-offset-1 col-xs-3 advisory-imgs">
+            <div class="col-md-2 col-md-offset-1 col-sm-3 col-sm-offset-0 col-xs-3 advisory-imgs">
                 <a href="http://www.univdhaka.edu/" target="_blank">
                     <img class="img-responsive" src="static/assets/logo_DhakaUni.png" alt="logo_DhakaUni">
                 </a>
