@@ -124,8 +124,9 @@ Within these domains, the BPO presents the following incident categories under t
         chart: {
             type: 'bar',
             renderTo: "main-modal-chart",
-            height: 262,
-            width: 625,
+            margin: 0,
+            defaultSeriesType: 'areaspline',
+
             description: "Ranking of locations based on number of incidents."
         },
 
@@ -183,7 +184,7 @@ Within these domains, the BPO presents the following incident categories under t
             type: 'bar',
             renderTo: "first-modal-chart",
             height: 262,
-            width: 625,
+             width: 560,
             description: "Ranking of locations based on number of deaths."
         },
 
@@ -235,7 +236,7 @@ Within these domains, the BPO presents the following incident categories under t
             type: 'bar',
             renderTo: "second-modal-chart",
             height: 262,
-            width: 625,
+             width: 560,
             description: "Ranking of locations based on number of injuries."
         },
 
@@ -287,7 +288,7 @@ Within these domains, the BPO presents the following incident categories under t
             type: 'bar',
             renderTo: "third-modal-chart",
             height: 262,
-            width: 625,
+            width: 560,
             description: "Ranking of property damages based on location."
         },
 
@@ -332,6 +333,13 @@ Within these domains, the BPO presents the following incident categories under t
 
     });
 
+    $(window).resize(function () {
+        console.log("RESIZE");
+        $("#main-modal-chart").highcharts().setSize($('#myModal .modal-body').width(), '262', doAnimation = true);
+        $("#first-modal-chart").highcharts().setSize($('#myModal .modal-body').width(), '262', doAnimation = true);
+        $("#second-modal-chart").highcharts().setSize($('#myModal .modal-body').width(), '262', doAnimation = true);
+        $("#third-modal-chart").highcharts().setSize($('#myModal .modal-body').width(), '262', doAnimation = true);
+    });
     $('.download').click(function () {
 
 
@@ -435,7 +443,10 @@ Within these domains, the BPO presents the following incident categories under t
             }
         });
 
-
+        $("#main-modal-chart").highcharts().setSize($('#myModal ').width() -50, '262', doAnimation = true);
+        $("#first-modal-chart").highcharts().setSize($('#myModal ').width()  -50, '262', doAnimation = true);
+        $("#second-modal-chart").highcharts().setSize($('#myModal ').width()  -50, '262', doAnimation = true);
+        $("#third-modal-chart").highcharts().setSize($('#myModal ').width()  -50, '262', doAnimation = true);
     });
     $('#Story_Frame_Raw_Download').click(function () {
         var data_array = undefined;

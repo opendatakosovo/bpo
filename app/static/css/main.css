@@ -777,19 +777,15 @@ g.highcharts-legend-item.highcharts-line-series {
 }
 
 .modal-header {
-    width: 650px;
     height: 106px;
     background-color: #007CA4;
 }
 
 .modal-body {
-    width: 650px;
     background-color: #ffffff;
 }
 
 .modal-footer {
-    width: 650px;
-    height: 80px;
     background-color: #007CA4;
 }
 
@@ -824,18 +820,14 @@ g.highcharts-legend-item.highcharts-line-series {
 }
 
 #main-modal-chart {
-    width: 625px;
     height: 262px;
-    background-color: #E3EBED;
 }
 
 #first-modal-chart {
-    width: 625px;
     height: 262px;
 }
 
 #second-modal-chart {
-    width: 625px;
     height: 262px;
 }
 
@@ -844,7 +836,6 @@ g.highcharts-legend-item.highcharts-line-series {
 }
 
 #third-modal-chart {
-    width: 625px;
     height: 262px;
 }
 
