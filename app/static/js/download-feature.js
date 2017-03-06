@@ -574,7 +574,8 @@ Within these domains, the BPO presents the following incident categories under t
 
         $.each(Highcharts.charts, function (item) {
 
-            if (Highcharts.charts[item] != undefined && Highcharts.charts[item].series[0].data.length > 0) {
+            if (Highcharts.charts[item] != undefined && Highcharts.charts[item].series[0].data.length > 0 && $('#'+Highcharts.charts[item].renderTo.id).parent().css('display') != 'none') {
+
                 var id = Highcharts.charts[item].renderTo.id;
                 var imgData = convertSVGtoPDF(Highcharts.charts[item].getSVG(), id, document_width);
 
@@ -627,8 +628,10 @@ Within these domains, the BPO presents the following incident categories under t
     });
 });
 function convertSVGtoPDF(svg, id, document_width) {
-    var width = $('#' + id).children().children()[0].getBBox().width;
-    var height = $('#' + id).children().children()[0].getBBox().height;
+    // var width = $('#' + id).children().children()[0].getBBox().width;
+    // var height = $('#' + id).children().children()[0].getBBox().height;
+    var width = 500;
+    var height = 600;
     // create canvas
     var canvas = document.createElement("canvas");
     if (height > 0) {
