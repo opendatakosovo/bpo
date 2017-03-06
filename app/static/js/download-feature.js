@@ -443,10 +443,10 @@ Within these domains, the BPO presents the following incident categories under t
             }
         });
 
-        $("#main-modal-chart").highcharts().setSize($('#myModal ').width() -50, '262', doAnimation = true);
-        $("#first-modal-chart").highcharts().setSize($('#myModal ').width()  -50, '262', doAnimation = true);
-        $("#second-modal-chart").highcharts().setSize($('#myModal ').width()  -50, '262', doAnimation = true);
-        $("#third-modal-chart").highcharts().setSize($('#myModal ').width()  -50, '262', doAnimation = true);
+        $("#main-modal-chart").highcharts().setSize($('#national-accordion').width()/2, '262', doAnimation = true);
+        $("#first-modal-chart").highcharts().setSize($('#national-accordion').width()/2, '262', doAnimation = true);
+        $("#second-modal-chart").highcharts().setSize($('#national-accordion').width()/2, '262', doAnimation = true);
+        $("#third-modal-chart").highcharts().setSize($('#national-accordion').width()/2, '262', doAnimation = true);
     });
     $('#Story_Frame_Raw_Download').click(function () {
         var data_array = undefined;
