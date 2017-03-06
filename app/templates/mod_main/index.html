@@ -1,6 +1,20 @@
 {% extends 'layout.html' %} {% block body %}
 <script>
     $(document).ready(function() {
+        //
+        // $(window).scroll(function () {
+        //     //if you hard code, then use console
+        //     //.log to determine when you want the
+        //     //nav bar to stick.
+        //     console.log($(window).scrollTop())
+        //   if ($(window).scrollTop() > 200) {
+        //     $('.intro-lead-in').animate({ "left": "-50px" }, "slow" );
+        //   }
+        //   if ($(window).scrollTop() < 201) {
+        //       $('.intro-lead-in').animate({ "left": "50px" }, "slow" );
+        //   }
+        // });
+
         // we're checking to see if the arrow is up or down, then adding or removing the "lift" class accordingly
         var arrowBounce = function() {
             var arrow = $(".arrow");
@@ -126,30 +140,30 @@
     </div>
 </div>
 <!-- Advisory Board -->
-<div id="advisory-board" class="bg-light-gray">
+<div id="advisory-board" class="container bg-light-gray">
     <div class="advisory-board-row row">
         <div class="col-md-12 col-sm-12 col-xs-12 text-center">
             <h2 class="advisory-board-title">Advisory Group</h2>
         </div>
     </div>
     <div class="advisory-board-row row">
-        <div class="col-md-9 col-md-offset-3 col-sm-11 col-sm-offset-1 col-xs-11 col-xs-offset-1">
-            <div class="col-md-2 col-sm-3 col-xs-3">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-2 col-md-offset-2 col-sm-3 col-xs-3 advisory-imgs">
                 <a href="http://stopviolencebd.org/" target="_blank">
                     <img class="img-responsive" src="static/assets/logo_SVC.png" alt="Logo_SVC">
                 </a>
             </div>
-            <div class="col-md-2 col-sm-3 col-xs-3">
+            <div class="col-md-2 col-sm-3 col-xs-3 advisory-imgs">
                 <a href="http://www.police.gov.bd/" target="_blank">
                     <img class="img-responsive" src="static/assets/logo_police.png" alt="Logo_Police">
                 </a>
             </div>
-            <div class="col-md-2 col-sm-3 col-xs-3">
+            <div class="col-md-2 col-sm-3 col-xs-3 advisory-imgs">
                 <a href="https://www.facebook.com/microgovernance/" target="_blank">
                     <img class="img-responsive" src="static/assets/logo_mgr.png" alt="Logo_mgr">
                 </a>
             </div>
-            <div class="col-md-2 col-sm-3 col-xs-3">
+            <div class="col-md-2 col-sm-3 col-xs-3 advisory-imgs">
                 <a href="http://www.ndc.gov.bd/" target="_blank">
                     <img class="img-responsive" src="static/assets/logo_lamp.png" alt="LOgo_lamp">
                 </a>
@@ -157,14 +171,14 @@
         </div>
     </div>
     <div class="advisory-board-row row" style="padding-top: 30px;padding-bottom: 30px;">
-        <div class="col-md-12 col-md-offset-1 col-sm-12 col-xs-11 col-xs-offset-1">
-            <div class="col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-1 col-xs-5 col-xs-offset-1">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-1 col-xs-5 col-xs-offset-1 advisory-imgs">
                 <a href="http://www.actionaid.org/bangladesh" target="_blank">
                     <img class="img-responsive" src="static/assets/logo_actionaid.png" alt="Logo_actionaid">
                 </a>
 
             </div>
-            <div class="col-md-5 col-xs-5 col-sm-5">
+            <div class="col-md-5 col-xs-5 col-sm-5 advisory-imgs">
                 <a href="http://www.thedailystar.net/" target="_blank">
                     <img class="img-responsive" src="static/assets/logo_star.png" alt="Logo_star">
                 </a>
@@ -172,24 +186,23 @@
         </div>
     </div>
     <div class="advisory-board-row row">
-        <div class="col-md-12 col-md-offset-2 col-sm-12 col-xs-12">
-            <div class="col-md-2 col-md-offset-1 col-sm-3 col-xs-3 col-xs-offset-2">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-2 col-md-offset-2 col-sm-3 col-xs-3 col-xs-offset-2 advisory-imgs">
                 <a href="http://cgsdu.org/" target="_blank">
                     <img class="img-responsive" src="static/assets/logo_CGS.png" alt="Logo_CGS">
                 </a>
             </div>
-            <div class="col-md-2 col-sm-3 col-xs-3">
+            <div class="col-md-2 col-md-offset-1 col-sm-3 col-xs-3 advisory-imgs">
                 <a href="http://www.sehd.org/" target="_blank">
-                    <img class="img-responsive" src="static/assets/logo_SEHD.png" alt="Logo_SEHD" style="position: absolute;vertical-align: middle;padding-top: 10%;">
+                    <img class="img-responsive" src="static/assets/logo_SEHD.png" alt="Logo_SEHD" style="position: absolute;vertical-align: middle;padding-top: 10%;left:0px;">
                 </a>
             </div>
-            <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-3">
+            <div class="col-md-2 col-md-offset-1 col-sm-3 col-sm-offset-0 col-xs-3 advisory-imgs">
                 <a href="http://www.univdhaka.edu/" target="_blank">
                     <img class="img-responsive" src="static/assets/logo_DhakaUni.png" alt="logo_DhakaUni">
                 </a>
             </div>
         </div>
     </div>
-
 </div>
 {% endblock %}

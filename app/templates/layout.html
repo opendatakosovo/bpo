@@ -65,6 +65,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll nav navbar-nav navbar-right">
                 <ul class="nav navbar-nav navbar-right">
+                    <!-- <h2 id="pg-title">Bangladesh Peace Observatory</h2> -->
                     <a href="{{ url_for('viz.index') }}" class=" btn btn-xl enter-landing">Enter the Observatory</a>
                 </ul>
             </div>
@@ -101,7 +102,12 @@
     </div>
 </div>
 
-{% endblock %} {% block body %} {% endblock %} {% block footer %}
+{% endblock %}
+
+{% block body %}
+{% endblock %}
+
+{% block footer %}
 <!-- Footer -->
 <footer class="bg-dark-blue">
     <div class="footer-above">
@@ -126,13 +132,13 @@
                             <h4 class="find-us-on-social">Find us on Social Networks:</h4>
                         </div>
                         <div class="col-md-9 col-md-offset-0 col-sm-9 col-sm-offset0 col-xs-10 col-xs-offset-2 social-container">
-                            <div class="col-md-3 col-md-offset-0 col-sm-3 col-xs-1 col-xs-offset-3">
+                            <div class="col-md-3 col-md-offset-0 col-sm-3 col-xs-2 col-xs-offset-2">
                                 <a class="btn social-login-btn social-twitter" href="https://twitter.com/PeaceObservator"><i class="fa fa-twitter" target="_blank"></i></a>
                             </div>
-                            <div class="col-md-3 col-sm-3 col-xs-1">
+                            <div class="col-md-3 col-sm-3 col-xs-2">
                                 <a class="btn social-login-btn social-facebook" href="https://www.facebook.com/BngladeshPeaceObservatory/s"><i class="fa fa-facebook" target="_blank"></i></a>
                             </div>
-                            <div class="col-md-3 col-sm-3 col-xs-1">
+                            <div class="col-md-3 col-sm-3 col-xs-2">
                                 <a class="btn social-login-btn social-google" href="mailto:info.cgs.bd@gmail.com"><i class="fa fa-google-plus"></i></a>
                             </div>
 
@@ -164,7 +170,7 @@
     </div>
 </footer>
 {% endblock %}
-</div>
+<!-- </div> -->
 </body>
 
 </html>
