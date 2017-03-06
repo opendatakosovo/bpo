@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bangladesh Peace Oservatory</title>
     <!-- Facebook meta -->
-    <meta property="og:title" content="Bangladesh Peace Oservatory"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:image"
-          content="{{ url_for('static', filename='assets/bpo_facebook.png', _external = true) }}"/>
-    <meta property="og:image:width" content="1200"/>
-    <meta property="og:image:height" content="630"/>
-    <meta property="og:description"
-          content="Designing effective responses to public policy challenges is heavily dependent on evidence. Evidence is dependent on good data."/>
+    <meta property="og:title" content="Bangladesh Peace Oservatory" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{{ url_for('static', filename='assets/bpo_facebook.png', _external = true) }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing effective responses to public policy challenges is heavily dependent on evidence. Evidence is dependent on good data." />
     <!-- Twitter meta -->
     <meta name="twitter:title" content="Bangladesh Peace Oservatory">
-    <meta name="twitter:description"
-          content="Designing effective responses to public policy challenges is heavily dependent on evidence. Evidence is dependent on good data.">
-    <meta name="twitter:image" content="{{ url_for('static', filename='assets/bpo.png', _external = true) }}"/>
+    <meta name="twitter:description" content="Designing effective responses to public policy challenges is heavily dependent on evidence. Evidence is dependent on good data.">
+    <meta name="twitter:image" content="{{ url_for('static', filename='assets/bpo.png', _external = true) }}" />
 
     <!--Fonts -->
     <link href='//fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:600,400' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"
-          type="text/css">
+    <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='//fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel='stylesheet'
-          type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <!--CSS-->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" type="text/css">
 
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
@@ -95,8 +90,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 text-center">
-                <div class="intro-lead-in1">Advancing understanding of peace and tolerance
-                    through data insights
+                <div class="intro-lead-in1">Advancing understanding of peace and tolerance through data insights
                 </div>
             </div>
         </div>
@@ -108,16 +102,13 @@
                 <div class="hosted-by">
                     <!-- <a href="{{ url_for('viz.index') }}" class=" btn btn-xl enter-landing">Enter the Observatory</a> -->
                 </div>
+            </div>
+            <i class="fa fa-angle-down arrow"></i>
         </div>
-        <i class="fa fa-angle-down arrow"></i>
-    </div>
     </div>
 </div>
 
-{% endblock %}
-{% block body %}
-{% endblock %}
-{% block footer %}
+{% endblock %} {% block body %} {% endblock %} {% block footer %}
 <!-- Footer -->
 <footer class="bg-dark-blue">
     <div class="footer-above">
@@ -126,18 +117,14 @@
                 <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
                 <div class="col-md-4 col-sm-4">
                     <h4 class="footer-disclaimer-title">Disclaimer:</h4>
-                    <p class="footer-disclaimer-text">Data are open source and based on limited review of print and
-                        online media in Bangladesh. There may be errors in data collection, validation and/or
-                        reporting.
+                    <p class="footer-disclaimer-text">Data are open source and based on limited review of print and online media in Bangladesh. There may be errors in data collection, validation and/or reporting.
                     </p>
                 </div>
                 <div class="col-md-4 col-sm-4">
                     <h3 class="intro-footer-one text-center">Hosted by Center for Genocide Studies, University of
                         Dhaka.</h3>
                     <br>
-                    <img src="{{ url_for('static', filename='assets/logoo.png') }}" alt="" height="62"
-                         width="50"
-                         class="img-responsive center-block"><br/>
+                    <img src="{{ url_for('static', filename='assets/logoo.png') }}" alt="" height="62" width="50" class="img-responsive center-block"><br/>
                     <p class="footer-supported-by text-center">Supported by UNDP</p>
                 </div>
                 <div class="col-md-4 col-sm-4">
@@ -146,17 +133,18 @@
                             <h4 class="find-us-on-social">Find us on Social Networks:</h4>
                         </div>
                         <div class="col-md-9 col-md-offset-0 col-sm-9 col-sm-offset0 col-xs-10 col-xs-offset-2 social-container">
-                                                        <div class="col-md-3 col-md-offset-0 col-sm-3 col-xs-1 col-xs-offset-3">
-                                                            <a class="btn social-login-btn social-twitter" href="https://twitter.com/PeaceObservator"><i class="fa fa-twitter" target="_blank"></i></a>
-                                                        </div>
-                                                        <div class="col-md-3 col-sm-3 col-xs-1">
-                                                            <a class="btn social-login-btn social-facebook" href="https://www.facebook.com/BngladeshPeaceObservatory/s"><i class="fa fa-facebook" target="_blank"></i></a>
-                                                        </div>
-                                                        <div class="col-md-3 col-sm-3 col-xs-1">
-                                                            <a class="btn social-login-btn social-google" href="mailto:info.cgs.bd@gmail.com"><i class="fa fa-google-plus"></i></a>
-                                                        </div>
+                            <div class="col-md-3 col-md-offset-0 col-sm-3 col-xs-1 col-xs-offset-3">
+                                <a class="btn social-login-btn social-twitter" href="https://twitter.com/PeaceObservator"><i class="fa fa-twitter" target="_blank"></i></a>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-1">
+                                <a class="btn social-login-btn social-facebook" href="https://www.facebook.com/BngladeshPeaceObservatory/s"><i class="fa fa-facebook" target="_blank"></i></a>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-1">
+                                <a class="btn social-login-btn social-google" href="mailto:info.cgs.bd@gmail.com"><i class="fa fa-google-plus"></i></a>
+                            </div>
 
-                                                </div>                    </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- </div> -->
             </div>
@@ -169,7 +157,7 @@
                     Copyright 2016. Centre for Genocide Studies, University of Dhaka.
                 </div>
                 <script>
-                    (function (w, i, d, g, e, t, s) {
+                    (function(w, i, d, g, e, t, s) {
                         w[d] = w[d] || [];
                         t = i.createElement(g);
                         t.async = 1;
@@ -185,4 +173,5 @@
 {% endblock %}
 </div>
 </body>
+
 </html>
