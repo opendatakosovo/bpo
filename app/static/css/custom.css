@@ -1338,10 +1338,10 @@ i.fa:before {
 }*/
 .arrow {
   white-space: nowrap;
-  font-size: 8rem;
   position: absolute;
   right: 0;
-  bottom: 50px;
+  bottom: 0;
+  top: 0;
   left: 0;
   margin: auto;
   width: 40px;
@@ -1355,7 +1355,7 @@ i.fa:before {
 
 /* this sets the position of the arrow when it's up, so it will move up or down by 14px when you add or remove this class */
 .lift {
-  bottom: 64px;
+  bottom: 10px;
 }
 
 i.fa.arrow:before {
