@@ -18,21 +18,15 @@ $(document).ready(function () {
         allData = getData(false);
     });
 
-    // Show the disclaimer
-    $("#mgrDisclaimer").modal();
 
     $('#data-source-select').change(function () {
         buildViolenceTypeDropDown();
         var dataset = $(this).val();
 
         if (dataset == 'idams') {
-            // Trigger disclaimer modal.
-            $("#idamsDisclaimer").modal();
             $("#dt1").datepicker('setDate', '01/06/2015');
             $("#dt2").datepicker('setDate', '29/06/2016');
         } else {
-            // Trigger disclaimer modal.
-            $("#mgrDisclaimer").modal();
             $('#dt1').datepicker('setDate', '01/01/2015');
             $('#dt2').datepicker('setDate', '01/01/2016');
         }
@@ -808,6 +802,7 @@ function buildMap() {
             description: "Incident distribution map.",
             events: {
                 drilldown: function (e) {
+                    console.log(e.point.level);
                     map_data = buildDataSeries();
                     var map_key;
                     var drilldown_level = e.point.level;
@@ -936,6 +931,7 @@ function buildMap() {
         },
         colorAxis: {
             dataClasses: [{
+                from: 0,
                 to: 10,
                 color: "#a3dbb9"
             }, {
@@ -1068,6 +1064,7 @@ function updateViz() {
     updateRankSections();
     updateTop3Section();
     updateCensusInfo();
+    $('#map').highcharts().redraw();
 }
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -1531,8 +1528,9 @@ function updateMapValues() {
         values_array[data[item]['name'].toString()] = data[item]["incidents"]
     }
     for (var i in points) {
-        var val = values_array[points[i].name]
 
+        var val = values_array[points[i].name]
+        console.log(val);
         if (val != undefined) {
             points[i].update({value: val}, false);
             points[i].update({color: mapColor(val)})
@@ -1540,13 +1538,16 @@ function updateMapValues() {
             points[i].update({value: undefined}, true);
             points[i].update({color: mapColor(0)})
         }
-
+        map.redraw();
     }
-    map.redraw();
+
 }
 
 function mapColor(val) {
-    if (val <= 10 && val != 0) {
+    if (val == 0) {
+        return "#ffffff"
+    }
+    if (val <= 10 && val >= 0) {
         return "#a3dbb9"
     }
     if (val > 10 && val <= 20) {
@@ -1577,10 +1578,6 @@ function mapColor(val) {
         return "#7b4016"
     }
 
-
-    if (val == 0) {
-        return "#ffffff"
-    }
 
 }
 // Build map data series based on the incident number number

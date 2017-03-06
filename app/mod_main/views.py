@@ -14,6 +14,14 @@ def index():
     return render_template('mod_main/index.html')
 
 
+@mod_main.route('/disclaimer', methods=['GET'])
+def data_disclaimer():
+    ''' Renders the Data Disclaimer page.
+    :return:
+    '''
+
+    return render_template('mod_main/disclaimer.html')
+
 
 @mod_main.route('/about', methods=['GET'])
 def about():
