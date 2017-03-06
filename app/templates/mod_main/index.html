@@ -1,20 +1,11 @@
 {% extends 'layout.html' %} {% block body %}
 <script>
     $(document).ready(function() {
-        //
-        // $(window).scroll(function () {
-        //     //if you hard code, then use console
-        //     //.log to determine when you want the
-        //     //nav bar to stick.
-        //     console.log($(window).scrollTop())
-        //   if ($(window).scrollTop() > 200) {
-        //     $('.intro-lead-in').animate({ "left": "-50px" }, "slow" );
-        //   }
-        //   if ($(window).scrollTop() < 201) {
-        //       $('.intro-lead-in').animate({ "left": "50px" }, "slow" );
-        //   }
-        // });
-
+        $('.arrow').click(function () {
+            $(document.body).animate({
+                'scrollTop':   $('#portfolio').offset().top
+            }, 2000);
+        });
         // we're checking to see if the arrow is up or down, then adding or removing the "lift" class accordingly
         var arrowBounce = function() {
             var arrow = $(".arrow");
