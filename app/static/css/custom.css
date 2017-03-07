@@ -18,9 +18,16 @@
         font-size: 55px;
     }
 }
-@media (min-width:768px) and (max-width:975px){
+@media (max-width:768px){
     .social-container {
-        margin-left: -25px;
+        margin: 0 auto;
+        float: none;
+    }
+    .social-login-btn{
+        float: none !important;
+    }
+    .find-us-on-social{
+        float: none !important;
     }
 }
 
