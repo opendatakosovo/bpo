@@ -334,7 +334,6 @@ Within these domains, the BPO presents the following incident categories under t
     });
 
     $(window).resize(function () {
-        console.log("RESIZE");
         $("#main-modal-chart").highcharts().setSize($('#myModal .modal-body').width(), '262', doAnimation = true);
         $("#first-modal-chart").highcharts().setSize($('#myModal .modal-body').width(), '262', doAnimation = true);
         $("#second-modal-chart").highcharts().setSize($('#myModal .modal-body').width(), '262', doAnimation = true);
@@ -345,19 +344,39 @@ Within these domains, the BPO presents the following incident categories under t
 
         if (global_division == "") {
             $('.location-type-in').html(" Bangladesh");
-            $('.first-violence-place').text(allData['incident-stats'][0]['name'] + ' Division');
+            $('.first-violence-place').text(allData['rank-stats'][0]['name'] + ' Division');
         } else if (global_division != "" && global_district == "") {
-            $('.location-type').html(global_division + ' Division');
-            $('.location-type-in').html(" Bangladesh");
-            $('.first-violence-place').text(allData['incident-stats'][0]['name'] + ' District');
-        } else if (global_district != "") {
-            $('.location-type').html(global_district + " District");
+            // Set death naming
+            $('.location-type-deaths').text(allData['rank-download-stats']['death'][0]['name'] + " District");
+            $('.division-desc-death-rank-total-in').text(allData['rank-download-stats']['death'][0]['total']);
+
+            $('.location-type-injuries').text(allData['rank-download-stats']['injury'][0]['name'] + " District");
+            $('.division-desc-injury-rank-total-in').text(allData['rank-download-stats']['injury'][0]['total']);
+
+            $('.location-type-property').text(allData['rank-download-stats']['property'][0]['name'] + " District");
+            $('.division-desc-property-rank-total-in').text(allData['rank-download-stats']['property'][0]['total']);
+
+            //
             $('.location-type-in').html(global_division + ' Division');
-        } else if (global_division != "" && global_district != "" && global_upazila != "") {
+            $('.first-violence-place').text(allData['incident-stats'][0]['name'] + ' District');
+        } else if (global_division != "" && global_district != "" && global_upazila == "") {
+            //
+            $('.location-type-deaths').text(allData['rank-download-stats']['death'][0]['name'] + " Upazila");
+            $('.division-desc-death-rank-total-in').text(allData['rank-download-stats']['death'][0]['total']);
+
+            $('.location-type-injuries').text(allData['rank-download-stats']['injury'][0]['name'] + " Upazila");
+            $('.division-desc-injury-rank-total-in').text(allData['rank-download-stats']['injury'][0]['total']);
+
+            $('.location-type-property').text(allData['rank-download-stats']['property'][0]['name'] + " Upazila");
+            $('.division-desc-property-rank-total-in').text(allData['rank-download-stats']['property'][0]['total']);
+
+            $('.location-type-in').html(global_district + ' District');
+        } else if (global_upazila != "") {
             $('.location-type-in').html(global_division + " Division, " + global_district + ' District, ' + global_upazila + ' Upazila');
         }
         var show_specific_charts = false;
-        if (allData != undefined && allData['stats'] != undefined) {
+
+        if (allData != undefined && allData['rank-download-stats'] != undefined) {
             var show_specific_charts = true;
         }
 
@@ -369,8 +388,11 @@ Within these domains, the BPO presents the following incident categories under t
         }
         if (global_division == "") {
             $('.other-modal-section').css('display', 'none');
+            $('.main-modal-section').css('display', '');
+
         } else {
             $('.other-modal-section').css('display', '');
+            $('.main-modal-section').css('display', 'none');
         }
         general_stats = [];
 
@@ -391,24 +413,24 @@ Within these domains, the BPO presents the following incident categories under t
                 general_categories.push(item.name);
             });
         }
-        if (allData['stats']['death'] != undefined) {
-            $.each(allData['stats']['death'], function (item) {
-                death_states.push(allData['stats']['death'][item]['name']);
-                death_data_series_array.push(allData['stats']['death'][item]['total']);
+        if (allData['rank-download-stats']['death'] != undefined) {
+            $.each(allData['rank-download-stats']['death'], function (item) {
+                death_states.push(allData['rank-download-stats']['death'][item]['name']);
+                death_data_series_array.push(allData['rank-download-stats']['death'][item]['total']);
             });
         }
 
-        if (allData['stats']['injury'] != undefined) {
-            $.each(allData['stats']['injury'], function (item) {
-                injury_states.push(allData['stats']['injury'][item]['name']);
-                injury_data_series_array.push(allData['stats']['injury'][item]['total']);
+        if (allData['rank-download-stats']['injury'] != undefined) {
+            $.each(allData['rank-download-stats']['injury'], function (item) {
+                injury_states.push(allData['rank-download-stats']['injury'][item]['name']);
+                injury_data_series_array.push(allData['rank-download-stats']['injury'][item]['total']);
             });
         }
 
-        if (allData['stats']['property'] != undefined) {
-            $.each(allData['stats']['property'], function (item) {
-                property_damage_states.push(allData['stats']['property'][item]['name']);
-                property_damage_data_series_array.push(allData['stats']['property'][item]['total']);
+        if (allData['rank-download-stats']['property'] != undefined) {
+            $.each(allData['rank-download-stats']['property'], function (item) {
+                property_damage_states.push(allData['rank-download-stats']['property'][item]['name']);
+                property_damage_data_series_array.push(allData['rank-download-stats']['property'][item]['total']);
             });
         }
         $.each(Highcharts.charts, function (item) {
@@ -610,10 +632,6 @@ Within these domains, the BPO presents the following incident categories under t
 
 
                 if (id == 'line-chart-container') {
-                    console.log("Document width:" + document_width);
-                    console.log("Document height:" + document_height);
-                    console.log("Image width:" + width);
-                    console.log("Image height:" + height);
                     doc.addImage(imgData, 'JPEG', 80, 90, document_width - 50, document_height - 100);
                     doc.text(document_width / 6, document_height - 50, 'Description: ' + Highcharts.charts[item].options.chart.description);
 

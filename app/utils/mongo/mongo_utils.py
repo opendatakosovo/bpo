@@ -74,6 +74,19 @@ class MongoUtils(object):
             return self.get_division_stats(params)
         return result
 
+    def get_download_stats(self, params):
+        field_match = ''
+        value_match = ''
+        result = {}
+
+        if params['division'] != '' and params['district'] != '' and params['upazila'] != '':
+            return self.get_upazila_stats(params)
+        elif params['division'] != '' and params['district'] != '' and params['upazila'] == '':
+            return self.get_upazila_stats(params)
+        elif params['division'] != '' and params['district'] == '' and params['upazila'] == '':
+            return self.get_district_stats(params)
+        return result
+
     def get_district_stats(self, params):
         field_match = 'district'
         value_match = params['district']
@@ -84,6 +97,7 @@ class MongoUtils(object):
                         None
                     ]
                 },
+                "division": params['division'],
                 'property_destroyed_count': {
                     "$ne": [0]
                 },
@@ -102,6 +116,7 @@ class MongoUtils(object):
                         None
                     ]
                 },
+                "division": params['division'],
                 'deaths_count': {
                     "$ne": [0]
                 },
@@ -124,6 +139,7 @@ class MongoUtils(object):
                 'injuries_count': {
                     "$ne": [0]
                 },
+                "division": params['division'],
                 'violence_type': {
                     "$in": [
                         str(params['violence_type'])
@@ -225,6 +241,7 @@ class MongoUtils(object):
                         None
                     ]
                 },
+                "district": params['district'],
                 'property_destroyed_count': {
                     "$ne": [0]
                 },
@@ -243,6 +260,7 @@ class MongoUtils(object):
                         None
                     ]
                 },
+                "district": params['district'],
                 'deaths_count': {
                     "$ne": [0]
                 },
@@ -263,6 +281,7 @@ class MongoUtils(object):
                         None
                     ]
                 },
+                "district": params['district'],
                 'injuries_count': {
                     "$ne": [0]
                 },

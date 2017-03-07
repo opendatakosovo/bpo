@@ -40,7 +40,7 @@ def search():
     result['map-victims-count'] = utils.get_map_victims_count(params)
     result['census'] = utils.get_census_info(params)
     result['raw-incident-stats'] = utils.get_raw_incidents(params)
-
+    result['rank-download-stats'] = utils.get_download_stats(params)
     resp = Response(
         response=json_util.dumps(result),
         mimetype='application/json')
