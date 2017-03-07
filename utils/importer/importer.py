@@ -1210,56 +1210,54 @@ def parse():
                         else:
                             new_json[json_structure[key]] = float(elem[key])
                     elif key == 'VTYP1':
-                        if elem[key] == "311" or elem[key] == 311 :
-                            new_json[json_structure[key]] = violence_type["310"]
-                        elif elem[key] == 207:
-                            new_json[json_structure[key]] = violence_type['217']
-                        elif elem[key] == 602:
-                            new_json[json_structure[key]] = violence_type['320']
-                        elif elem[key] == 702:
-                            new_json[json_structure[key]] = violence_type['320']
-                        elif elem[key] == 704:
-                            new_json[json_structure[key]] = violence_type['320']
-                        elif elem[key] == 810:
-                            new_json[json_structure[key]] = violence_type['210']
-                        elif elem[key] == 121:
-                            new_json[json_structure[key]] = violence_type['211']
-                        elif elem[key] == None:
-                            new_json[json_structure[key]] = None
-                        else:
-                            new_json['violence_type'].append(violence_type[str(elem[key])])
+                        try:
+                            if violence_type[str(elem[key])] == 'Attack: Coordinated action each-other political parties, groups, fractions and authorities':
+                                new_json['violence_type'].append("Political clash-attack")
+                            elif violence_type[str(elem[key])] == 'Clash/battle: Interaction between political parties, groups and fractions':
+                                print "YAYY Clash/battle"
+                                new_json['violence_type'].append("Political clash-attack")
+                            else:
+                                new_json['violence_type'].append(violence_type[str(elem[key])])
+                        except:
+                            pass
                     elif key == 'VTYP2':
-                        if elem[key] == "311"  or elem[key] == 311:
-                            new_json['violence_type'].append(violence_type["310"])
-                        elif elem[key] == '321':
-                            new_json['violence_type'].append(violence_type["320"])
-                        elif elem[key] == '140':
-                            new_json['violence_type'].append(violence_type["410"])
-                        elif elem[key] == 301:
-                            new_json['violence_type'].append(violence_type["310"])
-                        elif elem[key] == '' or elem[key]== None:
+                        try:
+                            if violence_type[str(elem[key])] == 'Attack: Coordinated action each-other political parties, groups, fractions and authorities':
+                                new_json['violence_type'].append("Political clash-attack")
+                            elif violence_type[str(elem[key])] == 'Clash/battle: Interaction between political parties, groups and fractions':
+                                print "YAYY Clash/battle"
+                                new_json['violence_type'].append("Political clash-attack")
+                            else:
+                                new_json['violence_type'].append(violence_type[str(elem[key])])
+                        except:
                             pass
-                        else:
-                            new_json['violence_type'].append(violence_type[str(elem[key])])
                     elif key == 'VTYP3':
-                        if elem[key] == '' or elem[key] == None:
+                        try:
+                            if violence_type[str(elem[key])] == 'Attack: Coordinated action each-other political parties, groups, fractions and authorities':
+                                new_json['violence_type'].append("Political clash-attack")
+                            elif violence_type[str(elem[key])] == 'Clash/battle: Interaction between political parties, groups and fractions':
+                                print "YAYY Clash/battle"
+                                new_json['violence_type'].append("Political clash-attack")
+                            else:
+                                new_json['violence_type'].append(violence_type[str(elem[key])])
+                        except:
                             pass
-                        else:
-                            new_json['violence_type'].append(violence_type[str(elem[key])])
                     elif key == "VTRIG1" or key == "VTRIG2":
-                        if elem[key] == '240':
-                            new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str("230"))])
-                        elif elem[key] == "111" or elem[key] == 111:
-                            new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str("110"))])
-                        elif elem[key] == "199":
-                            new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str("190"))])
-                        elif elem[key] == None or elem[key] == "" or elem[key] == 995:
-                            new_json['causes'].append("Unknown/Unidentified")
-                        else:
-                            try:
+                        try:
+                            if elem[key] == '110' or elem[key] == 110:
+                                print violence_trigger_1['110']
+                                new_json['violence_type'].append("Electoral violence")
+                            if elem[key] == '240':
+                                new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str("230"))])
+                            elif elem[key] == "111" or elem[key] == 111:
+                                new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str("110"))])
+                            elif elem[key] == "199":
+                                new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str("190"))])
+                            else:
                                 new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str(elem[key]))])
-                            except:
-                                pass
+                        except:
+                                new_json['causes'].append("Unknown/Unidentified")
+
                     elif key == "LDIS":
                         if re.sub("\D", "", str(elem[key])) == "417":
                             new_json[json_structure[key]] = event_location_district["317"]
@@ -1276,19 +1274,20 @@ def parse():
                         else:
                             new_json[json_structure[key]] = "No"
                     elif key == "VACTA1" or key == "VACTA2" or key == "VACTA3" or key == "VACTB1" or key == "VACTB2" or key == "VACTB3":
-                        if elem[key] == None or elem[key] == '' or elem[key] == 790 :
-                            pass
-                        elif elem[key] == '32':
+
+                        if elem[key] == '32':
                             new_json['violence_actor'].append(violence_actor_1['329'])
                         elif elem[key] == '299':
                             new_json['violence_actor'].append(violence_actor_1['219'])
                         else:
-                            print re.sub("\D", "", str(elem[key]).strip())
                             try:
                                 if int(re.sub("\D", "", str(elem[key]).strip())) in [500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 588, 996, 330, 332, 333,
                                                  334, 335, 336, 336, 337, 338, 339, 631]:
-
                                     new_json['violence_type'].append('Violent extremism (Islamist)')
+                                    new_json['violence_actor'].append(violence_actor_1[re.sub("\D", "", str(elem[key]))])
+                                elif int(re.sub("\D", "", str(elem[key]).strip())) in [700, 710, 720, 730, 799, 661, 662]:
+                                    new_json['violence_type'].append('Violent extremism (Rebel)')
+                                    new_json['violence_actor'].append(violence_actor_1[re.sub("\D", "", str(elem[key]))])
                                 else:
                                     new_json['violence_actor'].append(violence_actor_1[re.sub("\D", "", str(elem[key]))])
                             except:
