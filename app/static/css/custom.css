@@ -424,6 +424,19 @@ footer .footer-above {
     /*background-color: #2C3E50;*/
 }
 
+@media (min-width:992px) {
+    .footer-row{
+        display: flex;
+    }
+    .social-wrapper{
+        /*width: 25%;*/
+    }
+    .disclaimer-wrapper{
+        margin-left: 75px;
+        margin-right: 0;
+    }
+}
+
 footer .footer-col {
     margin-bottom: 30px;
 }
