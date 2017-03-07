@@ -370,7 +370,7 @@ div.national-overview-tab {
     line-height: 33px;
     color: #FFC84A;
     text-shadow: 0 1px 0 0 #006586;
-    padding-right: 10px;
+    padding-right: 15px;
     padding-top: 20px;
 }
 
@@ -761,7 +761,7 @@ g.highcharts-legend-item.highcharts-line-series {
 
 @media screen and (max-width: 480px) {
     .viz-title-about {
-        float: right;
+        /*float: right;*/
         font-size: 14px;
         padding-top: 0px;
     }

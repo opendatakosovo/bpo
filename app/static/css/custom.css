@@ -67,6 +67,29 @@ header .intro-text .intro-heading {
     background-color: #007CA4;
     border-color: transparent;
 }
+.intro-lead-in3{
+    opacity: 0;
+    z-index: 9999;
+    font-size: 25px;
+    position: fixed;
+    left: 100px;
+    padding-top: 25px;
+    top: 0;
+    transition: all 0.5s ease;
+    color: #fff;
+}
+
+.fix-nav{
+    color: #fff;
+    opacity: 1;
+    z-index: 9999;
+    font-size: 25px;
+    position: fixed;
+     left: 20px;
+    padding-top: 25px;
+    top: 0;
+    transition: all 0.5s ease;
+}
 
 .section-heading5 {
     font-family: "Playfair Display";
@@ -153,7 +176,6 @@ header .intro-text .intro-heading {
     padding: 20px;
     text-align: center;
 }
-/* TODO:  ask arta if this is corretxt */
 .enter-landing {
     color: #fff !important;
     background-color: #007CA4;
@@ -174,16 +196,21 @@ header .intro-text .intro-heading {
 
 
 .advisory-imgs{
+    margin: auto;
     display: flex;
 }
 .advisory-imgs a{
     margin:auto;
 }
 
-/* TODO: uncomment if necessa */
-/*.advisory-board-row{
-    width: 100%;
-}*/
+.advisory-board-row{
+    display: flex;
+}
+.advisory-board-row div{
+    margin: auto;
+    display: flex;
+}
+
 .btn-xl1:hover {
     color: white;
     background-color: #FDA200;
@@ -399,6 +426,19 @@ hr {
 footer .footer-above {
     padding-top: 50px;
     /*background-color: #2C3E50;*/
+}
+
+@media (min-width:992px) {
+    .footer-row{
+        display: flex;
+    }
+    .social-wrapper{
+        /*width: 25%;*/
+    }
+    .disclaimer-wrapper{
+        margin-left: 75px;
+        margin-right: 0;
+    }
 }
 
 footer .footer-col {
@@ -1339,6 +1379,7 @@ i.fa:before {
 }
 
 .advisory-board-title {
+    margin: auto;
     padding-bottom: 40px;
 }
 
