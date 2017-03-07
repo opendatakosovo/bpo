@@ -1592,7 +1592,11 @@ function buildDataSeries() {
     }
 
     for (var item in allData['map-victims-count']['districts']) {
-        districts[allData['map-victims-count']['districts'][item]['district'].toString()] = allData['map-victims-count']['districts'][item]["incidents"]
+        if(allData['map-victims-count']['districts'][item]['district'] != null || allData['map-victims-count']['districts'][item]['district'] != '')
+        {
+            districts[allData['map-victims-count']['districts'][item]['district'].toString()] = allData['map-victims-count']['districts'][item]["incidents"]
+
+        }
     }
 
     for (var item in allData['map-victims-count']['upazilas']) {
