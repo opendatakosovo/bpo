@@ -67,6 +67,29 @@ header .intro-text .intro-heading {
     background-color: #007CA4;
     border-color: transparent;
 }
+.intro-lead-in3{
+    opacity: 0;
+    z-index: 9999;
+    font-size: 25px;
+    position: fixed;
+    left: 100px;
+    padding-top: 25px;
+    top: 0;
+    transition: all 0.5s ease;
+    color: #fff;
+}
+
+.fix-nav{
+    color: #fff;
+    opacity: 1;
+    z-index: 9999;
+    font-size: 25px;
+    position: fixed;
+     left: 20px;
+    padding-top: 25px;
+    top: 0;
+    transition: all 0.5s ease;
+}
 
 .section-heading5 {
     font-family: "Playfair Display";

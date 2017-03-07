@@ -1,6 +1,17 @@
 {% extends 'layout.html' %} {% block body %}
 <script>
     $(document).ready(function() {
+        $(window).scroll(function() {
+            var scrollVal = $(window).scrollTop();
+            var limit = $('#line-intro').offset().top;
+            console.log(scrollVal);
+            if (scrollVal > limit - $('#mainNav').height()) {
+                  $(".intro-lead-in3").addClass("fix-nav");
+            } else {
+                  $(".intro-lead-in3").removeClass("fix-nav");
+            }
+        });
+
         $('.arrow').click(function () {
             $('html, body').animate({
                 'scrollTop':   $('#portfolio').offset().top - 50
