@@ -1199,10 +1199,10 @@ def parse():
                     if key == 'VSOUR':
                         new_json[json_structure[key]] = violence_source[str(elem[key])]
                     elif key == 'NDPRO1' or key == 'NDPRO2' or key == 'NDPRO3':
-                        if elem[key] == '' or elem[key] == 'Imprecise' or elem[key] == 'imprecise' or elem[key] == None:
-                            pass
-                        else:
+                        try:
                             new_json['property_destroyed_count'] += int(elem[key])
+                        except:
+                            pass
                     elif key == 'CAviolence_type_1SACA' or key == 'CASACB':
                         if elem[key] == '' or elem[key] == 'Imprecise' or elem[key] == 'imprecise' or elem[key] == None:
                             new_json[json_structure[key]] = 0
@@ -1256,14 +1256,20 @@ def parse():
                         elif elem[key] == None or elem[key] == "" or elem[key] == 995:
                             new_json['causes'].append("Unknown/Unidentified")
                         else:
-                            new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str(elem[key]))])
+                            try:
+                                new_json['causes'].append(violence_trigger_1[re.sub("\D", "", str(elem[key]))])
+                            except:
+                                pass
                     elif key == "LDIS":
                         if re.sub("\D", "", str(elem[key])) == "417":
                             new_json[json_structure[key]] = event_location_district["317"]
                         elif re.sub("\D", "", str(elem[key])) == '30':
                             new_json[json_structure[key]] = event_location_district["301"]
                         else:
-                            new_json[json_structure[key]] = event_location_district[re.sub("\D", "", str(elem[key]))]
+                            try:
+                                new_json[json_structure[key]] = event_location_district[re.sub("\D", "", str(elem[key]))]
+                            except:
+                                pass
                     elif key == "VTRIGC":
                         if re.sub("\D", "", str(elem[key])) == "1":
                             new_json[json_structure[key]] = "Yes"
@@ -1277,7 +1283,16 @@ def parse():
                         elif elem[key] == '299':
                             new_json['violence_actor'].append(violence_actor_1['219'])
                         else:
-                            new_json['violence_actor'].append(violence_actor_1[re.sub("\D", "", str(elem[key]))])
+                            print re.sub("\D", "", str(elem[key]).strip())
+                            try:
+                                if int(re.sub("\D", "", str(elem[key]).strip())) in [500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 588, 996, 330, 332, 333,
+                                                 334, 335, 336, 336, 337, 338, 339, 631]:
+
+                                    new_json['violence_type'].append('Violent extremism (Islamist)')
+                                else:
+                                    new_json['violence_actor'].append(violence_actor_1[re.sub("\D", "", str(elem[key]))])
+                            except:
+                                pass
                     elif key == "VNUM":
                         new_json[json_structure[key]] = int(elem[key])
                     elif key == "VPOL":
@@ -1286,7 +1301,7 @@ def parse():
                         else:
                             new_json[json_structure[key]] = violence_police_role[str(elem[key])]
                     elif key == "DPROP1":
-                        if elem[key] == None:
+                        if elem[key] == None or elem[key] == '':
                             pass
                         elif  elem[key] == 770:
                             new_json[json_structure[str(key)]] = destruction_of_property['710']
@@ -1295,15 +1310,21 @@ def parse():
                             new_json[json_structure[str(key)]] = destruction_of_property['850']
                             new_json['property_destroyed_type'].append(destruction_of_property['850'])
                         else:
-                            new_json[json_structure[str(key)]] = destruction_of_property[str(elem[key])]
-                            new_json['property_destroyed_type'].append(destruction_of_property[str(elem[key])])
+                            try:
+                                new_json[json_structure[str(key)]] = destruction_of_property[str(elem[key])]
+                                new_json['property_destroyed_type'].append(destruction_of_property[str(elem[key])])
+                            except:
+                                pass
                     elif key == "DPROP2":
                         if elem[key] == None or elem[key] == 1:
                             pass
                         elif elem[key] == '8401':
                             new_json['property_destroyed_type'].append(destruction_of_property['840'])
                         else:
-                            new_json['property_destroyed_type'].append(destruction_of_property[str(elem[key])])
+                            try:
+                                new_json['property_destroyed_type'].append(destruction_of_property[str(elem[key])])
+                            except:
+                                pass
                     elif key == "DPROP3":
                         if elem[key] == None or elem[key] == 3:
                             pass
@@ -1311,15 +1332,21 @@ def parse():
                             new_json[json_structure[key]] = destruction_of_property['100']
                             new_json['property_destroyed_type'].append(destruction_of_property['100'])
                         else:
-                            new_json[json_structure[key]] = destruction_of_property[str(elem[key])]
-                            new_json['property_destroyed_type'].append(destruction_of_property[str(elem[key])])
+                            try:
+                                new_json[json_structure[key]] = destruction_of_property[str(elem[key])]
+                                new_json['property_destroyed_type'].append(destruction_of_property[str(elem[key])])
+                            except:
+                                pass
                     elif key == "VTAR1" or key == "VTAR2" or key == "VTAR3":
-                        if elem[key] == '' or elem[key] == None or elem[key] == '188:supporters of union parishad chairman':
+                        if elem[key] == '' or elem[key] == ' ' or elem[key] == None or elem[key] == '188:supporters of union parishad chairman':
                             new_json[json_structure[key]] = None
                         elif elem[key] == '210*' :
                             new_json['responders'].append(violence_actor_1['210'])
                         else:
-                            new_json['responders'].append(violence_actor_1[str(elem[key])])
+                            try:
+                                new_json['responders'].append(violence_actor_1[str(elem[key])])
+                            except:
+                                pass
                     elif key == 'WOUACA' or key == 'WOUACB' or key == 'WOUTAR'  or key == 'WNONP':
                         if elem[key] == '' or elem[key]==None or elem[key] == 'imprecise' or elem[key] == 'Imprecise':
                             new_json['injuries_count'] += float(0)
@@ -1355,7 +1382,10 @@ def parse():
                         elif elem[key] == '508012' or elem[key] =='508010' or elem[key] =='508011':
                             new_json[json_structure[key]] = upazila['508002']
                         else:
-                            new_json[json_structure[key]] = upazila[str(elem[key])]
+                            try:
+                                new_json[json_structure[key]] = upazila[str(elem[key])]
+                            except:
+                                pass
                     elif key =='VDAY':
                         if key == None:
                             v_day = 1
