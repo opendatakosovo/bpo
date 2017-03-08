@@ -700,12 +700,12 @@ g.highcharts-legend-item.highcharts-line-series {
     right: 15px;
 }
 
-@media (max-width:768px) {
+@media (max-width:360px) {
     .human-economic-title{
-        margin-bottom: 100px;
+        margin-bottom: 80px;
     }
     .reported-violence-title{
-        margin-bottom: 100px;
+        margin-bottom: 80px;
     }
     .download-container{
         position: absolute;
@@ -721,6 +721,51 @@ g.highcharts-legend-item.highcharts-line-series {
         height: 610px;
     }
 }
+
+@media (min-width:360px) and (max-width:425px) {
+    .human-economic-title{
+        margin-bottom: 80px;
+    }
+    .reported-violence-title{
+        margin-bottom: 80px;
+    }
+    .download-container{
+        position: absolute;
+        right: 15px;
+        top: 15%;
+    }
+    .download-container-2{
+        position: absolute;
+        right: 15px;
+        top: 15%;
+    }
+    #line-chart{
+        height: 610px;
+    }
+}
+@media (min-width:425px) and (max-width:767px) {
+    .human-economic-title{
+        margin-bottom: 80px;
+    }
+    .reported-violence-title{
+        margin-bottom: 80px;
+    }
+    .download-container{
+        position: absolute;
+        right: 15px;
+        top: 15%;
+    }
+    .download-container-2{
+        position: absolute;
+        right: 15px;
+        top: 15%;
+    }
+    #line-chart{
+        height: 610px;
+    }
+}
+
+
 /* Download Buttons */
 
 
