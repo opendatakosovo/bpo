@@ -618,12 +618,10 @@ function createLineChart() {
                     width: 1,
                     color: 'silver',
 
-                }],
-                max: 800
+                }]
             },
             xAxis: {
                 type: 'datetime',
-                min: 0
             },
             plotOptions: {
 
@@ -705,14 +703,14 @@ function createLineChart() {
             };
         }
 
-        if (name == 'Property Damage') {
-            seriesOptions[i] = {
-                name: name,
-                color: "#7CB6EB",
-                data: property_damage,
-                selected: false
-            };
-        }
+        // if (name == 'Property Damage') {
+        //     seriesOptions[i] = {
+        //         name: name,
+        //         color: "#7CB6EB",
+        //         data: property_damage,
+        //         selected: false
+        //     };
+        // }
 
         // As we're loading the data asynchronously, we don't know what order it will arrive. So
         // we keep a counter and create the chart when all the data is loaded.
