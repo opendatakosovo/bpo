@@ -124,9 +124,7 @@ Within these domains, the BPO presents the following incident categories under t
         chart: {
             type: 'bar',
             renderTo: "main-modal-chart",
-            margin: 0,
-            defaultSeriesType: 'areaspline',
-
+            width:560,
             description: "Ranking of locations based on number of incidents."
         },
 
@@ -184,7 +182,7 @@ Within these domains, the BPO presents the following incident categories under t
             type: 'bar',
             renderTo: "first-modal-chart",
             height: 262,
-             width: 560,
+            width: 560,
             description: "Ranking of locations based on number of deaths."
         },
 
@@ -236,7 +234,7 @@ Within these domains, the BPO presents the following incident categories under t
             type: 'bar',
             renderTo: "second-modal-chart",
             height: 262,
-             width: 560,
+            width: 560,
             description: "Ranking of locations based on number of injuries."
         },
 
@@ -341,7 +339,7 @@ Within these domains, the BPO presents the following incident categories under t
     });
     $('.download').click(function () {
 
-
+        $('.violence-type-download').text($('#violence-type-select option:selected').val());
         if (global_division == "") {
             $('.location-type-in').html(" Bangladesh");
             $('.first-violence-place').text(allData['rank-stats'][0]['name'] + ' Division');
@@ -388,11 +386,11 @@ Within these domains, the BPO presents the following incident categories under t
         }
         if (global_division == "") {
             $('.other-modal-section').css('display', 'none');
-            $('.main-modal-section').css('display', '');
+            // $('.main-modal-section').css('display', '');
 
         } else {
             $('.other-modal-section').css('display', '');
-            $('.main-modal-section').css('display', 'none');
+            // $('.main-modal-section').css('display', 'none');
         }
         general_stats = [];
 
@@ -408,10 +406,12 @@ Within these domains, the BPO presents the following incident categories under t
         property_damage_data_series_array = [];
 
         if (allData['rank-stats'].length > 0) {
+            $('.main-modal-incidents-nr').text(allData['rank-stats'][0]['incidents']);
             $.each(allData['rank-stats'], function (index, item) {
                 general_stats.push(item.incidents);
                 general_categories.push(item.name);
             });
+            console.log(general_categories);
         }
         if (allData['rank-download-stats']['death'] != undefined) {
             $.each(allData['rank-download-stats']['death'], function (item) {
@@ -436,39 +436,42 @@ Within these domains, the BPO presents the following incident categories under t
         $.each(Highcharts.charts, function (item) {
             if (Highcharts.charts[item] != undefined && Highcharts.charts[item].renderTo.id == 'main-modal-chart') {
                 $.each(Highcharts.charts[item].series, function (index) {
-                    var name = Highcharts.charts[item].series[index].name;
                     Highcharts.charts[item].series[0].setData(general_stats);
                     Highcharts.charts[item].xAxis[0].setCategories(general_categories);
                 });
                 Highcharts.charts[item].redraw();
             } else if (Highcharts.charts[item] != undefined && Highcharts.charts[item].renderTo.id == 'first-modal-chart') {
                 $.each(Highcharts.charts[item].series, function (index) {
-                    var name = Highcharts.charts[item].series[index].name;
                     Highcharts.charts[item].series[0].setData(death_data_series_array);
                     Highcharts.charts[item].xAxis[0].setCategories(death_states);
                 });
                 Highcharts.charts[item].redraw();
             } else if (Highcharts.charts[item] != undefined && Highcharts.charts[item].renderTo.id == 'second-modal-chart') {
                 $.each(Highcharts.charts[item].series, function (index) {
-                    var name = Highcharts.charts[item].series[index].name;
                     Highcharts.charts[item].series[0].setData(injury_data_series_array);
                     Highcharts.charts[item].xAxis[0].setCategories(injury_states);
                 });
                 Highcharts.charts[item].redraw();
             } else if (Highcharts.charts[item] != undefined && Highcharts.charts[item].renderTo.id == 'third-modal-chart') {
                 $.each(Highcharts.charts[item].series, function (index) {
-                    var name = Highcharts.charts[item].series[index].name;
                     Highcharts.charts[item].series[0].setData(property_damage_data_series_array);
                     Highcharts.charts[item].xAxis[0].setCategories(property_damage_states);
                 });
                 Highcharts.charts[item].redraw();
             }
         });
+        if($('#myModal').width()<590){
+            $("#main-modal-chart").highcharts().setSize($('#myModal').width()-40, '262', doAnimation = true);
+            $("#first-modal-chart").highcharts().setSize($('#myModal').width()-40, '262', doAnimation = true);
+            $("#second-modal-chart").highcharts().setSize($('#myModal').width()-40, '262', doAnimation = true);
+            $("#third-modal-chart").highcharts().setSize($('#myModal').width()-40, '262', doAnimation = true);
+        }else{
+            $("#main-modal-chart").highcharts().setSize(568, '262', doAnimation = true);
+            $("#first-modal-chart").highcharts().setSize(568, '262', doAnimation = true);
+            $("#second-modal-chart").highcharts().setSize(568, '262', doAnimation = true);
+            $("#third-modal-chart").highcharts().setSize(568, '262', doAnimation = true);
+        }
 
-        $("#main-modal-chart").highcharts().setSize($('#national-accordion').width()/2, '262', doAnimation = true);
-        $("#first-modal-chart").highcharts().setSize($('#national-accordion').width()/2, '262', doAnimation = true);
-        $("#second-modal-chart").highcharts().setSize($('#national-accordion').width()/2, '262', doAnimation = true);
-        $("#third-modal-chart").highcharts().setSize($('#national-accordion').width()/2, '262', doAnimation = true);
     });
     $('#Story_Frame_Raw_Download').click(function () {
         var data_array = undefined;
