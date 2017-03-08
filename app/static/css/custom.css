@@ -85,12 +85,88 @@ header .intro-text .intro-heading {
     z-index: 9999;
     font-size: 25px;
     position: fixed;
-     left: 20px;
+    left: 0;
+    padding-left: 30px;
+    text-align: left;
     padding-top: 25px;
     top: 0;
     transition: all 0.5s ease;
 }
 
+@media (max-width:680px) {
+    .intro-lead-in3{
+        padding-bottom: 15px;
+        text-align: center;
+        position: static;
+        left: 0;
+        padding-top: 0;
+        top: -20;
+        transition: all 0.5s ease;
+        color: #fff;
+        white-space: nowrap;
+    }
+    .fix-nav {
+        margin: auto;
+        text-align: center;
+        color: #fff;
+        opacity: 1;
+        z-index: 9999;
+        font-size: 20px;
+        position: static;
+        padding-top: 0px;
+        transition: all 0.5s ease;
+    }
+    .enter-landing{
+        margin: auto !important;
+        font-size: 15px !important;
+        padding: 10px !important;
+        height: auto !important;
+    }
+    .enter-landing-container{
+        display: flex;
+    }
+}
+
+@media (min-width:680px) and (max-width:768px) {
+    .enter-landing-container{
+        right: 15px;
+    }
+
+    .nav-last{
+        display: flex;
+        margin-top: -8px !important;
+        margin-bottom: -15px !important;
+    }
+    .intro-lead-in3{
+        padding-bottom: 0px;
+        text-align: left;
+        white-space: nowrap;
+        position: static;
+        left: 0;
+        padding-top: 0;
+        transition: all 0.5s ease;
+        color: #fff;
+        margin: auto;
+    }
+    .fix-nav {
+        margin: auto;
+        text-align: left;
+        color: #fff;
+        opacity: 1;
+        z-index: 9999;
+        font-size: 25px;
+        position: static;
+        padding-top: 0px;
+        transition: all 0.5s ease;
+        margin-left: 15px !important;
+    }
+    .enter-landing{
+        margin-right: 15px !important;
+        width: 250px;
+        font-size: 16px !important;
+    }
+
+}
 .section-heading5 {
     font-family: "Playfair Display";
     font-size: 48px;
@@ -187,7 +263,7 @@ header .intro-text .intro-heading {
     border-radius: 4px;
     font-size: 20px;
     padding: 17px;
-    float: right;
+    /*float: right;*/
     margin-right: 50px;
     height: 62px;
     margin-top: 10px;
