@@ -4,7 +4,6 @@
         $(window).scroll(function() {
             var scrollVal = $(window).scrollTop();
             var limit = $('#line-intro').offset().top;
-            console.log(scrollVal);
             if (scrollVal > limit - $('#mainNav').height()) {
                   $(".intro-lead-in3").addClass("fix-nav");
             } else {
