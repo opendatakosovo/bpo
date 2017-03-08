@@ -618,7 +618,8 @@ function createLineChart() {
                     width: 1,
                     color: 'silver',
 
-                }]
+                }],
+                min: 0
             },
             xAxis: {
                 type: 'datetime',
