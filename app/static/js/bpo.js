@@ -619,8 +619,7 @@ function createLineChart() {
                     color: 'silver',
 
                 }],
-                min: 0,
-                max: 500
+                max: 800
             },
             xAxis: {
                 type: 'datetime',
