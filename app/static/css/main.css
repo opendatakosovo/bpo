@@ -107,9 +107,10 @@ dl {
     font-family: FontAwesome;
     font-size: 18px;
     line-height: 18px;
-    display: none;
 }
-
+.ui-icon-triangle-1-e, .ui-icon-triangle-1-s{
+    display: none !important;
+}
 #3d-map {
 
 }
@@ -362,7 +363,6 @@ div.national-overview-tab {
 }
 
 .viz-title-about {
-
     font-family: "Noto Serif";
     font-size: 24px;
     font-weight: bold;
@@ -370,7 +370,7 @@ div.national-overview-tab {
     line-height: 33px;
     color: #FFC84A;
     text-shadow: 0 1px 0 0 #006586;
-    padding-right: 15px;
+    /*padding-right: 15px;*/
     padding-top: 20px;
 }
 
@@ -853,6 +853,7 @@ p.disclaimer-point {
 .viz-title-menu-container {
     float: right;
     padding-top: 21px;
+    padding-right: 30px;
 }
 i.fa.fa-home:before {
     font-size: 24px;
