@@ -558,7 +558,7 @@ function createLineChart() {
         y: -25,
         useHTML: true,
         labelFormatter: function () {
-            return '<div class="line-chart-item" style="height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox ' + this.name + '" type="checkbox" checked> <span style="font-family: Roboto;font-size: 11px;line-height: 13px;color: #FFFFFF;">' + this.name + '</span></div>';
+            return '<div class="line-chart-item" style="height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox ' + this.name + '" type="checkbox" > <span style="font-family: Roboto;font-size: 11px;line-height: 13px;color: #FFFFFF;">' + this.name + '</span></div>';
         },
         title: {
             text: "Filter data:",
@@ -577,7 +577,7 @@ function createLineChart() {
         y: 20,
         useHTML: true,
         labelFormatter: function () {
-            return '<div class="line-chart-item" style="width:138px; height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox ' + this.name + '" type="checkbox" style="border-radius: 6px; " checked> ' + this.name + ' </div>';
+            return '<div class="line-chart-item" style="width:138px; height: 22px;background-color:' + this.color + '; border: 1px solid rgba(0,0,0,0.08);border-radius: 22px;padding-left:10px;padding-right:10px;"> <input class="line-chart-checkbox ' + this.name + '" type="checkbox" style="border-radius: 6px; " > ' + this.name + ' </div>';
         }
     };
 
@@ -604,7 +604,7 @@ function createLineChart() {
             },
             rangeSelector: {
                 inputEnabled: false,
-                selected: 2
+                selected: 5
             },
 
             yAxis: {
@@ -683,7 +683,8 @@ function createLineChart() {
                 name: name,
                 color: '#ED7D31',
                 data: deaths,
-                selected: false
+                selected: false,
+                visible: false
             };
         }
         if (name == 'Injuries') {
@@ -691,7 +692,8 @@ function createLineChart() {
                 name: name,
                 color: "#A5A5A5",
                 data: injuries,
-                selected: false
+                selected: false,
+                visible: false
             };
         }
 
