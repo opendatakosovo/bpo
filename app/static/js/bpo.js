@@ -531,7 +531,9 @@ function createLineChart() {
     function titleMove(e) {
         var title = this.legend.title;
         if ($(window).width() > 768) {
-            title.translate(-80, 28);
+            if (title != undefined) {
+                title.translate(-80, 28);
+            }
         }
 
     }
@@ -581,7 +583,8 @@ function createLineChart() {
 
 
     function createChart(seriesOptions) {
-
+        var date_start = $('#dt1').val().split('/');
+        var start_point = Date.UTC(date_start[2], date_start[0], date_start[1]);
         var chart = Highcharts.stockChart({
             exporting: {
                 csv: {
@@ -589,6 +592,7 @@ function createLineChart() {
                 }
             },
             chart: {
+                type: 'line',
                 events: {
                     load: titleMove,
                     redraw: titleMove
@@ -596,10 +600,11 @@ function createLineChart() {
                 renderTo: 'line-chart-container',
                 height: 400,
                 description: "Time based linechart.",
+                zoomType: 'x'
             },
             rangeSelector: {
                 inputEnabled: false,
-                selected: 5
+                selected: 2
             },
 
             yAxis: {
@@ -610,13 +615,15 @@ function createLineChart() {
                 },
                 plotLines: [{
                     value: 0,
-                    width: 2,
-                    color: 'silver'
+                    width: 1,
+                    color: 'silver',
+
                 }],
-                min: 0
+                min: 0,
+                max: 5000
             },
             xAxis: {
-                range: 12 * 30 * 24 * 3600 * 1000,
+                type: 'datetime',
                 min: 0
             },
             plotOptions: {
@@ -624,6 +631,15 @@ function createLineChart() {
                 series: {
                     compare: 'value',
                     showInNavigator: true,
+                    stacking: false,
+                    pointStart: start_point,
+                    pointInterval: 24 * 3600 * 1000 // one day
+                },
+                dataGrouping: {
+                    forced: true,
+                    units: [
+                        ['days', [1]]
+                    ]
                 }
             },
 
@@ -645,6 +661,7 @@ function createLineChart() {
         $('#Human_and_Economic_Impact_Download').click(function () {
             download('Human_and_Economic_Impact.csv', chart.getCSV());
         });
+
     }
 
     $.each(names, function (i, name) {
@@ -667,14 +684,16 @@ function createLineChart() {
             seriesOptions[i] = {
                 name: name,
                 color: '#ED7D31',
-                data: deaths
+                data: deaths,
+                selected: false
             };
         }
         if (name == 'Injuries') {
             seriesOptions[i] = {
                 name: name,
                 color: "#A5A5A5",
-                data: injuries
+                data: injuries,
+                selected: false
             };
         }
 
@@ -682,7 +701,8 @@ function createLineChart() {
             seriesOptions[i] = {
                 name: name,
                 color: "#FFC000",
-                data: incidents
+                data: incidents,
+                selected: true
             };
         }
 
@@ -690,7 +710,8 @@ function createLineChart() {
             seriesOptions[i] = {
                 name: name,
                 color: "#7CB6EB",
-                data: property_damage
+                data: property_damage,
+                selected: false
             };
         }
 
@@ -708,6 +729,20 @@ function createLineChart() {
         } else {
             $(this).children().prop('checked', true);
         }
+
+        $.each(Highcharts.charts, function (item) {
+            if (Highcharts.charts[item] != undefined && Highcharts.charts[item].renderTo.id == 'line-chart-container') {
+                $.each(Highcharts.charts[item].series, function (index) {
+                    var axisMax = Highcharts.charts[item].yAxis[0].max; // Max of the axis
+                    var dataMax = Highcharts.charts[item].yAxis[0].dataMax; // Max of the data
+                    var xaxisMax = Highcharts.charts[item].xAxis[0].max;
+                    // Highcharts.charts[item].yAxis[0].setExtremes(0, axisMax);
+                    console.log(xaxisMax);
+                    console.log(dataMax);
+                });
+                Highcharts.charts[item].redraw();
+            }
+        });
     });
     $('.line-chart-checkbox').click(function () {
         if ($(this).is(':checked') == true) {
@@ -1592,8 +1627,7 @@ function buildDataSeries() {
     }
 
     for (var item in allData['map-victims-count']['districts']) {
-        if(allData['map-victims-count']['districts'][item]['district'] != null && allData['map-victims-count']['districts'][item]['district'] != '')
-        {
+        if (allData['map-victims-count']['districts'][item]['district'] != null && allData['map-victims-count']['districts'][item]['district'] != '') {
             districts[allData['map-victims-count']['districts'][item]['district'].toString()] = allData['map-victims-count']['districts'][item]["incidents"]
 
         }
