@@ -620,7 +620,7 @@ function createLineChart() {
 
                 }],
                 min: 0,
-                max: 5000
+                max: 500
             },
             xAxis: {
                 type: 'datetime',
