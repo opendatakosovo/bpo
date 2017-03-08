@@ -656,9 +656,10 @@ function createLineChart() {
 
 
         });
-        $('#Human_and_Economic_Impact_Download').click(function () {
-            download('Human_and_Economic_Impact.csv', chart.getCSV());
-        });
+        $('.line-chart-checkbox.Incidents').click();
+        // $('#Human_and_Economic_Impact_Download').click(function () {
+        //     download('Human_and_Economic_Impact.csv', chart.getCSV());
+        // });
 
     }
 
@@ -702,18 +703,11 @@ function createLineChart() {
                 name: name,
                 color: "#FFC000",
                 data: incidents,
-                selected: true
+                selected: true,
+                visible: false
             };
         }
 
-        // if (name == 'Property Damage') {
-        //     seriesOptions[i] = {
-        //         name: name,
-        //         color: "#7CB6EB",
-        //         data: property_damage,
-        //         selected: false
-        //     };
-        // }
 
         // As we're loading the data asynchronously, we don't know what order it will arrive. So
         // we keep a counter and create the chart when all the data is loaded.

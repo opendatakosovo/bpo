@@ -85,6 +85,8 @@ class MongoUtils(object):
             return self.get_upazila_stats(params)
         elif params['division'] != '' and params['district'] == '' and params['upazila'] == '':
             return self.get_district_stats(params)
+        elif params['division'] == '' and params['district'] == '' and params['upazila'] == '':
+            return self.get_division_stats(params)
         return result
 
     def get_district_stats(self, params):

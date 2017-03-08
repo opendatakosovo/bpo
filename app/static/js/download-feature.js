@@ -342,7 +342,19 @@ Within these domains, the BPO presents the following incident categories under t
         $('.violence-type-download').text($('#violence-type-select option:selected').val());
         if (global_division == "") {
             $('.location-type-in').html(" Bangladesh");
-            $('.first-violence-place').text(allData['rank-stats'][0]['name'] + ' Division');
+
+            $('.location-type-deaths').text(allData['rank-download-stats']['death'][0]['name'] + " Division");
+            $('.division-desc-death-rank-total-in').text(allData['rank-download-stats']['death'][0]['total']);
+
+            $('.location-type-injuries').text(allData['rank-download-stats']['injury'][0]['name'] + " Division");
+            $('.division-desc-injury-rank-total-in').text(allData['rank-download-stats']['injury'][0]['total']);
+
+            $('.location-type-property').text(allData['rank-download-stats']['property'][0]['name'] + " Division");
+            $('.division-desc-property-rank-total-in').text(allData['rank-download-stats']['property'][0]['total']);
+
+            //
+            $('.location-type-in').html(global_division + ' Bangladesh');
+            $('.first-violence-place').text(allData['incident-stats'][0]['name'] + ' District');
         } else if (global_division != "" && global_district == "") {
             // Set death naming
             $('.location-type-deaths').text(allData['rank-download-stats']['death'][0]['name'] + " District");
@@ -379,19 +391,7 @@ Within these domains, the BPO presents the following incident categories under t
         }
 
 
-        if (show_specific_charts == true) {
-            first_modal_chart = undefined;
-            second_modal_chart = undefined;
-            third_modal_chart = undefined;
-        }
-        if (global_division == "") {
-            $('.other-modal-section').css('display', 'none');
-            // $('.main-modal-section').css('display', '');
 
-        } else {
-            $('.other-modal-section').css('display', '');
-            // $('.main-modal-section').css('display', 'none');
-        }
         general_stats = [];
 
         general_categories = [];
