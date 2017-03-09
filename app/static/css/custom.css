@@ -127,7 +127,7 @@ header .intro-text .intro-heading {
     }
 }
 
-@media (min-width:680px) and (max-width:768px) {
+@media (min-width:680px) and (max-width:767px) {
     .enter-landing-container{
         right: 15px;
     }
