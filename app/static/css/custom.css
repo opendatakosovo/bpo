@@ -719,7 +719,7 @@ fieldset[disabled] .btn-xl.active {
 }
 .intro-lead-in3{
     opacity: 0;
-    z-index: 9999;
+    z-index: 100;
     font-size: 25px;
     position: fixed;
     left: 100px;
@@ -732,7 +732,7 @@ fieldset[disabled] .btn-xl.active {
 .fix-nav{
     color: #fff;
     opacity: 1;
-    z-index: 9999;
+    z-index: 100;
     font-size: 25px;
     position: fixed;
     left: 0;
@@ -760,7 +760,7 @@ fieldset[disabled] .btn-xl.active {
         text-align: center;
         color: #fff;
         opacity: 1;
-        z-index: 9999;
+        z-index: 100;
         font-size: 20px;
         position: static;
         padding-top: 0px;
@@ -803,7 +803,7 @@ fieldset[disabled] .btn-xl.active {
         text-align: left;
         color: #fff;
         opacity: 1;
-        z-index: 9999;
+        z-index: 100;
         font-size: 25px;
         position: static;
         padding-top: 0px;

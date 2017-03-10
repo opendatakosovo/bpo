@@ -26,6 +26,9 @@ div#national-accordion {
 dl {
     margin-bottom: 0px !important;
 }
+.enter-landing-container{
+    z-index: 101;
+}
 
 .dl-horizontal dt {
     width: 160px;
