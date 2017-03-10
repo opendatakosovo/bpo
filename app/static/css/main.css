@@ -356,8 +356,8 @@ div.national-overview-tab {
 }
 
 .viz-title {
-    font-family: "Noto Serif";
-    font-size: 32px;
+    font-family: "Playfair Display";
+    font-size: 36px;
     font-weight: bold;
     line-height: 49px;
     color: #FFFFFF;
@@ -366,7 +366,7 @@ div.national-overview-tab {
 }
 
 .viz-title-about {
-    font-family: "Noto Serif";
+    font-family: "Playfair Display";
     font-size: 24px;
     font-weight: bold;
     text-align: right;
