@@ -53,120 +53,6 @@ header .intro-text .intro-heading {
     text-shadow: 0 1px 0 0 #006586;
 }
 
-.navbar-custom .nav li a {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-transform: uppercase;
-    font-weight: 400;
-    letter-spacing: 0px;
-    color: white;
-}
-.navbar{
-    text-align: right !important;
-}
-.navbar-custom {
-    background-color: #007CA4;
-    border-color: transparent;
-}
-.intro-lead-in3{
-    opacity: 0;
-    z-index: 9999;
-    font-size: 25px;
-    position: fixed;
-    left: 100px;
-    padding-top: 25px;
-    top: 0;
-    transition: all 0.5s ease;
-    color: #fff;
-}
-
-.fix-nav{
-    color: #fff;
-    opacity: 1;
-    z-index: 9999;
-    font-size: 25px;
-    position: fixed;
-    left: 0;
-    padding-left: 30px;
-    text-align: left;
-    padding-top: 25px;
-    top: 0;
-    transition: all 0.5s ease;
-}
-
-@media (max-width:680px) {
-    .intro-lead-in3{
-        padding-bottom: 15px;
-        text-align: center;
-        position: static;
-        left: 0;
-        padding-top: 0;
-        top: -20;
-        transition: all 0.5s ease;
-        color: #fff;
-        white-space: nowrap;
-    }
-    .fix-nav {
-        margin: auto;
-        text-align: center;
-        color: #fff;
-        opacity: 1;
-        z-index: 9999;
-        font-size: 20px;
-        position: static;
-        padding-top: 0px;
-        transition: all 0.5s ease;
-    }
-    .enter-landing{
-        margin: auto !important;
-        font-size: 15px !important;
-        padding: 10px !important;
-        height: auto !important;
-    }
-    .enter-landing-container{
-        display: flex;
-    }
-}
-
-@media (min-width:680px) and (max-width:767px) {
-    .enter-landing-container{
-        right: 15px;
-    }
-
-    .nav-last{
-        display: flex;
-        margin-top: -8px !important;
-        margin-bottom: -15px !important;
-    }
-    .intro-lead-in3{
-        padding-bottom: 0px;
-        text-align: left;
-        white-space: nowrap;
-        position: static;
-        left: 0;
-        padding-top: 0;
-        transition: all 0.5s ease;
-        color: #fff;
-        margin: auto;
-    }
-    .fix-nav {
-        margin: auto;
-        text-align: left;
-        color: #fff;
-        opacity: 1;
-        z-index: 9999;
-        font-size: 25px;
-        position: static;
-        padding-top: 0px;
-        transition: all 0.5s ease;
-        margin-left: 15px !important;
-    }
-    .enter-landing{
-        margin-right: 15px !important;
-        width: 250px;
-        font-size: 16px !important;
-    }
-
-}
 .section-heading5 {
     font-family: "Playfair Display";
     font-size: 48px;
@@ -817,6 +703,121 @@ fieldset[disabled] .btn-xl.active {
     }
 }
 
+.navbar-custom .nav li a {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0px;
+    color: white;
+}
+.navbar{
+    text-align: right !important;
+}
+.navbar-custom {
+    background-color: #007CA4;
+    border-color: transparent;
+}
+.intro-lead-in3{
+    opacity: 0;
+    z-index: 9999;
+    font-size: 25px;
+    position: fixed;
+    left: 100px;
+    padding-top: 25px;
+    top: 0;
+    transition: all 0.5s ease;
+    color: #fff;
+}
+
+.fix-nav{
+    color: #fff;
+    opacity: 1;
+    z-index: 9999;
+    font-size: 25px;
+    position: fixed;
+    left: 0;
+    padding-left: 30px;
+    text-align: left;
+    padding-top: 25px;
+    top: 0;
+    transition: all 0.5s ease;
+}
+
+@media (max-width:680px) {
+    .intro-lead-in3{
+        padding-bottom: 15px;
+        text-align: center;
+        position: static;
+        left: 0;
+        padding-top: 0;
+        top: -20;
+        transition: all 0.5s ease;
+        color: #fff;
+        white-space: nowrap;
+    }
+    .fix-nav {
+        margin: auto;
+        text-align: center;
+        color: #fff;
+        opacity: 1;
+        z-index: 9999;
+        font-size: 20px;
+        position: static;
+        padding-top: 0px;
+        transition: all 0.5s ease;
+    }
+    .enter-landing{
+        margin: auto !important;
+        font-size: 15px !important;
+        padding: 10px !important;
+        height: auto !important;
+    }
+    .enter-landing-container{
+        display: flex;
+    }
+}
+
+@media (min-width:680px) and (max-width:767px) {
+    .enter-landing-container{
+        right: 15px;
+    }
+
+    .nav-last{
+        display: flex;
+        margin-top: -8px !important;
+        margin-bottom: -15px !important;
+    }
+    .intro-lead-in3{
+        padding-bottom: 0px;
+        text-align: left;
+        white-space: nowrap;
+        position: static;
+        left: 0;
+        padding-top: 0;
+        transition: all 0.5s ease;
+        color: #fff;
+        margin: auto;
+    }
+    .fix-nav {
+        margin: auto;
+        text-align: left;
+        color: #fff;
+        opacity: 1;
+        z-index: 9999;
+        font-size: 25px;
+        position: static;
+        padding-top: 0px;
+        transition: all 0.5s ease;
+        margin-left: 15px !important;
+    }
+    .enter-landing{
+        margin-right: 15px !important;
+        width: 250px;
+        font-size: 16px !important;
+    }
+
+}
+
 @media (min-width: 768px) {
     .navbar-custom.affix {
         background-color: #007CA4;
@@ -825,6 +826,20 @@ fieldset[disabled] .btn-xl.active {
 
     .navbar-custom.affix .navbar-brand {
         font-size: 1.5em;
+    }
+}
+
+@media (min-width: 845px) and (max-width: 1024px) {
+    .fix-nav{
+        font-size: 30px;
+        padding-top: 19px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .fix-nav{
+        font-size: 40px;
+        padding-top: 10px;
     }
 }
 
@@ -867,12 +882,6 @@ section h3.section-subheading {
     font-style: italic;
     font-weight: 400;
     margin-bottom: 75px;
-}
-
-@media (min-width: 768px) {
-    section {
-        /*padding: 150px 0;*/
-    }
 }
 
 .service-heading {
