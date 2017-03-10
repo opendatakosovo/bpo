@@ -730,7 +730,7 @@ fieldset[disabled] .btn-xl.active {
 }
 
 .fix-nav{
-    color: #fff;
+    color: #FFFFFF;
     opacity: 1;
     z-index: 100;
     font-size: 25px;
@@ -741,6 +741,8 @@ fieldset[disabled] .btn-xl.active {
     padding-top: 25px;
     top: 0;
     transition: all 0.5s ease;
+    font-family: "Playfair Display";
+	font-weight: bold;
 }
 
 @media (max-width:680px) {
