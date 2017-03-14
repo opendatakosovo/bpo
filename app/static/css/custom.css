@@ -30,6 +30,134 @@
         float: none !important;
     }
 }
+@media (max-width:1280px) {
+/* Styles */
+    .title-social-network{
+
+    }
+    .icon{
+
+
+    }
+
+}
+@media (min-width:1024px){
+/* Styles */
+    .title-social-network{
+
+    }
+    .icon{
+        width: 150px;
+
+
+    }
+    .find-us-on-social{
+
+
+    }
+    .social-login-btn{
+
+    }
+
+}
+@media (min-width:1280px){
+/* Styles */
+    .title-social-network{
+        margin-left: 60px;
+    }
+    .icon{
+        width: 150px;
+
+
+    }
+    .find-us-on-social{
+
+
+    }
+    .social-login-btn{
+
+    }
+
+}
+@media (min-width:1148px){
+/* Styles */
+    .title-social-network{
+        margin-left: 60px;
+    }
+    .icon{
+        width: 150px;
+
+
+    }
+    .find-us-on-social{
+
+
+    }
+    .social-login-btn{
+
+    }
+
+}
+@media (min-width:768px){
+/* Styles */
+    .title-social-network{
+        margin-left: 16px;
+    width: 224px;
+    }
+    .icon{
+
+
+
+    }
+    .find-us-on-social{
+
+
+    }
+    .social-login-btn{
+
+    }
+
+}
+@media (min-width:927px){
+/* Styles */
+    .title-social-network{
+
+    width: 219px;
+    }
+    .icon{
+
+
+
+    }
+    .find-us-on-social{
+
+
+    }
+    .social-login-btn{
+
+    }
+
+}
+@media (min-width:1123px){
+/* Styles */
+    .title-social-network{
+    margin-left: 60px;
+    width: 219px;
+    }
+    .icon{
+
+
+
+    }
+    .find-us-on-social{
+
+
+    }
+    .social-login-btn{
+
+    }
+
+}
 
 header .intro-text .intro-heading {
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -413,7 +541,7 @@ hr {
     line-height: 22px;
     color: #EEEEEE;
     float: left;
-    padding-left: 15px;
+
     white-space: nowrap;
 }
 
