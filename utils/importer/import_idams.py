@@ -33,7 +33,6 @@ def parse():
 
 
             if 'actors' in elem['_source']:
-                print elem['_source']['location_and_source']['source_url']
                 if len(elem['_source']['smart_tags']['smart_tags']) > 0 and \
                                 elem['_source']['smart_tags']['smart_tags'][0] != '' and elem['_source']['smart_tags']['smart_tags'][0] =='Terrorism':
                     new_json['incident_date'] = datetime.strptime(elem['_source']['summary']['date'], '%Y-%m-%d')
@@ -43,7 +42,10 @@ def parse():
                     new_json['lon'] = elem['_source']['location_and_source']['longitude']
                     new_json['source'] = elem['_source']['location_and_source']['source_url']
                     new_json['violence_type'] = 'Violent Extremism'
-                    new_json['responders'] = elem['_source']['actors']['instigators']
+                    if 'Islamic State of Iraq and Syria' in elem['_source']['actors']['instigators']:
+                        new_json['responders'] = ['New-JMB']
+                    else:
+                        new_json['responders'] = elem['_source']['actors']['instigators']
                     new_json['causes'] = elem['_source']['causes_of_incident']['causes']
                     new_json['property_destroyed_type'] = []
                     new_json['injuries_count'] = 0
@@ -79,7 +81,10 @@ def parse():
                         new_json['violence_type'] = 'Violent Crime - Homicides'
                     else:
                         new_json['violence_type'] = elem['_source']['summary']['incident_type']
-                    new_json['responders'] = elem['_source']['actors']['instigators']
+                    if 'Islamic State of Iraq and Syria' in elem['_source']['actors']['instigators']:
+                        new_json['responders'] = ['New-JMB']
+                    else:
+                        new_json['responders'] = elem['_source']['actors']['instigators']
                     new_json['causes'] = elem['_source']['causes_of_incident']['causes']
                     new_json['property_destroyed_type'] = []
                     new_json['injuries_count'] = 0

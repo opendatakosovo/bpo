@@ -730,9 +730,6 @@ function createLineChart() {
                     var axisMax = Highcharts.charts[item].yAxis[0].max; // Max of the axis
                     var dataMax = Highcharts.charts[item].yAxis[0].dataMax; // Max of the data
                     var xaxisMax = Highcharts.charts[item].xAxis[0].max;
-                    // Highcharts.charts[item].yAxis[0].setExtremes(0, axisMax);
-                    console.log(xaxisMax);
-                    console.log(dataMax);
                 });
                 Highcharts.charts[item].redraw();
             }
@@ -831,7 +828,6 @@ function buildMap() {
             description: "Incident distribution map.",
             events: {
                 drilldown: function (e) {
-                    console.log(e.point.level);
                     map_data = buildDataSeries();
                     var map_key;
                     var drilldown_level = e.point.level;
@@ -1558,8 +1554,7 @@ function updateMapValues() {
     }
     for (var i in points) {
 
-        var val = values_array[points[i].name]
-        console.log(val);
+        var val = values_array[points[i].name];
         if (val != undefined) {
             points[i].update({value: val}, false);
             points[i].update({color: mapColor(val)})
