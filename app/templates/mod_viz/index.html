@@ -18,7 +18,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.0/jspdf.plugin.autotable.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-<div class="">
+<div class="container-fluid" style="padding:0px !important">
 
     <div class="col-md-12" id="filtering">
         <div class="row">
@@ -88,8 +88,8 @@
 
             <div class="col-md-3 col-sm-3 col-xs-12 download-container">
                 <button class="download download-button-viz" data-toggle="modal" data-target="#myModal"><i
-                        class="fa fa-file-pdf-o download-icon" aria-hidden="true"></i><span
-                        id="Story_Frame_Data_Download_Text">Download</span></button>
+                        class="fa fa-file-pdf-o download-icon" aria-hidden="true"></i>
+                        <span id="Story_Frame_Data_Download_Text">Download</span></button>
             </div>
 
         </div>
@@ -310,7 +310,7 @@
 
 </div>
 
-<div class="">
+<div class="container-fluid" style="padding:0px !important">
     <div id="line-chart" class="col-md-12">
         <div class="col-md-8 col-sm-9 col-xs-12 human-economic-title">
             <span class="line-chart-title">Human and Economic Impact</span><br>
@@ -318,9 +318,9 @@
                     class="location-name"> Bangladesh</span></span>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-12 download-container-2">
-            <button id="Human_and_Economic_Impact_Download" class="download download-button-viz" data-toggle="modal" data-target="#myModal"><i class="fa fa-file-pdf-o download-icon"
-                                                               aria-hidden="true"></i><span
-                    >Download</span></button>
+            <button id="Human_and_Economic_Impact_Download" class="download download-button-viz" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-file-pdf-o download-icon" aria-hidden="true"></i>
+                <span id="Human_and_Economic_Impact_Download_Text">Download</span></button>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div id="line-chart-container" data-highcharts-chart="8" style="">
@@ -420,8 +420,7 @@
                     <div class="col-md-2 col-md-offset-1 col-xs-12 col-sm-12">
                         <button type="button" id="Story_Frame_Raw_Download" class="btn download-close"
                                 data-dismiss="modal">
-                            <iclass
-                            ="fa fa-file-pdf-o download-icon" aria-hidden="true"></i>Raw Data
+                            <i class="fa fa-file-pdf-o download-icon" aria-hidden="true"></i>Raw Data
                         </button>
                     </div>
                 </div>
