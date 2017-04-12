@@ -478,7 +478,7 @@ Within these domains, the BPO presents the following incident categories under t
         var dataset = $('#data-source-select').val();
         if (dataset == 'mgr') {
             data_array = Papa.unparse({
-                fields: ['division', 'district', 'upazila', 'date', 'death', 'incidents', 'property', 'injuries'],
+                fields: ['division', 'district', 'upazila', 'date', 'death', 'incidents', 'property', 'injuries', 'source'],
                 data: allData['raw-incident-stats'],
                 quotes: false,
                 quoteChar: '"',

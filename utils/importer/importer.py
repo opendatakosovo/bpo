@@ -44,7 +44,7 @@ def parse():
         "ANONP": "arrested_non_participant",
         "VREMU": "violence_report_multiple_events",
         "CAVER": "casualties_averaged",
-        "VSOUR": "violence_source",
+        "VSOUR": "source",
         "WAVER": "wounded_averaged",
         "VHART": "violent_event_hartal",
         "CNONP": "casualties_non_participant",
