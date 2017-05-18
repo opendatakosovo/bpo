@@ -533,7 +533,7 @@ g.highcharts-legend-box {
     color: #96f226;
     border: 2px solid #454545;
     border-radius: 0px;
-    box-shadow: 0 0
+    box-shadow: 0 0;
     list-style-position: inside;
 }
 
@@ -682,7 +682,7 @@ g.highcharts-legend-item.highcharts-line-series {
     width: 71px;
     height: 19px;
     font-family: Lato;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     line-height: 17px;
     color: #FFFFFF;
@@ -787,7 +787,7 @@ g.highcharts-legend-item.highcharts-line-series {
     width: 71px;
     height: 19px;
     font-family: Lato;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     line-height: 17px;
     color: #FFFFFF;
@@ -846,7 +846,7 @@ g.highcharts-legend-item.highcharts-line-series {
     border: 1px solid #E79400;
     border-radius: 2px;
     margin-top: 6px;
-    font-size:
+    /*font-size:*/
 }
 
 .modal-title {
