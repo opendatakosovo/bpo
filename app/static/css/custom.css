@@ -150,10 +150,34 @@ header .intro-text .intro-heading {
     font-size: 20px;
     padding: 17px;
     /*float: right;*/
+    margin-right: 3px;
+    height: 62px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.menu-landing {
+    color: #fff !important;
+    background-color: #007CA4;
+    border: 2px solid #FFAA12 !important;
+    border-style: solid;
+    font-family: Lato;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 4px;
+    font-size: 20px;
+    padding: 17px;
+    /*float: right;*/
     margin-right: 50px;
     height: 62px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.nav .open>a.menu-landing:hover, .nav .open>a.menu-landing:focus, .btn-xl:active, .btn-xl.active, .open .dropdown-toggle.btn-xl {
+    color: white !important;
+    background-color: #fec503 !important;
+    border-color: #f6bf01 !important;
 }
 
 
